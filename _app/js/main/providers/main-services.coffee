@@ -1,8 +1,8 @@
 'use strict'
 
 app = angular.module("MainApp")
-# API_HOST = "https://chutter-api.herokuapp.com/api/v1"
-API_HOST = "http://localhost:3000/api/v1"
+API_HOST = "https://chutter-api.herokuapp.com/api/v1"
+# API_HOST = "http://localhost:3000/api/v1"
 
 
 app.factory "NetworkSubscriptionResource", ["$resource", "Page", ($resource, Page) -> 

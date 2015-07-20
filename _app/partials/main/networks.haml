@@ -1,0 +1,7 @@
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
+  %md-subheader.md-no-sticky
+    Manage Network Subscriptions
+  %md-list-item{ng-repeat: "network in networkList"}
+    %p{ng-bind:"network.name"}
+    %span{flex: true}
+    %md-switch{ng-model: "network.selected", aria-label: "Switch 1", ng-change: "networkToggle(network)"}

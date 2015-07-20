@@ -1,0 +1,15 @@
+%md-button.md-button-toggle.menu-toggle{aria-controls: "docs-menu-{{networkSubscription.name | nospace}}", aria-label: "network", aria-expanded: "{{isOpen()}}", ng-click:"toggle()", ui-sref: "home.network({network: networkSubscription.slug})", ui-sref-active: "active"}
+  %div{flex: true, layout: "row"}
+    %span.md-toggle-icon{aria-hidden: true, ng-class: "{'active' : isOpen()}"}
+      %i.fa.fa-caret-right.fa-fw
+
+    {{networkSubscription.name}}
+    %span{flex: true}
+    %span{ng-show:"isOpen()", ng-click: "editCommunity()"}
+      %i.fa.fa-sliders.fa-fw
+
+  %span.md-visually-hidden
+    Toggle {{isOpen()? 'expanded' : 'collapsed'}}
+%ul.menu-toggle-list{id: "docs-menu-{{networkSubscription.name | nospace}}"}
+  %li{ng-repeat: "community in networkSubscription.community_subscriptions"}
+    %menu-link{community: "community"}

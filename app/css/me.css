@@ -1,0 +1,55 @@
+body,
+.md-sidenav-left,
+md-content {
+  background: #f2f2f2; }
+
+.md-sidenav-left {
+  z-index: 1; }
+
+.nav-header h3 {
+  margin-left: 15px; }
+
+.nav-list md-list-item {
+  width: 100%;
+  margin: 0;
+  color: #757575; }
+  .nav-list md-list-item a {
+    padding: 10px;
+    margin: 0;
+    text-transform: capitalize;
+    padding-left: 15px;
+    width: 100%;
+    text-align: left; }
+  .nav-list md-list-item i {
+    font-size: 16px;
+    margin-right: 5px; }
+
+#conversations #conversation-header {
+  padding: 0 10px; }
+  #conversations #conversation-header .md-button {
+    width: 40px;
+    min-width: 40px; }
+#conversations md-list-item.md-3-line a {
+  padding: 0;
+  margin: 0; }
+  #conversations md-list-item.md-3-line a .md-avatar {
+    margin-right: 0px;
+    width: 20px;
+    margin: auto; }
+    #conversations md-list-item.md-3-line a .md-avatar i {
+      margin: auto;
+      font-size: 10px; }
+  #conversations md-list-item.md-3-line a .md-list-item-text h3 {
+    font-weight: 500; }
+
+#messages .message {
+  width: 40%;
+  padding: 15px;
+  word-wrap: break-word; }
+#messages .user {
+  font-size: 10px; }
+#messages .reply {
+  position: absolute;
+  bottom: 0; }
+
+/*# sourceMappingURL=me.css.map */

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="56px" height="56px" viewBox="0 0 56 56" enable-background="new 0 0 56 56" xml:space="preserve">
+<font horiz-adv-x="1792">
+<!-- SIL Open Font License 1.1 -->
+<!-- Copyright: Copyright 2013 Adobe System Incorporated. All rights reserved. -->
+<font-face font-family="FontAwesome" units-per-em="1792" underline-position="-179" underline-thickness="90"/>
+<missing-glyph horiz-adv-x="896" d="M224,112l0,1312l448,0l0,-1312l-448,0M112,0l672,0l0,1536l-672,0l0,-1536z"/>
+<glyph unicode="&#xF001;" horiz-adv-x="1536" d="M1536,1312C1536,1365 1493,1408 1440,1408C1430,1408 1421,1407 1412,1404l-832,-256C540,1135 512,1098 512,1056l0,-967C452,116 386,128 320,128C211,128 0,77 0,-64C0,-205 211,-256 320,-256C429,-256 640,-205 640,-64l0,709l768,237l0,-537C1348,372 1282,384 1216,384C1107,384 896,333 896,192C896,51 1107,0 1216,0C1325,0 1536,51 1536,192z"/>
+</font>
+
+	<text transform="matrix(1 0 0 1 13.3921 38.0137)" fill="#DDDDDD" font-family="'FontAwesome'" font-size="30.4042"></text>
+</svg>

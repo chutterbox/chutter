@@ -1,0 +1,1 @@
+app = angular.module("MeApp", ["Chutter"])

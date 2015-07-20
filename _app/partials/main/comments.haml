@@ -1,0 +1,9 @@
+%md-list
+  %post{post: "page.post",  layout: "row"}
+%div{layout: "row"}
+  %span{flex: true}
+  %md-button.md-raised.md-primary{ng-click:"reply()"}
+    Leave a comment
+#comments
+  %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
+

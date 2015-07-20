@@ -1,0 +1,151 @@
+post
+  .top, .tagline, .footer
+    padding-left: 8px
+  padding: 0 0 10px 0
+  .vote
+    max-width: 5%
+    height: 125px
+    .md-button
+      min-width: 100%
+      padding: 0
+      margin: 0
+      i
+        color: #000
+        &.active
+          color: #999
+
+  .media
+    border: 1px solid #f6f6f6
+    -webkit-transform-origin: top left
+    transform-origin: top left
+    height: 125px
+    width: 167px
+    cursor: hand
+
+  .middle
+    transform-origin: right
+    .top
+      padding: 24px 16px 0 16px
+      .title
+        a.title-text
+          font-weight: 500
+          letter-spacing: .7px
+          font-size: 18px
+      .attribution,
+      .community
+        a,i 
+          font-weight: 300
+          font-size: 12px
+          color: #bbb
+    .tagline
+      padding: 8px 16px 0 16px
+      font-size: 12px
+      span
+        &.votes
+          margin-right: 6px
+          color: #999
+          font-weight: bolder
+        &.submitted-by-text,
+        &.time-ago,
+          margin-right: 4px
+          font-weight: 300
+      a.user-link
+        margin-right: 4px
+    .footer
+      padding: 8px
+      font-size: 12px
+      a
+        min-width: 88px
+        text-align: center
+        padding: 6px 0
+        font-weight: bolder
+        color: rgb(3,169,244) 
+
+
+
+  -webkit-transition: all 150ms ease-in-out
+  transition: all 150ms ease-in-out
+
+
+
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+
+
+.scale-media
+  transform: scale(3.5,3.5)
+  opacity: 0
+  -webkit-transform: scale(3.5,3.5)
+  -webkit-animation: media 200ms ease-in-out
+  -moz-animation: media 200ms ease-in-out
+  animation: media 200ms ease-in-out
+  @keyframes media 
+    0%
+      opacity: 1 
+      transform: scale(1,1)
+    100% 
+      opactiy: 0
+      transform: scale(3.5,3.5)
+  @-webkit-keyframes media 
+    0% 
+      opactiy: 1
+      -webkit-transform: scale(1,1)
+    100% 
+      opacity: 0
+      -webkit-transform: scale(3.5,3.5)
+
+.unscale-media
+  transform: scale(1,1)
+  opactiy: 1
+  -webkit-transform: scale(1,1)
+  -webkit-animation: mediaOut 200ms ease-in-out
+  -moz-animation: mediaOut 200ms ease-in-out
+  animation: mediaOut 200ms ease-in-out
+  @keyframes mediaOut 
+    0% 
+      opacity: 0
+      transform: scale(3.5,3.5)
+    100% 
+      opactiy: 1
+      transform: scale(1,1)
+  @-webkit-keyframes mediaOut 
+    0% 
+      opacity: 0
+      -webkit-transform: scale(3.5,3.5)
+    100% 
+      opacity: 1
+      -webkit-transform: scale(1,1)
+
+.scale-middle
+  transform: scale(0.7,0.7) translateX(300px)
+  -webkit-transform: scale(0.7,0.7) translateX(300px)
+  -webkit-animation: middle 200ms ease-in-out
+  -moz-animation: middle 200ms ease-in-out
+  animation: middle 200ms ease-in-out
+
+  @keyframes middle 
+    0% 
+      transform: scale(1,1)
+    100% 
+      transform: scale(0.7,0.7) translateX(300px)
+  @-webkit-keyframes middle 
+    0% 
+      -webkit-transform: scale(1,1)
+    100% 
+      -webkit-transform: scale(0.7,0.7) translateX(300px)
+.unscale-middle
+  transform: scale(1,1)
+  -webkit-transform: scale(1,1)
+  -webkit-animation: middleOut 200ms ease-in-out
+  -moz-animation: middleOut 200ms ease-in-out
+  animation: middleOut 200ms ease-in-out
+  @keyframes middleOut 
+    0% 
+      transform: scale(0.7,0.7)  translateX(300px)
+    100% 
+      transform: scale(1,1)  translateX(0)
+  @-webkit-keyframes middleOut 
+    0% 
+      -webkit-transform: scale(0.7,0.7)  translateX(300px)
+    100% 
+      -webkit-transform: scale(1,1)  translateX(0)

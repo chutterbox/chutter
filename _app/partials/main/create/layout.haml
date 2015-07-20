@@ -1,0 +1,107 @@
+%md-toolbar.md-whiteframe-z1
+  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
+    %h3{flex: true}
+      Riggit
+    %span{flex: true}
+    %md-button{ng-click: "signIn()"}
+      sign in
+    %md-button
+      sign up
+  
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row"}
+    %h3{flex: true}
+      Riggit
+
+    %md-button{ng-click: "toggleLeft()"}
+      hello
+    %span{flex: true}
+    %md-button{ng-show: "page.community.slug", href: "/{{page.network.slug}}/{{page.community.slug}}/submit"}
+      Submit
+    %md-button{href: "/create"}
+      Create Community    
+    %md-button{ng-click: "logout()"}
+      Log out
+
+%md-content{layout: "row", flex: true}
+  %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-content#left-content{layout-padding: true}
+      %h4
+        some ettiquete rules
+
+
+            
+  %md-content.md-whiteframe-z2{flex: true}
+    %form{name: "newCommunity"}
+      %md-tabs{md-border-bottom: true, md-selected: "selectedStep"}
+        %md-tab{label: "Network"}
+          %md-content.md-padding{layout: "column"}
+            .header-caption-wrapper
+              %h2.md-display-1
+                Select a network
+              %md-divider
+              %p.md-caption
+                A network is the organizing entity that groups related communities together. To ensure that your community is thriving and successful please select the most appropriate network for the content. For example: A community that makes jokes about programming should belong to a comdey network, not a programming network. You will have options to tag your community such that the most successful posts are syndicated to those ancilary networks as well. TL;DR - Select by genre, not the subject matter of the genre
+            %div
+              %md-radio-group{ng-model: "flowState.selectedNetwork"}
+                %md-radio-button.md-primary{ng-repeat: "network in page.networkSubscriptions", ng-value: "network"} {{network.name}}
+
+            %div{layout: "row"}
+              %span{flex: true}
+              %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "next()"}
+                Next: Community Details
+         
+        %md-tab{label: "Details"}
+          %md-content.md-padding{layout: "column"}
+            .header-caption-wrapper
+              %h2.md-display-1
+                Community Details
+              %md-divider
+              %p.md-caption
+                Reserve a name, type a description, add tags
+            %div
+              %md-input-container
+                %label Name
+                %input{ng-model: "newCommunity.name", type: "text"}
+                %div{ng-messages: "true", ng-hide: "available"}
+                  %div{ng-message: "required", ng-bind: "newCommunity.name + ' is not available'"}
+              %md-subheader{ng-bind: "slug()", ng-disabled: "true"}
+            %div
+              %md-input-container{flex: true}
+                %label Description
+                %textarea{ng-model: "newCommunity.description", type: "text"}
+            
+            %div{layout: "row"}
+              %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
+                Back: Change Network
+              %span{flex: true}
+              %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
+                Next: Community Details
+
+        %md-tab{label: "Customize"}
+          %md-content.md-padding
+            %fieldset.standard
+              %legend
+                Permitted Post Types
+              %div{ng-repeat: "format in flowState.selectedNetwork.permitted_formats_list"}
+                %md-checkbox{ng-model: "newCommunity[format]", aria-label: "Checkbox 1"}
+                  {{format}}
+            %div{layout: "row"}
+              %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
+                Back: Change Details
+              %span{flex: true}
+              %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
+                Next: Review
+
+        %md-tab{label: "Review"}
+          %md-content.md-padding
+            %h1.md-display-2
+              Coming Soon
+            %div{layout: "row"}
+              %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
+                Back: Change Customization
+              %span{flex: true}
+              %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "submit()"}
+                Create
+
+
+  %md-sidenav.md-sidenav-right#community-panel-wrapper{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}

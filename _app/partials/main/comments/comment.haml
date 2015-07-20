@@ -1,0 +1,26 @@
+.collapsed{layout-fill: true, layout: "column"}
+  .header
+    %md-button.md-button-toggle{aria-label: "toggle comment"}
+      %span.md-toggle-icon{ng-click: "toggle()"}
+        %i.fa.fa-caret-right.fa-fw
+    %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
+
+.main{layout: "row"} 
+  .vote{layout: "column", layout-fill: true, hide-md: true, hide-sm: true}
+    %md-button{flex: true, aria-label: "Upvote"}
+      %i.fa.fa-caret-up
+    %md-button{flex: true, aria-label: "Downvote"}
+      %i.fa.fa-caret-down
+  .content{flex: "75", layout: "column"}
+    .header
+      %md-button.md-button-toggle{aria-label: "toggle comment"}
+        %span.md-toggle-icon{ng-click: "toggle()"}
+          %i.fa.fa-caret-down.fa-fw
+      %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
+    .body{ng-bind: "comment.body"}
+    .footer
+      %a{href: "#", ng-click: "reply()"}
+        Reply
+      %a{href: "#", ng-click: "resource.delete({id: post.id})"}
+        Delete
+  .options{flex: "5"}

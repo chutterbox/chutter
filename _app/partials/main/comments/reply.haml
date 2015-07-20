@@ -1,0 +1,10 @@
+.reply{layout: "column"}
+  .body
+    %md-input-container{flex: true}
+      %label Comment
+      %textarea{ng-model: "comment.body", type: "text"}
+    
+  .footer{layout: "row"}
+    %span{flex: true}
+    %md-button.md-raised.md-primary
+      Submit

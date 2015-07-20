@@ -1,0 +1,44 @@
+%md-toolbar.md-whiteframe-z1#chutter
+  .md-toolbar-tools{layout: "row"}
+    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;"}
+    %a#brand{href: "#", flex: true, ng-click: "toggleLeft()"}
+      chutter
+
+    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+      %i.fa.fa-list
+    %span{flex: true}
+    %md-button{href: "/", aria-label: "Open phone interactions menu"}
+      Back To Chutter
+
+
+%md-content.offset-toolbar{layout: "row", flex: true}
+  %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-list.nav-list
+      %md-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
+          %i.fa.fa-comments.fa-fw
+          Notifications
+      %md-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
+          %i.fa.fa-envelope-o.fa-fw
+          Inbox
+      %md-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
+          %i.fa.fa-navicon.fa-fw
+          Submissions
+      %md-list-item
+        %md-button{aria-label: "Saved", ui-sref: "home.saved", ui-sref-active: "md-primary"}
+          %i.fa.fa-star.fa-fw
+          Saved
+      %md-list-item
+        %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary"}
+          %i.fa.fa-cog.fa-fw
+          Preferences
+      %md-list-item
+        %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
+          %i.fa.fa-line-chart.fa-fw
+          Stats
+            
+  %ui-view{layout: "row", flex: true}
+
+        

@@ -1,21 +1,21 @@
 (function() {
-  var API_HOST, app;
+  var app;
 
-  app = angular.module("MainApp");
+  app = angular.module('MainApp');
 
-  API_HOST = "https://chutter-api.herokuapp.com/api/v1";
+  app.controller('toastCtrl', function() {});
 
-  app.controller("toastCtrl", function() {});
-
-  app.controller("navCtrl", [
-    "$scope", "$state", "$stateParams", "$auth", "Page", "NetworkSubscriptions", "$mdBottomSheet", "$mdDialog", "$mdSidenav", "$mdToast", "poller", function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller) {
+  app.controller('navCtrl', [
+    '$scope', '$state', '$stateParams', '$auth', 'Page', 'NetworkSubscriptions', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
       var isOpen, toggleOpen;
+      isOpen = void 0;
+      toggleOpen = void 0;
       $scope.page = Page;
-      poller.get(API_HOST + "/users/notifications");
+      poller.get(API.makeURL('/users/notifications'));
       $mdToast.show({
         controller: 'toastCtrl',
         templateUrl: '/partials/toasts/comment-toast.html',
-        position: "bottom right"
+        position: 'bottom right'
       });
       $scope.logout = function() {
         return $auth.signOut();
@@ -25,7 +25,7 @@
       };
       $scope.signIn = function() {
         return $mdDialog.show({
-          controller: "authCtrl",
+          controller: 'authCtrl',
           templateUrl: '/partials/main/authenticate.html',
           parent: angular.element(document.body)
         });
@@ -47,11 +47,11 @@
       };
       $scope.editNetworks = function() {
         return $mdDialog.show({
-          controller: "networkEditCtrl",
+          controller: 'networkEditCtrl',
           templateUrl: '/partials/main/networkEdit.html',
           resolve: {
             List: [
-              "NetworkResource", function(NetworkResource) {
+              'NetworkResource', function(NetworkResource) {
                 return NetworkResource.list();
               }
             ]
@@ -59,7 +59,7 @@
           parent: angular.element(document.body)
         });
       };
-      $scope.$on("auth:login-success", function() {
+      $scope.$on('auth:login-success', function() {
         return $scope.networks = $auth.user.networks;
       });
       isOpen = function(section) {

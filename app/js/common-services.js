@@ -1,13 +1,11 @@
 (function() {
-  var API_HOST, app;
-
-  API_HOST = "https://chutter-api.herokuapp.com/api/v1";
+  var app;
 
   app = angular.module("Chutter");
 
   app.factory("PostResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/posts/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/posts/:id"), {
         id: "@id"
       }, {
         query: {
@@ -20,12 +18,12 @@
         },
         comments: {
           transformRequest: [],
-          url: API_HOST + "/posts/:id/comments",
+          url: API.makeURL("/posts/:id/comments"),
           isArray: true
         },
         vote: {
           method: "PUT",
-          url: API_HOST + "/posts/:id/vote"
+          url: API.makeURL("/posts/:id/vote")
         }
       });
     }

@@ -1,17 +1,15 @@
 (function() {
-  var API_HOST, app;
+  var app;
 
   app = angular.module("MainApp");
-
-  API_HOST = "https://chutter-api.herokuapp.com/api/v1";
 
   app.controller("toastCtrl", function() {});
 
   app.controller("navCtrl", [
-    "$scope", "$state", "$stateParams", "$auth", "Page", "NetworkSubscriptions", "$mdBottomSheet", "$mdDialog", "$mdSidenav", "$mdToast", "poller", function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller) {
+    "$scope", "$state", "$stateParams", "$auth", "Page", "NetworkSubscriptions", "$mdBottomSheet", "$mdDialog", "$mdSidenav", "$mdToast", "poller", "API", function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
       var isOpen, toggleOpen;
       $scope.page = Page;
-      poller.get(API_HOST + "/users/notifications");
+      poller.get(API.makeURL("/users/notifications"));
       $mdToast.show({
         controller: 'toastCtrl',
         templateUrl: '/partials/toasts/comment-toast.html',

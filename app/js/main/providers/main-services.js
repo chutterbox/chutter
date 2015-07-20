@@ -1,14 +1,12 @@
 (function() {
   'use strict';
-  var API_HOST, app;
+  var app;
 
   app = angular.module("MainApp");
 
-  API_HOST = "https://chutter-api.herokuapp.com/api/v1";
-
   app.factory("NetworkSubscriptionResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/network_subscriptions/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/network_subscriptions/:id"), {
         id: "@id"
       }, {
         "delete": {
@@ -39,8 +37,8 @@
   ]);
 
   app.factory("CommunitySubscriptionResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/community_subscriptions/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/community_subscriptions/:id"), {
         id: "@id"
       }, {
         "delete": {
@@ -56,20 +54,20 @@
   ]);
 
   app.factory("UserResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/users/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/users/:id"), {
         id: "@id"
       });
     }
   ]);
 
   app.factory("ExternalServicesResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/external_services/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/external_services/:id"), {
         id: "@id"
       }, {
         "search": {
-          url: API_HOST + "/external_services/search_music",
+          url: API.makeURL("/external_services/search_music"),
           method: "POST",
           isArray: true
         }
@@ -78,12 +76,12 @@
   ]);
 
   app.factory("MediaResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/media/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/media/:id"), {
         id: "@id"
       }, {
         "resolve": {
-          url: API_HOST + "/media/resolve",
+          url: API.makeURL("/media/resolve"),
           method: "POST",
           isArray: false
         }
@@ -92,13 +90,13 @@
   ]);
 
   app.factory("CommunityResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/communities/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/communities/:id"), {
         id: "@id"
       }, {
         show: {
           method: "GET",
-          url: API_HOST + "/communities/:id",
+          url: API.makeURL("/communities/:id"),
           interceptor: {
             "response": function(response) {
               return Page.community = response.data;
@@ -108,23 +106,23 @@
         posts: {
           method: "GET",
           isArray: true,
-          url: API_HOST + "/communities/:id/posts"
+          url: API.makeURL("/communities/:id/posts")
         }
       });
     }
   ]);
 
   app.factory("CommentResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/comments/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/comments/:id"), {
         id: "@id"
       });
     }
   ]);
 
   app.factory("PostResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/posts/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/posts/:id"), {
         id: "@id"
       }, {
         query: {
@@ -137,25 +135,25 @@
         },
         comments: {
           transformRequest: [],
-          url: API_HOST + "/posts/:id/comments",
+          url: API.makeURL("/posts/:id/comments"),
           isArray: true
         },
         vote: {
           method: "PUT",
-          url: API_HOST + "/posts/:id/vote"
+          url: API.makeURL("/posts/:id/vote")
         }
       });
     }
   ]);
 
   app.factory("NetworkResource", [
-    "$resource", "Page", function($resource, Page) {
-      return $resource(API_HOST + "/networks/:id", {
+    "$resource", "Page", "API", function($resource, Page, API) {
+      return $resource(API.makeURL("/networks/:id"), {
         id: "@id"
       }, {
         show: {
           method: "GET",
-          url: API_HOST + "/networks/:id",
+          url: API.makeURL("/networks/:id"),
           interceptor: {
             "response": function(response) {
               return Page.network = response.data;
@@ -165,11 +163,11 @@
         posts: {
           method: "GET",
           isArray: true,
-          url: API_HOST + "/networks/:id/posts"
+          url: API.makeURL("/networks/:id/posts")
         },
         list: {
           method: "GET",
-          url: API_HOST + "/networks/list",
+          url: API.makeURL("/networks/list"),
           isArray: true,
           transformResponse: function(response) {
             var data;
@@ -191,7 +189,7 @@
         },
         communities: {
           method: "get",
-          url: API_HOST + "/networks/:id/communities",
+          url: API.makeURL("/networks/:id/communities"),
           isArray: true,
           transformResponse: function(response) {
             var data;

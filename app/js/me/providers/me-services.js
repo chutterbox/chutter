@@ -1,21 +1,19 @@
 (function() {
-  var API_HOST, app;
+  var app;
 
   app = angular.module("MeApp");
 
-  API_HOST = "https://chutter-api.herokuapp.com/api/v1";
-
   app.factory("UserResource", [
-    "$resource", function($resource) {
-      return $resource(API_HOST + "/users/:id", {
+    "$resource", "API", function($resource, API) {
+      return $resource(API.makeURL("/users/:id"), {
         id: "@id"
       }, {
         submissions: {
-          url: API_HOST + "/users/submissions",
+          url: API.makeURL("/users/submissions"),
           isArray: true
         },
         notifications: {
-          url: API_HOST + "/users/notifications",
+          url: API.makeURL("/users/notifications"),
           isArray: true
         }
       });
@@ -23,17 +21,17 @@
   ]);
 
   app.factory("ConversationResource", [
-    "$resource", function($resource) {
-      return $resource(API_HOST + "/conversations/:id", {
+    "$resource", "API", function($resource, API) {
+      return $resource(API.makeURL("/conversations/:id"), {
         id: "@id"
       }, {
         messages: {
-          url: API_HOST + "/conversations/:id/messages",
+          url: API.makeURL("/conversations/:id/messages"),
           isArray: true
         },
         reply: {
           method: "POST",
-          url: API_HOST + "/conversations/:id/reply"
+          url: API.makeURL("/conversations/:id/reply")
         }
       });
     }

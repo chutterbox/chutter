@@ -18,6 +18,12 @@ and auto compile
 3. node chutter.js
 
 
+###api
+
+* right now the api endpoint is https://www.chutter-api.com/api/v1
+* you can either sign up, or use a dummy account "user@gmail.com", pw: asdfghjkl; 
+* there are also duplicate dummy accounts from 1-100: user#{n}@gmail.com, example user40@gmail.com
+
 # angular-seed with HAML, CoffeeScript, SASS and Cucumber
 
 This is an extension (largely modified) of

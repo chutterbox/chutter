@@ -1,0 +1,13 @@
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
+  %md-subheader.md-no-sticky
+    Manage Network Subscriptions
+  %md-content
+    %div{layout: "row"}
+      %span{flex: true}
+      %md-input-container{flex: true}
+        %label Search
+        %input{ng-model: "networkFilter"}
+    %md-list-item{ng-repeat: "network in networks | filter: networkFilter"}
+      %p{ng-bind:"network.name"}
+      %span{flex: true}
+      %md-switch{ng-model: "network.selected", aria-label: "Switch 1", ng-change: "toggle(network)"}

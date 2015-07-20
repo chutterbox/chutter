@@ -1,0 +1,16 @@
+%md-content.md-whiteframe-z2{flex: true}
+  %media-player#player{layout: "column"}
+  %md-list
+    %post{ng-repeat: "post in page.posts", post: "post", post-index: "$index",  layout: "row"}
+
+
+%md-sidenav.md-sidenav-right.gray.md-whiteframe-z1{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+  %div{layout: "column", layout-padding: true, layout-margin: true}
+    %div
+      %h4.md-title
+        Your Submissions
+    %div
+      %md-input-container
+        %label
+          Filter
+        %input{ng-model: "searchPredicate"}

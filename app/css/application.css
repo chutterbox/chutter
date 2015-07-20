@@ -1,0 +1,139 @@
+body,
+md-sidenav,
+md-content {
+  background: #f2f2f2; }
+
+md-toolbar#chutter {
+  position: absolute;
+  z-index: 999; }
+
+.offset-toolbar {
+  margin-top: 40px; }
+
+#posts {
+  background: #fff;
+  margin-left: 1px;
+  margin-right: 1px; }
+
+post {
+  background: #fff; }
+
+p, h1, h2, h3, h4, h5, h6, span {
+  font-weight: 225 !important;
+  letter-spacing: 0.05em !important; }
+
+a {
+  color: #03a9f4;
+  text-decoration: none; }
+
+#brand {
+  font-weight: 200; }
+
+.md-button {
+  font-weight: 205;
+  letter-spacing: 0.08em; }
+
+.hide:nth-child(n+5) {
+  display: none !important; }
+
+md-grid-list {
+  margin: 8px; }
+
+.gray {
+  background: #f2f2f2; }
+
+.green {
+  background: #b9f6ca; }
+
+.yellow {
+  background: #ffff8d; }
+
+.blue {
+  background: #84ffff; }
+
+.purple {
+  background: #b388ff; }
+
+.red {
+  background: #ff8a80; }
+
+.ng-cloak {
+  display: none !important; }
+
+md-grid-tile,
+md-grid-list {
+  transition: none !important; }
+
+md-toolbar {
+  max-height: 40px;
+  min-height: 40px; }
+
+.header-caption-wrapper {
+  margin: 5% 0 0 0; }
+  .header-caption-wrapper h2 {
+    margin: 0; }
+
+.image {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: translate3d(0, 0, 0); }
+
+#right-rail .header {
+  margin: 20px 0 0 0; }
+  #right-rail .header h3 {
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.54); }
+  #right-rail .header .subscription-count {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.54); }
+#right-rail .description h3,
+#right-rail .moderators h3,
+#right-rail .tags h3,
+#right-rail .rules h3 {
+  font-size: 14px;
+  letter-spacing: 1px; }
+#right-rail .description p,
+#right-rail .moderators p,
+#right-rail .tags p,
+#right-rail .rules p {
+  font-size: 12px;
+  color: #333; }
+#right-rail .moderators md-list-item {
+  min-height: 20px;
+  height: auto;
+  padding: 0;
+  margin: 0; }
+  #right-rail .moderators md-list-item i, #right-rail .moderators md-list-item a {
+    font-size: 12px; }
+  #right-rail .moderators md-list-item i {
+    color: #777; }
+#right-rail .ctas .md-button {
+  font-size: 12px;
+  text-transform: lowercase;
+  min-width: auto; }
+
+#submit-progress {
+  max-width: 10%; }
+
+#header .md-toolbar-tools .md-button {
+  min-width: 50px;
+  padding: 0;
+  margin: 0; }
+#header .md-menu {
+  padding: 0; }
+
+.animate.ng-animate {
+  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+  opacity: 0; }
+
+.animate.ng-leave.ng-leave-active,
+.animate.ng-enter {
+  opacity: 0.5; }
+
+.animate.ng-leave,
+.animate.ng-enter.ng-enter-active {
+  opacity: 1; }
+
+/*# sourceMappingURL=application.css.map */

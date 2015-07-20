@@ -1,0 +1,16 @@
+.md-whiteframe-z3.grey.content{ng-switch: "mediaPlayer.currentMedia.format"}
+  .image{ng-switch-when: "image"}
+    .image-overlay
+      %md-button{ng-click: "mediaPlayer.close()"}
+        %i.fa.fa-close
+    %img{ng-src: "{{mediaPlayer.currentMedia.image_link}}"}
+  .image{ng-switch-when: "video"}
+    .image-overlay
+      %md-button{ng-click: "mediaPlayer.close()"}
+        %i.fa.fa-close
+    %embed-video{data-ng-href: "{{mediaPlayer.currentMedia.stream_link}}", autoplay: "1", height: "{{mediaPlayer.height}}", width: "{{mediaPlayer.width}}"}
+  .audio{ng-switch-when: "music"}
+    .image-overlay
+      %md-button{ng-click: "mediaPlayer.close()"}
+        %i.fa.fa-close
+    %audio{ng-src: "{{mediaPlayer.currentMedia.stream_link}}"}

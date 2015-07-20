@@ -1,0 +1,17 @@
+%div
+  %div{layout: "column", layout-padding: true}
+    %form{ng-submit: "submit()"}
+      %div{layout: "row"}
+        %md-input-container{flex: true}
+          %label recipient's username
+          %input{ng-model: "newConversation.recipient_username", required: "required", type: "text"}
+      %div{layout: "row"}
+        %md-input-container{flex: true}
+          %label Say something nice...
+          %textarea{ng-model: "newConversation.messages_attributes[0].body", type: "text", rows: 10}
+      %div{layout: "row"}
+        %span{flex: true}
+        %md-button.md-raised.md-priary{type: "submit"}
+          Submit        
+
+

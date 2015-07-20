@@ -1,0 +1,140 @@
+//global
+body,
+md-sidenav,
+md-content
+  background: #f2f2f2
+
+//sticky top toolbar  
+md-toolbar#chutter
+  position: absolute
+  z-index: 999
+.offset-toolbar
+  margin-top: 40px
+#posts
+  // for whiteframe
+  background: #fff
+  margin-left: 1px
+  margin-right: 1px
+post
+  background: #fff
+
+p,h1,h2,h3,h4,h5,h6,span
+  font-weight: 225 !important
+  letter-spacing: 0.05em !important
+a
+  color: rgb(3,169,244)
+  text-decoration: none
+#brand
+  font-weight: 200
+.md-button
+  font-weight: 205
+  letter-spacing: 0.08em
+
+.hide:nth-child(n+5)
+  display: none !important
+// center
+md-grid-list 
+  margin: 8px
+.gray 
+  background: #f2f2f2
+.green 
+  background: #b9f6ca
+.yellow 
+  background: #ffff8d
+.blue 
+  background: #84ffff
+.purple 
+  background: #b388ff
+.red 
+  background: #ff8a80
+
+.ng-cloak
+  display: none !important
+
+md-grid-tile,
+md-grid-list
+  // transition: all 400ms ease-out 50ms
+  transition: none !important
+//toolbar
+md-toolbar
+  max-height: 40px
+  min-height: 40px
+
+
+.header-caption-wrapper
+  margin: 5% 0 0 0
+  h2
+    margin: 0
+
+.image
+  -webkit-transform-style: preserve-3d
+  -webkit-transform: translate3d(0,0,0)
+
+
+// right rail
+#right-rail
+  .header
+    margin: 20px 0 0 0
+    h3
+      margin: 0
+      font-weight: 400
+      letter-spacing: 1px
+      color: rgba(0,0,0,0.54)
+    .subscription-count
+      font-size: 10px
+      color: rgba(0,0,0,0.54)
+  .description,
+  .moderators,
+  .tags,
+  .rules
+    h3
+      font-size: 14px
+      letter-spacing: 1px
+    p
+      font-size: 12px
+      color: #333
+  .moderators
+    md-list-item
+      min-height: 20px
+      height: auto
+      padding: 0
+      margin: 0
+      i,a
+        font-size: 12px
+      i
+        color: #777
+  .ctas
+    .md-button
+      font-size: 12px
+      text-transform: lowercase
+      min-width: auto
+
+// submit
+#submit-progress
+  max-width: 10%
+  
+post
+  md-list-item
+
+#header
+  .md-toolbar-tools
+    .md-button
+      min-width: 50px
+      padding: 0
+      margin: 0
+  .md-menu
+    padding: 0
+
+.animate.ng-animate 
+  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s
+  opacity: 0
+
+
+.animate.ng-leave.ng-leave-active,
+.animate.ng-enter 
+  opacity: 0.5
+.animate.ng-leave,
+.animate.ng-enter.ng-enter-active 
+  opacity: 1
+  

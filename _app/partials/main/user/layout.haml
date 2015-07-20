@@ -1,0 +1,62 @@
+%md-toolbar.md-whiteframe-z1#header
+  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
+    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+      chutter
+
+    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+      %i.fa.fa-list
+    %span{flex: true}
+    %md-button{ng-click: "signIn()"}
+      Sign In
+  
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row"}
+    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+      chutter
+
+    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+      %i.fa.fa-list
+    %span{flex: true}
+    %md-menu
+      %md-button{aria-label: "Open phone interactions menu", ng-click: "$mdOpenMenu()"}
+        Phil
+      %md-menu-content{width: "2"}
+        %md-menu-item
+          %md-button{ui-sref: "user.preferences"}
+            Preferences  
+        %md-menu-item
+          %md-button{ui-sref: "user.viewed"}
+            Viewed
+        %md-menu-item
+          %md-button{ng-click:"logout()"}
+            Sign out
+    %md-button{ui-sref: "user.inbox(user.username)"}
+      %i.fa.fa-envelope-o.fa-fw
+      %md-tooltip
+        Messages
+    %md-button{ui-sref: "create"}
+      %i.fa.fa-comments-o.fa-fw
+      %md-tooltip
+        Comments
+    %md-button{ui-sref: "create"}
+      %i.fa.fa-floppy-o.fa-fw
+      %md-tooltip
+        Saved
+%md-content{layout: "row", flex: true}
+  %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-content{layout: "column"}
+      %div 
+        %h3
+          Overview for Phil
+      %ul
+        %li
+          %a
+            Overview
+        %li
+          %a
+            Comments
+        %li
+          %a
+            Submission
+  %md-sidenav.md-sidenav-right#community-panel-wrapper{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}

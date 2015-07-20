@@ -1,0 +1,21 @@
+#messages{ng-repeat: "message in conversationState.conversation | filter:searchPredicate"}
+  %div{ng-if: "message.other_participant", layout: "row", flex: true, layout-padding: true}
+    %md-button.md-fab.md-accent.md-hue-2{ng-bind: "message.username.charAt(0)"}
+      %md-tooltip
+        {{message.username}}
+    .message.grey.md-whiteframe-z1{layout-padding: true, layout: "column"}
+      .body{ng-bind: "message.body"}
+  %div{ng-if: "!message.other_participant", layout: "row", flex: true, layout-padding: true, layout-align: "end start"}
+    .message.md-whiteframe-z1{layout-padding: true, layout: "column"}
+      .body{flex: true}
+        %p{ng-bind: "message.body"}
+    %md-button.md-fab.md-primary{ng-bind: "message.username.charAt(0)"}
+      %md-tooltip
+        {{message.username}}
+%div
+  %form.reply{ng-submit: "reply()"}
+    %md-input-container{flex: true}
+      %label Description
+      %textarea{ng-model: "replyText", type: "text"}
+    %md-button.md-raised.md-primary{type: "submit"}
+      Send 

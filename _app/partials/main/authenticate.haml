@@ -1,0 +1,33 @@
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
+  %md-tabs{md-border-bottom: true}
+    %md-tab{label: "sign in", layout-fill: true}
+      %md-content{layout-padding: true}
+        %form{name: "signIn", ng-submit: "submitLogin(user)"}
+          %md-input-container
+            %label
+              Username
+            %input{ng-model: "user.username", required: true}
+          %md-input-container
+            %label
+              Password
+            %input{ng-model: "user.password", type: "password", required: true}
+          %md-button{type: "submit"}
+            Login
+
+    %md-tab{label: "sign up"}
+      %md-content{layout-padding: true}
+        %form{name: "signUp", ng-submit: "submitRegistration(user)"}
+          %md-input-container
+            %label
+              Username
+            %input{ng-model: "user.username", required: true}
+          %md-input-container
+            %label
+              Email
+            %input{ng-model: "user.email"}
+          %md-input-container
+            %label
+              Password
+            %input{ng-model: "user.password", type: "password", required: true}
+          %md-button{type: "submit"}
+            Sign Up

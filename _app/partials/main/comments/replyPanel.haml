@@ -1,0 +1,22 @@
+%md-bottom-sheet#reply
+  %md-toolbar
+    .md-toolbar-tools
+      %h3{ng-bind: "'reply to ' + comment.user.username"}
+      %span{flex: true}
+      %md-button.md-icon-button{ng-click: "close()"}
+        %i.fa.fa-close
+  %md-content{layout-padding: true, layout-margin: true, layout: "column"}
+    %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}"}
+    %md-divider
+
+
+    %form{name: "replyForm"}
+      %md-input-container{flex: true}
+        %label Comment
+        %textarea{ng-model: "newComment.body", type: "text", rows: 10}
+    .footer{layout: "row"}
+      %span{flex: true}
+      %md-button.md-raised{ng-click: "create(newComment, comment)"}
+        Reply
+      %md-button.md-raised
+        Cancel

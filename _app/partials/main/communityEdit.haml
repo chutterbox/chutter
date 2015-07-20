@@ -1,0 +1,13 @@
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
+  %md-subheader.md-no-sticky
+    Manage Community Subscriptions
+  %md-content
+    %div{layout: "row"}
+      %span{flex: true}
+      %md-input-container{flex: true}
+        %label Search
+        %input{ng-model: "communityFilter"}
+    %md-list-item{ng-repeat: "community in communities | filter: communityFilter"}
+      %p{ng-bind:"community.name"}
+      %span{flex: true}
+      %md-switch{ng-model: "community.selected", aria-label: "Switch 1", ng-change: "toggle(community)"}

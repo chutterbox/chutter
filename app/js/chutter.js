@@ -3,7 +3,7 @@
   var app;
 
   app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-main', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller']).constant('API', {
-    baseURL: 'http://localhost:3000/api/v1',
+    baseURL: 'https://chutter-api.herokuapp.com/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;
     }

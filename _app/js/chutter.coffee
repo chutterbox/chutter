@@ -16,7 +16,7 @@
     'videosharing-embed'
     'emguo.poller'
   ]).constant('API',
-    baseURL: 'http://localhost:3000/api/v1'
+    baseURL: 'https://chutter-api.herokuapp.com/api/v1'
     makeURL: (url) ->
       @baseURL + url
   ).config([

@@ -130,8 +130,12 @@ module.exports = (grunt) ->
           "app/partials/me/saved.html" : "_app/partials/me/saved.haml"
           "app/partials/me/preferences.html" : "_app/partials/me/preferences.haml"
           "app/partials/me/submissions.html" : "_app/partials/me/submissions.haml"
+          
           #moderation partials
           "app/partials/moderation/index.html" : "_app/partials/moderation/index.haml"
+          "app/partials/moderation/layout.html" : "_app/partials/moderation/layout.haml"
+          "app/partials/moderation/network.html" : "_app/partials/moderation/network.haml"
+          
           #toast partials
           "app/partials/toasts/comment-toast.html" : "_app/partials/toasts/comment-toast.haml"
 
@@ -226,6 +230,30 @@ module.exports = (grunt) ->
           cwd: './_app/js/me/services',
           src: ['*.coffee'],
           dest: 'app/js/me/services',
+          ext: '.js'   
+        ,
+          expand: true,
+          cwd: './_app/js/moderation',
+          src: ['*.coffee'],
+          dest: 'app/js/moderation',
+          ext: '.js'   
+        ,   
+          expand: true,
+          cwd: './_app/js/moderation/controllers',
+          src: ['*.coffee'],
+          dest: 'app/js/moderation/controllers',
+          ext: '.js'   
+        ,  
+          expand: true,
+          cwd: './_app/js/moderation/directives',
+          src: ['*.coffee'],
+          dest: 'app/js/moderation/directives',
+          ext: '.js'   
+        , 
+          expand: true,
+          cwd: './_app/js/moderation/providers',
+          src: ['*.coffee'],
+          dest: 'app/js/moderation/providers',
           ext: '.js'   
         ,  
           expand: true,

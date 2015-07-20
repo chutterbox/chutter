@@ -1,0 +1,31 @@
+%md-toolbar.md-whiteframe-z1#chutter
+  .md-toolbar-tools{layout: "row"}
+    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;"}
+    %a#brand{href: "#", flex: true, ng-click: "toggleLeft()"}
+      chutter moderation
+
+    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+      %i.fa.fa-list
+    %span{flex: true}
+    %md-button{href: "/", aria-label: "Open phone interactions menu"}
+      Back To Chutter
+
+
+%md-content.offset-toolbar{layout: "row", flex: true}
+  %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-tabs
+      %md-tab{label: "Networks"}
+        %md-list.nav-list
+          %md-list-item
+            %md-button{aria-label: "Inbox", ui-sref: "home.dashboard.network({id: 'music'})", ui-sref-active: "md-primary"}
+              Music
+          %md-list-item
+            %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
+              Science
+          %md-list-item
+            %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
+              Videos
+     
+  %div{ui-view: "", layout: "row", flex: true}
+    %h1 here is some interim stuff
+        

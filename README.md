@@ -1,5 +1,7 @@
 #Chutter
 
+[![Join the chat at https://gitter.im/chutterbox/chutter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chutterbox/chutter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ## What's chutter
 Chutter is a new reddit competitor. Its focuses on the things that are broken with reddit, namely: 

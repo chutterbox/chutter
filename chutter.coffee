@@ -29,6 +29,7 @@ chutter.get "/moderation/*", (req, res) ->
 
 chutter.get "/me", (req, res) ->
   res.render "partials/me/index.html"
+
 chutter.get "/me/*", (req, res) ->
   res.render "partials/me/index.html"
   

@@ -7,7 +7,10 @@
       isOpen = undefined
       toggleOpen = undefined
       $scope.page = Page
-      poller.get API.makeURL('/users/notifications')
+      $scope.$on "auth:validation-success", () -> 
+        poller.get API.makeURL('/users/notifications') 
+      $scope.$on "auth:login-success", () -> 
+        poller.get API.makeURL('/users/notifications') 
       $mdToast.show
         controller: 'toastCtrl'
         templateUrl: '/partials/toasts/comment-toast.html'

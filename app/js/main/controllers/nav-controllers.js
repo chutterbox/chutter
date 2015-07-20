@@ -11,7 +11,12 @@
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      poller.get(API.makeURL('/users/notifications'));
+      $scope.$on("auth:validation-success", function() {
+        return poller.get(API.makeURL('/users/notifications'));
+      });
+      $scope.$on("auth:login-success", function() {
+        return poller.get(API.makeURL('/users/notifications'));
+      });
       $mdToast.show({
         controller: 'toastCtrl',
         templateUrl: '/partials/toasts/comment-toast.html',

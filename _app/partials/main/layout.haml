@@ -60,6 +60,67 @@
               %i.fa.fa-users.fa-fw
               1,232,244
         %md-divider
+      %md-content{ng-switch-when: "comments"}
+        .header{flex: true, layout: "row"}
+          %div
+            %a{ng-bind: "page.community.name", ui-sref: "home.community({community: page.community.slug})"}
+          %span{flex: true}
+          %div
+            %p.subscription-count
+              %i.fa.fa-users.fa-fw
+              1,232,244
+        %md-divider
+          %md-input-container
+            %label
+              Filter Comments
+            %input
+
+      %md-content{ng-switch-when: "submit"}
+        .header{flex: true, layout: "row"}
+          %div
+            %h3{ng-bind: "page.community.name"}
+          %span{flex: true}
+          %div
+            %p.subscription-count
+              %i.fa.fa-users.fa-fw
+              1,232,244
+        %md-divider
+        .rules
+          %h3
+            Submission Rules
+          %md-list
+            %md-list-item
+              \- You must personally hold the view and be open to it changing.
+            %md-list-item
+              \- If your view is about someone having a double standard, please see the guidelines here
+            %md-list-item
+              \- Posts with misleading/overly-simplistic titles may be removed.
+            %md-list-item
+              \- Feasible suggestions that gain traction there may be implemented or posted to CMV for further discussion by the mods.
+        .moderators
+          %h3
+            Mods
+          %md-list
+            %md-list-item
+              %a{href: "#"}
+                Snorrrlax
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                protagornast
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                TryUsingScience
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                GameboyPATH
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw  
       %md-content{ng-switch-when: "community"}
         .header{flex: true, layout: "row"}
           %div
@@ -110,145 +171,4 @@
                 GameboyPATH
               %a.md-secondary{href: "#"}
                 %i.fa.fa-envelope-o.fa-fw   
-      %md-content{ng-switch-when: "submit"}
-        .header{flex: true, layout: "row"}
-          %div
-            %h3{ng-bind: "page.community.name"}
-          %span{flex: true}
-          %div
-            %p.subscription-count
-              %i.fa.fa-users.fa-fw
-              1,232,244
-        %md-divider
-        .rules
-          %h3
-            Submission Rules
-          %md-list
-            %md-list-item
-              \- You must personally hold the view and be open to it changing.
-            %md-list-item
-              \- If your view is about someone having a double standard, please see the guidelines here
-            %md-list-item
-              \- Posts with misleading/overly-simplistic titles may be removed.
-            %md-list-item
-              \- Feasible suggestions that gain traction there may be implemented or posted to CMV for further discussion by the mods.
-        .moderators
-          %h3
-            Mods
-          %md-list
-            %md-list-item
-              %a{href: "#"}
-                Snorrrlax
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                protagornast
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                TryUsingScience
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                GameboyPATH
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw  
-      %md-content{ng-switch-when: "comments"}
-        .header{flex: true, layout: "row"}
-          %div
-            %a{ng-bind: "page.community.name", ui-sref: "home.community({community: page.community.slug})"}
-          %span{flex: true}
-          %div
-            %p.subscription-count
-              %i.fa.fa-users.fa-fw
-              1,232,244
-        %md-divider
-        .ctas{layout: "row", layout-align: "center center"}
-          %div
-            %md-button.md-primary{ui-sref: "home.community.submit({community: page.community.slug})"}
-              %i.fa.fa-plus.fa-fw
-              Submit
-          %div
-            %md-button.md-warn{ui-sref: "home.community.submit({community: page.community.slug})"}
-              %i.fa.fa-ban.fa-fw
-              Block
-        .description
-          %h3
-            Description
-          %p
-            SRSDiscussion is a modded progressive-oriented forum for discussing issues of social justice. Our goal is to foster a welcoming space for the perspectives of minorities and marginalized people. Comments which are discordant with the ethos of social progressivism will be removed, and users who post in bad faith will be banned.
-            If you see any problematic content, don't hesitate to report it. The "report" link is one of the links underneath every post and comment.
-
-        .moderators
-          %h3
-            Mods
-          %md-list
-            %md-list-item
-              %a{href: "#"}
-                Snorrrlax
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                protagornast
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                TryUsingScience
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                GameboyPATH
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw   
-      %md-content{ng-switch-when: "submit"}
-        .header{flex: true, layout: "row"}
-          %div
-            %h3{ng-bind: "page.community.name"}
-          %span{flex: true}
-          %div
-            %p.subscription-count
-              %i.fa.fa-users.fa-fw
-              1,232,244
-        %md-divider
-        .rules
-          %h3
-            Submission Rules
-          %md-list
-            %md-list-item
-              \- You must personally hold the view and be open to it changing.
-            %md-list-item
-              \- If your view is about someone having a double standard, please see the guidelines here
-            %md-list-item
-              \- Posts with misleading/overly-simplistic titles may be removed.
-            %md-list-item
-              \- Feasible suggestions that gain traction there may be implemented or posted to CMV for further discussion by the mods.
-        .moderators
-          %h3
-            Mods
-          %md-list
-            %md-list-item
-              %a{href: "#"}
-                Snorrrlax
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                protagornast
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                TryUsingScience
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                GameboyPATH
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw  
+    

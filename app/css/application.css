@@ -3,6 +3,9 @@ md-sidenav,
 md-content {
   background: #f2f2f2; }
 
+md-dialog md-content {
+  background: #fff; }
+
 md-toolbar#chutter {
   position: absolute;
   z-index: 999; }

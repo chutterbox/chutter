@@ -22,14 +22,14 @@
           _.each(element[0].children, function(child) {
             return scope.post.elements[child.className] = child;
           });
-          scope.post.updateVote = function(direction) {
-            if (scope.post.vote === direction) {
-              direction = 0;
+          scope.post.updateVote = function(vote) {
+            if (scope.post.vote === vote) {
+              vote = 0;
             }
-            scope.post.vote = direction;
+            scope.post.vote = vote;
             return PostResource.vote({
               id: scope.post.id,
-              direction: direction
+              vote: vote
             });
           };
           return scope.post.toggle = function() {

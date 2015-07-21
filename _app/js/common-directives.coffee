@@ -19,11 +19,11 @@ app.directive 'post', ["MediaPlayer", "PostResource", "Page", (MediaPlayer, Post
     _.each element[0].children, (child) ->
       scope.post.elements[child.className] = child
     
-    scope.post.updateVote = (direction) ->
-      if scope.post.vote == direction 
-        direction = 0
-      scope.post.vote = direction
-      PostResource.vote({id: scope.post.id, direction: direction}) 
+    scope.post.updateVote = (vote) ->
+      if scope.post.vote == vote 
+        vote = 0
+      scope.post.vote = vote
+      PostResource.vote({id: scope.post.id, vote: vote}) 
 
 
     scope.post.toggle = () ->

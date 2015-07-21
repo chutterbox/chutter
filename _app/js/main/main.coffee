@@ -19,7 +19,6 @@ app.config ["$httpProvider", ($httpProvider) ->
       responseError: (rejection) ->
         if rejection.status == 401
           $rootScope.$broadcast "auth:show-signin"
-        $q.reject rejection
     }  
   ]
 ]

@@ -15,6 +15,13 @@
         controller: 'toastCtrl'
         templateUrl: '/partials/toasts/comment-toast.html'
         position: 'bottom right'
+        
+      $scope.$on("auth:show-signin", () ->
+       $mdDialog.show
+        controller: 'authCtrl'
+        templateUrl: '/partials/main/authenticate.html'
+        parent: angular.element(document.body)
+       )
 
       $scope.logout = ->
         $auth.signOut()

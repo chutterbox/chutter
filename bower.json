@@ -2,15 +2,18 @@
   "name": "Chutter",
   "version": "2.0.0",
   "dependencies": {
-  	"angular": "1.3.x",
-    "jquery": "latest",
-  	"bootstrap": "latest",
+    "angular": "1.4.x",
+    "jquery": "2.1.4",
+    "bootstrap": "3.3.5",
     "ng-token-auth": "0.0.24",
-    "fontawesome": "latest",
-    "angular-material": "latest",
-    "angular-resource": "latest",
-    "ui-router": "latest",
-    "underscore": "latest",
-    "ng-videosharing-embed": "latest"
+    "fontawesome": "4.3.0",
+    "angular-material": "0.10.0",
+    "angular-resource": "1.4.1",
+    "ui-router": "0.2.15",
+    "underscore": "1.8.3",
+    "ng-videosharing-embed": "0.3.3"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
   }
 }

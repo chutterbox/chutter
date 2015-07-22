@@ -3,7 +3,7 @@
     %md-button.md-button-toggle{aria-label: "toggle comment"}
       %span.md-toggle-icon{ng-click: "toggle()"}
         %i.fa.fa-caret-right.fa-fw
-    %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
+    %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
 
 .main{layout: "row"} 
   .vote{layout: "column", layout-fill: true, hide-md: true, hide-sm: true}
@@ -16,7 +16,7 @@
       %md-button.md-button-toggle{aria-label: "toggle comment"}
         %span.md-toggle-icon{ng-click: "toggle()"}
           %i.fa.fa-caret-down.fa-fw
-      %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
+      %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
     .body{ng-bind: "comment.body"}
     .footer
       %a{href: "#", ng-click: "reply()"}

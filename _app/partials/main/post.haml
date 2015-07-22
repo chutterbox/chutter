@@ -21,8 +21,7 @@
       .community
         %a{ng-bind: "post.community"}
   .tagline
-    %span.votes
-      2034 points 
+    %span.votes{ng-bind: "(post.points || 0) + ' points'"} 
     %span.submitted-by-text
       submitted by
     %a.user-link{ng-bind: "post.user.username", ui-sref: "user.overview({username: post.user.username})"}

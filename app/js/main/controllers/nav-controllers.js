@@ -22,6 +22,13 @@
         templateUrl: '/partials/toasts/comment-toast.html',
         position: 'bottom right'
       });
+      $scope.$on("auth:show-signin", function() {
+        return $mdDialog.show({
+          controller: 'authCtrl',
+          templateUrl: '/partials/main/authenticate.html',
+          parent: angular.element(document.body)
+        });
+      });
       $scope.logout = function() {
         return $auth.signOut();
       };

@@ -15,4 +15,20 @@
     }, 2000);
   });
 
+  app.config([
+    "$httpProvider", function($httpProvider) {
+      return $httpProvider.interceptors.push([
+        "$q", '$injector', '$rootScope', function($q, $injector, $rootScope) {
+          return {
+            responseError: function(rejection) {
+              if (rejection.status === 401) {
+                return $rootScope.$broadcast("auth:show-signin");
+              }
+            }
+          };
+        }
+      ]);
+    }
+  ]);
+
 }).call(this);

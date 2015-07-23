@@ -4,8 +4,11 @@
   app = angular.module("MainApp");
 
   app.controller("communityEditCtrl", [
-    "$scope", "List", "Page", "CommunitySubscriptionResource", function($scope, List, Page, CommunitySubscriptionResource) {
+    "$scope", "$mdDialog", "List", "Page", "CommunitySubscriptionResource", function($scope, $mdDialog, List, Page, CommunitySubscriptionResource) {
       $scope.communities = List;
+      $scope.hideDialog = function() {
+        return $mdDialog.hide();
+      };
       return $scope.toggle = function(community) {
         if (community.selected) {
           return CommunitySubscriptionResource.save({

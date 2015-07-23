@@ -27,7 +27,8 @@
         return $mdDialog.show({
           controller: "authCtrl",
           templateUrl: '/partials/main/authenticate.html',
-          parent: angular.element(document.body)
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
         });
       };
       $scope.exploreCommunity = function(community) {
@@ -56,7 +57,8 @@
               }
             ]
           },
-          parent: angular.element(document.body)
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
         });
       };
       $scope.$on("auth:login-success", function() {

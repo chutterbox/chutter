@@ -25,7 +25,8 @@ app.controller "navCtrl", ["$scope", "$state", "$stateParams", "$auth", "Page", 
     $mdDialog.show({
       controller: "authCtrl",
       templateUrl: '/partials/main/authenticate.html',
-      parent: angular.element(document.body)
+      parent: angular.element(document.body),
+      clickOutsideToClose:true
     })
 
 
@@ -49,6 +50,7 @@ app.controller "navCtrl", ["$scope", "$state", "$stateParams", "$auth", "Page", 
         ]
 
       parent: angular.element(document.body),
+      clickOutsideToClose:true
     })
     
   $scope.$on("auth:login-success", () ->

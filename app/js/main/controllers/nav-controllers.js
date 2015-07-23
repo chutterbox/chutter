@@ -26,7 +26,8 @@
         return $mdDialog.show({
           controller: 'authCtrl',
           templateUrl: '/partials/main/authenticate.html',
-          parent: angular.element(document.body)
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
         });
       });
       $scope.logout = function() {
@@ -36,11 +37,7 @@
         return $mdSidenav('left').toggle();
       };
       $scope.signIn = function() {
-        return $mdDialog.show({
-          controller: 'authCtrl',
-          templateUrl: '/partials/main/authenticate.html',
-          parent: angular.element(document.body)
-        });
+        return $scope.$broadcast("auth:show-signin");
       };
       $scope.exploreCommunity = function(community) {
         return $state.transitionTo('home.network.community', {
@@ -68,7 +65,8 @@
               }
             ]
           },
-          parent: angular.element(document.body)
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
         });
       };
       $scope.$on('auth:login-success', function() {

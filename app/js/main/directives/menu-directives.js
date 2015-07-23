@@ -44,7 +44,8 @@
                     }
                   ]
                 },
-                parent: angular.element(document.body)
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
               });
             };
           }

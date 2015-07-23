@@ -1,7 +1,7 @@
-%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In"}
   %md-tabs{md-border-bottom: true}
     %md-tab{label: "sign in", layout-fill: true}
-      %md-content{layout-padding: true}
+      %md-content.md-padding
         %form{name: "signIn", ng-submit: "submitLogin(user)"}
           %md-input-container
             %label
@@ -13,9 +13,11 @@
             %input{ng-model: "user.password", type: "password", required: true}
           %md-button{type: "submit"}
             Login
+          %md-button{ng-click: "hideDialog()"}
+            Cancel
 
     %md-tab{label: "sign up"}
-      %md-content{layout-padding: true}
+      %md-content.md-padding
         %form{name: "signUp", ng-submit: "submitRegistration(user)"}
           %md-input-container
             %label

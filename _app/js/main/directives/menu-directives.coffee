@@ -35,6 +35,7 @@ app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
               ]
 
             parent: angular.element(document.body),
+            clickOutsideToClose:true
           })
       ]
       link: ($scope, $element) ->

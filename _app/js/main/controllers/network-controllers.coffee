@@ -5,9 +5,11 @@ app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams",
   $scope.page.posts = Posts
 ]
 
-app.controller "networkEditCtrl", ["$scope", "List", "NetworkSubscriptionResource", "Page", ($scope, List, NetworkSubscriptionResource, Page) ->
+app.controller "networkEditCtrl", ["$scope", "$mdDialog", "List", "NetworkSubscriptionResource", "Page", ($scope, $mdDialog, List, NetworkSubscriptionResource, Page) ->
   $scope.page = Page
   $scope.networks = List
+  $scope.hideDialog = () ->
+    $mdDialog.hide()
   $scope.toggle = (network) ->
     if network.selected
       NetworkSubscriptionResource.save({network_id: network.id}).$promise.then (data) -> 

@@ -16,6 +16,9 @@
       $rootScope.$on("auth:login-success", function() {
         return $mdDialog.hide();
       });
+      $scope.hideDialog = function() {
+        return $mdDialog.hide();
+      };
       $scope.$on('auth:registration-email-error', function(ev, reason) {
         $scope.errors = _.uniq(reason.errors.full_messages);
         return setTimeout(function() {

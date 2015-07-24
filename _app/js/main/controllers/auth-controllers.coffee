@@ -11,7 +11,10 @@ app.controller "authCtrl", ["$rootScope", "$scope", "$state", "$stateParams", "$
     $auth.submitRegistration(user)
   $rootScope.$on("auth:login-success", () ->
     $mdDialog.hide()
-  )  
+  )
+
+  $scope.hideDialog = () ->
+    $mdDialog.hide()
 
   $scope.$on 'auth:registration-email-error', (ev, reason) ->
     $scope.errors = _.uniq reason.errors.full_messages

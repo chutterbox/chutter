@@ -11,9 +11,12 @@
   ]);
 
   app.controller("networkEditCtrl", [
-    "$scope", "List", "NetworkSubscriptionResource", "Page", function($scope, List, NetworkSubscriptionResource, Page) {
+    "$scope", "$mdDialog", "List", "NetworkSubscriptionResource", "Page", function($scope, $mdDialog, List, NetworkSubscriptionResource, Page) {
       $scope.page = Page;
       $scope.networks = List;
+      $scope.hideDialog = function() {
+        return $mdDialog.hide();
+      };
       return $scope.toggle = function(network) {
         if (network.selected) {
           return NetworkSubscriptionResource.save({

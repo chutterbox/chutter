@@ -75,6 +75,8 @@ module.exports = (grunt) ->
             ]
           'app/js/compiled/moderation.min.js': [
               #moderation
+              'vendor/Chart.js/Chart.js',
+              'vendor/angular-chart.js/dist/angular-chart.js',
               'app/js/moderation/moderation.js',
               'app/js/moderation/controllers/*.js',
               'app/js/moderation/directives/*.js',

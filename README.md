@@ -29,7 +29,7 @@ and auto compile
 
 ###api
 
-* right now the api endpoint is https://www.chutter-api.herokuapp.com/api/v1
+* right now the api endpoint is http://chutter-api.elasticbeanstalk.com/
 * you can either sign up, or use a dummy account "user", pw: asdfghjkl; 
 * there are also duplicate dummy accounts from 1-100: user#{n}, example user40
 

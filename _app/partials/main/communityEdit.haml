@@ -1,9 +1,12 @@
 %md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label="Sign In", flex: "50"}
-  %md-subheader.md-no-sticky
-    Manage Community Subscriptions
-  %md-content
-    %div{layout: "row"}
+  %md-toolbar
+    %div.md-toolbar-tools
+      Manage Community Subscriptions
       %span{flex: true}
+      %md-button.md-icon-button{ng-click: "hideDialog()"}
+        %i.fa.fa-close.fa-fw{aria-label="Close dialog"}
+  %md-dialog-content
+    %div{layout: "row"}
       %md-input-container{flex: true}
         %label Search
         %input{ng-model: "communityFilter"}

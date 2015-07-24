@@ -11,7 +11,8 @@
     "angular-resource": "1.4.1",
     "ui-router": "0.2.15",
     "underscore": "1.8.3",
-    "ng-videosharing-embed": "0.3.3"
+    "ng-videosharing-embed": "0.3.3",
+    "angular-chart.js": "0.7.2"
   },
   "resolutions": {
     "angular": "1.4.3"

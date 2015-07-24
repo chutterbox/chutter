@@ -10,7 +10,17 @@
       %md-input-container{flex: true}
         %label Search
         %input{ng-model: "networkFilter"}
-    %md-list-item{ng-repeat: "network in networks | filter: networkFilter"}
-      %p{ng-bind:"network.name"}
-      %span{flex: true}
-      %md-switch{ng-model: "network.selected", aria-label: "Switch 1", ng-change: "toggle(network)"}
+    %md-list-item.subscription-card{ng-repeat: "network in networks | filter: networkFilter", layout: "row"}
+      .subscription-info{layout: "column", flex: 90}
+        %h4{ng-bind:"network.name"}
+        %span{ng-bind:"network.description || 'some description here'"}
+        .stats
+          %span
+            %i.fa.fa-user.fa-fw
+            2,349
+          %span
+            %i.fa.fa-sitemap.fa-fw
+            {{network.communities_count || 0}}
+      %div{layout: "center center", layout-fill: true}
+        %md-switch{ng-model: "network.selected", aria-label: "Switch 1", ng-change: "toggle(network)"}
+      

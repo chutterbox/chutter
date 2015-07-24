@@ -80,6 +80,19 @@ md-toolbar {
   -webkit-transform-style: preserve-3d;
   -webkit-transform: translate3d(0, 0, 0); }
 
+.subscription-card {
+  margin: 10px 0; }
+  .subscription-card .subscription-info h4 {
+    color: #000;
+    margin: 0; }
+  .subscription-card .subscription-info span {
+    font-size: 14px;
+    color: #757575; }
+  .subscription-card .subscription-info .stats span {
+    font-size: 10px;
+    margin-right: 5px;
+    color: #999; }
+
 #right-rail .header {
   margin: 20px 0 0 0; }
   #right-rail .header h3 {
@@ -92,26 +105,33 @@ md-toolbar {
     color: rgba(0, 0, 0, 0.54); }
 #right-rail .description h3,
 #right-rail .moderators h3,
+#right-rail .trending h3,
 #right-rail .tags h3,
 #right-rail .rules h3 {
   font-size: 14px;
   letter-spacing: 1px; }
 #right-rail .description p,
 #right-rail .moderators p,
+#right-rail .trending p,
 #right-rail .tags p,
 #right-rail .rules p {
   font-size: 12px;
   color: #333; }
-#right-rail .moderators md-list-item {
+#right-rail .moderators md-list-item,
+#right-rail .trending md-list-item {
   min-height: 20px;
   height: auto;
   padding: 0;
   margin: 0; }
-  #right-rail .moderators md-list-item i, #right-rail .moderators md-list-item a {
+  #right-rail .moderators md-list-item i, #right-rail .moderators md-list-item a,
+  #right-rail .trending md-list-item i,
+  #right-rail .trending md-list-item a {
     font-size: 12px; }
-  #right-rail .moderators md-list-item i {
+  #right-rail .moderators md-list-item i,
+  #right-rail .trending md-list-item i {
     color: #777; }
 #right-rail .ctas .md-button {
+  color: #767676;
   font-size: 12px;
   text-transform: lowercase;
   min-width: auto; }

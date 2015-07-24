@@ -55,11 +55,43 @@
           %div
             %h3{ng-bind: "page.network.name"}
           %span{flex: true}
-          %div
-            %p.subscription-count
-              %i.fa.fa-users.fa-fw
-              1,232,244
         %md-divider
+        .ctas{layout: "row", layout-align: "center center"}
+          %div
+            %md-button{ng-click: "editCommunity()"}
+              %i.fa.fa-sitemap.fa-fw
+              458
+            %md-tooltip
+              communities
+          %div
+            %md-button
+              %i.fa.fa-user.fa-fw
+              109,399
+            %md-tooltip
+              subscribers
+          %div
+            %md-button
+              %i.fa.fa-circle.fa-fw
+              9,444
+            %md-tooltip
+              here now
+
+        .trending
+          %h3
+            Trending Communities
+          %md-list
+            %md-list-item
+              %a{href: "#"}
+                \/c/somecommunity   
+            %md-list-item
+              %a{href: "#"}
+                \/c/somecommunity              
+            %md-list-item
+              %a{href: "#"}
+                \/c/tryusingscience  
+            %md-list-item
+              %a{href: "#"}
+                \/c/redditisded
       %md-content{ng-switch-when: "comments"}
         .header{flex: true, layout: "row"}
           %div

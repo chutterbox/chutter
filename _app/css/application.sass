@@ -74,6 +74,21 @@ md-toolbar
   -webkit-transform-style: preserve-3d
   -webkit-transform: translate3d(0,0,0)
 
+// edit subscriptions card 
+.subscription-card
+  margin: 10px 0
+  .subscription-info
+    h4
+      color: #000
+      margin: 0
+    span
+      font-size: 14px
+      color: #757575
+    .stats
+      span
+        font-size: 10px
+        margin-right: 5px
+        color: #999
 
 // right rail
 #right-rail
@@ -89,6 +104,7 @@ md-toolbar
       color: rgba(0,0,0,0.54)
   .description,
   .moderators,
+  .trending,
   .tags,
   .rules
     h3
@@ -97,7 +113,8 @@ md-toolbar
     p
       font-size: 12px
       color: #333
-  .moderators
+  .moderators,
+  .trending
     md-list-item
       min-height: 20px
       height: auto
@@ -109,6 +126,7 @@ md-toolbar
         color: #777
   .ctas
     .md-button
+      color: #767676
       font-size: 12px
       text-transform: lowercase
       min-width: auto

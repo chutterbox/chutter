@@ -4,3 +4,7 @@ node_modules/
 dump.rdb
 *.log
 .env
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

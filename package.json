@@ -14,6 +14,10 @@
   "engines": {
     "node": "0.10.21"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor chutter.js"
+  },
   "devDependencies": {
     "cucumber": "~0.3.0",
     "grunt": "~0.4.1",

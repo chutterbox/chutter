@@ -10,15 +10,53 @@ md-dialog
 
 //sticky top toolbar  
 md-toolbar#chutter
+  transform: translate3d(0,0,0)
+  -webkit-transform: translate3d(0,0,0)
   position: absolute
-  z-index: 999
-.offset-toolbar
-  margin-top: 40px
+  z-index: 20
+  .md-button
+    padding: 0
+    margin: 10px
+    min-width: auto
+    text-transform: none
+  .toolbar-bottom-container
+    width: 280px
+    a
+      padding-left: 12px
+      width: 50%
+    #all-button
+      font-size: 16px
+      text-align: left
+      font-weight: 400
+      margin: 0
+      padding-left: 12px
+  md-fab-speed-dial
+    position: absolute
+    right: 0
+    top: 75%
+
+#scrolly-left,
+#scrolly-right
+  margin-top: 64px
+  transform: translateY(64px)
+  -webkit-transform: translateY(64px)
+#scrolly-right
+  padding: 16px    
+
+
+
+// class to overlay break point
+.overlay-toolbar
+  margin-top: 64px
+
+md-sidenav
+  z-index: 19
+
 #posts
   // for whiteframe
   background: #fff
-  margin-left: 1px
-  margin-right: 1px
+  z-index: 21
+
 post
   background: #fff
 
@@ -28,17 +66,11 @@ p,h1,h2,h3,h4,h5,h6,span
 a
   color: rgb(3,169,244)
   text-decoration: none
-#brand
-  font-weight: 200
-.md-button
-  font-weight: 205
-  letter-spacing: 0.08em
 
 .hide:nth-child(n+5)
   display: none !important
-// center
-md-grid-list 
-  margin: 8px
+
+
 .gray 
   background: #f2f2f2
 .green 
@@ -54,15 +86,6 @@ md-grid-list
 
 .ng-cloak
   display: none !important
-
-md-grid-tile,
-md-grid-list
-  // transition: all 400ms ease-out 50ms
-  transition: none !important
-//toolbar
-md-toolbar
-  max-height: 40px
-  min-height: 40px
 
 
 .header-caption-wrapper
@@ -132,21 +155,6 @@ md-toolbar
       text-transform: lowercase
       min-width: auto
 
-// submit
-#submit-progress
-  max-width: 10%
-  
-post
-  md-list-item
-
-#header
-  .md-toolbar-tools
-    .md-button
-      min-width: 50px
-      padding: 0
-      margin: 0
-  .md-menu
-    padding: 0
 
 .animate.ng-animate 
   -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s

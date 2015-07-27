@@ -12,7 +12,9 @@ $(document).ready () ->
   , 2000
 
 
-app.config ["$httpProvider", ($httpProvider) ->
+app.config ["$httpProvider", "$mdThemingProvider", ($httpProvider, $mdThemingProvider) ->
+
+  $mdThemingProvider.theme('default').primaryPalette 'light-blue'
 
   $httpProvider.interceptors.push ["$q", '$injector','$rootScope', ($q, $injector, $rootScope) ->
     {

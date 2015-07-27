@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,OAAO;EACL,aAAa,EAAE,CAAC;EAChB,OAAO,EAAE,GAAG;EACZ,uBAAe;IACb,MAAM,EAAE,IAAI",
+"sources": ["../../_app/css/management.sass"],
+"names": [],
+"file": "management.css"
+}

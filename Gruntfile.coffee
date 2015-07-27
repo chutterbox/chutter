@@ -79,9 +79,21 @@ module.exports = (grunt) ->
               'vendor/angular-chart.js/dist/angular-chart.js',
               'app/js/moderation/moderation.js',
               'app/js/moderation/controllers/*.js',
+              'app/js/moderation/controllers/community/*.js',
               'app/js/moderation/directives/*.js',
               'app/js/moderation/providers/*.js',
               'app/js/moderation/services/*.js'
+            ]
+          'app/js/compiled/management.min.js': [
+              #moderation
+              'vendor/Chart.js/Chart.js',
+              'vendor/angular-chart.js/dist/angular-chart.js',
+              'app/js/management/management.js',
+              'app/js/management/controllers/*.js',
+              'app/js/management/controllers/community/*.js',
+              'app/js/management/directives/*.js',
+              'app/js/management/providers/*.js',
+              'app/js/management/services/*.js'
             ]
 
 
@@ -136,8 +148,21 @@ module.exports = (grunt) ->
           #moderation partials
           "app/partials/moderation/index.html" : "_app/partials/moderation/index.haml"
           "app/partials/moderation/layout.html" : "_app/partials/moderation/layout.haml"
-          "app/partials/moderation/network.html" : "_app/partials/moderation/network.haml"
-          
+          "app/partials/moderation/dashboard.html" : "_app/partials/moderation/dashboard.haml"
+          "app/partials/moderation/community/dashboard.html" : "_app/partials/moderation/community/dashboard.haml"
+          "app/partials/moderation/community/community.html" : "_app/partials/moderation/community/community.haml"
+          "app/partials/moderation/community/policy-groups.html" : "_app/partials/moderation/community/policy-groups.haml"
+          "app/partials/moderation/community/notifications.html" : "_app/partials/moderation/community/notifications.haml"
+          "app/partials/moderation/community/inbox.html" : "_app/partials/moderation/community/inbox.haml"
+          "app/partials/moderation/community/settings.html" : "_app/partials/moderation/community/settings.haml"
+          "app/partials/moderation/community/logs.html" : "_app/partials/moderation/community/logs.haml"
+         
+          #management partials
+          "app/partials/management/index.html" : "_app/partials/management/index.haml"
+          "app/partials/management/layout.html" : "_app/partials/management/layout.haml"
+          "app/partials/management/dashboard.html" : "_app/partials/management/dashboard.haml"
+          "app/partials/management/community/dashboard.html" : "_app/partials/management/community/dashboard.haml"
+          "app/partials/management/community/community.html" : "_app/partials/management/community/community.haml"          
           #toast partials
           "app/partials/toasts/comment-toast.html" : "_app/partials/toasts/comment-toast.haml"
 
@@ -152,6 +177,8 @@ module.exports = (grunt) ->
           'app/css/post.css' : '_app/css/post.sass'
           'app/css/mediaPlayer.css' : '_app/css/mediaPlayer.sass'
           'app/css/notifications.css' : '_app/css/notifications.sass'
+          'app/css/moderation.css' : '_app/css/moderation.sass'
+          'app/css/management.css' : '_app/css/management.sass'
 
     coffee:
       scripts:
@@ -245,6 +272,12 @@ module.exports = (grunt) ->
           src: ['*.coffee'],
           dest: 'app/js/moderation/controllers',
           ext: '.js'   
+        , 
+          expand: true,
+          cwd: './_app/js/moderation/controllers/community',
+          src: ['*.coffee'],
+          dest: 'app/js/moderation/controllers/community',
+          ext: '.js'   
         ,  
           expand: true,
           cwd: './_app/js/moderation/directives',
@@ -256,6 +289,36 @@ module.exports = (grunt) ->
           cwd: './_app/js/moderation/providers',
           src: ['*.coffee'],
           dest: 'app/js/moderation/providers',
+          ext: '.js'   
+        ,  
+          expand: true,
+          cwd: './_app/js/management',
+          src: ['*.coffee'],
+          dest: 'app/js/management',
+          ext: '.js'   
+        ,   
+          expand: true,
+          cwd: './_app/js/management/controllers',
+          src: ['*.coffee'],
+          dest: 'app/js/management/controllers',
+          ext: '.js'   
+        , 
+          expand: true,
+          cwd: './_app/js/management/controllers/community',
+          src: ['*.coffee'],
+          dest: 'app/js/management/controllers/community',
+          ext: '.js'   
+        ,  
+          expand: true,
+          cwd: './_app/js/management/directives',
+          src: ['*.coffee'],
+          dest: 'app/js/management/directives',
+          ext: '.js'   
+        , 
+          expand: true,
+          cwd: './_app/js/management/providers',
+          src: ['*.coffee'],
+          dest: 'app/js/management/providers',
           ext: '.js'   
         ,  
           expand: true,

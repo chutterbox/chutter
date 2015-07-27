@@ -11,7 +11,7 @@
   ]);
 
   app.controller("networkEditCtrl", [
-    "$scope", "$mdDialog", "List", "NetworkSubscriptionResource", "Page", function($scope, $mdDialog, List, NetworkSubscriptionResource, Page) {
+    "$scope", "$mdDialog", "List", "NetworkResource", "Page", function($scope, $mdDialog, List, NetworkResource, Page) {
       $scope.page = Page;
       $scope.networks = List;
       $scope.hideDialog = function() {
@@ -19,15 +19,15 @@
       };
       return $scope.toggle = function(network) {
         if (network.selected) {
-          return NetworkSubscriptionResource.save({
-            network_id: network.id
+          return NetworkResource.subscribe({
+            id: network.slug
           }).$promise.then(function(data) {
             $scope.page.networkSubscriptions.length = 0;
             return $scope.page.networkSubscriptions = data;
           });
         } else {
-          return NetworkSubscriptionResource["delete"]({
-            id: network.subscription_id
+          return NetworkResource.unsubscribe({
+            id: network.slug
           }).$promise.then(function(data) {
             $scope.page.networkSubscriptions.length = 0;
             return $scope.page.networkSubscriptions = data;

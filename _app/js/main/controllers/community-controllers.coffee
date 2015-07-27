@@ -1,16 +1,16 @@
 app = angular.module("MainApp")
 
-app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "CommunitySubscriptionResource", ($scope, $mdDialog, List,  Page, CommunitySubscriptionResource) ->
+app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "CommunityResource", ($scope, $mdDialog, List,  Page, CommunityResource) ->
   $scope.communities = List
   $scope.hideDialog = () ->
     $mdDialog.hide()
   $scope.toggle = (community) ->
     if community.selected
-      CommunitySubscriptionResource.save({community_id: community.id}).$promise.then (data) -> 
+      CommunityResource.subscribe({id: community.slug}).$promise.then (data) -> 
         # $scope.page.communitySubscriptions.length = 0
         # $scope.page.communitySubscriptions = data
     else
-      CommunitySubscriptionResource.delete({id: community.subscription_id}).$promise.then (data) ->
+      CommunityResource.unsubscribe({id: community.slug}).$promise.then (data) ->
         # $scope.page.networkSubscriptions.length = 0
         # $scope.page.networkSubscriptions = data
 

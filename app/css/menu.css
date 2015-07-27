@@ -1,5 +1,5 @@
 .nav-menu .fa-plus {
-  color: #bbb; }
+  color: #616161; }
 
 .site-sidenav md-content {
   background: transparent; }
@@ -20,7 +20,8 @@
 .nav-menu,
 .nav-menu ul {
   list-style: none;
-  padding: 0; }
+  padding: 0;
+  margin: 0; }
 
 .nav-menu li {
   margin: 0; }
@@ -35,6 +36,7 @@
   border-bottom: none; }
 
 .nav-menu .md-button {
+  color: #616161;
   border-radius: 0;
   cursor: pointer;
   display: block;
@@ -109,9 +111,9 @@
   font-weight: 400; }
 
 .md-button-toggle .md-toggle-icon {
-  color: #757575;
+  color: #616161;
   outline: none;
-  margin: 0 4% 0 3%;
+  margin: 0 8px;
   display: block;
   speak: none;
   vertical-align: middle;
@@ -123,8 +125,5 @@
 .md-button-toggle .md-toggle-icon.active {
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg); }
-
-.menu-nested-list li .all-button {
-  width: 100%; }
 
 /*# sourceMappingURL=menu.css.map */

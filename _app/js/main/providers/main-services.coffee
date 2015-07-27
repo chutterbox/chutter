@@ -2,12 +2,6 @@
 app = angular.module('MainApp')
 app.factory 'NetworkSubscriptionResource', ['$resource','Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/network_subscriptions/:id'), { id: '@id' },
-      'delete':
-        method: 'DELETE'
-        isArray: true
-      save:
-        method: 'POST'
-        isArray: true
       query:
         isArray: true
         interceptor: 'response': (response) ->
@@ -19,15 +13,15 @@ app.factory 'NetworkSubscriptionResource', ['$resource','Page', 'API', ($resourc
             return
           console.log Page
 ]
-app.factory 'CommunitySubscriptionResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-    $resource API.makeURL('/community_subscriptions/:id'), { id: '@id' },
-      'delete':
-        method: 'DELETE'
-        isArray: true
-      save:
-        method: 'POST'
-        isArray: true
-]
+# app.factory 'CommunitySubscriptionResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
+#     $resource API.makeURL('/community_subscriptions/:id'), { id: '@id' },
+#       'delete':
+#         method: 'DELETE'
+#         isArray: true
+#       save:
+#         method: 'POST'
+#         isArray: true
+# ]
 app.factory 'UserResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/users/:id'), id: '@id'
 ]
@@ -56,6 +50,15 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
         method: 'GET'
         isArray: true
         url: API.makeURL('/communities/:id/posts')
+      subscribe:
+        url: API.makeURL('/communities/:id/subscribe')
+        method: 'PUT'
+        isArray: true
+      unsubscribe:
+        url: API.makeURL('/communities/:id/unsubscribe')
+        method: 'PUT'
+        isArray: true
+      
 ]
 app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/comments/:id'), id: '@id'
@@ -120,6 +123,14 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
             else
               item.selected = false
           data
+      subscribe:
+        url: API.makeURL('/networks/:id/subscribe')
+        method: 'PUT'
+        isArray: true
+      unsubscribe:
+        url: API.makeURL('/networks/:id/unsubscribe')
+        method: 'PUT'
+        isArray: true
 ]
 app.factory 'audio', [
   '$document'

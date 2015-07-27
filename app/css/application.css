@@ -7,16 +7,49 @@ md-dialog md-content {
   background: #fff; }
 
 md-toolbar#chutter {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
-  z-index: 999; }
+  z-index: 20; }
+  md-toolbar#chutter .md-button {
+    padding: 0;
+    margin: 10px;
+    min-width: auto;
+    text-transform: none; }
+  md-toolbar#chutter .toolbar-bottom-container {
+    width: 280px; }
+    md-toolbar#chutter .toolbar-bottom-container a {
+      padding-left: 12px;
+      width: 50%; }
+    md-toolbar#chutter .toolbar-bottom-container #all-button {
+      font-size: 16px;
+      text-align: left;
+      font-weight: 400;
+      margin: 0;
+      padding-left: 12px; }
+  md-toolbar#chutter md-fab-speed-dial {
+    position: absolute;
+    right: 0;
+    top: 75%; }
 
-.offset-toolbar {
-  margin-top: 40px; }
+#scrolly-left,
+#scrolly-right {
+  margin-top: 64px;
+  transform: translateY(64px);
+  -webkit-transform: translateY(64px); }
+
+#scrolly-right {
+  padding: 16px; }
+
+.overlay-toolbar {
+  margin-top: 64px; }
+
+md-sidenav {
+  z-index: 19; }
 
 #posts {
   background: #fff;
-  margin-left: 1px;
-  margin-right: 1px; }
+  z-index: 21; }
 
 post {
   background: #fff; }
@@ -29,18 +62,8 @@ a {
   color: #03a9f4;
   text-decoration: none; }
 
-#brand {
-  font-weight: 200; }
-
-.md-button {
-  font-weight: 205;
-  letter-spacing: 0.08em; }
-
 .hide:nth-child(n+5) {
   display: none !important; }
-
-md-grid-list {
-  margin: 8px; }
 
 .gray {
   background: #f2f2f2; }
@@ -62,14 +85,6 @@ md-grid-list {
 
 .ng-cloak {
   display: none !important; }
-
-md-grid-tile,
-md-grid-list {
-  transition: none !important; }
-
-md-toolbar {
-  max-height: 40px;
-  min-height: 40px; }
 
 .header-caption-wrapper {
   margin: 5% 0 0 0; }
@@ -136,16 +151,6 @@ md-toolbar {
   min-width: auto; }
   #right-rail .ctas .md-button.gray-button {
     color: #767676; }
-
-#submit-progress {
-  max-width: 10%; }
-
-#header .md-toolbar-tools .md-button {
-  min-width: 50px;
-  padding: 0;
-  margin: 0; }
-#header .md-menu {
-  padding: 0; }
 
 .animate.ng-animate {
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;

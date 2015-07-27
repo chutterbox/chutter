@@ -3,6 +3,10 @@
 
   app = angular.module("ModerationApp");
 
-  app.controller("homeCtrl", function() {});
+  app.controller("homeCtrl", [
+    "$scope", "Communities", function($scope, Communities) {
+      return $scope.communities = Communities;
+    }
+  ]);
 
 }).call(this);

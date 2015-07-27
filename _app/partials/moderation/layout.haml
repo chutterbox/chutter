@@ -1,31 +1,130 @@
-%md-toolbar.md-whiteframe-z1#chutter
-  .md-toolbar-tools{layout: "row"}
-    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;"}
-    %a#brand{href: "#", flex: true, ng-click: "toggleLeft()"}
-      chutter moderation
-
+%md-toolbar.md-whiteframe-z1.md-tall#chutter
+  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
+    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+      chutter
     %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
       %i.fa.fa-list
     %span{flex: true}
-    %md-button{href: "/", aria-label: "Open phone interactions menu"}
-      Back To Chutter
+    %md-button{ng-click: "signIn()"}
+      Sign In
+  
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row"}
+    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+    %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
+      %i.fa.fa-align-justify.fa-fw
+    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+      chutter
+    %span{flex: true}
+    %md-button{href: "/me/notifications", ng-bind: "user.username + '(' + user.points + ')'", target: "_self"}
+      
+    %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+      %i.fa.fa-envelope-o.fa-fw
+      %md-tooltip
+        Messages
+    %md-button{ng-click: "logout()", hide-sm: true}
+      %i.fa.fa-sign-out.fa-fw
+      %md-tooltip
+        Log out
+  .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
+    .toolbar-bottom-container{layout: "row"}
+      %a
+        Moderation
 
-
-%md-content.offset-toolbar{layout: "row", flex: true}
+    %span{flex: true}
+    .toolbar-bottom-container{layout: "row"}
+      %a{href: "#", ng-bind: "page.community.name || 'AskScience' "}
+      %span{flex: true}
+%md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-tabs
-      %md-tab{label: "Networks"}
-        %md-list.nav-list
-          %md-list-item
-            %md-button{aria-label: "Inbox", ui-sref: "home.dashboard.network({id: 'music'})", ui-sref-active: "md-primary"}
-              Music
-          %md-list-item
-            %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
-              Science
-          %md-list-item
-            %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
-              Videos
-     
-  %div{ui-view: "", layout: "row", flex: true}
-    %h1 here is some interim stuff
+    %md-content.offset-toolbar.nav-menu.gray#scrolly-left{role: "navigation", layout-fill: true, layout: "row"}
+      %md-list.nav-list
+        %md-list-item{ng-repeat: "community in communities"}
+          %md-button{aria-label: "Community", ui-sref: "home.community.dashboard({id: community.slug})", ui-sref-active: "md-primary"}
+            %i.fa.fa-fw
+            {{community.name}}
         
+  %md-content.md-whiteframe-z1#posts.overlay-toolbar{flex: true}
+    %media-player#player{layout: "column"}
+    %ui-view
+
+  %md-sidenav.md-sidenav-right.gray#right-rail{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+    %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column"}
+      %md-content{ng-switch-when: "submit"}
+        .header{flex: true, layout: "row"}
+          %div
+            %h3{ng-bind: "page.community.name"}
+          %span{flex: true}
+          %div
+            %p.subscription-count
+              %i.fa.fa-users.fa-fw
+              1,232,244
+        %md-divider
+        .rules
+          %h3
+            Submission Rules
+          %md-list
+            %md-list-item
+              \- You must personally hold the view and be open to it changing.
+            %md-list-item
+              \- If your view is about someone having a double standard, please see the guidelines here
+            %md-list-item
+              \- Posts with misleading/overly-simplistic titles may be removed.
+            %md-list-item
+              \- Feasible suggestions that gain traction there may be implemented or posted to CMV for further discussion by the mods.
+        .moderators
+          %h3
+            Mods
+          %md-list
+            %md-list-item
+              %a{href: "#"}
+                Snorrrlax
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                protagornast
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                TryUsingScience
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                GameboyPATH
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw  
+      %md-content{ng-switch-when: "all"}
+        .description
+          %h3
+            Description
+          %p
+            SRSDiscussion is a modded progressive-oriented forum for discussing issues of social justice. Our goal is to foster a welcoming space for the perspectives of minorities and marginalized people. Comments which are discordant with the ethos of social progressivism will be removed, and users who post in bad faith will be banned.
+            If you see any problematic content, don't hesitate to report it. The "report" link is one of the links underneath every post and comment.
+
+        .moderators
+          %h3
+            Mods
+          %md-list
+            %md-list-item
+              %a{href: "#"}
+                Snorrrlax
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                protagornast
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                TryUsingScience
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw
+            %md-list-item
+              %a{href: "#"}
+                GameboyPATH
+              %a.md-secondary{href: "#"}
+                %i.fa.fa-envelope-o.fa-fw   

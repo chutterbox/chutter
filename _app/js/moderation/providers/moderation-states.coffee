@@ -24,6 +24,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.community"
       url: "/community/:id"
       templateUrl: "#{view_url}/community/community.html"
+      controller: "communityCtrl"
 
     communityDashboard =
       name: "home.community.dashboard"
@@ -36,11 +37,16 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/inbox"
       templateUrl: "#{view_url}/community/inbox.html"
     
-    communityNotifications =
-      name: "home.community.notifications"
-      url: "/notifications"
-      templateUrl: "#{view_url}/community/notifications.html"
+    communityQueue =
+      name: "home.community.queue"
+      url: "/queue"
+      templateUrl: "#{view_url}/community/queue.html"
     
+    communityMonitor =
+      name: "home.community.monitor"
+      url: "/monitor"
+      templateUrl: "#{view_url}/community/monitor.html"
+   
     policyGroups =
       name: "home.community.policyGroups"
       url: "/policy-groups"
@@ -50,21 +56,51 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.community.settings"
       url: "/settings"
       templateUrl: "#{view_url}/community/settings.html"
-    logs =
-      name: "home.community.logs"
-      url: "/logs"
-      templateUrl: "#{view_url}/community/logs.html"
+    rules =
+      name: "home.community.rules"
+      url: "/rules"
+      templateUrl: "#{view_url}/community/rules.html"
+      controller: "rulesCtrl"
+      resolve: 
+        communityRules: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.rules({id: $stateParams.id}).$promise
+        ]
+    activityLog =
+      name: "home.community.activityLog"
+      url: "/activity-log"
+      templateUrl: "#{view_url}/community/activity-log.html"
+      resolve:        
+        activityLog: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.activityLog({id: $stateParams.id}).$promise
+        ]
+      controller: ["$scope", "activityLog", ($scope, activityLog) -> 
+        $scope.activityLog = activityLog
+      ]
+    moderators =
+      name: "home.community.moderators"
+      url: "/moderators"
+      templateUrl: "#{view_url}/community/moderators.html"
+      resolve:        
+        Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.moderators({id: $stateParams.id}).$promise
+        ]
+      controller: ["$scope", "Moderators", ($scope, Moderators) -> 
+        $scope.moderators = Moderators
+      ]
     #community specific dashboard
    
     $stateProvider.state(home)
     $stateProvider.state(dashboard)
     $stateProvider.state(community)
     $stateProvider.state(communityDashboard)
-    $stateProvider.state(communityNotifications)
+    $stateProvider.state(communityQueue)
+    $stateProvider.state(rules)
+    $stateProvider.state(communityMonitor)
     $stateProvider.state(communityInbox)
     $stateProvider.state(policyGroups)
     $stateProvider.state(settings)
-    $stateProvider.state(logs)
+    $stateProvider.state(activityLog)
+    $stateProvider.state(moderators)
     # $stateProvider.state(conversationCompose)
     # $stateProvider.state(conversationContent)
     # $stateProvider.state(notifications)

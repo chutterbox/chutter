@@ -4,7 +4,7 @@
   app = angular.module("MainApp");
 
   app.controller("createCtrl", [
-    "$scope", "CommunityResource", "$state", "$filter", "Page", function($scope, CommunityResource, $state, $filter, Page) {
+    "$scope", "CommunityResource", "$state", "$filter", "Page", "$mdDialog", "CommunityRule", function($scope, CommunityResource, $state, $filter, Page, $mdDialog, CommunityRule) {
       $scope.flowState = {
         selectedNetwork: {},
         loading: false
@@ -12,7 +12,8 @@
       $scope.page = Page;
       $scope.newCommunity = {
         network_id: "",
-        name: ""
+        name: "",
+        rules_attributes: []
       };
       $scope.slug = function() {
         return $scope.newCommunity.name;
@@ -21,7 +22,6 @@
         return $scope.flowState.loading = true;
       }, 500));
       $scope.$watch("flowState.selectedNetwork", function(newVal, oldVal) {
-        console.log(newVal);
         if (newVal && newVal.id) {
           return $scope.newCommunity.network_id = newVal.id;
         }
@@ -33,6 +33,23 @@
           return false;
         }
       };
+      $scope.createCommunityRule = function($event) {
+        $scope.newRule = new CommunityRule;
+        $scope.newCommunity.rules_attributes.push($scope.newRule);
+        return $mdDialog.show({
+          controller: 'createCommunityRuleCtrl',
+          templateUrl: '/partials/shared/createCommunityRule.html',
+          parent: angular.element(document.body),
+          scope: $scope,
+          targetElement: $event,
+          preserveScope: true,
+          clickOutsideToClose: true
+        });
+      };
+      $scope.$on("cancelSave", function() {
+        $scope.newCommunity.rules_attributes.pop();
+        return $scope.newRule.$destroy;
+      });
       $scope.selectedStep = 0;
       $scope.next = function() {
         return $scope.selectedStep += 1;

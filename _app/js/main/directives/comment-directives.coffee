@@ -3,7 +3,7 @@ app = angular.module("MainApp")
 app.directive 'commentEmbed', ->
   templateUrl: "/partials/main/comments/commentEmbed.html"
 
-app.directive 'comment', ["$compile", "$mdBottomSheet", ($compile, $mdBottomSheet) ->
+app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($compile, $mdBottomSheet, CommentResource) ->
   restrict: "E"
   scope: 
     comment: "="
@@ -40,6 +40,11 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", ($compile, $mdBottomShee
           _.each $scope.comment.childIds, (id) ->
             document.getElementById(id).className = "ng-scope ng-isolate-scope"
 
+    $scope.comment.updateVote = (vote) -> 
+      if $scope.comment.vote == vote 
+        vote = 0
+      $scope.comment.vote = vote
+      CommentResource.vote({id: $scope.comment.id, vote: vote}) 
 
     $scope.reply = ->
       $mdBottomSheet.show({

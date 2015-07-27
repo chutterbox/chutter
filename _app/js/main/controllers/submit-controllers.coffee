@@ -2,9 +2,6 @@ app = angular.module("MainApp")
 
 app.controller "submitCtrl", ["$scope", "Community", "MediaResource", "Page", ($scope, Community, MediaResource, Page) ->
 
-  Community.$promise.then (data) ->
-    $scope.page.community = data
-
 
   $scope.permitted = (type) ->
     if $scope.page.community && $scope.page.community.permitted_formats_list.indexOf(type) > -1
@@ -116,7 +113,7 @@ app.controller "webpageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostRes
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community})
+      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.updatePreview = (data) ->
     $scope.scraping = false
@@ -142,7 +139,7 @@ app.controller "discussionSubmitCtrl", ["$scope", "Page", "PostResource", "$stat
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community})
+      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.updatePreview = (data) ->
     $scope.scraping = false
@@ -174,7 +171,7 @@ app.controller "videoSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResou
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community})
+      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.updatePreview = (data) ->
     $scope.scraping = false

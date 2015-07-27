@@ -1,9 +1,11 @@
-%md-list
-  %post{post: "page.post",  layout: "row"}
-%div{layout: "row"}
-  %span{flex: true}
-  %md-button.md-raised.md-primary{ng-click:"reply()"}
-    Leave a comment
+%post.post{post: "page.post",  layout: "row"}
 #comments
+  %md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
+    .md-toolbar-tools
+      %span{flex: true}
+      %md-button.md-hue-2{ng-click: "reply()"}
+        leave a comment
+      %md-button.md-warn.md-icon-button
+        %i.fa.fa-trash.fa-fw
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 

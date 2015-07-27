@@ -1,38 +1,44 @@
-%md-toolbar.md-whiteframe-z1.md-tall#chutter
+%md-toolbar.md-whiteframe-z1.md-tall#moderation-toolbar
   .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
     %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
     %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
       chutter
+
     %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
       %i.fa.fa-list
     %span{flex: true}
     %md-button{ng-click: "signIn()"}
       Sign In
   
-  .md-toolbar-tools{ng-show: "user && user.id", layout: "row"}
-    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
-    %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
-      %i.fa.fa-align-justify.fa-fw
-    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-      chutter
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
+    .toolbar-container 
+      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+      %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
+        %i.fa.fa-align-justify.fa-fw
+      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+        chutter
     %span{flex: true}
-    %md-button{href: "/me/notifications", ng-bind: "user.username + '(' + user.points + ')'", target: "_self"}
-      
-    %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-      %i.fa.fa-envelope-o.fa-fw
-      %md-tooltip
-        Messages
-    %md-button{ng-click: "logout()", hide-sm: true}
-      %i.fa.fa-sign-out.fa-fw
-      %md-tooltip
-        Log out
+    .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
+      %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
+        moderation
+      %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
+        management
+      %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+      %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+        %i.fa.fa-envelope-o.fa-fw
+        %md-tooltip
+          Messages
+      %md-button{ng-click: "logout()", hide-sm: true}
+        %i.fa.fa-sign-out.fa-fw
+        %md-tooltip
+          Log out
   .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-    .toolbar-bottom-container{layout: "row"}
+    .toolbar-container{layout: "row", layout-align: "start center"}
       %a
         Moderation
 
     %span{flex: true}
-    .toolbar-bottom-container{layout: "row"}
+    .toolbar-container{layout: "row", layout-align: "start center"}
       %a{href: "#", ng-bind: "page.community.name || 'AskScience' "}
       %span{flex: true}
 %md-content{layout: "row", flex: true}
@@ -44,7 +50,7 @@
             %i.fa.fa-fw
             {{community.name}}
         
-  %md-content.md-whiteframe-z1#posts.overlay-toolbar{flex: true}
+  %md-content.md-whiteframe-z1#content{flex: true}
     %media-player#player{layout: "column"}
     %ui-view
 

@@ -15,6 +15,7 @@ $(document).ready () ->
 app.config ["$httpProvider", "$mdThemingProvider", ($httpProvider, $mdThemingProvider) ->
 
   $mdThemingProvider.theme('default').primaryPalette 'light-blue'
+  $mdThemingProvider.theme('moderator').primaryPalette 'indigo'
 
   $httpProvider.interceptors.push ["$q", '$injector','$rootScope', ($q, $injector, $rootScope) ->
     {

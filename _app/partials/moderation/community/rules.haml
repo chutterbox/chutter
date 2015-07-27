@@ -1,0 +1,18 @@
+%div{layout: "column"}
+  %md-list
+    %md-list-item.md-3-line{ng-repeat: "rule in communityRules"}
+      .md-list-item-text
+        %h3{ng-bind: "rule.brief_description"}
+        %h4{ng-bind: "rule.detailed_explanation"}
+        %p{ng-if: "rule.general"}
+          Applies To: The General Community 
+        %p{ng-if: "rule.posts"}
+          Applies To: Posts 
+        %p{ng-if: "rule.comments"}
+          Applies To: Comments 
+        %p{ng-if: "rule.discouraged"}
+          Severity: Discouraged
+        %p{ng-if: "rule.removal"}
+          Severity: Removal
+        %p{ng-if: "rule.ban"}
+          Severity: Ban

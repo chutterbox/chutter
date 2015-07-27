@@ -18,6 +18,7 @@
   app.config([
     "$httpProvider", "$mdThemingProvider", function($httpProvider, $mdThemingProvider) {
       $mdThemingProvider.theme('default').primaryPalette('light-blue');
+      $mdThemingProvider.theme('moderator').primaryPalette('indigo');
       return $httpProvider.interceptors.push([
         "$q", '$injector', '$rootScope', function($q, $injector, $rootScope) {
           return {

@@ -31,6 +31,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         ]
       onEnter: ["Page", (Page) ->
         Page.scope = "all"
+        Page.title = "All"
       ]
 
     
@@ -61,10 +62,10 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       resolve:
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-          CommunityResource.show({id: $stateParams.community})
+          CommunityResource.show({id: $stateParams.community}).$promise
         ]
         Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-          CommunityResource.posts({id: $stateParams.community})
+          CommunityResource.posts({id: $stateParams.community}).$promise
         ]
       templateUrl: "#{view_url}/posts.html"
       controller: "communityCtrl"
@@ -79,9 +80,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         "@home": 
           templateUrl: "#{view_url}/submit.html"
           controller: "submitCtrl"
-          Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-            CommunityResource.show({id: $stateParams.community})
-          ]
     create = 
       name: "create"
       url: "/create"
@@ -99,7 +97,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       resolve: 
         Post: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
-          PostResource.get({id: $stateParams.id})
+          PostResource.get({id: $stateParams.id}).$promise
         ]
         Comments: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
           PostResource.comments({id: $stateParams.id})

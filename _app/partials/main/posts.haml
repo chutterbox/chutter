@@ -1,3 +1,3 @@
 %div{ng-switch: "page.posts.length"}
   %md-list.animate#posts{ng-switch-default: true}
-    %post{ng-repeat: "post in page.posts track by $index", post: "post", post-index: "$index",  layout: "row", layout-sm: "column", flex: true} 
+    %post.post{ng-repeat: "post in page.posts track by $index", post: "post", post-index: "$index",  layout: "row", layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

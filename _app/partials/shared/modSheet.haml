@@ -1,0 +1,54 @@
+%md-bottom-sheet{md-theme: "moderator"}
+  %md-toolbar
+    .md-toolbar-tools
+      %h3
+        Moderation
+      %span{flex: true}
+      %md-button.md-icon-button{ng-click: "close()"}
+        %i.fa.fa-close
+  %md-content{layout-padding: true, layout-margin: true, layout: "column"}
+    %md-tabs
+      %md-tab{label: "Remove"}
+        %md-content
+          %div{ng-include: "'/partials/shared/postEmbed.html'"}
+          %form{name: "explanationForm"}
+            %md-subheader
+              Rule Violation
+            %md-radio-group{ng-model: "activityLogEntry.rule_id"}
+              %md-radio-button.md-primary{ng-repeat: "rule in community_rules | filter:{posts: true} ", ng-value: "rule.id"}
+                {{rule.brief_description}}
+            %md-input-container{flex: true}
+              %label Detailed Explanation
+              %textarea{ng-model: "activityLogEntry.detailed_explanation", type: "text", rows: 5}
+            .footer{layout: "row"}
+              %span{flex: true}
+              %md-button.md-raised{ng-click: "submitEntityableForm()"}
+                Submit
+              %md-button.md-raised
+                Cancel
+
+      %md-tab{label: "User"}
+        %form{name: "explanationForm"}
+            %h3{ng-bind: "entityable.username"}
+            %md-subheader
+              Ban From
+            %md-input-container
+              %md-select{ng-model: "communityId", placeholder: "Community"}
+                %md-option{ng-repeat: "community in user.moderated_communities", ng-bind: "community.name"}
+            %md-subheader
+              Ban Length
+            %md-slider.md-primary{flex: "50", ng-model: "myValue", min: "0", max: "5"}
+            %md-subheader
+              Rule Violation
+            %md-radio-group{ng-model: "activityLogEntry.rule_id"}
+              %md-radio-button.md-primary{ng-repeat: "rule in community_rules | filter:{general: true} ", ng-value: "rule.id"}
+                {{rule.brief_description}}
+            %md-input-container{flex: true}
+              %label Detailed Explanation
+              %textarea{ng-model: "activityLogEntry.detailed_explanation", type: "text", rows: 5}
+            .footer{layout: "row"}
+              %span{flex: true}
+              %md-button.md-raised{ng-click: "submitUserForm()"}
+                Submit
+              %md-button.md-raised
+                Cancel

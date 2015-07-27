@@ -8,12 +8,11 @@
       return this.baseURL + url;
     }
   }).config([
-    '$locationProvider', '$mdThemingProvider', '$authProvider', 'API', function($locationProvider, $mdThemingProvider, $authProvider, API) {
+    '$locationProvider', '$authProvider', 'API', function($locationProvider, $authProvider, API) {
       $authProvider.configure({
         apiUrl: API.baseURL
       });
-      $locationProvider.html5Mode(true);
-      return $mdThemingProvider.theme('default').primaryPalette('light-blue');
+      return $locationProvider.html5Mode(true);
     }
   ]).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {}]).run([
     '$http', '$auth', function($http, $auth) {

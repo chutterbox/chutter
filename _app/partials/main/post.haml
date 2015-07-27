@@ -1,11 +1,11 @@
-.vote{layout: "column", layout-fill: true, flex: true, hide-sm: true}
+.vote{layout: "column", layout-fill: true, hide-sm: true}
   %md-button{flex: true, aria-label: "Upvote", ng-click: "post.updateVote(1)"}
     %i.fa.fa-caret-up.fa-2x{ng-class: "{'active' : (post.vote == 1)}"}
   %md-button{flex: true, aria-label: "Downvote", ng-click: "post.updateVote(-1)"}
     %i.fa.fa-caret-down.fa-2x{ng-class: "{'active' : (post.vote == -1)}"}
-.media{ng-show: "post.media.length", ng-click: "post.toggle()", style: "background-image: url('{{post.media[0].thumbnail_link}}'); background-size: cover;", hide-sm: true}
-.middle{flex: true, flex-sm: "100", layout: "column", layout-fill: true}
-  .top{ng-switch: "post.media.length"}
+.media{ng-show: "post.media.length", ng-click: "post.toggle()", style: "background-image: url('{{post.media[0].thumbnail_link}}'); background-size: cover;"}
+.middle{layout: "column", flex: true}
+  .top{ng-switch: "post.media.length", flex: true}
     %div{ng-switch-when: 0, layout: "row"}
       .title{flex: "75", flex-sm: "100"}
         %a.title-text{ng-bind: "post.title", ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})"}

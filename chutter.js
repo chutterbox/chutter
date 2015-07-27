@@ -25,6 +25,14 @@
     return res.render("partials/moderation/index.html");
   });
 
+  chutter.get("/management", function(req, res) {
+    return res.render("partials/management/index.html");
+  });
+
+  chutter.get("/management/*", function(req, res) {
+    return res.render("partials/management/index.html");
+  });
+
   chutter.get("/me", function(req, res) {
     return res.render("partials/me/index.html");
   });

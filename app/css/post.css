@@ -8,7 +8,7 @@ post {
     padding-left: 8px; }
   post .vote {
     max-width: 5%;
-    height: 125px; }
+    height: 100px; }
     post .vote .md-button {
       min-width: 100%;
       padding: 0;
@@ -21,17 +21,16 @@ post {
     border: 1px solid #f6f6f6;
     -webkit-transform-origin: top left;
     transform-origin: top left;
-    height: 125px;
-    width: 167px;
+    height: 100px;
+    width: 133px;
     cursor: hand; }
   post .middle {
     transform-origin: right; }
     post .middle .top {
-      padding: 24px 16px 0 16px; }
+      padding: 8px 8px 0 16px; }
       post .middle .top .title a.title-text {
         font-weight: 500;
-        letter-spacing: 0.7px;
-        font-size: 18px; }
+        font-size: 14px; }
       post .middle .top .attribution a, post .middle .top .attribution i,
       post .middle .top .community a,
       post .middle .top .community i {

@@ -8,7 +8,7 @@
     .image-overlay
       %md-button{ng-click: "mediaPlayer.close()"}
         %i.fa.fa-close
-    %embed-video{data-ng-href: "{{mediaPlayer.currentMedia.stream_link}}", autoplay: "1", height: "{{mediaPlayer.height}}", width: "{{mediaPlayer.width}}"}
+    %embed-video{data-ng-href: "{{mediaPlayer.currentMedia.stream_link}}", autoplay: "1", height: "{{mediaPlayer.height}}", width: "{{mediaPlayer.width}}", style: "float:right;"}
   .audio{ng-switch-when: "music"}
     .image-overlay
       %md-button{ng-click: "mediaPlayer.close()"}

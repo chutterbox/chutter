@@ -1,0 +1,21 @@
+%md-content
+  %table{style: "width: 100%;"}
+    %tr
+      %th
+        moderator
+      %th
+        action
+      %th
+        what
+      %th
+        entity
+      %th
+        cited rule
+    %tr{style: "text-align: center;", ng-repeat: "entry in activityLog.activity_log_entries", ng-switch: "entry.entityable_type"}
+      %td{ng-bind: "entry.user.username"} 
+      %td{ng-bind: "entry.action"}
+      %td{ng-bind: "entry.entityable_type"}
+      %td{ng-switch-when: "Post", ng-bind: "entry.entityable.title"}
+      %td{ng-switch-when: "Comment", ng-bind: "entry.entityable.body"}
+      %td{ng-switch-when: "User", ng-bind: "entry.entityable.username"}
+      %td{ng-bind: "entry.rule.brief_description"}

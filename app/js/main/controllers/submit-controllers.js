@@ -5,9 +5,6 @@
 
   app.controller("submitCtrl", [
     "$scope", "Community", "MediaResource", "Page", function($scope, Community, MediaResource, Page) {
-      Community.$promise.then(function(data) {
-        return $scope.page.community = data;
-      });
       $scope.permitted = function(type) {
         if ($scope.page.community && $scope.page.community.permitted_formats_list.indexOf(type) > -1) {
           return true;
@@ -175,7 +172,7 @@
         }).$promise.then(function(data) {
           return $state.transitionTo("home.community.comments", {
             id: data.slug,
-            community: $scope.page.community
+            community: $scope.page.community.slug
           });
         });
       };
@@ -209,7 +206,7 @@
         }).$promise.then(function(data) {
           return $state.transitionTo("home.community.comments", {
             id: data.slug,
-            community: $scope.page.community
+            community: $scope.page.community.slug
           });
         });
       };
@@ -260,7 +257,7 @@
         }).$promise.then(function(data) {
           return $state.transitionTo("home.community.comments", {
             id: data.slug,
-            community: $scope.page.community
+            community: $scope.page.community.slug
           });
         });
       };

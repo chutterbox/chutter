@@ -7,17 +7,18 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
     isOpen = undefined
     toggleOpen = undefined
     $scope.page = Page
-    element = document.getElementById("chutter")
-    posts    = document.getElementById("posts")     
+    element = document.getElementById("main-toolbar")
+    content    = document.getElementById("content") 
+
     left   = document.getElementById("scrolly-left")     
     right    = document.getElementById("scrolly-right")     
-    $("#posts").scroll (e) ->
+    $("#content").scroll (e) ->
         window.requestAnimationFrame(scrollHandler)
    
     scrollHandler = () ->
       velocity = 1.4
-      if posts.scrollTop * velocity < 64
-        shift = (posts.scrollTop*1.7)
+      if content.scrollTop * velocity < 64
+        shift = (content.scrollTop*1.7)
         element.style.zIndex = 21
       else
         shift = 64 

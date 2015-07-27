@@ -1,44 +1,62 @@
-%md-toolbar.md-whiteframe-z1#chutter
-  .md-toolbar-tools{layout: "row"}
-    %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;"}
-    %a#brand{href: "#", flex: true, ng-click: "toggleLeft()"}
-      chutter
-
-    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-      %i.fa.fa-list
+%md-toolbar.md-whiteframe-z1.md-tall#me-toolbar
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
+    .toolbar-container 
+      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+      %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
+        %i.fa.fa-align-justify.fa-fw
+      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+        chutter
     %span{flex: true}
-    %md-button{href: "/", aria-label: "Open phone interactions menu"}
-      Back To Chutter
-
-
-%md-content.offset-toolbar{layout: "row", flex: true}
+    .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
+      %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
+        moderation
+      %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
+        management
+      %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+      %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+        %i.fa.fa-envelope-o.fa-fw
+        %md-tooltip
+          Messages
+      %md-button{ng-click: "logout()", hide-sm: true}
+        %i.fa.fa-sign-out.fa-fw
+        %md-tooltip
+          Log out
+  .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
+    .toolbar-container{layout: "row", layout-align: "start center"}
+      %a{ng-bind: "user.username"}
+    %span{flex: true}
+    .toolbar-container{layout: "row", layout-align: "start center"}
+      %span{flex: true}
+%md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-list.nav-list
-      %md-list-item
-        %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
-          %i.fa.fa-comments.fa-fw
-          Notifications
-      %md-list-item
-        %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
-          %i.fa.fa-envelope-o.fa-fw
-          Inbox
-      %md-list-item
-        %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
-          %i.fa.fa-navicon.fa-fw
-          Submissions
-      %md-list-item
-        %md-button{aria-label: "Saved", ui-sref: "home.saved", ui-sref-active: "md-primary"}
-          %i.fa.fa-star.fa-fw
-          Saved
-      %md-list-item
-        %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary"}
-          %i.fa.fa-cog.fa-fw
-          Preferences
-      %md-list-item
-        %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
-          %i.fa.fa-line-chart.fa-fw
-          Stats
-            
-  %ui-view{layout: "row", flex: true}
+    %md-content.offset-toolbar.nav-menu.gray#scrolly-left
+      %md-list.nav-list
+        %md-list-item
+          %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
+            %i.fa.fa-comments.fa-fw
+            Notifications
+        %md-list-item
+          %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
+            %i.fa.fa-envelope-o.fa-fw
+            Inbox
+        %md-list-item
+          %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
+            %i.fa.fa-navicon.fa-fw
+            Submissions
+        %md-list-item
+          %md-button{aria-label: "Saved", ui-sref: "home.saved", ui-sref-active: "md-primary"}
+            %i.fa.fa-star.fa-fw
+            Saved
+        %md-list-item
+          %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary"}
+            %i.fa.fa-cog.fa-fw
+            Preferences
+        %md-list-item
+          %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
+            %i.fa.fa-line-chart.fa-fw
+            Stats            
+  %md-content.md-whiteframe-z1#content{flex: true}
+    %ui-view{flex: true}
+    %media-player#player{layout: "column"}
 
-        
+  %md-sidenav.md-sidenav-right.gray#right-rail{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}

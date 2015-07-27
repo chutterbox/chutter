@@ -18,6 +18,15 @@
               %h4{ng-bind: "notification.username"}
             .tagline{flex: true} 
               %p{ng-bind: "notification.body"}
+        .notification-list-item{ng-switch-when: "removed", layout: "row"}
+          .context
+            %md-button.md-fab.md-mini.md-warn
+              %i.fa.fa-ban.fa-fw
+          .content{layout: "row", layout-align: "start center"}
+            .mentionable
+              %h4{ng-bind: "notification.community_name"}
+            .tagline{flex: true} 
+              %p{ng-bind: "'your post was removed from /c/' +notification.community_slug"}
         %md-divider
 
                   

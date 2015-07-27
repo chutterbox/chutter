@@ -1,7 +1,25 @@
-post
+md-list#posts 
+  padding-top: 0
+.post
+  .md-button.post-toggle
+    position: relative
+    margin: 0
+    display: none
+    top: 75px
+    left: 110px
+    min-height: auto
+    width: 30px
+    height: 30px
+    line-height: 30px
+    i
+      font-size: 10px
+  //100px plus the 16px padding
+  min-height: 116px
+  padding: 8px 0
   .top, .tagline, .footer
     padding-left: 8px
-  padding: 0 0 10px 0
+  .body
+    padding-left: 16px
   .vote
     max-width: 5%
     height: 100px
@@ -10,9 +28,17 @@ post
       padding: 0
       margin: 0
       i
-        color: #000
+        font-size: 20px
+        color: #bbb
         &.active
-          color: #999
+          color: #000
+  .body
+    transform-origin: top left
+    transform: scale(0.3)
+    width: calc(167px*3.4)
+    height: calc(125px*3)
+    md-content
+      height: calc(125px*3)
 
   .media
     border: 1px solid #f6f6f6
@@ -30,15 +56,16 @@ post
         a.title-text
           font-weight: 500
           font-size: 14px
-      .attribution,
-      .community
-        a,i 
-          font-weight: 300
-          font-size: 12px
-          color: #bbb
-    .tagline
+      .attribution
+        font-weight: 300
+        padding: 0 8px
+        font-size: 12px
+        color: #bbb
+    .tagline,
+    .footer
       padding: 8px 16px 0 16px
       font-size: 12px
+
       span
         &.votes
           margin-right: 6px
@@ -48,18 +75,14 @@ post
         &.time-ago,
           margin-right: 4px
           font-weight: 300
-      a.user-link
+      .user-link
         margin-right: 4px
-    .footer
-      padding: 8px
-      font-size: 12px
-      a
-        min-width: 88px
-        text-align: center
-        padding: 6px 0
-        font-weight: bolder
-        color: rgb(3,169,244) 
 
+    .footer
+      a
+        cursor: hand
+        margin-right: 8px
+        font-weight: 500
 
 
   -webkit-transition: all 150ms ease-in-out
@@ -69,7 +92,27 @@ post
 
   -webkit-backface-visibility: hidden
   backface-visibility: hidden
-
+.scale-body
+  transform: scale(1,1)
+  opactiy: 1
+  -webkit-transform: scale(1,1)
+  -webkit-animation: mediaOut 200ms ease-in-out
+  -moz-animation: mediaOut 200ms ease-in-out
+  animation: mediaOut 200ms ease-in-out
+  @keyframes mediaOut 
+    0% 
+      opacity: 0
+      transform: scale(3.5,3.5)
+    100% 
+      opactiy: 1
+      transform: scale(1,1)
+  @-webkit-keyframes mediaOut 
+    0% 
+      opacity: 0
+      -webkit-transform: scale(3.5,3.5)
+    100% 
+      opacity: 1
+      -webkit-transform: scale(1,1)
 
 .scale-media
   transform: scale(3.5,3.5)
@@ -116,8 +159,8 @@ post
       -webkit-transform: scale(1,1)
 
 .scale-middle
-  transform: scale(0.7,0.7) translateX(300px)
-  -webkit-transform: scale(0.7,0.7) translateX(300px)
+  transform: scale(0.8,0.8) translateX(180px)
+  -webkit-transform: scale(0.8,0.8) translateX(180px)
   -webkit-animation: middle 200ms ease-in-out
   -moz-animation: middle 200ms ease-in-out
   animation: middle 200ms ease-in-out
@@ -126,12 +169,12 @@ post
     0% 
       transform: scale(1,1)
     100% 
-      transform: scale(0.7,0.7) translateX(300px)
+      transform: scale(0.8,0.8) translateX(180px)
   @-webkit-keyframes middle 
     0% 
       -webkit-transform: scale(1,1)
     100% 
-      -webkit-transform: scale(0.7,0.7) translateX(300px)
+      -webkit-transform: scale(0.8,0.8) translateX(180px)
 .unscale-middle
   transform: scale(1,1)
   -webkit-transform: scale(1,1)
@@ -140,11 +183,11 @@ post
   animation: middleOut 200ms ease-in-out
   @keyframes middleOut 
     0% 
-      transform: scale(0.7,0.7)  translateX(300px)
+      transform: scale(0.8,0.8)  translateX(180px)
     100% 
       transform: scale(1,1)  translateX(0)
   @-webkit-keyframes middleOut 
     0% 
-      -webkit-transform: scale(0.7,0.7)  translateX(300px)
+      -webkit-transform: scale(0.8,0.8)  translateX(180px)
     100% 
       -webkit-transform: scale(1,1)  translateX(0)

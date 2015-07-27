@@ -48,6 +48,7 @@ module.exports = (grunt) ->
               'app/js/templates.js',
               'app/js/chutter.js',
               'app/js/common-classes.js',
+              'app/js/common-controllers.js',
               'app/js/common-directives.js',
               'app/js/common-services.js',
               'app/js/common-filters.js'
@@ -100,6 +101,13 @@ module.exports = (grunt) ->
     haml:
       app:
         files:
+
+          #shared partials
+          "app/partials/shared/reportSheet.html" : "_app/partials/shared/reportSheet.haml"
+          "app/partials/shared/modSheet.html" : "_app/partials/shared/modSheet.haml"
+          "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"
+          "app/partials/shared/createCommunityRule.html" : "_app/partials/shared/createCommunityRule.haml"
+
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
           "app/partials/main/reset.html" : "_app/partials/main/reset.haml"
@@ -152,17 +160,18 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/dashboard.html" : "_app/partials/moderation/community/dashboard.haml"
           "app/partials/moderation/community/community.html" : "_app/partials/moderation/community/community.haml"
           "app/partials/moderation/community/policy-groups.html" : "_app/partials/moderation/community/policy-groups.haml"
-          "app/partials/moderation/community/notifications.html" : "_app/partials/moderation/community/notifications.haml"
+          "app/partials/moderation/community/queue.html" : "_app/partials/moderation/community/queue.haml"
+          "app/partials/moderation/community/rules.html" : "_app/partials/moderation/community/rules.haml"
+          "app/partials/moderation/community/monitor.html" : "_app/partials/moderation/community/monitor.haml"
           "app/partials/moderation/community/inbox.html" : "_app/partials/moderation/community/inbox.haml"
           "app/partials/moderation/community/settings.html" : "_app/partials/moderation/community/settings.haml"
-          "app/partials/moderation/community/logs.html" : "_app/partials/moderation/community/logs.haml"
+          "app/partials/moderation/community/activity-log.html" : "_app/partials/moderation/community/activity-log.haml"
          
           #management partials
           "app/partials/management/index.html" : "_app/partials/management/index.haml"
           "app/partials/management/layout.html" : "_app/partials/management/layout.haml"
           "app/partials/management/dashboard.html" : "_app/partials/management/dashboard.haml"
           "app/partials/management/community/dashboard.html" : "_app/partials/management/community/dashboard.haml"
-          "app/partials/management/community/community.html" : "_app/partials/management/community/community.haml"          
           #toast partials
           "app/partials/toasts/comment-toast.html" : "_app/partials/toasts/comment-toast.haml"
 
@@ -171,6 +180,7 @@ module.exports = (grunt) ->
       dist:
         files:
           'app/css/application.css' : '_app/css/application.sass'
+          'app/css/main.css' : '_app/css/main.sass'
           'app/css/menu.css' : '_app/css/menu.sass'
           'app/css/me.css' : '_app/css/me.sass'
           'app/css/comments.css' : '_app/css/comments.sass'

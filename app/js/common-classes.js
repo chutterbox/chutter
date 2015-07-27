@@ -5,6 +5,10 @@
   Page = (function() {
     function Page() {}
 
+    Page.prototype.title = "";
+
+    Page.prototype.scope = "";
+
     Page.prototype.community = {
       permitted_formats_list: []
     };
@@ -14,8 +18,6 @@
     };
 
     Page.prototype.posts = [];
-
-    Page.prototype.selectedSection = "";
 
     Page.prototype.selectSection = function(section) {
       return this.selectedSection = section;
@@ -58,7 +60,7 @@
 
     MediaPlayer.prototype.show = function() {
       this.element.className = "";
-      this.element.style.cssText += "top: " + this.post.elements.post.offsetTop + "px; left: " + this.post.elements.media.offsetLeft + "px;";
+      this.element.style.cssText += "top: " + this.post.elements.post.offsetTop + "px;";
       return this.element.className = "active";
     };
 
@@ -82,6 +84,35 @@
   app.factory("MediaPlayer", [
     function() {
       return new MediaPlayer;
+    }
+  ]);
+
+  app.factory("CommunityRule", [
+    function() {
+      return function() {
+        return {
+          general: false,
+          posts: false,
+          comments: false,
+          ban: false,
+          removal: false,
+          discouraged: false,
+          brief_description: "",
+          detailed_explanation: ""
+        };
+      };
+    }
+  ]);
+
+  app.factory("ActivityLogEntry", [
+    function() {
+      return function() {
+        return {
+          rule_id: void 0,
+          detailed_explanation: "",
+          entityable_user_id: void 0
+        };
+      };
     }
   ]);
 

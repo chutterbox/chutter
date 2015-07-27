@@ -6,31 +6,34 @@ md-content {
 md-dialog md-content {
   background: #fff; }
 
-md-toolbar#chutter {
+#create md-content {
+  background: #fff; }
+
+md-toolbar {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 20; }
-  md-toolbar#chutter .md-button {
+  md-toolbar .md-toolbar-tools {
+    padding: 0; }
+  md-toolbar .md-button {
     padding: 0;
     margin: 10px;
     min-width: auto;
     text-transform: none; }
-  md-toolbar#chutter .toolbar-bottom-container {
-    width: 280px; }
-    md-toolbar#chutter .toolbar-bottom-container a {
-      padding-left: 12px;
-      width: 50%; }
-    md-toolbar#chutter .toolbar-bottom-container #all-button {
-      font-size: 16px;
-      text-align: left;
-      font-weight: 400;
-      margin: 0;
-      padding-left: 12px; }
-  md-toolbar#chutter md-fab-speed-dial {
+  md-toolbar .toolbar-container {
+    padding: 0 16px;
+    width: 304px;
+    min-width: 304px;
+    max-width: 304px; }
+  md-toolbar md-fab-speed-dial {
     position: absolute;
     right: 0;
     top: 75%; }
+
+md-bottom-sheet md-toolbar,
+md-dialog md-toolbar {
+  position: relative; }
 
 #scrolly-left,
 #scrolly-right {
@@ -41,15 +44,22 @@ md-toolbar#chutter {
 #scrolly-right {
   padding: 16px; }
 
-.overlay-toolbar {
-  margin-top: 64px; }
+#content {
+  margin-top: 64px;
+  z-index: 21;
+  background: #f9f9f9; }
+  #content md-bottom-sheet {
+    padding: 0 0 88px 0; }
+
+#footer {
+  position: absolute;
+  bottom: 0; }
+  #footer .md-toolbar-tools a {
+    font-size: 12px;
+    margin: 8px; }
 
 md-sidenav {
   z-index: 19; }
-
-#posts {
-  background: #fff;
-  z-index: 21; }
 
 post {
   background: #fff; }
@@ -107,50 +117,6 @@ a {
     font-size: 10px;
     margin-right: 5px;
     color: #999; }
-
-#right-rail .header {
-  margin: 20px 0 0 0; }
-  #right-rail .header h3 {
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: rgba(0, 0, 0, 0.54); }
-  #right-rail .header .subscription-count {
-    font-size: 10px;
-    color: rgba(0, 0, 0, 0.54); }
-#right-rail .description h3,
-#right-rail .moderators h3,
-#right-rail .trending h3,
-#right-rail .tags h3,
-#right-rail .rules h3 {
-  font-size: 14px;
-  letter-spacing: 1px; }
-#right-rail .description p,
-#right-rail .moderators p,
-#right-rail .trending p,
-#right-rail .tags p,
-#right-rail .rules p {
-  font-size: 12px;
-  color: #333; }
-#right-rail .moderators md-list-item,
-#right-rail .trending md-list-item {
-  min-height: 20px;
-  height: auto;
-  padding: 0;
-  margin: 0; }
-  #right-rail .moderators md-list-item i, #right-rail .moderators md-list-item a,
-  #right-rail .trending md-list-item i,
-  #right-rail .trending md-list-item a {
-    font-size: 12px; }
-  #right-rail .moderators md-list-item i,
-  #right-rail .trending md-list-item i {
-    color: #777; }
-#right-rail .ctas .md-button {
-  font-size: 12px;
-  text-transform: lowercase;
-  min-width: auto; }
-  #right-rail .ctas .md-button.gray-button {
-    color: #767676; }
 
 .animate.ng-animate {
   -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;

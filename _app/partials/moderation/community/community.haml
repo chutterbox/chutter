@@ -1,23 +1,29 @@
 %md-tabs.md-primary.md-hue-2
-  %md-tab{ui-sref: "home.community.dashboard({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.dashboard({id: community_slug})"}
     %md-tab-label
       Dashboard
-  %md-tab{ui-sref: "home.community.inbox({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.inbox({id: community_slug})"}
     %md-tab-label
       Inbox
-  %md-tab{ui-sref: "home.community.notifications({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.queue({id: community_slug})"}
     %md-tab-label
-      Notifications
-  %md-tab{ui-sref: "home.community.policyGroups({id: 'askscience'})"}
+      Queue
+  %md-tab{ui-sref: "home.community.monitor({id: community_slug})"}
+    %md-tab-label
+      Monitor
+  %md-tab{ui-sref: "home.community.policyGroups({id: community_slug})"}
     %md-tab-label
       Policy Groups
-  %md-tab{ui-sref: "home.community.settings({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.settings({id: community_slug})"}
     %md-tab-label
       Community Settings
-  %md-tab{ui-sref: "home.community.logs({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.rules({id: community_slug})"}
+    %md-tab-label
+      Rules
+  %md-tab{ui-sref: "home.community.activityLog({id: community_slug})"}
     %md-tab-label
       Activity Log
-  %md-tab{ui-sref: "home.community.moderators({id: 'askscience'})"}
+  %md-tab{ui-sref: "home.community.moderators({id: community_slug})"}
     %md-tab-label
       Moderators
 %ui-view

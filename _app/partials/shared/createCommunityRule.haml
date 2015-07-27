@@ -1,0 +1,46 @@
+%md-dialog{md-dynamic-height: true, style: "min-height: 300px;", aria-label: "Create Rule"}
+  %md-toolbar
+    %div.md-toolbar-tools
+      Create a community rule
+      %span{flex: true}
+      %md-button.md-icon-button{ng-click: "hideDialog()"}
+        %i.fa.fa-close.fa-fw{aria-label="Close dialog"}
+  %md-content.md-padding
+    %form
+
+      %md-input-container
+        %label
+          Brief Description (e.g. no punchlines in the title)
+        %input{ng-model: "newRule.brief_description"}
+      %md-input-container
+        %label
+          Detailed Explanation of Rule (optional, but encouraged)
+        %textarea{rows: 10, ng-model: "newRule.detailed_explanation"}
+      %div{layout: "row"}
+        %div{flex: "50"}
+          %md-input-container
+            %label
+              Applies to
+          %md-checkbox{ng-model: "newRule.general", ng-click: "setSelectedAppliesTo('general')"}
+            General
+          %md-checkbox{ng-model: "newRule.posts", ng-click: "setSelectedAppliesTo('posts')"}
+            Posts
+          %md-checkbox{ng-model: "newRule.comments", ng-click: "setSelectedAppliesTo('comments')"}
+            Comments
+        %div{flex: "50"}
+          %md-input-container
+            %label
+              Severity
+          %md-checkbox{ng-model: "newRule.discouraged", ng-click: "setSelectedSeverity('discouraged')"}
+            Discouraged
+          %md-checkbox{ng-model: "newRule.removal", ng-click: "setSelectedSeverity('removal')"}
+            Removal
+          %md-checkbox{ng-model: "newRule.ban", ng-click: "setSelectedSeverity('ban')"}
+            Ban
+      %md-divider
+      %div{layout: "row"}
+        %span{flex: true}
+        %md-button.md-primary.md-raised{ng-click: "saveRule()"}
+          Save
+        %md-button.md-warn.md-raised{ng-click: "cancelSave()"}
+          Cancel        

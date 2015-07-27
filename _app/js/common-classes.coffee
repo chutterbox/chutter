@@ -1,12 +1,13 @@
 'use strict'
 
 class Page
+  title: ""
+  scope: ""
   community: 
     permitted_formats_list: []
   network: 
     communities: []
   posts: []
-  selectedSection: ""
   
   #this shit should be in a nav class or data structure
   selectSection: (section) ->
@@ -32,7 +33,7 @@ class MediaPlayer
     @currentMedia = @media[0]
   show: () ->
     @element.className = ""
-    @element.style.cssText += "top: #{@post.elements.post.offsetTop}px; left: #{@post.elements.media.offsetLeft}px;"
+    @element.style.cssText += "top: #{@post.elements.post.offsetTop}px;"
     @element.className = "active"
   close: () ->
     @post.toggle()
@@ -44,4 +45,26 @@ app.factory "Page", [ ->
 ]
 app.factory "MediaPlayer", [ ->
   new MediaPlayer
+]
+
+app.factory "CommunityRule", [ ->
+  return () ->
+    {
+      general: false
+      posts: false
+      comments: false
+      ban: false
+      removal: false
+      discouraged: false
+      brief_description: ""
+      detailed_explanation: ""
+    }
+]
+app.factory "ActivityLogEntry", [ ->
+  return () ->
+    {
+      rule_id: undefined
+      detailed_explanation: ""
+      entityable_user_id: undefined
+    }
 ]

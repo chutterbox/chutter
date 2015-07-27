@@ -8,6 +8,14 @@
   height: 90%;
   max-height: 550px; }
 
+#comment-toolbar {
+  position: relative;
+  min-height: 32px;
+  height: 32px; }
+  #comment-toolbar .md-toolbar-tools {
+    height: 32px;
+    font-size: 14px; }
+
 comment,
 comment-embed {
   margin-left: 2%;
@@ -27,8 +35,7 @@ comment-embed {
   comment-embed .collapsed {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.14), 0px 2px 2px 0px rgba(0, 0, 0, 0.098), 0px 1px 5px 0px rgba(0, 0, 0, 0.084); }
+    -moz-backface-visibility: hidden; }
   comment.shrunk,
   comment-embed.shrunk {
     transform: scale(0);
@@ -59,8 +66,7 @@ comment-embed {
   comment .header,
   comment-embed .header {
     height: 25px;
-    margin: 4px;
-    background-color: #fff; }
+    margin: 4px; }
     comment .header .username,
     comment-embed .header .username {
       font-weight: 500;

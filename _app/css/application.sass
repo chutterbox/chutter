@@ -8,32 +8,42 @@ md-dialog
   md-content
     background: #fff
 
-//sticky top toolbar  
-md-toolbar#chutter
+
+
+#create
+  md-content
+    background: #fff
+
+
+// toolbar css. this is all the css relating to the toolbars
+// section specific toolbar css will be located in <appname>.sass
+md-toolbar
   transform: translate3d(0,0,0)
   -webkit-transform: translate3d(0,0,0)
   position: absolute
   z-index: 20
+  .md-toolbar-tools
+    padding: 0
   .md-button
     padding: 0
     margin: 10px
     min-width: auto
     text-transform: none
-  .toolbar-bottom-container
-    width: 280px
-    a
-      padding-left: 12px
-      width: 50%
-    #all-button
-      font-size: 16px
-      text-align: left
-      font-weight: 400
-      margin: 0
-      padding-left: 12px
+  .toolbar-container
+    padding: 0 16px
+    width: 304px
+    min-width: 304px
+    max-width: 304px
   md-fab-speed-dial
     position: absolute
     right: 0
     top: 75%
+
+// we don't want bottom sheet toolbars positioned absolutley, nor dialog's toolbars
+md-bottom-sheet,
+md-dialog
+  md-toolbar
+    position: relative
 
 #scrolly-left,
 #scrolly-right
@@ -45,17 +55,29 @@ md-toolbar#chutter
 
 
 
-// class to overlay break point
-.overlay-toolbar
+// main content area
+// this is all the css relating to the center md-content section
+
+// overlay tall toolbar with the main content 
+#content
   margin-top: 64px
+  md-bottom-sheet
+    padding: 0 0 88px 0
+  z-index: 21
+  background: #f9f9f9
+//footer
+#footer
+  position: absolute
+  bottom: 0
+  .md-toolbar-tools
+    a 
+      font-size: 12px
+      margin: 8px
+
 
 md-sidenav
   z-index: 19
 
-#posts
-  // for whiteframe
-  background: #fff
-  z-index: 21
 
 post
   background: #fff
@@ -113,47 +135,6 @@ a
         margin-right: 5px
         color: #999
 
-// right rail
-#right-rail
-  .header
-    margin: 20px 0 0 0
-    h3
-      margin: 0
-      font-weight: 400
-      letter-spacing: 1px
-      color: rgba(0,0,0,0.54)
-    .subscription-count
-      font-size: 10px
-      color: rgba(0,0,0,0.54)
-  .description,
-  .moderators,
-  .trending,
-  .tags,
-  .rules
-    h3
-      font-size: 14px
-      letter-spacing: 1px
-    p
-      font-size: 12px
-      color: #333
-  .moderators,
-  .trending
-    md-list-item
-      min-height: 20px
-      height: auto
-      padding: 0
-      margin: 0
-      i,a
-        font-size: 12px
-      i
-        color: #777
-  .ctas
-    .md-button
-      &.gray-button
-        color: #767676
-      font-size: 12px
-      text-transform: lowercase
-      min-width: auto
 
 
 .animate.ng-animate 

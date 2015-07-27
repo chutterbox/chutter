@@ -39,46 +39,14 @@ app.factory 'MediaResource', ['$resource', 'Page', 'API', ($resource, Page, API)
       method: 'POST'
       isArray: false
 ]
-app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-    $resource API.makeURL('/communities/:id'), { id: '@id' },
-      show:
-        method: 'GET'
-        url: API.makeURL('/communities/:id')
-        interceptor: 'response': (response) ->
-          Page.community = response.data
-      posts:
-        method: 'GET'
-        isArray: true
-        url: API.makeURL('/communities/:id/posts')
-      subscribe:
-        url: API.makeURL('/communities/:id/subscribe')
-        method: 'PUT'
-        isArray: true
-      unsubscribe:
-        url: API.makeURL('/communities/:id/unsubscribe')
-        method: 'PUT'
-        isArray: true
-      
-]
-app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-    $resource API.makeURL('/comments/:id'), id: '@id'
-]
 
-app.factory 'PostResource', ['$resource', 'Page', 'API'
-  ($resource, Page, API) ->
-    $resource API.makeURL('/posts/:id'), { id: '@id' },
-      query:
-        isArray: true
-        interceptor: 'response': (response) ->
-          Page.posts = response.data
-      comments:
-        transformRequest: []
-        url: API.makeURL('/posts/:id/comments')
-        isArray: true
+app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
+    $resource API.makeURL('/comments/:id'), {id: '@id'},
       vote:
         method: 'PUT'
-        url: API.makeURL('/posts/:id/vote')
+        url: API.makeURL('/comments/:id/vote')
 ]
+
 app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/networks/:id'), { id: '@id' },
       show:
@@ -86,6 +54,10 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
         url: API.makeURL('/networks/:id')
         interceptor: 'response': (response) ->
           Page.network = response.data
+          Page.title   = 
+            text: Page.network.name
+            slug: Page.network.slug
+          Page.secondary_title = undefined
       posts:
         method: 'GET'
         isArray: true

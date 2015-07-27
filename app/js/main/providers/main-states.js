@@ -43,7 +43,8 @@
         },
         onEnter: [
           "Page", function(Page) {
-            return Page.scope = "all";
+            Page.scope = "all";
+            return Page.title = "All";
           }
         ]
       };
@@ -87,14 +88,14 @@
             "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
               return CommunityResource.show({
                 id: $stateParams.community
-              });
+              }).$promise;
             }
           ],
           Posts: [
             "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
               return CommunityResource.posts({
                 id: $stateParams.community
-              });
+              }).$promise;
             }
           ]
         },
@@ -112,14 +113,7 @@
         views: {
           "@home": {
             templateUrl: view_url + "/submit.html",
-            controller: "submitCtrl",
-            Community: [
-              "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
-                return CommunityResource.show({
-                  id: $stateParams.community
-                });
-              }
-            ]
+            controller: "submitCtrl"
           }
         }
       };
@@ -149,7 +143,7 @@
             "PostResource", "$stateParams", function(PostResource, $stateParams) {
               return PostResource.get({
                 id: $stateParams.id
-              });
+              }).$promise;
             }
           ],
           Comments: [

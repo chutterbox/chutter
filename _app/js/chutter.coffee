@@ -16,7 +16,7 @@ app = angular.module('Chutter', [
   'videosharing-embed'
   'emguo.poller'
 ]).constant('API',
-  baseURL: 'http://chutter-api.elasticbeanstalk.com/api/v1'
+  baseURL: 'http://localhost:3000/api/v1'
   makeURL: (url) ->
     @baseURL + url
 ).config([

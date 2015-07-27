@@ -1,12 +1,13 @@
-%h3.md-headline{ng-bind: "'Submit to ' + page.community.name"} 
-%md-tabs{md-border-bottom: true, layout-fill: true}
-  %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
-    %webpage-submit-form
-  %md-tab{ng-if: "permitted('image')", label: "Image/GIF", md-on-select: "newPost.media_attributes[0].format = 'image'"}
-    %image-submit-form
-  %md-tab{ng-if: "permitted('discussion')", label: "Text"}
-    %discussion-submit-form
-  %md-tab{ng-if: "permitted('music')",label: "Music", md-on-select: "newPost.media_attributes[0].format = 'music'"}
-    %music-submit-form
-  %md-tab{ng-if: "permitted('video')",label: "Video", md-on-select: "newPost.media_attributes[0].format = 'video'"}
-    %video-submit-form
+.md-padding
+  %h3.md-headline{ng-bind: "'Submit to ' + page.community.name"} 
+  %md-tabs{md-border-bottom: true, layout-fill: true}
+    %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
+      %webpage-submit-form
+    %md-tab{ng-if: "permitted('image')", label: "Image/GIF", md-on-select: "newPost.media_attributes[0].format = 'image'"}
+      %image-submit-form
+    %md-tab{ng-if: "permitted('discussion')", label: "Text"}
+      %discussion-submit-form
+    %md-tab{ng-if: "permitted('music')",label: "Music", md-on-select: "newPost.media_attributes[0].format = 'music'"}
+      %music-submit-form
+    %md-tab{ng-if: "permitted('video')",label: "Video", md-on-select: "newPost.media_attributes[0].format = 'video'"}
+      %video-submit-form

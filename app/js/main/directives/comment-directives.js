@@ -10,7 +10,7 @@
   });
 
   app.directive('comment', [
-    "$compile", "$mdBottomSheet", function($compile, $mdBottomSheet) {
+    "$compile", "$mdBottomSheet", "CommentResource", function($compile, $mdBottomSheet, CommentResource) {
       return {
         restrict: "E",
         scope: {
@@ -55,6 +55,16 @@
                 });
               });
             }
+          };
+          $scope.comment.updateVote = function(vote) {
+            if ($scope.comment.vote === vote) {
+              vote = 0;
+            }
+            $scope.comment.vote = vote;
+            return CommentResource.vote({
+              id: $scope.comment.id,
+              vote: vote
+            });
           };
           return $scope.reply = function() {
             return $mdBottomSheet.show({

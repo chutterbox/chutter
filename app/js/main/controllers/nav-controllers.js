@@ -7,22 +7,22 @@
 
   app.controller('navCtrl', [
     '$scope', '$state', '$stateParams', '$auth', 'Page', 'NetworkSubscriptions', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
-      var element, isOpen, left, posts, right, scrollHandler, toggleOpen;
+      var content, element, isOpen, left, right, scrollHandler, toggleOpen;
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      element = document.getElementById("chutter");
-      posts = document.getElementById("posts");
+      element = document.getElementById("main-toolbar");
+      content = document.getElementById("content");
       left = document.getElementById("scrolly-left");
       right = document.getElementById("scrolly-right");
-      $("#posts").scroll(function(e) {
+      $("#content").scroll(function(e) {
         return window.requestAnimationFrame(scrollHandler);
       });
       scrollHandler = function() {
         var shift, velocity;
         velocity = 1.4;
-        if (posts.scrollTop * velocity < 64) {
-          shift = posts.scrollTop * 1.7;
+        if (content.scrollTop * velocity < 64) {
+          shift = content.scrollTop * 1.7;
           element.style.zIndex = 21;
         } else {
           shift = 64;

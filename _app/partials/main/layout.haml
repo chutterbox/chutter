@@ -1,4 +1,4 @@
-%md-toolbar.md-whiteframe-z1.md-tall#chutter
+%md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
   .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
     %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
     %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
@@ -10,41 +10,44 @@
     %md-button{ng-click: "signIn()"}
       Sign In
   
-  .md-toolbar-tools{ng-show: "user && user.id", layout: "row"}
-    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
-    %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
-      %i.fa.fa-align-justify.fa-fw
-    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-      chutter
+  .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
+    .toolbar-container 
+      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+      %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
+        %i.fa.fa-align-justify.fa-fw
+      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+        chutter
     %span{flex: true}
-    %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
-      Moderation
-    %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
-      Management
-    %md-button{href: "/me/notifications", ng-bind: "user.username + '(' + user.points + ')'", target: "_self"}
-      
-    %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-      %i.fa.fa-envelope-o.fa-fw
-      %md-tooltip
-        Messages
-    %md-button{ng-click: "logout()", hide-sm: true}
-      %i.fa.fa-sign-out.fa-fw
-      %md-tooltip
-        Log out
+    .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
+      %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
+        moderation
+      %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
+        management
+      %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+      %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+        %i.fa.fa-envelope-o.fa-fw
+        %md-tooltip
+          Messages
+      %md-button{ng-click: "logout()", hide-sm: true}
+        %i.fa.fa-sign-out.fa-fw
+        %md-tooltip
+          Log out
   .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-    .toolbar-bottom-container{layout: "row"}
-      %md-button#all-button{ng-click: "exploreAll()", flex: true}
+    .toolbar-container{layout: "row", layout-align: "center center"}
+      %a{ui-sref: "home.all", flex: true}
         All
+      %span{flex: true}
       %md-button.md-icon-button
         %i.fa.fa-sliders.fa-fw
     %span{flex: true}
-    .toolbar-bottom-container{layout: "row"}
-      %a{href: "#", ng-bind: "page.community.name || 'Default' "}
+    .toolbar-container{layout: "row", layout-align: "center center"}
+      %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
+      %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
       %span{flex: true}
-      %md-fab-speed-dial.md-scale{md-direction: "down", md-open: "demo.isOpen"}
+      %md-fab-speed-dial.md-scale{md-direction: "down", ng-if: "page.scope == 'community'"}
         %md-fab-trigger
-          %md-button.md-fab.md-mini{aria-label: "menu"}
-            %i.fa.fa-plus.fa-fw
+          %md-button.md-fab.md-mini{aria-label: "menu", ui-sref: "home.community.submit({id: page.community.slug})"}
+            %i.fa.fa-share.fa-fw
         %md-fab-actions
           %md-button.md-fab.md-raised.md-mini.md-warn{aria-label: "twitter"}
             %i.fa.fa-ban.fa-fw
@@ -55,88 +58,82 @@
         %li{ng-repeat: "networkSubscription in page.networkSubscriptions", ng-class: "{'childActive' : isSectionSelected(networkSubscription)}"}
           %menu-toggle{ng-if: "true", network-subscription: "networkSubscription"}
               
-  %md-content.md-whiteframe-z1#posts.overlay-toolbar{flex: true}
+  %md-content.md-whiteframe-z1#content{flex: true}
     %ui-view{flex: true}
     %media-player#player{layout: "column"}
 
-  %md-sidenav.md-sidenav-right.gray#right-rail{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+  %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column"}
-      %md-content{ng-switch-when: "submit"}
+      %md-content{ng-switch-when: "submit", layout-fill: true}
         .header{flex: true, layout: "row"}
-          %div
-            %h3{ng-bind: "page.community.name"}
-          %span{flex: true}
-          %div
-            %p.subscription-count
-              %i.fa.fa-users.fa-fw
-              1,232,244
+          %p.stat-card
+            %i.fa.fa-users.fa-fw
+            1,232,244
+          %p.stat-card
+            %i.fa.fa-circle.fa-fw
+            3,388
         %md-divider
+        .description
+          %p{ng-bind: "page.community.description"}
         .rules
           %h3
             Submission Rules
           %md-list
-            %md-list-item
-              \- You must personally hold the view and be open to it changing.
-            %md-list-item
-              \- If your view is about someone having a double standard, please see the guidelines here
-            %md-list-item
-              \- Posts with misleading/overly-simplistic titles may be removed.
-            %md-list-item
-              \- Feasible suggestions that gain traction there may be implemented or posted to CMV for further discussion by the mods.
-        .moderators
-          %h3
-            Mods
-          %md-list
-            %md-list-item
-              %a{href: "#"}
-                Snorrrlax
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                protagornast
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                TryUsingScience
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                GameboyPATH
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw  
-      %md-content{ng-switch-when: "all"}
+            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
+              .md-list-item-text
+                %h3{ng-bind: "rule.brief_description"}
+                %p{ng-bind: "rule.detailed_explanation"}
+      %md-content{ng-switch-when: "community", layout-fill: true}
+        .header{flex: true, layout: "row"}
+          %p.stat-card
+            %i.fa.fa-users.fa-fw
+            1,232,244
+          %p.stat-card
+            %i.fa.fa-circle.fa-fw
+            3,388
+        %md-divider
         .description
+          %p{ng-bind: "page.community.description"}
+        .rules
           %h3
-            Description
-          %p
-            SRSDiscussion is a modded progressive-oriented forum for discussing issues of social justice. Our goal is to foster a welcoming space for the perspectives of minorities and marginalized people. Comments which are discordant with the ethos of social progressivism will be removed, and users who post in bad faith will be banned.
-            If you see any problematic content, don't hesitate to report it. The "report" link is one of the links underneath every post and comment.
+            General Rules
+          %md-list
+            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules | filter:{general: true}"}
+              .md-list-item-text
+                %h3{ng-bind: "rule.brief_description"}
+                %p{ng-bind: "rule.detailed_explanation"}
 
         .moderators
+ 
+      %md-content{ng-switch-when: "all", layout: "column", layout-fill: true}
+        .description
           %h3
-            Mods
-          %md-list
-            %md-list-item
-              %a{href: "#"}
-                Snorrrlax
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                protagornast
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                TryUsingScience
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw
-            %md-list-item
-              %a{href: "#"}
-                GameboyPATH
-              %a.md-secondary{href: "#"}
-                %i.fa.fa-envelope-o.fa-fw   
-    
+            Monthly Sub Goal
+          %div
+            %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
+          .md-padding{layout: "row", layout-align: "center center"}
+            %a
+              Help keep chutter running
+        .news
+          %h3
+            News
+      %md-content{ng-switch-when: "network", layout: "column", layout-fill: true}
+        .description
+          %h3
+            Trending Communities
+
+    #footer{ng-if: "page.scope == 'all'"}
+      %md-divider
+      .md-toolbar-tools{layout: "row", layout-align: "center center"}
+        %a
+          help
+        %a 
+          contact
+        %a
+          bugs
+        %a
+          faq
+        %a
+          values
+        %a
+          rules

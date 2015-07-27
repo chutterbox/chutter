@@ -6,38 +6,39 @@
 #some examples of this include ui.router, the token authentication, ngresource
 #it is also to keep this from becoming monolitic single page application, with 100's of states registered
 
-  'use strict'
-  app = angular.module('Chutter', [
-    'ui.router'
-    'ngMaterial'
-    'templates-main'
-    'ng-token-auth'
-    'ngResource'
-    'videosharing-embed'
-    'emguo.poller'
-  ]).constant('API',
-    baseURL: 'http://chutter-api.elasticbeanstalk.com/api/v1'
-    makeURL: (url) ->
-      @baseURL + url
-  ).config([
-    '$locationProvider'
-    '$mdThemingProvider'
-    '$authProvider'
-    'API'
-    ($locationProvider, $mdThemingProvider, $authProvider, API) ->
-      $authProvider.configure apiUrl: API.baseURL
-      $locationProvider.html5Mode true
-      $mdThemingProvider.theme('default').primaryPalette 'light-blue'
-  ]).config([
-    '$stateProvider'
-    '$urlRouterProvider'
-    ($stateProvider, $urlRouterProvider) ->
-  ]).run([
-    '$http'
-    '$auth'
-    ($http, $auth) ->
-      headers = undefined
-      headers = $auth.retrieveData('auth_headers')
-      $http.defaults.headers.common = $auth.retrieveData('auth_headers')
-  ])
+'use strict'
+app = angular.module('Chutter', [
+  'ui.router'
+  'ngMaterial'
+  'templates-main'
+  'ng-token-auth'
+  'ngResource'
+  'videosharing-embed'
+  'emguo.poller'
+]).constant('API',
+  baseURL: 'http://chutter-api.elasticbeanstalk.com/api/v1'
+  makeURL: (url) ->
+    @baseURL + url
+).config([
+  '$locationProvider'
+  '$authProvider'
+  'API'
+  ($locationProvider, $authProvider, API) ->
+    $authProvider.configure apiUrl: API.baseURL
+    $locationProvider.html5Mode true
+]).config([
+  '$stateProvider'
+  '$urlRouterProvider'
+  ($stateProvider, $urlRouterProvider) ->
+]).run([
+  '$http'
+  '$auth'
+  ($http, $auth) ->
+
+    headers = undefined
+    headers = $auth.retrieveData('auth_headers')
+    $http.defaults.headers.common = $auth.retrieveData('auth_headers')
+])
+
+
 

@@ -6,12 +6,19 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var conversationCompose, conversationContent, conversations, dashboard, home, network, notifications, preferences, saved, stats, submissions, view_url;
+      var community, communityDashboard, communityInbox, communityNotifications, dashboard, home, logs, policyGroups, settings, view_url;
       view_url = "/partials/moderation";
       home = {
         name: "home",
         abstract: true,
         templateUrl: view_url + "/layout.html",
+        resolve: {
+          Communities: [
+            "UserResource", function(UserResource) {
+              return UserResource.moderatedCommunities();
+            }
+          ]
+        },
         controller: "homeCtrl"
       };
       dashboard = {
@@ -20,109 +27,51 @@
         templateUrl: view_url + "/dashboard.html",
         controller: "dashboardCtrl"
       };
-      network = {
-        name: "home.dashboard.network",
-        url: "network/:id",
-        views: {
-          "@home": {
-            templateUrl: view_url + "/network.html"
-          }
-        }
+      community = {
+        name: "home.community",
+        url: "/community/:id",
+        templateUrl: view_url + "/community/community.html"
       };
-      conversations = {
-        name: "home.conversations",
-        url: "/conversations",
-        templateUrl: view_url + "/conversations/conversations.html",
-        controller: "conversationsCtrl",
-        resolve: {
-          Conversations: [
-            "ConversationResource", function(ConversationResource) {
-              return ConversationResource.query();
-            }
-          ]
-        }
+      communityDashboard = {
+        name: "home.community.dashboard",
+        url: "/dashboard",
+        templateUrl: view_url + "/community/dashboard.html",
+        controller: "communityDashboardCtrl"
       };
-      conversationCompose = {
-        name: "home.conversations.compose",
-        url: "/compose",
-        views: {
-          "middle": {
-            templateUrl: view_url + "/conversations/compose.html",
-            controller: "conversationComposeCtrl"
-          }
-        }
+      communityInbox = {
+        name: "home.community.inbox",
+        url: "/inbox",
+        templateUrl: view_url + "/community/inbox.html"
       };
-      conversationContent = {
-        name: "home.conversations.conversation",
-        url: "/:id",
-        views: {
-          "middle": {
-            templateUrl: view_url + "/conversations/conversation.html",
-            controller: "conversationContentCtrl"
-          }
-        },
-        resolve: {
-          Conversation: [
-            "ConversationResource", "$stateParams", function(ConversationResource, $stateParams) {
-              return ConversationResource.messages({
-                id: $stateParams.id
-              });
-            }
-          ]
-        }
-      };
-      notifications = {
-        name: "home.notifications",
+      communityNotifications = {
+        name: "home.community.notifications",
         url: "/notifications",
-        templateUrl: view_url + "/notifications/notifications.html",
-        controller: "notificationsCtrl",
-        resolve: {
-          Notifications: [
-            "UserResource", function(UserResource) {
-              return UserResource.notifications();
-            }
-          ]
-        }
+        templateUrl: view_url + "/community/notifications.html"
       };
-      saved = {
-        name: "home.saved",
-        url: "/saved",
-        templateUrl: view_url + "/saved.html",
-        controller: "savedCtrl"
+      policyGroups = {
+        name: "home.community.policyGroups",
+        url: "/policy-groups",
+        templateUrl: view_url + "/community/policy-groups.html"
       };
-      preferences = {
-        name: "home.preferences",
-        url: "/preferences",
-        templateUrl: view_url + "/preferences.html",
-        controller: "preferencesCtrl"
+      settings = {
+        name: "home.community.settings",
+        url: "/settings",
+        templateUrl: view_url + "/community/settings.html"
       };
-      submissions = {
-        name: "home.submissions",
-        url: "/submissions",
-        templateUrl: view_url + "/submissions.html",
-        controller: "submissionsCtrl",
-        resolve: {
-          Submissions: [
-            "UserResource", function(UserResource) {
-              return UserResource.submissions();
-            }
-          ]
-        },
-        onEnter: [
-          "Submissions", "Page", function(Submissions, Page) {
-            return Page.posts = Submissions;
-          }
-        ]
-      };
-      stats = {
-        name: "home.stats",
-        url: "/stats",
-        templateUrl: view_url + "/stats.html",
-        controller: "savedCtrl"
+      logs = {
+        name: "home.community.logs",
+        url: "/logs",
+        templateUrl: view_url + "/community/logs.html"
       };
       $stateProvider.state(home);
       $stateProvider.state(dashboard);
-      return $stateProvider.state(network);
+      $stateProvider.state(community);
+      $stateProvider.state(communityDashboard);
+      $stateProvider.state(communityNotifications);
+      $stateProvider.state(communityInbox);
+      $stateProvider.state(policyGroups);
+      $stateProvider.state(settings);
+      return $stateProvider.state(logs);
     }
   ]);
 

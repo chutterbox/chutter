@@ -4,19 +4,19 @@
   app = angular.module("MainApp");
 
   app.controller("communityEditCtrl", [
-    "$scope", "$mdDialog", "List", "Page", "CommunitySubscriptionResource", function($scope, $mdDialog, List, Page, CommunitySubscriptionResource) {
+    "$scope", "$mdDialog", "List", "Page", "CommunityResource", function($scope, $mdDialog, List, Page, CommunityResource) {
       $scope.communities = List;
       $scope.hideDialog = function() {
         return $mdDialog.hide();
       };
       return $scope.toggle = function(community) {
         if (community.selected) {
-          return CommunitySubscriptionResource.save({
-            community_id: community.id
+          return CommunityResource.subscribe({
+            id: community.slug
           }).$promise.then(function(data) {});
         } else {
-          return CommunitySubscriptionResource["delete"]({
-            id: community.subscription_id
+          return CommunityResource.unsubscribe({
+            id: community.slug
           }).$promise.then(function(data) {});
         }
       };

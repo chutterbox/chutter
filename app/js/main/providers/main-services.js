@@ -9,14 +9,6 @@
       return $resource(API.makeURL('/network_subscriptions/:id'), {
         id: '@id'
       }, {
-        'delete': {
-          method: 'DELETE',
-          isArray: true
-        },
-        save: {
-          method: 'POST',
-          isArray: true
-        },
         query: {
           isArray: true,
           interceptor: {
@@ -31,23 +23,6 @@
               return console.log(Page);
             }
           }
-        }
-      });
-    }
-  ]);
-
-  app.factory('CommunitySubscriptionResource', [
-    '$resource', 'Page', 'API', function($resource, Page, API) {
-      return $resource(API.makeURL('/community_subscriptions/:id'), {
-        id: '@id'
-      }, {
-        'delete': {
-          method: 'DELETE',
-          isArray: true
-        },
-        save: {
-          method: 'POST',
-          isArray: true
         }
       });
     }
@@ -107,6 +82,16 @@
           method: 'GET',
           isArray: true,
           url: API.makeURL('/communities/:id/posts')
+        },
+        subscribe: {
+          url: API.makeURL('/communities/:id/subscribe'),
+          method: 'PUT',
+          isArray: true
+        },
+        unsubscribe: {
+          url: API.makeURL('/communities/:id/unsubscribe'),
+          method: 'PUT',
+          isArray: true
         }
       });
     }
@@ -213,6 +198,16 @@
             });
             return data;
           }
+        },
+        subscribe: {
+          url: API.makeURL('/networks/:id/subscribe'),
+          method: 'PUT',
+          isArray: true
+        },
+        unsubscribe: {
+          url: API.makeURL('/networks/:id/unsubscribe'),
+          method: 'PUT',
+          isArray: true
         }
       });
     }

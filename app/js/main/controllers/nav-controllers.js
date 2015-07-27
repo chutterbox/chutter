@@ -7,16 +7,36 @@
 
   app.controller('navCtrl', [
     '$scope', '$state', '$stateParams', '$auth', 'Page', 'NetworkSubscriptions', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
-      var isOpen, toggleOpen;
+      var element, isOpen, left, posts, right, scrollHandler, toggleOpen;
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      $scope.$on("auth:validation-success", function() {
-        return poller.get(API.makeURL('/users/notifications'));
+      element = document.getElementById("chutter");
+      posts = document.getElementById("posts");
+      left = document.getElementById("scrolly-left");
+      right = document.getElementById("scrolly-right");
+      $("#posts").scroll(function(e) {
+        return window.requestAnimationFrame(scrollHandler);
       });
-      $scope.$on("auth:login-success", function() {
-        return poller.get(API.makeURL('/users/notifications'));
-      });
+      scrollHandler = function() {
+        var shift, velocity;
+        velocity = 1.4;
+        if (posts.scrollTop * velocity < 64) {
+          shift = posts.scrollTop * 1.7;
+          element.style.zIndex = 21;
+        } else {
+          shift = 64;
+          element.style.zIndex = 24;
+        }
+        element.style.transform = 'translate3d(0px,-' + shift + 'px, 0px)';
+        left.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
+        left.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
+        right.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
+        right.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
+        return element.style.cssText += '-webkit-transform: translate3d(0px,-' + shift + 'px, 0px);';
+      };
+      $scope.$on("auth:validation-success", function() {});
+      $scope.$on("auth:login-success", function() {});
       $mdToast.show({
         controller: 'toastCtrl',
         templateUrl: '/partials/toasts/comment-toast.html',

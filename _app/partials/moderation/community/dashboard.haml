@@ -1,0 +1,11 @@
+.md-padding{layout: "column", layout-fill: true, flex: true}
+  %div{layout: "row", layout-align: "center center"}
+    %div{flex: "50", layout: "column"}
+      %h3 Page Views   
+      %canvas{id: "line", class: "chart, chart-line chart-xl", data: "data", options: "options", labels: "labels", legend:, "false", click: "onClick"}
+    %div{flex: "50", layout: "column"}
+    
+      %h3 New Subscribers   
+      %canvas{id: "line", class: "chart, chart-line chart-xl", data: "data", options: "options", labels: "labels", legend:, "false", click: "onClick"}
+  %div
+    %h3 Moderation Activity 

@@ -1,5 +1,6 @@
 (function() {
-  var app;
+  var AudioInterface, app,
+    bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   app = angular.module('Chutter');
 
@@ -28,6 +29,82 @@
         ban: {
           url: API.makeURL('/posts/:id/ban'),
           method: 'POST'
+        }
+      });
+    }
+  ]);
+
+  app.factory('NetworkResource', [
+    '$resource', 'Page', 'API', function($resource, Page, API) {
+      return $resource(API.makeURL('/networks/:id'), {
+        id: '@id'
+      }, {
+        query: {
+          isArray: true,
+          interceptor: {
+            'response': function(response) {
+              return Page.networks = response.data;
+            }
+          }
+        },
+        show: {
+          method: 'GET',
+          url: API.makeURL('/networks/:id'),
+          interceptor: {
+            'response': function(response) {
+              Page.network = response.data;
+              Page.title = {
+                text: Page.network.name,
+                slug: Page.network.slug
+              };
+              return Page.secondary_title = void 0;
+            }
+          }
+        },
+        posts: {
+          method: 'GET',
+          isArray: true,
+          url: API.makeURL('/networks/:id/posts')
+        },
+        list: {
+          method: 'GET',
+          url: API.makeURL('/networks/list'),
+          isArray: true,
+          transformResponse: function(response) {
+            var data;
+            data = void 0;
+            data = angular.fromJson(response);
+            return _.each(data, function(item) {
+              if (item.network_subscription_id) {
+                return item.subscribed = true;
+              }
+            });
+          }
+        },
+        communities: {
+          method: 'get',
+          url: API.makeURL('/networks/:id/communities'),
+          isArray: true,
+          transformResponse: function(response) {
+            var data;
+            data = void 0;
+            data = angular.fromJson(response);
+            return _.each(data, function(item) {
+              if (item.community_subscription_id) {
+                return item.subscribed = true;
+              }
+            });
+          }
+        },
+        subscribe: {
+          url: API.makeURL('/networks/:id/subscribe'),
+          method: 'PUT',
+          isArray: true
+        },
+        unsubscribe: {
+          url: API.makeURL('/networks/:id/unsubscribe'),
+          method: 'PUT',
+          isArray: true
         }
       });
     }
@@ -80,9 +157,58 @@
         moderators: {
           url: API.makeURL('/communities/:id/moderators'),
           isArray: true
+        },
+        banList: {
+          url: API.makeURL('/communities/:id/ban_list'),
+          isArray: true
+        },
+        modwatch: {
+          url: API.makeURL('/communities/:id/modwatch'),
+          isArray: true
+        },
+        update: {
+          url: API.makeURL('/communities/:id'),
+          method: "PUT"
         }
       });
     }
   ]);
+
+  AudioInterface = (function() {
+    function AudioInterface(src, $document) {
+      this.updateTime = bind(this.updateTime, this);
+      this.audioElement = $document[0].createElement('audio');
+      this.audioElement.src = src;
+    }
+
+    AudioInterface.prototype.play = function() {
+      return this.audioElement.play();
+    };
+
+    AudioInterface.prototype.toggle = function() {
+      if (this.audioElement.paused) {
+        return this.audioElement.play();
+      } else {
+        return this.audioElement.pause();
+      }
+    };
+
+    AudioInterface.prototype.pause = function() {
+      return this.audioElement.pause();
+    };
+
+    AudioInterface.prototype.updateTime = function() {
+      return this.currentTime = this.audioElement.currentTime;
+    };
+
+    return AudioInterface;
+
+  })();
+
+  app.factory('audio', function($document) {
+    return function(src) {
+      return new AudioInterface(src, $document);
+    };
+  });
 
 }).call(this);

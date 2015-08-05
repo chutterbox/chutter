@@ -7,7 +7,7 @@
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
       var conversationCompose, conversationContent, conversations, dashboard, home, notifications, preferences, saved, stats, submissions, view_url;
-      view_url = "/partials/me";
+      view_url = "../app/partials/me";
       home = {
         name: "home",
         abstract: true,
@@ -23,14 +23,18 @@
       conversations = {
         name: "home.conversations",
         url: "/conversations",
-        templateUrl: view_url + "/conversations/conversations.html",
-        controller: "conversationsCtrl",
-        resolve: {
-          Conversations: [
-            "ConversationResource", function(ConversationResource) {
-              return ConversationResource.query();
+        views: {
+          "right-rail": {
+            templateUrl: view_url + "/conversations/conversationList.html",
+            controller: "conversationListCtrl",
+            resolve: {
+              Conversations: [
+                "ConversationResource", function(ConversationResource) {
+                  return ConversationResource.query();
+                }
+              ]
             }
-          ]
+          }
         }
       };
       conversationCompose = {
@@ -47,19 +51,19 @@
         name: "home.conversations.conversation",
         url: "/:id",
         views: {
-          "middle": {
+          "@home": {
             templateUrl: view_url + "/conversations/conversation.html",
-            controller: "conversationContentCtrl"
-          }
-        },
-        resolve: {
-          Conversation: [
-            "ConversationResource", "$stateParams", function(ConversationResource, $stateParams) {
-              return ConversationResource.messages({
-                id: $stateParams.id
-              });
+            controller: "conversationContentCtrl",
+            resolve: {
+              Conversation: [
+                "ConversationResource", "$stateParams", function(ConversationResource, $stateParams) {
+                  return ConversationResource.messages({
+                    id: $stateParams.id
+                  });
+                }
+              ]
             }
-          ]
+          }
         }
       };
       notifications = {

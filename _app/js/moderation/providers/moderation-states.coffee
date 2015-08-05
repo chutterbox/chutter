@@ -24,7 +24,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.community"
       url: "/community/:id"
       templateUrl: "#{view_url}/community/community.html"
-      controller: "communityCtrl"
+      abstract: true
+      resolve:
+        Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.show({id: $stateParams.id}).$promise
+        ]      
+      controller: ["$scope", "Page", ($scope, Page) -> 
+        $scope.page = Page
+      ]
 
     communityDashboard =
       name: "home.community.dashboard"
@@ -42,20 +49,30 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/queue"
       templateUrl: "#{view_url}/community/queue.html"
     
-    communityMonitor =
-      name: "home.community.monitor"
-      url: "/monitor"
-      templateUrl: "#{view_url}/community/monitor.html"
-   
+    modwatch =
+      name: "home.community.modwatch"
+      url: "/modwatch"
+      templateUrl: "#{view_url}/community/modwatch.html"
+      resolve:
+        Modwatch: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.modwatch({id: $stateParams.id}).$promise
+        ]
+
     policyGroups =
       name: "home.community.policyGroups"
       url: "/policy-groups"
       templateUrl: "#{view_url}/community/policy-groups.html"
-    
+      resolve: 
+        BanList: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.banList({id: $stateParams.id}).$promise
+        ]
+
     settings =
       name: "home.community.settings"
       url: "/settings"
       templateUrl: "#{view_url}/community/settings.html"
+      controller: "communitySettingsCtrl"
+      
     rules =
       name: "home.community.rules"
       url: "/rules"
@@ -95,7 +112,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(communityDashboard)
     $stateProvider.state(communityQueue)
     $stateProvider.state(rules)
-    $stateProvider.state(communityMonitor)
+    $stateProvider.state(modwatch)
     $stateProvider.state(communityInbox)
     $stateProvider.state(policyGroups)
     $stateProvider.state(settings)

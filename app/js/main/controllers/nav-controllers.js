@@ -6,11 +6,12 @@
   app.controller('toastCtrl', function() {});
 
   app.controller('navCtrl', [
-    '$scope', '$state', '$stateParams', '$auth', 'Page', 'NetworkSubscriptions', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
+    '$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
       var content, element, isOpen, left, right, scrollHandler, toggleOpen;
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
+      console.log(Page);
       element = document.getElementById("main-toolbar");
       content = document.getElementById("content");
       left = document.getElementById("scrolly-left");
@@ -37,6 +38,9 @@
       };
       $scope.$on("auth:validation-success", function() {});
       $scope.$on("auth:login-success", function() {});
+      $scope.myPagingFunction = function() {
+        return console.log("Here");
+      };
       $mdToast.show({
         controller: 'toastCtrl',
         templateUrl: '/partials/toasts/comment-toast.html',
@@ -58,21 +62,6 @@
       };
       $scope.signIn = function() {
         return $scope.$broadcast("auth:show-signin");
-      };
-      $scope.exploreCommunity = function(community) {
-        return $state.transitionTo('home.network.community', {
-          network: $scope.page.network.slug,
-          community: community.slug
-        });
-      };
-      $scope.exploreNetwork = function(network) {
-        return $state.transitionTo('home.network', {
-          network: network.slug
-        });
-      };
-      $scope.exploreAll = function() {
-        $scope.page.selectedTab = 0;
-        return $state.transitionTo('home.all');
       };
       $scope.editNetworks = function() {
         return $mdDialog.show({

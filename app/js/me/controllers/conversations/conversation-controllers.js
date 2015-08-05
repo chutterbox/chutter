@@ -11,12 +11,18 @@
         return ConversationResource.reply({
           id: $stateParams.id,
           body: $scope.replyText
+        }).$promise.then(function() {
+          return $scope.conversationState.conversation.push({
+            body: $scope.replyText,
+            username: $scope.user.username,
+            other_participant: false
+          });
         });
       };
     }
   ]);
 
-  app.controller("conversationsCtrl", [
+  app.controller("conversationListCtrl", [
     "$scope", "ConversationState", "Conversations", "ConversationResource", function($scope, ConversationState, Conversations, ConversationResource) {
       $scope.conversationState = ConversationState;
       return $scope.conversationState.conversations = Conversations;

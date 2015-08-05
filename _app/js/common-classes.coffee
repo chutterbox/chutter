@@ -21,30 +21,28 @@ class Page
   isSectionSelected: (section) ->
     @selectedSection is section
 
-class MediaPlayer
+class MediaControls
   post: {}
-  height: 125 * 3
-  width: 167 * 3
   element: {}
   currentMedia: {}
   initialize: (post) ->
     @post = post
     @media = post.media
+    console.log post.media
     @currentMedia = @media[0]
   show: () ->
     @element.className = ""
-    @element.style.cssText += "top: #{@post.elements.post.offsetTop}px;"
+    @element.style.cssText += "top: #{@post.elements.post.offsetTop}px; left: #{@post.elements.vote.offsetWidth}px;"
     @element.className = "active"
   close: () ->
-    @post.toggle()
     @element.className = ""  
 
 app = angular.module("Chutter")
 app.factory "Page", [ ->
   new Page
 ]
-app.factory "MediaPlayer", [ ->
-  new MediaPlayer
+app.factory "MediaControls", [ ->
+  new MediaControls
 ]
 
 app.factory "CommunityRule", [ ->

@@ -5,12 +5,13 @@ app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource
   $scope.conversationState.conversation = Conversation
 
   $scope.reply = () ->
-    ConversationResource.reply({id: $stateParams.id, body: $scope.replyText})
+    ConversationResource.reply({id: $stateParams.id, body: $scope.replyText}).$promise.then () ->
+      $scope.conversationState.conversation.push({body: $scope.replyText, username: $scope.user.username, other_participant: false})
 
 
 ]
 
-app.controller "conversationsCtrl", ["$scope", "ConversationState", "Conversations", "ConversationResource", ($scope, ConversationState, Conversations, ConversationResource) ->
+app.controller "conversationListCtrl", ["$scope", "ConversationState", "Conversations", "ConversationResource", ($scope, ConversationState, Conversations, ConversationResource) ->
   $scope.conversationState = ConversationState
   $scope.conversationState.conversations = Conversations
 

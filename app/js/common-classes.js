@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var MediaPlayer, Page, app;
+  var MediaControls, Page, app;
 
   Page = (function() {
     function Page() {}
@@ -39,37 +39,33 @@
 
   })();
 
-  MediaPlayer = (function() {
-    function MediaPlayer() {}
+  MediaControls = (function() {
+    function MediaControls() {}
 
-    MediaPlayer.prototype.post = {};
+    MediaControls.prototype.post = {};
 
-    MediaPlayer.prototype.height = 125 * 3;
+    MediaControls.prototype.element = {};
 
-    MediaPlayer.prototype.width = 167 * 3;
+    MediaControls.prototype.currentMedia = {};
 
-    MediaPlayer.prototype.element = {};
-
-    MediaPlayer.prototype.currentMedia = {};
-
-    MediaPlayer.prototype.initialize = function(post) {
+    MediaControls.prototype.initialize = function(post) {
       this.post = post;
       this.media = post.media;
+      console.log(post.media);
       return this.currentMedia = this.media[0];
     };
 
-    MediaPlayer.prototype.show = function() {
+    MediaControls.prototype.show = function() {
       this.element.className = "";
-      this.element.style.cssText += "top: " + this.post.elements.post.offsetTop + "px;";
+      this.element.style.cssText += "top: " + this.post.elements.post.offsetTop + "px; left: " + this.post.elements.vote.offsetWidth + "px;";
       return this.element.className = "active";
     };
 
-    MediaPlayer.prototype.close = function() {
-      this.post.toggle();
+    MediaControls.prototype.close = function() {
       return this.element.className = "";
     };
 
-    return MediaPlayer;
+    return MediaControls;
 
   })();
 
@@ -81,9 +77,9 @@
     }
   ]);
 
-  app.factory("MediaPlayer", [
+  app.factory("MediaControls", [
     function() {
-      return new MediaPlayer;
+      return new MediaControls;
     }
   ]);
 

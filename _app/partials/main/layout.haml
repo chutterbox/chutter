@@ -1,14 +1,16 @@
 %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
   .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
-    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-      chutter
+    .toolbar-container
+      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+        chutter
 
-    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-      %i.fa.fa-list
+      %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+        %i.fa.fa-list
     %span{flex: true}
-    %md-button{ng-click: "signIn()"}
-      Sign In
+    .toolbar-container{layout: "row", layout-align: "end end"}
+      %md-button{ng-click: "signIn()"}
+        Sign In
   
   .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
     .toolbar-container 
@@ -37,7 +39,7 @@
       %a{ui-sref: "home.all", flex: true}
         All
       %span{flex: true}
-      %md-button.md-icon-button
+      %md-button.md-icon-button{ng-click: "editNetworks()"}
         %i.fa.fa-sliders.fa-fw
     %span{flex: true}
     .toolbar-container{layout: "row", layout-align: "center center"}
@@ -55,59 +57,50 @@
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.offset-toolbar.nav-menu.gray#scrolly-left{flex: true, role: "navigation", layout-fill: true, layout: "row"}
       %ul.menu-nested-list.ng-cloak{flex: true}
-        %li{ng-repeat: "networkSubscription in page.networkSubscriptions", ng-class: "{'childActive' : isSectionSelected(networkSubscription)}"}
-          %menu-toggle{ng-if: "true", network-subscription: "networkSubscription"}
+        %li{ng-repeat: "network in page.networks", ng-class: "{'childActive' : isSectionSelected(network)}"}
+          %menu-toggle{ng-if: "true", network: "network"}
               
-  %md-content.md-whiteframe-z1#content{flex: true}
-    %ui-view{flex: true}
-    %media-player#player{layout: "column"}
+  %md-content.md-whiteframe-z1#content{flex: true, layout: "row",infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
+    %ui-view{layout: "column", layout-fill: "true"}
+    %media-controls#media-controls{layout: "column"}
 
   %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column"}
+    #scrolly-right{ng-switch: "page.scope", layout: "column"}
       %md-content{ng-switch-when: "submit", layout-fill: true}
-        .header{flex: true, layout: "row"}
-          %p.stat-card
-            %i.fa.fa-users.fa-fw
-            1,232,244
-          %p.stat-card
-            %i.fa.fa-circle.fa-fw
-            3,388
-        %md-divider
         .description
-          %p{ng-bind: "page.community.description"}
+          %md-list
+            %md-list-item
+              .md-list-item-text
+                %p{ng-bind: "page.community.description"}
         .rules
-          %h3
+          %h5
             Submission Rules
           %md-list
             %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
               .md-list-item-text
-                %h3{ng-bind: "rule.brief_description"}
+                %h5{ng-bind: "rule.brief_description"}
                 %p{ng-bind: "rule.detailed_explanation"}
       %md-content{ng-switch-when: "community", layout-fill: true}
-        .header{flex: true, layout: "row"}
-          %p.stat-card
-            %i.fa.fa-users.fa-fw
-            1,232,244
-          %p.stat-card
-            %i.fa.fa-circle.fa-fw
-            3,388
-        %md-divider
+
         .description
-          %p{ng-bind: "page.community.description"}
+          %md-list
+            %md-list-item
+              .md-list-item-text
+                %p{ng-bind: "page.community.description"}
         .rules
-          %h3
+          %h5
             General Rules
           %md-list
-            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules | filter:{general: true}"}
+            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
               .md-list-item-text
-                %h3{ng-bind: "rule.brief_description"}
+                %h5{ng-bind: "rule.brief_description"}
                 %p{ng-bind: "rule.detailed_explanation"}
 
         .moderators
  
       %md-content{ng-switch-when: "all", layout: "column", layout-fill: true}
         .description
-          %h3
+          %h5
             Monthly Sub Goal
           %div
             %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
@@ -115,11 +108,11 @@
             %a
               Help keep chutter running
         .news
-          %h3
+          %h5
             News
       %md-content{ng-switch-when: "network", layout: "column", layout-fill: true}
         .description
-          %h3
+          %h5
             Trending Communities
 
     #footer{ng-if: "page.scope == 'all'"}

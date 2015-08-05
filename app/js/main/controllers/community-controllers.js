@@ -10,7 +10,7 @@
         return $mdDialog.hide();
       };
       return $scope.toggle = function(community) {
-        if (community.selected) {
+        if (community.subscribed) {
           return CommunityResource.subscribe({
             id: community.slug
           }).$promise.then(function(data) {});
@@ -26,6 +26,7 @@
   app.controller("communityCtrl", [
     "$scope", "$state", "$rootScope", "$stateParams", "Page", "Posts", function($scope, $state, $rootScope, $stateParams, Page, Posts) {
       $scope.page = Page;
+      $scope.page.posts.length = 0;
       return $scope.page.posts = Posts;
     }
   ]);

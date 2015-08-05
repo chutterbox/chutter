@@ -17,6 +17,54 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
       method: 'POST'
 ]
 
+app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
+  $resource API.makeURL('/networks/:id'), { id: '@id' },
+    query:
+      isArray: true
+      interceptor: 'response': (response) ->
+        Page.networks = response.data
+    show:
+      method: 'GET'
+      url: API.makeURL('/networks/:id')
+      interceptor: 'response': (response) ->
+        Page.network = response.data
+        Page.title   = 
+          text: Page.network.name
+          slug: Page.network.slug
+        Page.secondary_title = undefined
+    posts:
+      method: 'GET'
+      isArray: true
+      url: API.makeURL('/networks/:id/posts')
+    list:
+      method: 'GET'
+      url: API.makeURL('/networks/list')
+      isArray: true
+      transformResponse: (response) ->
+        data = undefined
+        data = angular.fromJson(response)
+        _.each data, (item) ->
+          if item.network_subscription_id
+            item.subscribed = true
+    communities:
+      method: 'get'
+      url: API.makeURL('/networks/:id/communities')
+      isArray: true
+      transformResponse: (response) ->
+        data = undefined
+        data = angular.fromJson(response)
+        _.each data, (item) ->
+          if item.community_subscription_id
+            item.subscribed = true
+    subscribe:
+      url: API.makeURL('/networks/:id/subscribe')
+      method: 'PUT'
+      isArray: true
+    unsubscribe:
+      url: API.makeURL('/networks/:id/unsubscribe')
+      method: 'PUT'
+      isArray: true
+]
 app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/communities/:id'), { id: '@id' },
       show:
@@ -50,4 +98,34 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
       moderators:
         url: API.makeURL('/communities/:id/moderators')
         isArray: true
+      banList:
+        url: API.makeURL('/communities/:id/ban_list')
+        isArray: true
+      modwatch:
+        url: API.makeURL('/communities/:id/modwatch')
+        isArray: true   
+      update:
+        url: API.makeURL('/communities/:id')
+        method: "PUT"
 ]
+class AudioInterface
+  constructor: (src, $document) ->
+    @audioElement  = $document[0].createElement('audio')
+    @audioElement.src = src 
+  
+  play: () ->
+    @audioElement.play()
+  toggle: () ->
+    if @audioElement.paused
+      @audioElement.play()
+    else
+      @audioElement.pause()
+  pause: () ->
+    @audioElement.pause()
+  updateTime: () => 
+    @currentTime = @audioElement.currentTime
+
+app.factory 'audio', ($document) ->
+  (src) -> 
+    new AudioInterface(src, $document)
+

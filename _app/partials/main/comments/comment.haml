@@ -2,22 +2,22 @@
   .header
     %md-button.md-button-toggle{aria-label: "toggle comment"}
       %span.md-toggle-icon{ng-click: "toggle()"}
-        %i.fa.fa-caret-right.fa-fw
+        %i.fa.fa-plus.fa-fw
     %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
 
 .main{layout: "row"} 
   .vote{layout: "column", layout-fill: true}
+    %md-button.md-button-toggle{aria-label: "toggle comment"}
+      %span{ng-click: "toggle()"}
+        %i.fa.fa-minus.fa-fw    
     %md-button{flex: true, aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
-      %i.fa.fa-caret-up{ng-class: "{'active' : (comment.vote == 1)}"}
+      %i.fa.fa-caret-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
     %md-button{flex: true, aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
-      %i.fa.fa-caret-down{ng-class: "{'active' : (comment.vote == -1)}"}
+      %i.fa.fa-caret-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
   .content{flex: "75", layout: "column"}
     .header
-      %md-button.md-button-toggle{aria-label: "toggle comment"}
-        %span.md-toggle-icon{ng-click: "toggle()"}
-          %i.fa.fa-caret-down.fa-fw
       %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
-    .body{ng-bind: "comment.body"}
+    .body{marked: "comment.body"}
     .footer
       %a{href: "#", ng-click: "reply()"}
         Reply

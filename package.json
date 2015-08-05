@@ -9,6 +9,7 @@
     "serve-favicon": "latest",
     "prerender-node": "latest",
     "node-env-file": "latest",
+    "compression": "latest",
     "supervisor": "latest"
   },
   "engines": {
@@ -28,6 +29,7 @@
     "grunt-contrib-sass": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-watch": "latest",
+    "grunt-contrib-cssmin": "latest",
     "grunt-haml": "latest",
     "grunt-html2js": "latest",
     "karma": "~0.8.4",

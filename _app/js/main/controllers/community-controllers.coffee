@@ -5,7 +5,7 @@ app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "Com
   $scope.hideDialog = () ->
     $mdDialog.hide()
   $scope.toggle = (community) ->
-    if community.selected
+    if community.subscribed
       CommunityResource.subscribe({id: community.slug}).$promise.then (data) -> 
         # $scope.page.communitySubscriptions.length = 0
         # $scope.page.communitySubscriptions = data
@@ -18,6 +18,7 @@ app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "Com
 
 app.controller "communityCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "Page", "Posts",( $scope, $state, $rootScope, $stateParams, Page, Posts) ->
   $scope.page = Page
+  $scope.page.posts.length = 0
   $scope.page.posts = Posts
 
 ]

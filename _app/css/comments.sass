@@ -18,7 +18,9 @@
 
 comment,
 comment-embed
-  margin-left: 2%
+  width: 90%
+  margin: auto
+  border-left: 1px solid #ddd
   -webkit-transform-style: preserve-3d
   transform-style: preserve-3d
   -moz-transform-style: preserve-3d
@@ -26,6 +28,12 @@ comment-embed
   -webkit-transform: scale(1)
   -moz-transform: scale(1)
   transform: scale(1)
+  .main
+    background: #fff
+  .collapsed
+    display: none
+    &.active
+      display: block
   .main,
   .collapsed
     backface-visibility: hidden
@@ -35,6 +43,8 @@ comment-embed
     transform: scale(0)
     -moz-transform: scale(0)
     -webkit-transform: scale(0)
+  i
+    color: #bbb
   transform-origin: top left
   -webkit-transform-origin: top left
   -moz-transform-origin: top left
@@ -46,7 +56,7 @@ comment-embed
     text-transform: none
     line-height: inherit
     min-height: 20px
-  width: 95%
+
   .vote
     min-height: 85px
     max-height: 85px
@@ -55,15 +65,14 @@ comment-embed
       min-width: 100%
       padding: 0
       margin: 0
-  .child
-    width: 100%
 
-  .header
+
+  .header,
+  .vote
     .username
       font-weight: 500
       padding-left: 4px
     height: 25px
-    margin: 4px
     button.md-button
       line-height: 25px
       padding: 0 !important
@@ -74,8 +83,6 @@ comment-embed
       span
         height: 100%
         width: 25px
-  .body
-    margin: 10px 0 0 20px 
 
 .collapsed
   transform-origin: top left
@@ -119,8 +126,6 @@ comment-embed
     -moz-transform: scale(0)
     transform: scale(0)
   .footer
-    margin: 10px 5px 5px 28px
-
     a
       font-size: 12px
       color: #bbb

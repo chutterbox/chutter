@@ -50,7 +50,7 @@
         }).$promise.then(function(data) {
           return $state.transitionTo("home.community.comments", {
             id: data.slug,
-            community: $scope.page.community
+            community: $scope.page.community.slug
           });
         });
       };
@@ -121,7 +121,7 @@
         }).$promise.then(function(data) {
           return $state.transitionTo("home.community.comments", {
             id: data.slug,
-            community: $scope.page.community
+            community: $scope.page.community.slug
           });
         });
       };

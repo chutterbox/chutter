@@ -1,8 +1,7 @@
 app = angular.module("ModerationApp")
 
-app.controller "communityCtrl", ["$scope", "$stateParams", ($scope, $stateParams) ->
-  $scope.community_slug = $stateParams.id
-
+app.controller "communityCtrl", ["$scope", "Page", ($scope, Page) ->
+  $scope.page = Page
   
 
 ]

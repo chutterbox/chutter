@@ -11,12 +11,10 @@ app.controller "networkEditCtrl", ["$scope", "$mdDialog", "List", "NetworkResour
   $scope.hideDialog = () ->
     $mdDialog.hide()
   $scope.toggle = (network) ->
-    if network.selected
+    if network.subscribed
       NetworkResource.subscribe({id: network.slug}).$promise.then (data) -> 
-        $scope.page.networkSubscriptions.length = 0
-        $scope.page.networkSubscriptions = data
+        $scope.page.networks = data
     else
       NetworkResource.unsubscribe({id: network.slug}).$promise.then (data) ->
-        $scope.page.networkSubscriptions.length = 0
-        $scope.page.networkSubscriptions = data
+        $scope.page.networks = data
 ]

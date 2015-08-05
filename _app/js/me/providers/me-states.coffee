@@ -2,7 +2,7 @@
 app = angular.module("MeApp")
 
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
-    view_url = "/partials/me" 
+    view_url = "../app/partials/me" 
     
     home =
       name: "home"
@@ -24,12 +24,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     conversations =
       name: "home.conversations"
       url: "/conversations"
-      templateUrl: "#{view_url}/conversations/conversations.html"
-      controller: "conversationsCtrl"
-      resolve:
-        Conversations: ["ConversationResource", (ConversationResource) ->
-          ConversationResource.query()
-        ]
+      views: 
+        "right-rail": 
+          templateUrl: "#{view_url}/conversations/conversationList.html"
+          controller: "conversationListCtrl"
+          resolve:
+            Conversations: ["ConversationResource", (ConversationResource) ->
+              ConversationResource.query()
+            ]
+
     #register this first so the path matches
     conversationCompose =
       name: "home.conversations.compose"
@@ -42,14 +45,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     conversationContent =
       name: "home.conversations.conversation"
       url: "/:id"
-      views:
-        "middle":
+      views: 
+        "@home":
           templateUrl: "#{view_url}/conversations/conversation.html"
           controller: "conversationContentCtrl"
-      resolve:
-        Conversation: ["ConversationResource", "$stateParams", (ConversationResource, $stateParams) ->
-          ConversationResource.messages({id: $stateParams.id})
-        ]
+          resolve:
+            Conversation: ["ConversationResource", "$stateParams", (ConversationResource, $stateParams) ->
+              ConversationResource.messages({id: $stateParams.id})
+            ]
+
     
 
     #post/comment replies 

@@ -9,10 +9,22 @@ md-dialog
     background: #fff
 
 
-
+i
+  &.active-up
+    color: rgb(3,169,244)
+  &.active-down
+    color: rgb(244,67,54)
 #create
   md-content
     background: #fff
+#submit
+  md-autocomplete 
+    width: 100%
+    min-width: 100%
+  md-tabs
+    md-content
+      background: #fff
+
 
 
 // toolbar css. this is all the css relating to the toolbars
@@ -52,6 +64,27 @@ md-dialog
   -webkit-transform: translateY(64px)
 #scrolly-right
   padding: 16px    
+  md-content
+    h5 
+      color: #616161 
+    .stat-card
+      margin-right: 8px
+    p
+      color: #616161 
+      font-size: 12px 
+    .md-list-item-text
+      padding-top: 0
+      h5
+        margin: 0     
+ 
+
+table
+  th
+    padding: 8px 0
+  th
+    text-align: left
+
+
 
 
 
@@ -64,7 +97,7 @@ md-dialog
   md-bottom-sheet
     padding: 0 0 88px 0
   z-index: 21
-  background: #f9f9f9
+  background: #fff
 //footer
 #footer
   position: absolute

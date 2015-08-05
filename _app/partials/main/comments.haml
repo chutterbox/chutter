@@ -1,11 +1,13 @@
 %post.post{post: "page.post",  layout: "row"}
+%md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
+  .md-toolbar-tools
+    %span{flex: "5"}
+    %span{ng-bind: "page.post.comments_count + ' comments'"}
+    %span{flex: true}
+    %md-button.md-hue-2{ng-click: "reply()"}
+      leave a comment
+    %md-button.md-warn.md-icon-button
+      %i.fa.fa-trash.fa-fw
 #comments
-  %md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
-    .md-toolbar-tools
-      %span{flex: true}
-      %md-button.md-hue-2{ng-click: "reply()"}
-        leave a comment
-      %md-button.md-warn.md-icon-button
-        %i.fa.fa-trash.fa-fw
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 

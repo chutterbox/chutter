@@ -9,6 +9,10 @@
         %md-input-container{flex: true}
           %label Text
           %textarea{ng-model: "newPost.body", type: "text", rows: 10}
+      %div{layout: "column"}
+        %md-subheader
+          Preview
+        %div{marked: "newPost.body"}
       %div{layout: "row"}
         %span{flex: true}
         %md-button.md-raised.md-priary{type: "submit"}

@@ -1,6 +1,6 @@
 app = angular.module("ModerationApp")
 
-app.controller "communityDashboardCtrl", ["$scope", ($scope) ->
+app.controller "communityDashboardCtrl", ["$scope",  ($scope) ->
   $scope.labels = ["today", "yesterday", "yesterday"]
   $scope.data   = [
     [100,200,323,435,60,70,80,90,100],
@@ -13,6 +13,8 @@ app.controller "communityDashboardCtrl", ["$scope", ($scope) ->
     datasetStrokeWidth: 0.2
   $scope.onClick = (points, evt) ->
     console.log(points, evt)
+
+
 
   
 

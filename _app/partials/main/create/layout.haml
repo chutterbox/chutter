@@ -48,8 +48,8 @@
     %md-content.offset-toolbar.nav-menu.gray#scrolly-left{flex: true, role: "navigation", layout-fill: true, layout: "row"}
       %h4
         some ettiquete rules
-  %md-content.md-whiteframe-z1#content{flex: true}
-    %md-tabs{md-border-bottom: true, md-selected: "selectedStep"}
+  %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
+    %md-tabs{layout: "column", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep", md-dynamic-height: "false"}
       %md-tab{label: "Network"}
         %md-content.md-padding{layout: "column"}
           .header-caption-wrapper
@@ -60,7 +60,7 @@
               A network is the organizing entity that groups related communities together. To ensure that your community is thriving and successful please select the most appropriate network for the content. For example: A community that makes jokes about programming should belong to a comdey network, not a programming network. You will have options to tag your community such that the most successful posts are syndicated to those ancilary networks as well. TL;DR - Select by genre, not the subject matter of the genre
           %div
             %md-radio-group{ng-model: "flowState.selectedNetwork"}
-              %md-radio-button.md-primary{ng-repeat: "network in page.networkSubscriptions", ng-value: "network"} {{network.name}}
+              %md-radio-button.md-primary{ng-repeat: "network in page.networks", ng-value: "network"} {{network.name}}
 
           %div{layout: "row"}
             %span{flex: true}

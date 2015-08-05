@@ -2,11 +2,12 @@ app = angular.module('MainApp')
 
 app.controller 'toastCtrl', ->
 
-app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 'NetworkSubscriptions', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API',
-  ($scope, $state, $stateParams, $auth, Page, NetworkSubscriptions, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) ->
+app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API',
+  ($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) ->
     isOpen = undefined
     toggleOpen = undefined
     $scope.page = Page
+    console.log Page
     element = document.getElementById("main-toolbar")
     content    = document.getElementById("content") 
 
@@ -37,6 +38,9 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
     $scope.$on "auth:login-success", () -> 
       # poller.get API.makeURL('/users/notifications') 
     
+    $scope.myPagingFunction = () ->
+      console.log "Here"
+
     $mdToast.show
       controller: 'toastCtrl'
       templateUrl: '/partials/toasts/comment-toast.html'
@@ -58,18 +62,6 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
 
     $scope.signIn = ->
       $scope.$broadcast("auth:show-signin")
-
-    $scope.exploreCommunity = (community) ->
-      $state.transitionTo 'home.network.community',
-        network: $scope.page.network.slug
-        community: community.slug
-
-    $scope.exploreNetwork = (network) ->
-      $state.transitionTo 'home.network', network: network.slug
-
-    $scope.exploreAll = ->
-      $scope.page.selectedTab = 0
-      $state.transitionTo 'home.all'
 
     $scope.editNetworks = ->
       $mdDialog.show

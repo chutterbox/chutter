@@ -1,46 +1,30 @@
-#player
-  background: #fff
+#media-controls
+  md-slider
+    .md-track-container
+      background-color: #fff
+  background: transparent
   display: none
-  .image-overlay
-    position: absolute
-    top: 0
-    height: 30px
-    width: 100%
-    .md-button
-      float: right
-      min-width: 60px
-      max-width: 60px
-      min-height: 30px
-      margin: 0
-      padding: 0
-      line-height: 30px
-      background-color: #000
-      opacity: 0.5
-      .fa
-        color: #fff
-  height: calc(125px*3)
-  width: calc(167px*3.4)
+  left: 0
+  width:  125px
   position: absolute
-  z-index: 999
-  img
-    width: 100%
+  z-index: 1
   &.active
     display: block
-    -webkit-animation: fade 500ms ease-in-out
-    -moz-animation: fade 500ms ease-in-out
-    animation: fade 500ms ease-in-out
+    -webkit-animation: fade 1000ms ease-in-out
+    -moz-animation: fade 1000ms ease-in-out
+    animation: fade 1000ms ease-in-out
 
     @keyframes fade 
       0% 
         opacity: 0
       50%
-        opacity: 0
+        opacity: 0.5
       100% 
         opacity: 1
     @-webkit-keyframes fade
       0% 
         opacity: 0
       50%
-        opacity: 0
+        opacity: 0.5
       100% 
         opacity: 1

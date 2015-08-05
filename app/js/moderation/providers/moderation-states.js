@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var activityLog, community, communityDashboard, communityInbox, communityMonitor, communityQueue, dashboard, home, moderators, policyGroups, rules, settings, view_url;
+      var activityLog, community, communityDashboard, communityInbox, communityQueue, dashboard, home, moderators, modwatch, policyGroups, rules, settings, view_url;
       view_url = "/partials/moderation";
       home = {
         name: "home",
@@ -31,7 +31,21 @@
         name: "home.community",
         url: "/community/:id",
         templateUrl: view_url + "/community/community.html",
-        controller: "communityCtrl"
+        abstract: true,
+        resolve: {
+          Community: [
+            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+              return CommunityResource.show({
+                id: $stateParams.id
+              }).$promise;
+            }
+          ]
+        },
+        controller: [
+          "$scope", "Page", function($scope, Page) {
+            return $scope.page = Page;
+          }
+        ]
       };
       communityDashboard = {
         name: "home.community.dashboard",
@@ -49,20 +63,39 @@
         url: "/queue",
         templateUrl: view_url + "/community/queue.html"
       };
-      communityMonitor = {
-        name: "home.community.monitor",
-        url: "/monitor",
-        templateUrl: view_url + "/community/monitor.html"
+      modwatch = {
+        name: "home.community.modwatch",
+        url: "/modwatch",
+        templateUrl: view_url + "/community/modwatch.html",
+        resolve: {
+          Modwatch: [
+            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+              return CommunityResource.modwatch({
+                id: $stateParams.id
+              }).$promise;
+            }
+          ]
+        }
       };
       policyGroups = {
         name: "home.community.policyGroups",
         url: "/policy-groups",
-        templateUrl: view_url + "/community/policy-groups.html"
+        templateUrl: view_url + "/community/policy-groups.html",
+        resolve: {
+          BanList: [
+            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+              return CommunityResource.banList({
+                id: $stateParams.id
+              }).$promise;
+            }
+          ]
+        }
       };
       settings = {
         name: "home.community.settings",
         url: "/settings",
-        templateUrl: view_url + "/community/settings.html"
+        templateUrl: view_url + "/community/settings.html",
+        controller: "communitySettingsCtrl"
       };
       rules = {
         name: "home.community.rules",
@@ -123,7 +156,7 @@
       $stateProvider.state(communityDashboard);
       $stateProvider.state(communityQueue);
       $stateProvider.state(rules);
-      $stateProvider.state(communityMonitor);
+      $stateProvider.state(modwatch);
       $stateProvider.state(communityInbox);
       $stateProvider.state(policyGroups);
       $stateProvider.state(settings);

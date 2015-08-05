@@ -1,6 +1,6 @@
-.md-padding
+.md-padding#submit{flex: true, layout: "column"}
   %h3.md-headline{ng-bind: "'Submit to ' + page.community.name"} 
-  %md-tabs{md-border-bottom: true, layout-fill: true}
+  %md-tabs{flex: true, layout-fill: true, md-border-bottom: true, md-dynamic-height: "false", md-no-disconnect: "true"}
     %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
       %webpage-submit-form
     %md-tab{ng-if: "permitted('image')", label: "Image/GIF", md-on-select: "newPost.media_attributes[0].format = 'image'"}

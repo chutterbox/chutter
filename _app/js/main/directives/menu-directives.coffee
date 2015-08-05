@@ -3,7 +3,7 @@ app = angular.module("MainApp")
 app.directive 'menuLink', ->
   {
     scope: community: '='
-    templateUrl: '/partials/main/menu/link.html'
+    templateUrl: '../app/partials/main/menu/link.html'
     link: ($scope, $element) ->
       controller = $element.parent().controller()
 
@@ -22,8 +22,8 @@ app.directive 'menuLink', ->
 app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
     {
       scope: 
-        networkSubscription: '='
-      templateUrl: '/partials/main/menu/toggle.html'
+        network: '='
+      templateUrl: '../app/partials/main/menu/toggle.html'
       controller: ["$mdDialog", "$scope", ($mdDialog, $scope) ->
         $scope.editCommunity = () ->
           $mdDialog.show({
@@ -31,7 +31,7 @@ app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
             templateUrl: '/partials/main/communityEdit.html',
             resolve: 
               List: ["NetworkResource", (NetworkResource) ->
-                NetworkResource.communities({id: $scope.networkSubscription.network_id})          
+                NetworkResource.communities({id: $scope.network.id})          
               ]
 
             parent: angular.element(document.body),
@@ -44,10 +44,10 @@ app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
         originalHeight = undefined
         
         $scope.isOpen = ->
-          controller.isOpen $scope.networkSubscription
+          controller.isOpen $scope.network
 
         $scope.toggle = ->
-          controller.toggleOpen $scope.networkSubscription
+          controller.toggleOpen $scope.network
           return
 
         $scope.editNetworks = ->

@@ -18,19 +18,17 @@
         return $mdDialog.hide();
       };
       return $scope.toggle = function(network) {
-        if (network.selected) {
+        if (network.subscribed) {
           return NetworkResource.subscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            $scope.page.networkSubscriptions.length = 0;
-            return $scope.page.networkSubscriptions = data;
+            return $scope.page.networks = data;
           });
         } else {
           return NetworkResource.unsubscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            $scope.page.networkSubscriptions.length = 0;
-            return $scope.page.networkSubscriptions = data;
+            return $scope.page.networks = data;
           });
         }
       };

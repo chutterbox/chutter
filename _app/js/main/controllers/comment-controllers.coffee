@@ -41,12 +41,14 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
     parent_id: $scope.comment.id if $scope.comment && $scope.comment.id
     body: ""
   $scope.create = () -> 
-    CommentResource.save({comment: $scope.newComment}).$promise.then (comment) -> 
+    CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
       $mdBottomSheet.hide()
+      newCreatedComment.username = newCreatedComment.user.username
       if $scope.comment && $scope.comment.id
-        $scope.comment.children.unshift(comment)
+        $scope.comment.children = [] unless $scope.comment.children and $scope.comment.children[0]
+        $scope.comment.children.unshift(newCreatedComment)
       else
-        $scope.page.comments.unshift(comment)
+        $scope.page.comments.unshift(newCreatedComment)
 
 
 

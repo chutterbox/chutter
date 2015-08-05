@@ -12,8 +12,10 @@
     "ui-router": "0.2.15",
     "underscore": "1.8.3",
     "ng-videosharing-embed": "0.3.3",
+    "ngInfiniteScroll": "1.2.1",
     "Chart.js": "2.0.0-alpha3",
-    "angular-chart.js": "0.7.2"
+    "angular-chart.js": "0.7.2",
+    "angular-marked": "0.0.21"
   },
   "resolutions": {
     "angular": "1.4.3"

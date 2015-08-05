@@ -5,7 +5,7 @@
 
   app.directive('commentEmbed', function() {
     return {
-      templateUrl: "/partials/main/comments/commentEmbed.html"
+      templateUrl: "../app/partials/main/comments/commentEmbed.html"
     };
   });
 
@@ -68,7 +68,7 @@
           };
           return $scope.reply = function() {
             return $mdBottomSheet.show({
-              templateUrl: '/partials/main/comments/replyPanel.html',
+              templateUrl: '../app/partials/main/comments/replyPanel.html',
               parent: "#comments",
               controller: "replyCtrl",
               locals: {
@@ -77,7 +77,7 @@
             });
           };
         },
-        templateUrl: "/partials/main/comments/comment.html"
+        templateUrl: "../app/partials/main/comments/comment.html"
       };
     }
   ]);

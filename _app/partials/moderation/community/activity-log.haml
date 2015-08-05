@@ -1,5 +1,5 @@
 %md-content
-  %table{style: "width: 100%;"}
+  %table
     %tr
       %th
         moderator
@@ -11,7 +11,7 @@
         entity
       %th
         cited rule
-    %tr{style: "text-align: center;", ng-repeat: "entry in activityLog.activity_log_entries", ng-switch: "entry.entityable_type"}
+    %tr{ng-repeat: "entry in activityLog.activity_log_entries", ng-switch: "entry.entityable_type"}
       %td{ng-bind: "entry.user.username"} 
       %td{ng-bind: "entry.action"}
       %td{ng-bind: "entry.entityable_type"}

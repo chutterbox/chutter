@@ -2,7 +2,7 @@
   'use strict';
   var app;
 
-  app = angular.module('MainApp', ["Chutter"]);
+  app = angular.module('MainApp', ["Chutter", "templates-main"]);
 
   $(document).ready(function() {
     return setTimeout(function() {
@@ -18,18 +18,7 @@
   app.config([
     "$httpProvider", "$mdThemingProvider", function($httpProvider, $mdThemingProvider) {
       $mdThemingProvider.theme('default').primaryPalette('light-blue');
-      $mdThemingProvider.theme('moderator').primaryPalette('indigo');
-      return $httpProvider.interceptors.push([
-        "$q", '$injector', '$rootScope', function($q, $injector, $rootScope) {
-          return {
-            responseError: function(rejection) {
-              if (rejection.status === 401) {
-                return $rootScope.$broadcast("auth:show-signin");
-              }
-            }
-          };
-        }
-      ]);
+      return $mdThemingProvider.theme('moderator').primaryPalette('indigo');
     }
   ]);
 

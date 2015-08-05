@@ -29,7 +29,7 @@
       %span{flex: true}
 %md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.offset-toolbar.nav-menu.gray#scrolly-left
+    %md-content.nav-menu#scrolly-left
       %md-list.nav-list
         %md-list-item
           %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
@@ -55,8 +55,10 @@
           %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
             %i.fa.fa-line-chart.fa-fw
             Stats            
-  %md-content.md-whiteframe-z1#content{flex: true}
-    %ui-view{flex: true}
+  %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
+    %ui-view{layout-fill: "true", layout: "column"}
     %media-player#player{layout: "column"}
 
   %md-sidenav.md-sidenav-right.gray#right-rail{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-content#scrolly-right
+      %div{layout: "column", ui-view: "right-rail"}

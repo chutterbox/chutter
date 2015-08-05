@@ -26,16 +26,11 @@ md-content
 
 
 
-
+#content
+  background: #fff
 
 //conversations
 #conversations
-  #conversation-header
-    padding: 0 10px
-    .md-button
-      width: 40px
-      min-width: 40px
-
   md-list-item.md-3-line 
     a
       padding: 0
@@ -51,13 +46,14 @@ md-content
         h3
           font-weight: 500
 
-#messages
+#conversation
   .message
     width: 40%
     padding: 15px
     word-wrap: break-word
   .user
     font-size: 10px
-  .reply
-    position: absolute
-    bottom: 0
+
+#reply
+  z-index: 999
+  background: #f2f2f2

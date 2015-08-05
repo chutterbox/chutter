@@ -4,4 +4,23 @@ md-tabs {
   md-tabs md-tabs-wrapper {
     height: 64px; }
 
+md-toolbar#moderation-toolbar #breadcrumb {
+  font-size: 12px;
+  padding-top: 4px;
+  margin: 0 8px 0 12px; }
+md-toolbar#moderation-toolbar #secondary-title,
+md-toolbar#moderation-toolbar #primary-title {
+  position: absolute; }
+md-toolbar#moderation-toolbar #primary-title {
+  -webkit-transition: transform 150ms ease-in-out;
+  -moz-transition: transform 150ms ease-in-out;
+  -webkit-transition: transform 150ms ease-in-out; }
+  md-toolbar#moderation-toolbar #primary-title.active {
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform: translateY(-26px) scale(0.6);
+    -webkit-transform: translateY(-26px) scale(0.6);
+    -moz-transform: translateY(-26px) scale(0.6); }
+
 /*# sourceMappingURL=moderation.css.map */

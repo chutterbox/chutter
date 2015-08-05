@@ -19,10 +19,17 @@ module.exports = (grunt) ->
           removeStyleLinkTypeAttributes: true
 
       main:
-        src: ['app/partials/main/*.html'],
-        dest: 'app/js/templates.js'
-  
-
+        src: ['app/partials/main/*.html','app/partials/main/comments/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html'],
+        dest: 'app/js/templates-main.js'
+      moderation:
+        src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html'],
+        dest: 'app/js/templates-moderation.js'
+      shared:
+        src: ['app/partials/toasts/*.html', 'app/partials/shared/*.html'],
+        dest: 'app/js/templates-shared.js'  
+      me:
+        src: ['app/partials/me/*.html', 'app/partials/me/conversations/*.html', 'app/partials/me/notifications/*.html'],
+        dest: 'app/js/templates-me.js'
     uglify:
       my_target:
         options:
@@ -43,47 +50,55 @@ module.exports = (grunt) ->
               'vendor/angular-material/angular-material.js',
               'vendor/angular-cookie/angular-cookie.js',
               'vendor/angular-slugify/angular-slugify.js',
+              'vendor/marked/lib/marked.js',
+              'vendor/angular-marked/angular-marked.js',
               'vendor/ng-token-auth/dist/ng-token-auth.js',
               'vendor/ui-router/release/angular-ui-router.js',
-              'app/js/templates.js',
+              'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js',
+              'app/js/templates-shared.js',
               'app/js/chutter.js',
               'app/js/common-classes.js',
               'app/js/common-controllers.js',
               'app/js/common-directives.js',
               'app/js/common-services.js',
-              'app/js/common-filters.js'
 
             ]
           'app/js/compiled/main.min.js': 
             [ 
               #to ensure the app is loaded first
               #main
+              'app/js/templates-main.js',
               'app/js/main/main.js',
               'app/js/main/controllers/*.js',
               'app/js/main/directives/*.js',
               'app/js/main/providers/*.js',
-              'app/js/main/services/*.js'
+              'app/js/main/services/*.js',
+
             ]
           'app/js/compiled/me.min.js': [
               #me
+              'app/js/templates-me.js',
               'app/js/me/me.js',
               'app/js/me/controllers/*.js',
               'app/js/me/controllers/conversations/*.js',
               'app/js/me/controllers/notifications/*.js',
               'app/js/me/directives/*.js',
               'app/js/me/providers/*.js',
-              'app/js/me/services/*.js'
+              'app/js/me/services/*.js',
+
             ]
           'app/js/compiled/moderation.min.js': [
               #moderation
               'vendor/Chart.js/Chart.js',
+              'app/js/templates-moderation.js',
               'vendor/angular-chart.js/dist/angular-chart.js',
               'app/js/moderation/moderation.js',
               'app/js/moderation/controllers/*.js',
               'app/js/moderation/controllers/community/*.js',
               'app/js/moderation/directives/*.js',
               'app/js/moderation/providers/*.js',
-              'app/js/moderation/services/*.js'
+              'app/js/moderation/services/*.js',
+
             ]
           'app/js/compiled/management.min.js': [
               #moderation
@@ -141,7 +156,7 @@ module.exports = (grunt) ->
           "app/partials/me/index.html" : "_app/partials/me/index.haml"
           "app/partials/me/layout.html" : "_app/partials/me/layout.haml"
           "app/partials/me/dashboard.html" : "_app/partials/me/dashboard.haml"
-          "app/partials/me/conversations/conversations.html" : "_app/partials/me/conversations/conversations.haml"
+          "app/partials/me/conversations/conversationList.html" : "_app/partials/me/conversations/conversationList.haml"
           "app/partials/me/conversations/conversation.html" : "_app/partials/me/conversations/conversation.haml"
           "app/partials/me/conversations/compose.html" : "_app/partials/me/conversations/compose.haml"
           "app/partials/me/notifications/notifications.html" : "_app/partials/me/notifications/notifications.haml"
@@ -162,7 +177,7 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/policy-groups.html" : "_app/partials/moderation/community/policy-groups.haml"
           "app/partials/moderation/community/queue.html" : "_app/partials/moderation/community/queue.haml"
           "app/partials/moderation/community/rules.html" : "_app/partials/moderation/community/rules.haml"
-          "app/partials/moderation/community/monitor.html" : "_app/partials/moderation/community/monitor.haml"
+          "app/partials/moderation/community/modwatch.html" : "_app/partials/moderation/community/modwatch.haml"
           "app/partials/moderation/community/inbox.html" : "_app/partials/moderation/community/inbox.haml"
           "app/partials/moderation/community/settings.html" : "_app/partials/moderation/community/settings.haml"
           "app/partials/moderation/community/activity-log.html" : "_app/partials/moderation/community/activity-log.haml"
@@ -174,12 +189,35 @@ module.exports = (grunt) ->
           "app/partials/management/community/dashboard.html" : "_app/partials/management/community/dashboard.haml"
           #toast partials
           "app/partials/toasts/comment-toast.html" : "_app/partials/toasts/comment-toast.haml"
-
+    
+    concat: 
+      dist:
+        src: [
+          'vendor/angular-material/angular-material.css',
+          'app/css/chutter.css',
+          'app/css/main.css',
+          'app/css/menu.css',
+          'app/css/comments.css',
+          'app/css/post.css',
+          'app/css/mediaPlayer.css'
+        ],
+        dest: 'app/css/compiled/application.css'
+    cssmin: 
+      target: 
+        files: [
+          expand: true,
+          cwd: 'app/css/compiled',
+          src: ['*.css', '!*.min.css'],
+          dest: 'app/css/compiled',
+          ext: '.min.css'
+        ]
+      
+    
 
     sass:
       dist:
         files:
-          'app/css/application.css' : '_app/css/application.sass'
+          'app/css/chutter.css' : '_app/css/chutter.sass'
           'app/css/main.css' : '_app/css/main.sass'
           'app/css/menu.css' : '_app/css/menu.sass'
           'app/css/me.css' : '_app/css/me.sass'
@@ -345,7 +383,7 @@ module.exports = (grunt) ->
 
       css:
         files: ['_app/css/*']
-        tasks: ['sass']
+        tasks: ['sass', 'concat', 'cssmin']
 
       haml:
         files: ['_app/*', '_app/partials/**']
@@ -356,6 +394,7 @@ module.exports = (grunt) ->
         tasks: ['html2js', 'coffee', 'uglify']
 
   grunt.loadNpmTasks('grunt-haml')
+  grunt.loadNpmTasks('grunt-contrib-cssmin')
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-sass')
@@ -364,5 +403,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask "default", ["clean", "haml", "coffee", "sass", "uglify", "html2js"]
+  grunt.registerTask "default", ["clean", "haml", "coffee", "sass", "uglify", "html2js", "concat", "cssmin"]
 

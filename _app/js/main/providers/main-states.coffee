@@ -2,7 +2,7 @@
 app = angular.module("MainApp")
 
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
-    view_url = "/partials/main"
+    view_url = "../app/partials/main"
     # redirects
     $urlRouterProvider.when('', '/')
     $urlRouterProvider.when('/u/:username', '/u/:username/overview')
@@ -14,8 +14,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       templateUrl: "#{view_url}/layout.html"
       controller: "navCtrl"
       resolve:
-        NetworkSubscriptions: ["NetworkSubscriptionResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkSubscriptionResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkSubscriptionResource.query()
+        Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
+          NetworkResource.query().$promise
         ]
 
     all =
@@ -86,8 +86,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       templateUrl: "#{view_url}/create/layout.html"
       controller: "createCtrl"
       resolve:
-        NetworkSubscriptions: ["NetworkSubscriptionResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkSubscriptionResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkSubscriptionResource.query()
+        Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
+          NetworkResource.query()
         ]
     comments = 
       name: "home.community.comments"

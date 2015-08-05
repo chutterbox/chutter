@@ -38,9 +38,9 @@
         Moderation
 
     %span{flex: true}
-    .toolbar-container{layout: "row", layout-align: "start center"}
-      %a{href: "#", ng-bind: "page.community.name || 'AskScience' "}
-      %span{flex: true}
+    .toolbar-container{layout: "row", layout-align: "center center"}
+      %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
+      %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
 %md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.offset-toolbar.nav-menu.gray#scrolly-left{role: "navigation", layout-fill: true, layout: "row"}

@@ -1,1 +1,1 @@
-<div ng-switch="page.posts.length"><md-list ng-switch-default="ng-switch-default" class="animate" id="posts"><post ng-repeat="post in page.posts track by $index" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-list></div>
+<md-list id="posts"><post ng-repeat="post in page.posts track by $index" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-list>

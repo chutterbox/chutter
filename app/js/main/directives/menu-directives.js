@@ -8,7 +8,7 @@
       scope: {
         community: '='
       },
-      templateUrl: '/partials/main/menu/link.html',
+      templateUrl: '../app/partials/main/menu/link.html',
       link: function($scope, $element) {
         var controller;
         controller = $element.parent().controller();
@@ -26,9 +26,9 @@
     '$timeout', '$state', function($timeout, $state) {
       return {
         scope: {
-          networkSubscription: '='
+          network: '='
         },
-        templateUrl: '/partials/main/menu/toggle.html',
+        templateUrl: '../app/partials/main/menu/toggle.html',
         controller: [
           "$mdDialog", "$scope", function($mdDialog, $scope) {
             return $scope.editCommunity = function() {
@@ -39,7 +39,7 @@
                   List: [
                     "NetworkResource", function(NetworkResource) {
                       return NetworkResource.communities({
-                        id: $scope.networkSubscription.network_id
+                        id: $scope.network.id
                       });
                     }
                   ]
@@ -56,10 +56,10 @@
           $ul = $element.find('ul');
           originalHeight = void 0;
           $scope.isOpen = function() {
-            return controller.isOpen($scope.networkSubscription);
+            return controller.isOpen($scope.network);
           };
           $scope.toggle = function() {
-            controller.toggleOpen($scope.networkSubscription);
+            controller.toggleOpen($scope.network);
           };
           $scope.editNetworks = function() {
             return controller.editNetworks;

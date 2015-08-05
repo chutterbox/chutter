@@ -1,13 +1,17 @@
 (function() {
-  var chutter, cluster, express, favicon, i, port;
+  var chutter, cluster, compress, express, favicon, i, port;
 
   express = require("express");
 
   cluster = require("cluster");
 
+  compress = require('compression');
+
   favicon = require("serve-favicon");
 
   chutter = express();
+
+  chutter.use(compress());
 
   chutter.engine("html", require("ejs").renderFile);
 

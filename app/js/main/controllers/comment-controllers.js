@@ -51,12 +51,16 @@
       return $scope.create = function() {
         return CommentResource.save({
           comment: $scope.newComment
-        }).$promise.then(function(comment) {
+        }).$promise.then(function(newCreatedComment) {
           $mdBottomSheet.hide();
+          newCreatedComment.username = newCreatedComment.user.username;
           if ($scope.comment && $scope.comment.id) {
-            return $scope.comment.children.unshift(comment);
+            if (!($scope.comment.children && $scope.comment.children[0])) {
+              $scope.comment.children = [];
+            }
+            return $scope.comment.children.unshift(newCreatedComment);
           } else {
-            return $scope.page.comments.unshift(comment);
+            return $scope.page.comments.unshift(newCreatedComment);
           }
         });
       };

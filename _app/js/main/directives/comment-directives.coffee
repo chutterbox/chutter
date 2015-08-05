@@ -1,7 +1,7 @@
 app = angular.module("MainApp")
 
 app.directive 'commentEmbed', ->
-  templateUrl: "/partials/main/comments/commentEmbed.html"
+  templateUrl: "../app/partials/main/comments/commentEmbed.html"
 
 app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($compile, $mdBottomSheet, CommentResource) ->
   restrict: "E"
@@ -48,12 +48,12 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
 
     $scope.reply = ->
       $mdBottomSheet.show({
-        templateUrl: '/partials/main/comments/replyPanel.html'
+        templateUrl: '../app/partials/main/comments/replyPanel.html'
         parent: "#comments"
         controller: "replyCtrl"
         locals:
           comment: $scope.comment
       })
-  templateUrl: "/partials/main/comments/comment.html"
+  templateUrl: "../app/partials/main/comments/comment.html"
 ]  
  

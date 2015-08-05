@@ -1,5 +1,5 @@
 'use strict'
-app = angular.module('MainApp', ["Chutter"])
+app = angular.module('MainApp', ["Chutter", "templates-main"])
 
 
 #global event listener for menu toggle
@@ -17,11 +17,11 @@ app.config ["$httpProvider", "$mdThemingProvider", ($httpProvider, $mdThemingPro
   $mdThemingProvider.theme('default').primaryPalette 'light-blue'
   $mdThemingProvider.theme('moderator').primaryPalette 'indigo'
 
-  $httpProvider.interceptors.push ["$q", '$injector','$rootScope', ($q, $injector, $rootScope) ->
-    {
-      responseError: (rejection) ->
-        if rejection.status == 401
-          $rootScope.$broadcast "auth:show-signin"
-    }  
-  ]
+  # $httpProvider.interceptors.push ["$q", '$injector','$rootScope', ($q, $injector, $rootScope) ->
+  #   {
+  #     responseError: (rejection) ->
+  #       if rejection.status == 401
+  #         $rootScope.$broadcast "auth:show-signin"
+  #   }  
+  # ]
 ]

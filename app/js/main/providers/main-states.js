@@ -7,7 +7,7 @@
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
       var all, comments, community, create, home, network, submit, view_url;
-      view_url = "/partials/main";
+      view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
       home = {
@@ -16,9 +16,9 @@
         templateUrl: view_url + "/layout.html",
         controller: "navCtrl",
         resolve: {
-          NetworkSubscriptions: [
-            "NetworkSubscriptionResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkSubscriptionResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkSubscriptionResource.query();
+          Networks: [
+            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+              return NetworkResource.query().$promise;
             }
           ]
         }
@@ -123,9 +123,9 @@
         templateUrl: view_url + "/create/layout.html",
         controller: "createCtrl",
         resolve: {
-          NetworkSubscriptions: [
-            "NetworkSubscriptionResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkSubscriptionResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkSubscriptionResource.query();
+          Networks: [
+            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+              return NetworkResource.query();
             }
           ]
         }

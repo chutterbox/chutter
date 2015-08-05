@@ -2,7 +2,7 @@
   'use strict';
   var app;
 
-  app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-main', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller']).constant('API', {
+  app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked']).constant('API', {
     baseURL: 'http://localhost:3000/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;

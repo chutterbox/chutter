@@ -10,11 +10,13 @@
 app = angular.module('Chutter', [
   'ui.router'
   'ngMaterial'
-  'templates-main'
+  'templates-shared'
   'ng-token-auth'
   'ngResource'
   'videosharing-embed'
   'emguo.poller'
+  'infinite-scroll'
+  'hc.marked'
 ]).constant('API',
   baseURL: 'http://localhost:3000/api/v1'
   makeURL: (url) ->

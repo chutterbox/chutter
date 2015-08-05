@@ -33,7 +33,7 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community})
+      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.selectedItemChange = ->
     MediaResource.resolve({link: $scope.selectedItem.link, format: "music"}).$promise.then (data) ->
@@ -80,7 +80,7 @@ app.controller "imageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResou
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community})
+      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.updatePreview = (data) ->
     $scope.scraping = false

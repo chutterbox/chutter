@@ -19,8 +19,8 @@
       %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
     .body{marked: "comment.body"}
     .footer
-      %a{href: "#", ng-click: "reply()"}
+      %a{ng-click: "reply()"}
         Reply
-      %a{href: "#", ng-click: "resource.delete({id: post.id})"}
+      %a{ng-click: "resource.delete({id: post.id})"}
         Delete
   .options{flex: "5"}

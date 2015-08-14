@@ -5,6 +5,7 @@
 
   app.directive('commentEmbed', function() {
     return {
+      restrict: "E",
       templateUrl: "../app/partials/main/comments/commentEmbed.html"
     };
   });
@@ -18,6 +19,9 @@
           parent: "="
         },
         link: function($scope, $element) {
+          if (Object.prototype.toString.call($scope.comment.children) !== '[object Array]') {
+            $scope.comment.children = [];
+          }
           if ($scope.comment && $scope.comment.children.length > 0) {
             $compile('<comment class="child" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>')($scope, function(cloned, scope) {
               return $element.append(cloned);
@@ -69,11 +73,12 @@
           return $scope.reply = function() {
             return $mdBottomSheet.show({
               templateUrl: '../app/partials/main/comments/replyPanel.html',
-              parent: "#comments",
+              parent: "#content",
+              clickOutsideToClose: true,
+              preserveScope: true,
+              disableParentScroll: true,
               controller: "replyCtrl",
-              locals: {
-                comment: $scope.comment
-              }
+              scope: $scope
             });
           };
         },

@@ -51,7 +51,7 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
        controller: 'authCtrl'
        templateUrl: '/partials/main/authenticate.html'
        parent: angular.element(document.body)
-       clickOutsideToClose:true
+       clickOutsideToClose: true
     )
 
     $scope.logout = ->

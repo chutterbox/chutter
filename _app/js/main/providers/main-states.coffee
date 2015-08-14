@@ -100,7 +100,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           PostResource.get({id: $stateParams.id}).$promise
         ]
         Comments: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
-          PostResource.comments({id: $stateParams.id})
+          PostResource.comments({id: $stateParams.id}).$promise
         ]
       views:
         "@home": 

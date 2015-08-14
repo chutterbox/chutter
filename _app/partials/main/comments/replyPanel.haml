@@ -6,7 +6,7 @@
       %md-button.md-icon-button{ng-click: "close()"}
         %i.fa.fa-close
   %md-content{layout-padding: true, layout-margin: true, layout: "column"}
-    %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}"}
+    %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}", comment: "page.commentSelectedForReply"}
     %md-divider
 
 

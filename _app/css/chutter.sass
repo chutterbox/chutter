@@ -38,6 +38,7 @@ md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
   transform: translate3d(0,0,0)
   -webkit-transform: translate3d(0,0,0)
+  -moz-transform: translate3d(0,0,0)
   position: absolute
   z-index: 20
   .md-toolbar-tools
@@ -71,6 +72,7 @@ md-toolbar#me-toolbar,
       transform-origin: top left
       -webkit-transform-origin: top left
       -moz-transform-origin: top left
+
       transform: translateY(-26px) scale(0.6)
       -webkit-transform: translateY(-26px) scale(0.6)
       -moz-transform: translateY(-26px) scale(0.6)
@@ -117,10 +119,10 @@ table
 
 // overlay tall toolbar with the main content 
 #content
+  z-index: 21
   margin-top: 64px
   md-bottom-sheet
     padding: 0 0 88px 0
-  z-index: 21
   background: #fff
 //footer
 #footer

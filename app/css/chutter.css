@@ -31,6 +31,7 @@ md-toolbar#management-toolbar,
 md-toolbar#me-toolbar {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 20; }
   md-toolbar#main-toolbar .md-toolbar-tools,
@@ -125,8 +126,8 @@ table th {
   text-align: left; }
 
 #content {
-  margin-top: 64px;
   z-index: 21;
+  margin-top: 64px;
   background: #fff; }
   #content md-bottom-sheet {
     padding: 0 0 88px 0; }

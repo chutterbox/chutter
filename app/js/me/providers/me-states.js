@@ -41,7 +41,7 @@
         name: "home.conversations.compose",
         url: "/compose",
         views: {
-          "middle": {
+          "@home": {
             templateUrl: view_url + "/conversations/compose.html",
             controller: "conversationComposeCtrl"
           }

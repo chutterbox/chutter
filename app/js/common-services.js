@@ -64,7 +64,12 @@
         posts: {
           method: 'GET',
           isArray: true,
-          url: API.makeURL('/networks/:id/posts')
+          url: API.makeURL('/networks/:id/posts'),
+          interceptor: {
+            'response': function(response) {
+              return Page.posts = response.data;
+            }
+          }
         },
         list: {
           method: 'GET',

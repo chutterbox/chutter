@@ -94,20 +94,19 @@
       submissions = {
         name: "home.submissions",
         url: "/submissions",
-        templateUrl: view_url + "/submissions.html",
-        controller: "submissionsCtrl",
         resolve: {
-          Submissions: [
+          Posts: [
             "UserResource", function(UserResource) {
-              return UserResource.submissions();
+              return UserResource.submissions().$promise;
             }
           ]
         },
-        onEnter: [
-          "Submissions", "Page", function(Submissions, Page) {
-            return Page.posts = Submissions;
+        views: {
+          "@home": {
+            templateUrl: view_url + "/submissions.html",
+            controller: "submissionsCtrl"
           }
-        ]
+        }
       };
       stats = {
         name: "home.stats",

@@ -15,9 +15,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/"
       templateUrl: "#{view_url}/dashboard.html"
       controller: "dashboardCtrl"
-    
-
-
 
 
     #conversations 
@@ -83,15 +80,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     submissions =
       name: "home.submissions"
       url: "/submissions"
-      templateUrl: "#{view_url}/submissions.html"
-      controller: "submissionsCtrl" 
       resolve: 
-        Submissions: ["UserResource", (UserResource) -> 
-          UserResource.submissions()
+        Posts: ["UserResource", (UserResource) -> 
+          UserResource.submissions().$promise
         ]
-      onEnter: ["Submissions", "Page", (Submissions, Page) ->
-        Page.posts = Submissions
-      ] 
+      views:
+        "@home":
+          templateUrl: "#{view_url}/submissions.html"
+          controller: "submissionsCtrl" 
+
     
     stats =
       name: "home.stats"

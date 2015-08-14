@@ -8,9 +8,13 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
     post: "="
     postIndex: "="
 
-  templateUrl: "../app/partials/main/post.html"
+  templateUrl: "../app/partials/shared/post.html"
 
   link: (scope, element, attrs) ->
+    console.log scope.post
+    console.log scope.post
+    console.log scope.post
+    console.log element
     scope.post.elements = {}
     scope.post.elements["post"] = element[0]
     scope.post.toggled = false

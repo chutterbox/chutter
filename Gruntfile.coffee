@@ -122,6 +122,7 @@ module.exports = (grunt) ->
           "app/partials/shared/modSheet.html" : "_app/partials/shared/modSheet.haml"
           "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"
           "app/partials/shared/createCommunityRule.html" : "_app/partials/shared/createCommunityRule.haml"
+          "app/partials/shared/post.html" : "_app/partials/shared/post.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
@@ -136,7 +137,6 @@ module.exports = (grunt) ->
           "app/partials/main/communityPanel.html" : "_app/partials/main/communityPanel.haml"
           "app/partials/main/left_rail.html" : "_app/partials/main/left_rail.haml"
           "app/partials/main/submit.html" : "_app/partials/main/submit.haml"
-          "app/partials/main/post.html" : "_app/partials/main/post.haml"
           "app/partials/main/comments/comment.html" : "_app/partials/main/comments/comment.haml"
           "app/partials/main/comments/replyPanel.html" : "_app/partials/main/comments/replyPanel.haml"
           "app/partials/main/comments/commentEmbed.html" : "_app/partials/main/comments/commentEmbed.haml"

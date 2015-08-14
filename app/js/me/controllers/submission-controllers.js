@@ -5,7 +5,8 @@
 
   app.controller("submissionsCtrl", [
     "$scope", "Page", function($scope, Page) {
-      return $scope.page = Page;
+      $scope.page = Page;
+      return console.log($scope.page.posts);
     }
   ]);
 

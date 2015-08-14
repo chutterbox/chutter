@@ -14,7 +14,11 @@
       });
       return $locationProvider.html5Mode(true);
     }
-  ]).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {}]).run([
+  ]).config([
+    '$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
+      return $compileProvider.debugInfoEnabled(false);
+    }
+  ]).run([
     '$http', '$auth', function($http, $auth) {
       var headers;
       headers = void 0;

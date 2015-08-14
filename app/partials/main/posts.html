@@ -1,1 +1,1 @@
-<md-list id="posts"><post ng-repeat="post in page.posts track by $index" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-list>
+<md-list id="posts"><post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-list>

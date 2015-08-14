@@ -27,7 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       resolve:
         Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
-          PostResource.query({scope: "all"})
+          PostResource.query({scope: "all"}).$promise
         ]
       onEnter: ["Page", (Page) ->
         Page.scope = "all"
@@ -50,7 +50,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 
         ]
         Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.posts({id: $stateParams.network})
+          NetworkResource.posts({id: $stateParams.network}).$promise
         ]
 
 

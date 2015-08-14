@@ -1,9 +1,11 @@
 app = angular.module('MeApp')
-app.factory 'UserResource', ['$resource', 'API', ($resource, API) ->
+app.factory 'UserResource', ['$resource', 'API', "Page", ($resource, API, Page) ->
     $resource API.makeURL('/users/:id'), { id: '@id' },
       submissions:
         url: API.makeURL('/users/submissions')
         isArray: true
+        interceptor: 'response': (response) ->
+          Page.posts = response.data
       notifications:
         url: API.makeURL('/users/notifications')
         isArray: true

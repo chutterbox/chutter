@@ -37,7 +37,7 @@
             "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
               return PostResource.query({
                 scope: "all"
-              });
+              }).$promise;
             }
           ]
         },
@@ -70,7 +70,7 @@
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
               return NetworkResource.posts({
                 id: $stateParams.network
-              });
+              }).$promise;
             }
           ]
         }

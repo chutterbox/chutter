@@ -36,6 +36,8 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
       method: 'GET'
       isArray: true
       url: API.makeURL('/networks/:id/posts')
+      interceptor: 'response': (response) ->
+        Page.posts = response.data
     list:
       method: 'GET'
       url: API.makeURL('/networks/list')

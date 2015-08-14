@@ -1,8 +1,7 @@
 app = angular.module("MainApp")
 
-app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", "Network", "Posts",( $scope, $state, $rootScope, $stateParams, $timeout, Page, Network, Posts) ->
+app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", "Network", ( $scope, $state, $rootScope, $stateParams, $timeout, Page, Network) ->
   $scope.page = Page
-  $scope.page.posts = Posts
 ]
 
 app.controller "networkEditCtrl", ["$scope", "$mdDialog", "List", "NetworkResource", "Page", ($scope, $mdDialog, List, NetworkResource, Page) ->

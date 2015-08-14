@@ -4,13 +4,18 @@
   app = angular.module('MeApp');
 
   app.factory('UserResource', [
-    '$resource', 'API', function($resource, API) {
+    '$resource', 'API', "Page", function($resource, API, Page) {
       return $resource(API.makeURL('/users/:id'), {
         id: '@id'
       }, {
         submissions: {
           url: API.makeURL('/users/submissions'),
-          isArray: true
+          isArray: true,
+          interceptor: {
+            'response': function(response) {
+              return Page.posts = response.data;
+            }
+          }
         },
         notifications: {
           url: API.makeURL('/users/notifications'),

@@ -7204,24 +7204,34 @@ i.active-down {
 #submit md-tabs md-content {
   background: #fff; }
 
-md-toolbar {
+md-toolbar#main-toolbar,
+md-toolbar#moderation-toolbar,
+md-toolbar#management-toolbar {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 20; }
-  md-toolbar .md-toolbar-tools {
+  md-toolbar#main-toolbar .md-toolbar-tools,
+  md-toolbar#moderation-toolbar .md-toolbar-tools,
+  md-toolbar#management-toolbar .md-toolbar-tools {
     padding: 0; }
-  md-toolbar .md-button {
+  md-toolbar#main-toolbar .md-button,
+  md-toolbar#moderation-toolbar .md-button,
+  md-toolbar#management-toolbar .md-button {
     padding: 0;
     margin: 10px;
     min-width: auto;
     text-transform: none; }
-  md-toolbar .toolbar-container {
+  md-toolbar#main-toolbar .toolbar-container,
+  md-toolbar#moderation-toolbar .toolbar-container,
+  md-toolbar#management-toolbar .toolbar-container {
     padding: 0 16px;
     width: 304px;
     min-width: 304px;
     max-width: 304px; }
-  md-toolbar md-fab-speed-dial {
+  md-toolbar#main-toolbar md-fab-speed-dial,
+  md-toolbar#moderation-toolbar md-fab-speed-dial,
+  md-toolbar#management-toolbar md-fab-speed-dial {
     position: absolute;
     right: 0;
     top: 75%; }
@@ -7498,8 +7508,10 @@ md-toolbar#main-toolbar #primary-title {
 .comment-page {
   padding: 15px; }
 
-#comments md-backdrop {
-  display: none; }
+#comments {
+  margin-top: 30px; }
+  #comments md-backdrop {
+    display: none; }
 
 #reply {
   height: 90%;
@@ -7515,7 +7527,7 @@ md-toolbar#main-toolbar #primary-title {
 
 comment,
 comment-embed {
-  width: 90%;
+  width: 95%;
   margin: auto;
   border-left: 1px solid #ddd;
   -webkit-transform-style: preserve-3d;
@@ -7597,6 +7609,9 @@ comment-embed {
       comment-embed .vote button.md-button span {
         height: 100%;
         width: 25px; }
+
+comment .main {
+  margin-bottom: 30px; }
 
 .collapsed {
   transform-origin: top left;

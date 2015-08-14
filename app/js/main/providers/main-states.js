@@ -150,7 +150,7 @@
             "PostResource", "$stateParams", function(PostResource, $stateParams) {
               return PostResource.comments({
                 id: $stateParams.id
-              });
+              }).$promise;
             }
           ]
         },

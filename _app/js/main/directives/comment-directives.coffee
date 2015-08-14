@@ -1,6 +1,7 @@
 app = angular.module("MainApp")
 
 app.directive 'commentEmbed', ->
+  restrict: "E"
   templateUrl: "../app/partials/main/comments/commentEmbed.html"
 
 app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($compile, $mdBottomSheet, CommentResource) ->
@@ -9,6 +10,11 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
     comment: "="
     parent: "="
   link: ($scope, $element) ->
+    #apparently stack overflow thinks this is the best way to tell if the object property is an array or object literal
+    #redis cjson.encode returns nested tables (from lua) as json object literals, when they should be arrays. depending
+    #on the severity of this, we may need to move this into a more general approach
+    unless Object.prototype.toString.call( $scope.comment.children ) is '[object Array]'
+      $scope.comment.children = []
     if $scope.comment && $scope.comment.children.length > 0
       $compile('<comment class="child" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>') $scope, (cloned, scope) ->
          $element.append(cloned) 
@@ -45,14 +51,16 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
         vote = 0
       $scope.comment.vote = vote
       CommentResource.vote({id: $scope.comment.id, vote: vote}) 
-
-    $scope.reply = ->
+    
+    $scope.reply = () ->
       $mdBottomSheet.show({
         templateUrl: '../app/partials/main/comments/replyPanel.html'
-        parent: "#comments"
+        parent: "#content"
+        clickOutsideToClose: true
+        preserveScope: true
+        disableParentScroll: true
         controller: "replyCtrl"
-        locals:
-          comment: $scope.comment
+        scope: $scope
       })
   templateUrl: "../app/partials/main/comments/comment.html"
 ]  

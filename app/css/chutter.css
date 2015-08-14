@@ -20,6 +20,11 @@ i.active-down {
 #submit md-tabs md-content {
   background: #fff; }
 
+.inline-link {
+  color: #03a9f4;
+  cursor: hand;
+  margin-right: 4px; }
+
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,

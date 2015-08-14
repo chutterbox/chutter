@@ -1,4 +1,17 @@
-%md-toolbar.md-whiteframe-z1.md-tall#me-toolbar
+%md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
+  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
+    .toolbar-container
+      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+        chutter
+
+      %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+        %i.fa.fa-list
+    %span{flex: true}
+    .toolbar-container{layout: "row", layout-align: "end end"}
+      %md-button{ng-click: "signIn()"}
+        Sign In
+  
   .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
     .toolbar-container 
       %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
@@ -22,11 +35,11 @@
         %md-tooltip
           Log out
   .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-    .toolbar-container{layout: "row", layout-align: "start center"}
-      %a{ng-bind: "user.username"}
-    %span{flex: true}
-    .toolbar-container{layout: "row", layout-align: "start center"}
+    .toolbar-container{layout: "row", layout-align: "center center"}
+      %p{ng-bind: "::user.username", flex: true}
       %span{flex: true}
+    %span{flex: true}
+    .toolbar-container{layout: "row", layout-align: "center center"}
 %md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.nav-menu#scrolly-left

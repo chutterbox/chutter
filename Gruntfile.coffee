@@ -195,11 +195,11 @@ module.exports = (grunt) ->
         src: [
           'vendor/angular-material/angular-material.css',
           'app/css/chutter.css',
-          'app/css/main.css',
           'app/css/menu.css',
           'app/css/comments.css',
           'app/css/post.css',
           'app/css/mediaPlayer.css'
+          'app/css/notifications.css'
         ],
         dest: 'app/css/compiled/application.css'
     cssmin: 

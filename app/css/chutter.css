@@ -22,35 +22,73 @@ i.active-down {
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
-md-toolbar#management-toolbar {
+md-toolbar#management-toolbar,
+md-toolbar#me-toolbar {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 20; }
   md-toolbar#main-toolbar .md-toolbar-tools,
   md-toolbar#moderation-toolbar .md-toolbar-tools,
-  md-toolbar#management-toolbar .md-toolbar-tools {
+  md-toolbar#management-toolbar .md-toolbar-tools,
+  md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
   md-toolbar#main-toolbar .md-button,
   md-toolbar#moderation-toolbar .md-button,
-  md-toolbar#management-toolbar .md-button {
+  md-toolbar#management-toolbar .md-button,
+  md-toolbar#me-toolbar .md-button {
     padding: 0;
     margin: 10px;
     min-width: auto;
     text-transform: none; }
   md-toolbar#main-toolbar .toolbar-container,
   md-toolbar#moderation-toolbar .toolbar-container,
-  md-toolbar#management-toolbar .toolbar-container {
+  md-toolbar#management-toolbar .toolbar-container,
+  md-toolbar#me-toolbar .toolbar-container {
     padding: 0 16px;
     width: 304px;
     min-width: 304px;
     max-width: 304px; }
   md-toolbar#main-toolbar md-fab-speed-dial,
   md-toolbar#moderation-toolbar md-fab-speed-dial,
-  md-toolbar#management-toolbar md-fab-speed-dial {
+  md-toolbar#management-toolbar md-fab-speed-dial,
+  md-toolbar#me-toolbar md-fab-speed-dial {
     position: absolute;
     right: 0;
     top: 75%; }
+  md-toolbar#main-toolbar #breadcrumb,
+  md-toolbar#moderation-toolbar #breadcrumb,
+  md-toolbar#management-toolbar #breadcrumb,
+  md-toolbar#me-toolbar #breadcrumb {
+    font-size: 12px;
+    padding-top: 4px;
+    margin: 0 8px 0 12px; }
+  md-toolbar#main-toolbar #secondary-title,
+  md-toolbar#main-toolbar #primary-title,
+  md-toolbar#moderation-toolbar #secondary-title,
+  md-toolbar#moderation-toolbar #primary-title,
+  md-toolbar#management-toolbar #secondary-title,
+  md-toolbar#management-toolbar #primary-title,
+  md-toolbar#me-toolbar #secondary-title,
+  md-toolbar#me-toolbar #primary-title {
+    position: absolute; }
+  md-toolbar#main-toolbar #primary-title,
+  md-toolbar#moderation-toolbar #primary-title,
+  md-toolbar#management-toolbar #primary-title,
+  md-toolbar#me-toolbar #primary-title {
+    -webkit-transition: transform 150ms ease-in-out;
+    -moz-transition: transform 150ms ease-in-out;
+    -webkit-transition: transform 150ms ease-in-out; }
+    md-toolbar#main-toolbar #primary-title.active,
+    md-toolbar#moderation-toolbar #primary-title.active,
+    md-toolbar#management-toolbar #primary-title.active,
+    md-toolbar#me-toolbar #primary-title.active {
+      transform-origin: top left;
+      -webkit-transform-origin: top left;
+      -moz-transform-origin: top left;
+      transform: translateY(-26px) scale(0.6);
+      -webkit-transform: translateY(-26px) scale(0.6);
+      -moz-transform: translateY(-26px) scale(0.6); }
 
 md-bottom-sheet md-toolbar,
 md-dialog md-toolbar {

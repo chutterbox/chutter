@@ -24,9 +24,6 @@ md-content {
     font-size: 16px;
     margin-right: 5px; }
 
-#content {
-  background: #fff; }
-
 #conversations md-list-item.md-3-line a {
   padding: 0;
   margin: 0; }

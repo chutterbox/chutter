@@ -32,6 +32,7 @@ i
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
+md-toolbar#me-toolbar,
   transform: translate3d(0,0,0)
   -webkit-transform: translate3d(0,0,0)
   position: absolute
@@ -52,6 +53,24 @@ md-toolbar#management-toolbar,
     position: absolute
     right: 0
     top: 75%
+  #breadcrumb 
+    font-size: 12px
+    padding-top: 4px
+    margin: 0 8px 0 12px
+  #secondary-title,
+  #primary-title
+    position: absolute
+  #primary-title
+    -webkit-transition: transform 150ms ease-in-out
+    -moz-transition: transform 150ms ease-in-out
+    -webkit-transition: transform 150ms ease-in-out
+    &.active
+      transform-origin: top left
+      -webkit-transform-origin: top left
+      -moz-transform-origin: top left
+      transform: translateY(-26px) scale(0.6)
+      -webkit-transform: translateY(-26px) scale(0.6)
+      -moz-transform: translateY(-26px) scale(0.6)
 
 // we don't want bottom sheet toolbars positioned absolutley, nor dialog's toolbars
 md-bottom-sheet,

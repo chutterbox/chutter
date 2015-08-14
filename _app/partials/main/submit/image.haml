@@ -14,8 +14,6 @@
         %span{flex: true}
         %md-button.md-raised.md-priary{type: "submit"}
           Submit        
-    %div{flex: true, ng-if: "preview && newPost.media_attributes[0].link"}
-      %md-subheader
-        Preview
-      %div
-        %post{post: "preview", layout: "row"}
+    %div{flex: true, ng-if: "preview && preview.media[0] && preview.media[0].link"}
+      %md-list#posts
+        %post.post{post: "preview", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

@@ -18,6 +18,5 @@
         %md-button.md-raised.md-priary{ng-click: "submit()"}
           Submit       
     %div{flex: true, ng-if: "preview && selectedItem"}
-      %md-subheader
-        Preview
-      %post{post: "preview", layout: "row"}
+      %md-list#posts
+        %post.post{post: "preview", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

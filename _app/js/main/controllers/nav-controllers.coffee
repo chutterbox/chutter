@@ -26,11 +26,11 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
         element.style.zIndex = 24
 
       element.style.transform = 'translate3d(0px,-' + shift + 'px, 0px)'
+      element.style.webkitTransform = 'translate3d(0px,-' + shift + 'px, 0px)'
       left.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
       left.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
       right.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
       right.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
-      element.style.cssText += '-webkit-transform: translate3d(0px,-' + shift + 'px, 0px);'
     
     $scope.$on "auth:validation-success", () -> 
       # poller.get API.makeURL('/users/notifications') 

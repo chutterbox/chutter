@@ -1,2 +1,7 @@
+%md-toolbar.md-hue-2
+  .md-toolbar-tools
+    .toolbar-container
+      Your submissions
+    %span{flex: true}
 %md-list#posts
   %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

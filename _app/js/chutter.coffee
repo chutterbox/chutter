@@ -33,7 +33,7 @@ app = angular.module('Chutter', [
   '$urlRouterProvider'
   '$compileProvider'
   ($stateProvider, $urlRouterProvider, $compileProvider) ->
-    $compileProvider.debugInfoEnabled(false)
+    # $compileProvider.debugInfoEnabled(false)
 ]).run([
   '$http'
   '$auth'

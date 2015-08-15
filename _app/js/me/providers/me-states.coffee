@@ -57,14 +57,26 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     notifications =
       name: "home.notifications"
       url: "/notifications"
-      templateUrl: "#{view_url}/notifications/notifications.html"
-      controller: "notificationsCtrl"
-      resolve: 
-        Notifications: ["UserResource", (UserResource) ->
-          UserResource.notifications()
-        ]
- 
-    
+      views: 
+        "right-rail": 
+          templateUrl: "#{view_url}/notifications/notificationList.html"
+          controller: "notificationListCtrl"
+          resolve:
+            Notifications: ["UserResource", (UserResource) ->
+              UserResource.notificationSubscriptions()
+            ]
+    notification =
+      name: "home.notifications.notification"
+      url: "/:id"
+      views: 
+        "@home":
+          templateUrl: "#{view_url}/notifications/notification.html"
+          controller: "notifcationCtrl"
+          resolve:
+            Conversation: ["NotificationResource", "$stateParams", (NotificationResource, $stateParams) ->
+              NotificationResource.notifications({id: $stateParams.id})
+            ]
+
     saved =
       name: "home.saved"
       url: "/saved"

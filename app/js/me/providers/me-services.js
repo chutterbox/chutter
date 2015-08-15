@@ -17,8 +17,12 @@
             }
           }
         },
+        notificationSubscriptions: {
+          url: API.makeURL('/users/notification_subscriptions'),
+          isArray: true
+        },
         notifications: {
-          url: API.makeURL('/users/notifications'),
+          url: API.makeURL('/users/notifications/:id'),
           isArray: true
         }
       });

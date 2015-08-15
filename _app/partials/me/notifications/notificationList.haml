@@ -1,0 +1,6 @@
+%md-content#chutter-list{layout: "column"}
+  .chutter-list-item{ng-repeat: "subscription in subscribedNotifications", layout: "row", layout-align: "center start"}
+      .chutter-list-item-text
+        %h6.title{ng-bind: "'Re: ' + subscription.title"}
+        %p.tagline{ng-bind: "subscription.title"}
+          

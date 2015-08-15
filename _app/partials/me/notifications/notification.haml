@@ -1,0 +1,39 @@
+%div{ng-switch: "entity.entityable"}
+  %div{ng-switch-when: "post", ng-click: "open()",  layout: "row", layout-align: "start center", entity: "entity"}
+    .context
+      %md-button.md-fab.md-mini.md-primary
+        %i.fa.fa-align-justify.fa-fw
+    .content{layout: "row", layout-sm: "column", layout-align: "start center", flex: true}
+      .mentionable{flex: "25"}
+        %h4{ng-bind: "'Re: ' + entity.title"}
+      .tagline{flex: "50"} 
+        %p{ng-bind: "entity.notifications.length + ' new notifications'"}
+  %div{ng-switch-when: "comment", ng-click: "open()",  layout: "row", layout-align: "start center", entity: "entity"}
+    .context
+      %md-button.md-fab.md-mini.md-primary
+        %i.fa.fa-align-justify.fa-fw
+    .content{layout: "row", layout-sm: "column", layout-align: "start center", flex: true}
+      .mentionable{flex: "25"}
+        %h4{ng-bind: "'Re: ' + entity.title"}
+      .tagline{flex: "50"} 
+        %p{ng-bind: "entity.notifications.length + ' new notifications'"}
+
+  %md-content.notifications-list-content
+    .notifications-list{ng-repeat: "notification in entity.notifications", ng-switch: "notification.entityable"}
+      .notification-list-item{ng-switch-when: "comment", layout: "row", layout-align: "start center", flex: "true"}
+        .context{flex: "5", layout: "row", layout-align: "center center"}
+          %i.fa.fa-comments.fa-fw
+        .content{layout: "column"}
+          .mentionable
+            %h4{ng-bind: "notification.username"}
+          .tagline{flex: true} 
+            %p{ng-bind: "notification.body"}
+      .notification-list-item{ng-switch-when: "removed", layout: "row", layout-align: "start center"}
+        .context{flex: "5", layout: "row", layout-align: "center center"}
+          %i.fa.fa-ban.fa-fw.md-warn
+        .content{layout: "column"}
+          .mentionable
+            %h4{ng-bind: "entity.community"}
+          .tagline{flex: true} 
+            %p{ng-bind: "'your post was removed from /c/' +notification.community_slug"}
+      %md-divder

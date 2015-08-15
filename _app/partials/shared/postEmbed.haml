@@ -1,6 +1,6 @@
-.post{layout: "row"}
-  .media{ng-show: "post.media.length", ng-click: "post.toggle()", style: "background-image: url('{{post.media[0].thumbnail_link}}'); background-size: cover;"}
-  .middle{layout: "column", flex: true}
+%div{layout: "row", layout-margin: "true", style: "height: 100px;"}
+  .media{flex: "10", ng-show: "post.media.length", ng-click: "post.toggle()", style: "background-image: url('{{post.media[0].thumbnail_link}}'); background-size: cover;"}
+  .middle{flex: "75", layout: "column", flex: true}
     .top{ng-switch: "post.media.length", flex: true}
       %div{ng-switch-when: 0, layout: "row"}
         .title{flex: "75", flex-sm: "100"}
@@ -14,13 +14,5 @@
           %span.attribution  
             %a{ng-bind: "'('+post.media[0].attribution+')'"}
         %span{flex: true}
-        .community
-          %a{ng-bind: "post.community"}
-    .tagline
-      %span.votes{ng-bind: "(post.points || 0) + ' points'"} 
-      %span.submitted-by-text
-        submitted by
-      %a.user-link{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
-        {{post.user.username}}
-      %span.time-ago
-        about 34 minutes ago
+
+   

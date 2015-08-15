@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var conversationCompose, conversationContent, conversations, dashboard, home, notifications, preferences, saved, stats, submissions, view_url;
+      var conversationCompose, conversationContent, conversations, dashboard, home, notification, notifications, preferences, saved, stats, submissions, view_url;
       view_url = "../app/partials/me";
       home = {
         name: "home",
@@ -69,14 +69,37 @@
       notifications = {
         name: "home.notifications",
         url: "/notifications",
-        templateUrl: view_url + "/notifications/notifications.html",
-        controller: "notificationsCtrl",
-        resolve: {
-          Notifications: [
-            "UserResource", function(UserResource) {
-              return UserResource.notifications();
+        views: {
+          "right-rail": {
+            templateUrl: view_url + "/notifications/notificationList.html",
+            controller: "notificationListCtrl",
+            resolve: {
+              Notifications: [
+                "UserResource", function(UserResource) {
+                  return UserResource.notificationSubscriptions();
+                }
+              ]
             }
-          ]
+          }
+        }
+      };
+      notification = {
+        name: "home.notifications.notification",
+        url: "/:id",
+        views: {
+          "@home": {
+            templateUrl: view_url + "/notifications/notification.html",
+            controller: "notifcationCtrl",
+            resolve: {
+              Conversation: [
+                "NotificationResource", "$stateParams", function(NotificationResource, $stateParams) {
+                  return NotificationResource.notifications({
+                    id: $stateParams.id
+                  });
+                }
+              ]
+            }
+          }
         }
       };
       saved = {

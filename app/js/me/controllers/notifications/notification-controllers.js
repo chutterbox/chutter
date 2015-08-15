@@ -3,11 +3,9 @@
 
   app = angular.module("MeApp");
 
-  app.controller("postsCtrl", ["$scope", function($scope) {}]);
-
-  app.controller("notificationsCtrl", [
+  app.controller("notificationListCtrl", [
     "$scope", "Notifications", function($scope, Notifications) {
-      return $scope.notifiable_entities = Notifications;
+      return $scope.subscribedNotifications = Notifications;
     }
   ]);
 

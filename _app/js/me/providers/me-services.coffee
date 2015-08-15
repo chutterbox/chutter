@@ -6,8 +6,11 @@ app.factory 'UserResource', ['$resource', 'API', "Page", ($resource, API, Page) 
         isArray: true
         interceptor: 'response': (response) ->
           Page.posts = response.data
+      notificationSubscriptions:
+        url: API.makeURL('/users/notification_subscriptions')
+        isArray: true
       notifications:
-        url: API.makeURL('/users/notifications')
+        url: API.makeURL('/users/notifications/:id')
         isArray: true
 ]
 app.factory 'ConversationResource', ['$resource', 'API', ($resource, API) ->

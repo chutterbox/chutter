@@ -9,9 +9,13 @@ app.factory 'UserResource', ['$resource', 'API', "Page", ($resource, API, Page) 
       notificationSubscriptions:
         url: API.makeURL('/users/notification_subscriptions')
         isArray: true
+        interceptor: 'response': (response) ->
+          Page.notificationSubscriptions = response.data
+          console.log Page
       notifications:
         url: API.makeURL('/users/notifications/:id')
         isArray: true
+
 ]
 app.factory 'ConversationResource', ['$resource', 'API', ($resource, API) ->
     $resource API.makeURL('/conversations/:id'), { id: '@id' },

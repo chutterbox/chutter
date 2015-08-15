@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var conversationCompose, conversationContent, conversations, dashboard, home, notification, notifications, preferences, saved, stats, submissions, view_url;
+      var commentNotifications, conversationCompose, conversationContent, conversations, dashboard, home, notificationSubscriptions, postNotifications, preferences, saved, stats, submissions, view_url;
       view_url = "../app/partials/me";
       home = {
         name: "home",
@@ -66,7 +66,7 @@
           }
         }
       };
-      notifications = {
+      notificationSubscriptions = {
         name: "home.notifications",
         url: "/notifications",
         views: {
@@ -74,28 +74,54 @@
             templateUrl: view_url + "/notifications/notificationList.html",
             controller: "notificationListCtrl",
             resolve: {
-              Notifications: [
+              Subscriptions: [
                 "UserResource", function(UserResource) {
-                  return UserResource.notificationSubscriptions();
+                  return UserResource.notificationSubscriptions().$promise;
                 }
               ]
             }
           }
         }
       };
-      notification = {
-        name: "home.notifications.notification",
-        url: "/:id",
+      postNotifications = {
+        name: "home.notifications.postNotifications",
+        url: "/post/:id",
         views: {
           "@home": {
-            templateUrl: view_url + "/notifications/notification.html",
-            controller: "notifcationCtrl",
+            templateUrl: view_url + "/notifications/postNotifications.html",
+            controller: "notificationsCtrl",
             resolve: {
-              Conversation: [
-                "NotificationResource", "$stateParams", function(NotificationResource, $stateParams) {
-                  return NotificationResource.notifications({
+              Post: [
+                "Page", "PostResource", "$stateParams", function(Page, PostResource, $stateParams) {
+                  return PostResource.get({
                     id: $stateParams.id
-                  });
+                  }).$promise;
+                }
+              ],
+              Notifications: [
+                "Page", "PostResource", "$stateParams", function(Page, PostResource, $stateParams) {
+                  return PostResource.notifications({
+                    id: $stateParams.id
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      commentNotifications = {
+        name: "home.notifications.commentNotifications",
+        url: "/comment/:id",
+        views: {
+          "@home": {
+            templateUrl: view_url + "/notifications/notifications.html",
+            controller: "notificationsCtrl",
+            resolve: {
+              Notifications: [
+                "Page", "CommentResource", "$stateParams", function(Page, CommentResource, $stateParams) {
+                  return CommentResource.notifications({
+                    id: $stateParams.id
+                  }).$promise;
                 }
               ]
             }
@@ -142,7 +168,9 @@
       $stateProvider.state(conversations);
       $stateProvider.state(conversationCompose);
       $stateProvider.state(conversationContent);
-      $stateProvider.state(notifications);
+      $stateProvider.state(notificationSubscriptions);
+      $stateProvider.state(postNotifications);
+      $stateProvider.state(commentNotifications);
       $stateProvider.state(saved);
       $stateProvider.state(preferences);
       $stateProvider.state(stats);

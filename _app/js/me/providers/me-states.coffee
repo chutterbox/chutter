@@ -54,7 +54,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     
 
     #post/comment replies 
-    notifications =
+    notificationSubscriptions =
       name: "home.notifications"
       url: "/notifications"
       views: 
@@ -62,21 +62,36 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "#{view_url}/notifications/notificationList.html"
           controller: "notificationListCtrl"
           resolve:
-            Notifications: ["UserResource", (UserResource) ->
-              UserResource.notificationSubscriptions()
-            ]
-    notification =
-      name: "home.notifications.notification"
-      url: "/:id"
-      views: 
-        "@home":
-          templateUrl: "#{view_url}/notifications/notification.html"
-          controller: "notifcationCtrl"
-          resolve:
-            Conversation: ["NotificationResource", "$stateParams", (NotificationResource, $stateParams) ->
-              NotificationResource.notifications({id: $stateParams.id})
+            Subscriptions: ["UserResource", (UserResource) ->
+              UserResource.notificationSubscriptions().$promise
             ]
 
+    postNotifications =
+      name: "home.notifications.postNotifications"
+      url: "/post/:id"
+      views: 
+        "@home":
+          templateUrl: "#{view_url}/notifications/postNotifications.html"
+          controller: "notificationsCtrl"
+          resolve:
+            Post: ["Page", "PostResource", "$stateParams", (Page, PostResource, $stateParams) ->
+              PostResource.get({id: $stateParams.id}).$promise
+            ] 
+            Notifications: ["Page", "PostResource", "$stateParams", (Page, PostResource, $stateParams) ->
+              PostResource.notifications({id: $stateParams.id}).$promise
+            ]            
+
+    commentNotifications =
+      name: "home.notifications.commentNotifications"
+      url: "/comment/:id"
+      views: 
+        "@home":
+          templateUrl: "#{view_url}/notifications/notifications.html"
+          controller: "notificationsCtrl"
+          resolve:
+            Notifications: ["Page", "CommentResource", "$stateParams", (Page, CommentResource, $stateParams) ->
+              CommentResource.notifications({id: $stateParams.id}).$promise
+            ]
     saved =
       name: "home.saved"
       url: "/saved"
@@ -112,7 +127,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(conversations)
     $stateProvider.state(conversationCompose)
     $stateProvider.state(conversationContent)
-    $stateProvider.state(notifications)
+    $stateProvider.state(notificationSubscriptions)
+    $stateProvider.state(postNotifications)
+    $stateProvider.state(commentNotifications)
     $stateProvider.state(saved)
     $stateProvider.state(preferences)
     $stateProvider.state(stats)

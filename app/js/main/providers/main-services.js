@@ -48,19 +48,6 @@
     }
   ]);
 
-  app.factory('CommentResource', [
-    '$resource', 'Page', 'API', function($resource, Page, API) {
-      return $resource(API.makeURL('/comments/:id'), {
-        id: '@id'
-      }, {
-        vote: {
-          method: 'PUT',
-          url: API.makeURL('/comments/:id/vote')
-        }
-      });
-    }
-  ]);
-
   app.factory('preview', [
     '$document', function($document) {
       var audio;

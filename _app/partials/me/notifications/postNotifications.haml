@@ -1,0 +1,29 @@
+%md-toolbar.md-hue-2
+  .md-toolbar-tools
+    .toolbar-container{ng-bind: "::('Re: ' + page.post.title )"}
+      
+    %span{flex: true}
+    %md-button.md-button-icon
+      %i.fa.fa-moon-o
+    %md-tooltip
+      Turn off notifications for this item
+
+%md-content#notification-content
+  %post.post{post: "page.post",  layout: "row"}
+
+  %md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
+    .md-toolbar-tools
+      %span{flex: "5"}
+      %span{ng-bind: "notifications.length + ' notifications'"}
+      %span{flex: true}
+      %md-button.md-hue-2{ng-click: "reply()"}
+        leave a comment
+      %md-button.md-warn.md-icon-button
+        %i.fa.fa-trash.fa-fw
+  %div{ng-repeat: "notification in notifications", ng-switch: "notification.entityable"}
+    %comment{ng-switch-when: "comment", parent: "", layout: "column",id: "c{{child.path}}", comment: "notification"}
+    .removal-notice{ng-switch-when: "removed", layout: "row"}
+      %md-button.md-fab.md-warn
+        %i.fa.fa-ban.fa-fw
+      %div
+        %h3{ng-bind: "::"}

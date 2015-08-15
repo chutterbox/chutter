@@ -14,11 +14,7 @@
       });
       return $locationProvider.html5Mode(true);
     }
-  ]).config([
-    '$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {
-      return $compileProvider.debugInfoEnabled(false);
-    }
-  ]).run([
+  ]).config(['$stateProvider', '$urlRouterProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $compileProvider) {}]).run([
     '$http', '$auth', function($http, $auth) {
       var headers;
       headers = void 0;

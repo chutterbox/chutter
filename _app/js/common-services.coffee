@@ -1,6 +1,11 @@
 app = angular.module('Chutter')
 app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
   $resource API.makeURL('/posts/:id'), { id: '@id' },
+    get:
+      isArray: false
+      url: API.makeURL('/posts/:id')
+      interceptor: 'response': (response) ->
+        Page.post = response.data     
     query:
       isArray: true
       interceptor: 'response': (response) ->
@@ -15,6 +20,17 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
     ban:
       url: API.makeURL('/posts/:id/ban')
       method: 'POST'
+    notifications:
+      url: API.makeURL('/posts/:id/notifications')
+      method: 'GET'
+      isArray: true
+]
+
+app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
+    $resource API.makeURL('/comments/:id'), {id: '@id'},
+      vote:
+        method: 'PUT'
+        url: API.makeURL('/comments/:id/vote')
 ]
 
 app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->

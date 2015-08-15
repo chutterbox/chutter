@@ -19,7 +19,13 @@
         },
         notificationSubscriptions: {
           url: API.makeURL('/users/notification_subscriptions'),
-          isArray: true
+          isArray: true,
+          interceptor: {
+            'response': function(response) {
+              Page.notificationSubscriptions = response.data;
+              return console.log(Page);
+            }
+          }
         },
         notifications: {
           url: API.makeURL('/users/notifications/:id'),

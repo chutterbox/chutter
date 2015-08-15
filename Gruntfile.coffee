@@ -19,13 +19,13 @@ module.exports = (grunt) ->
           removeStyleLinkTypeAttributes: true
 
       main:
-        src: ['app/partials/main/*.html','app/partials/main/comments/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html'],
+        src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html'],
         dest: 'app/js/templates-main.js'
       moderation:
         src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html'],
         dest: 'app/js/templates-moderation.js'
       shared:
-        src: ['app/partials/toasts/*.html', 'app/partials/shared/*.html'],
+        src: ['app/partials/toasts/*.html', 'app/partials/shared/*.html','app/partials/shared/comments/*.html'],
         dest: 'app/js/templates-shared.js'  
       me:
         src: ['app/partials/me/*.html', 'app/partials/me/conversations/*.html', 'app/partials/me/notifications/*.html'],
@@ -123,6 +123,10 @@ module.exports = (grunt) ->
           "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"
           "app/partials/shared/createCommunityRule.html" : "_app/partials/shared/createCommunityRule.haml"
           "app/partials/shared/post.html" : "_app/partials/shared/post.haml"
+          "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
+          "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
+          "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
+          "app/partials/shared/comments.html" : "_app/partials/shared/comments.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
@@ -137,10 +141,6 @@ module.exports = (grunt) ->
           "app/partials/main/communityPanel.html" : "_app/partials/main/communityPanel.haml"
           "app/partials/main/left_rail.html" : "_app/partials/main/left_rail.haml"
           "app/partials/main/submit.html" : "_app/partials/main/submit.haml"
-          "app/partials/main/comments/comment.html" : "_app/partials/main/comments/comment.haml"
-          "app/partials/main/comments/replyPanel.html" : "_app/partials/main/comments/replyPanel.haml"
-          "app/partials/main/comments/commentEmbed.html" : "_app/partials/main/comments/commentEmbed.haml"
-          "app/partials/main/comments.html" : "_app/partials/main/comments.haml"
           "app/partials/main/user.html" : "_app/partials/main/user.haml"
           "app/partials/main/networks.html" : "_app/partials/main/networks.haml"
           "app/partials/main/communityEdit.html" : "_app/partials/main/communityEdit.haml"
@@ -160,7 +160,8 @@ module.exports = (grunt) ->
           "app/partials/me/conversations/conversation.html" : "_app/partials/me/conversations/conversation.haml"
           "app/partials/me/conversations/compose.html" : "_app/partials/me/conversations/compose.haml"
           "app/partials/me/notifications/notificationList.html" : "_app/partials/me/notifications/notificationList.haml"
-          "app/partials/me/notifications/notification.html" : "_app/partials/me/notifications/notification.haml"
+          "app/partials/me/notifications/postNotifications.html" : "_app/partials/me/notifications/postNotifications.haml"
+          "app/partials/me/notifications/commentNotifications.html" : "_app/partials/me/notifications/commentNotifications.haml"
           "app/partials/me/stats.html" : "_app/partials/me/stats.haml"
           "app/partials/me/saved.html" : "_app/partials/me/saved.haml"
           "app/partials/me/preferences.html" : "_app/partials/me/preferences.haml"
@@ -180,6 +181,7 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/settings.html" : "_app/partials/moderation/community/settings.haml"
           "app/partials/moderation/community/activity-log.html" : "_app/partials/moderation/community/activity-log.haml"
          
+
           #management partials
           "app/partials/management/index.html" : "_app/partials/management/index.haml"
           "app/partials/management/layout.html" : "_app/partials/management/layout.haml"

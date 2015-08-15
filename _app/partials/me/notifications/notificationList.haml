@@ -1,6 +1,8 @@
 %md-content#chutter-list{layout: "column"}
-  .chutter-list-item{ng-repeat: "subscription in subscribedNotifications", layout: "row", layout-align: "center start"}
-      .chutter-list-item-text
+  .chutter-list-item{ng-repeat: "subscription in page.notificationSubscriptions", layout: "row", layout-align: "center start", ng-switch: "subscription.entityable"}
+      %a.chutter-list-item-text{ng-switch-when: "post", ui-sref: "home.notifications.postNotifications({id: subscription.id})"}
         %h6.title{ng-bind: "'Re: ' + subscription.title"}
         %p.tagline{ng-bind: "subscription.title"}
-          
+      .chutter-list-item-text{ng-switch-when: "comment"}
+        %h6.title{ng-bind: "'Re: ' + subscription.title"}
+        %p.tagline{ng-bind: "subscription.title"}

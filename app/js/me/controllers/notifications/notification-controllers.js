@@ -4,8 +4,15 @@
   app = angular.module("MeApp");
 
   app.controller("notificationListCtrl", [
-    "$scope", "Notifications", function($scope, Notifications) {
-      return $scope.subscribedNotifications = Notifications;
+    "$scope", "Page", function($scope, Page) {
+      return $scope.page = Page;
+    }
+  ]);
+
+  app.controller("notificationsCtrl", [
+    "Page", "$scope", "Notifications", function(Page, $scope, Notifications) {
+      $scope.notifications = Notifications;
+      return $scope.page = Page;
     }
   ]);
 

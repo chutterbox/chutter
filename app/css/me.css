@@ -24,16 +24,21 @@ md-content {
     font-size: 16px;
     margin-right: 5px; }
 
+#notification-content .removal-notice {
+  width: 95%;
+  margin: 10px auto;
+  background: #fff; }
+
 #chutter-list .chutter-list-item {
   margin: 8px 0; }
   #chutter-list .chutter-list-item .chutter-list-item-text {
     width: 100%;
     border-bottom: 1px solid #ddd; }
     #chutter-list .chutter-list-item .chutter-list-item-text .title {
-      margin: 0;
+      margin: 8px;
       padding: 0; }
     #chutter-list .chutter-list-item .chutter-list-item-text .tagline {
-      margin: 0;
+      margin: 8px;
       padding: 0; }
 
 #conversation .message {

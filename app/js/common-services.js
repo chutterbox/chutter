@@ -9,6 +9,15 @@
       return $resource(API.makeURL('/posts/:id'), {
         id: '@id'
       }, {
+        get: {
+          isArray: false,
+          url: API.makeURL('/posts/:id'),
+          interceptor: {
+            'response': function(response) {
+              return Page.post = response.data;
+            }
+          }
+        },
         query: {
           isArray: true,
           interceptor: {
@@ -29,6 +38,24 @@
         ban: {
           url: API.makeURL('/posts/:id/ban'),
           method: 'POST'
+        },
+        notifications: {
+          url: API.makeURL('/posts/:id/notifications'),
+          method: 'GET',
+          isArray: true
+        }
+      });
+    }
+  ]);
+
+  app.factory('CommentResource', [
+    '$resource', 'Page', 'API', function($resource, Page, API) {
+      return $resource(API.makeURL('/comments/:id'), {
+        id: '@id'
+      }, {
+        vote: {
+          method: 'PUT',
+          url: API.makeURL('/comments/:id/vote')
         }
       });
     }

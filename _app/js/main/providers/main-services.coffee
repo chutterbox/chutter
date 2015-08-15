@@ -30,13 +30,6 @@ app.factory 'MediaResource', ['$resource', 'Page', 'API', ($resource, Page, API)
       isArray: false
 ]
 
-app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-    $resource API.makeURL('/comments/:id'), {id: '@id'},
-      vote:
-        method: 'PUT'
-        url: API.makeURL('/comments/:id/vote')
-]
-
 
 
 app.factory 'preview', [

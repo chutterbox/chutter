@@ -1,14 +1,91 @@
+//variables/mixins
+@mixin width-max-and-min($width) 
+  width: $width
+  min-width: $width
+  max-width: $width
+
+
+$sidenav-width: 18vw
+
+$four-three-width:  100vw - ($sidenav-width * 2) - 6vw
+$four-three-height:  ($four-three-width * .75)
+$four-three-height-scaled: $four-three-height * 0.1
+
+$sidenav-z-index-sm: 18
+$sidenav-z-index-lg: 18
+
+$content-z-index-sm: 22
+$content-z-index-lg: 22
+
+$toolbar-z-index: 19
+
+$p-size: 0.8vmax
+$a-size: 0.8vmax
+$a-size-lg: 1vmax
+$span-size: 0.8vmax
+$h6-size: 0.8vmax
+$h5-size: 0.85vmax
+a
+  color: rgb(3,169,244)
+  text-decoration: none
+
+h1,h2,h3,h4,h5,h6,p,span, a
+  text-rendering: geometricPrecision
+p
+  font-size: $p-size !important
+a
+  font-size: $a-size
+span
+  font-size: $span-size
+h6
+  font-weight: 500
+  font-size: $h6-size
+h5
+  font-weight: 500
+  font-size: $h5-size
+i
+  font-size: $span-size
+.md-button
+  font-size: $p-size
+
+
+@media(max-width: 960px) 
+  p
+    font-size: $p-size + 1
+  a
+    font-size: $a-size + 1
+  span
+    font-size: $span-size + 1
+  .md-button
+    font-size: $p-size + 1
+
+
 //global
 body,
 md-sidenav,
 md-content
   background: #f2f2f2
 
-md-dialog
+//md-content inside dialogs/tabs should be white
+md-dialog,
+md-tabs
   md-content
     background: #fff
 
 
+// custom sidenav overrides using vw/vh units
+md-sidenav.md-locked-open
+  @include width-max-and-min($sidenav-width)
+  z-index: $sidenav-z-index-lg
+  
+md-sidenav,
+md-backdrop.md-sidenav-backdrop
+  height: calc(100vh - 128px)
+  overflow: hidden
+  z-index: $sidenav-z-index-sm
+
+
+//vote icons
 i
   &.active-up
     color: rgb(3,169,244)
@@ -21,9 +98,9 @@ i
   md-autocomplete 
     width: 100%
     min-width: 100%
-  md-tabs
-    md-content
-      background: #fff
+
+
+
 
 .inline-link
   color: rgb(3,169,244)
@@ -36,34 +113,30 @@ md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
-  transform: translate3d(0,0,0)
-  -webkit-transform: translate3d(0,0,0)
-  -moz-transform: translate3d(0,0,0)
+  z-index: $toolbar-z-index
   position: absolute
-  z-index: 20
+  top: 0
   .md-toolbar-tools
     padding: 0
-  .md-button
-    padding: 0
-    margin: 10px
-    min-width: auto
-    text-transform: none
+    .md-button
+      margin: 0
+      min-width: auto
+      text-transform: none
   .toolbar-container
-    padding: 0 16px
-    width: 304px
-    min-width: 304px
-    max-width: 304px
+    a
+      font-size: $a-size-lg
+    a.md-button
+      font-size: $a-size
+    @include width-max-and-min($sidenav-width)
+    padding: 0 1.75vw
   md-fab-speed-dial
     position: absolute
     right: 0
     top: 75%
   #breadcrumb 
-    font-size: 12px
     padding-top: 4px
     margin: 0 8px 0 12px
   #secondary-title,
-  #primary-title
-    position: absolute
   #primary-title
     -webkit-transition: transform 150ms ease-in-out
     -moz-transition: transform 150ms ease-in-out
@@ -76,33 +149,6 @@ md-toolbar#me-toolbar,
       transform: translateY(-26px) scale(0.6)
       -webkit-transform: translateY(-26px) scale(0.6)
       -moz-transform: translateY(-26px) scale(0.6)
-
-// we don't want bottom sheet toolbars positioned absolutley, nor dialog's toolbars
-md-bottom-sheet,
-md-dialog
-  md-toolbar
-    position: relative
-
-#scrolly-left,
-#scrolly-right
-  margin-top: 64px
-  transform: translateY(64px)
-  -webkit-transform: translateY(64px)
-#scrolly-right
-  padding: 16px    
-  md-content
-    h5 
-      color: #616161 
-    .stat-card
-      margin-right: 8px
-    p
-      color: #616161 
-      font-size: 12px 
-    .md-list-item-text
-      padding-top: 0
-      h5
-        margin: 0     
- 
 
 table
   th
@@ -119,8 +165,12 @@ table
 
 // overlay tall toolbar with the main content 
 #content
-  z-index: 21
-  margin-top: 64px
+  height: calc(100vh - 64px)
+  overflow: hidden
+  position: relative
+  z-index: $content-z-index-lg
+  @media(max-width: 960px) 
+    z-index: $content-z-index-sm
   md-bottom-sheet
     padding: 0 0 88px 0
   background: #fff
@@ -130,40 +180,10 @@ table
   bottom: 0
   .md-toolbar-tools
     a 
-      font-size: 12px
       margin: 8px
-
-
-md-sidenav
-  z-index: 19
-
 
 post
   background: #fff
-
-p,h1,h2,h3,h4,h5,h6,span
-  font-weight: 225 !important
-  letter-spacing: 0.05em !important
-a
-  color: rgb(3,169,244)
-  text-decoration: none
-
-.hide:nth-child(n+5)
-  display: none !important
-
-
-.gray 
-  background: #f2f2f2
-.green 
-  background: #b9f6ca
-.yellow 
-  background: #ffff8d
-.blue 
-  background: #84ffff
-.purple 
-  background: #b388ff
-.red 
-  background: #ff8a80
 
 .ng-cloak
   display: none !important
@@ -186,26 +206,10 @@ a
       color: #000
       margin: 0
     span
-      font-size: 14px
       color: #757575
     .stats
       span
-        font-size: 10px
         margin-right: 5px
         color: #999
 
-
-
-.animate.ng-animate 
-  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s
-  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s
-  opacity: 0
-
-
-.animate.ng-leave.ng-leave-active,
-.animate.ng-enter 
-  opacity: 0.5
-.animate.ng-leave,
-.animate.ng-enter.ng-enter-active 
-  opacity: 1
   

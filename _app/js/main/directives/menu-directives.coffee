@@ -2,21 +2,17 @@ app = angular.module("MainApp")
 
 app.directive 'menuLink', ->
   {
-    scope: community: '='
+    scope: 
+      community: '='
+      network: "="
     templateUrl: '../app/partials/main/menu/link.html'
-    link: ($scope, $element) ->
-      controller = $element.parent().controller()
+    controller: ["$stateParams", "Page", "$scope", ($stateParams, Page, $scope) ->
 
-      $scope.isSelected = ->
-        controller.isSelected $scope.community
-
-      $scope.focusSection = ->
-        # set flag to be used later when
-        # $locationChangeSuccess calls openPage()
-        controller.autoFocusContent = true
-        return
-
-      return
+      if $stateParams.community is $scope.community.slug or $scope.network.slug is $stateParams.network
+        $scope.network.active = true
+        $scope.network.listElement.className += " active"
+        console.log $scope.network.listElement
+    ]
   }
 
 app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
@@ -40,47 +36,15 @@ app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
       ]
       link: ($scope, $element) ->
         controller = $element.parent().controller()
-        $ul = $element.find('ul')
+        $scope.network.listElement = $element[0].parentNode
         originalHeight = undefined
         
-        $scope.isOpen = ->
-          controller.isOpen $scope.network
+    
 
-        $scope.toggle = ->
-          controller.toggleOpen $scope.network
-          return
-
-        $scope.editNetworks = ->
-          controller.editNetworks  
-
-        # if states are activated auto-expand
-        # needs fixing up
-        if $element.find("a").hasClass("active")
-          $timeout (->
-            $scope.toggle() 
-          ), 100
+        # $scope.editNetworks = ->
+        #   controller.editNetworks  
 
 
-        $scope.$watch $scope.isOpen, (open) ->
-          $ul = $element.find('ul')
-
-          getTargetHeight = ->
-            `var targetHeight`
-            targetHeight = undefined
-            $ul.addClass 'no-transition'
-            $ul.css 'height', ''
-            targetHeight = $ul.prop('clientHeight')
-            $ul.css 'height', 0
-            $ul.removeClass 'no-transition'
-            targetHeight
-
-          targetHeight = if open then getTargetHeight() else 0
-
-          $timeout (->
-            $ul.css height: targetHeight + 'px'
-          ), 0, false
-
-        parentNode = $element[0].parentNode.parentNode.parentNode
 
 
    

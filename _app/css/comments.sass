@@ -9,13 +9,6 @@
   height: 90%
   max-height: 550px
 
-#comment-toolbar
-  position: relative
-  min-height: 32px
-  height: 32px
-  .md-toolbar-tools
-    height: 32px
-    font-size: 14px
 
 comment,
 comment-embed
@@ -50,7 +43,6 @@ comment-embed
   -webkit-transform-origin: top left
   -moz-transform-origin: top left
   .collapse-toggle
-    font-size: 10px
     width: 100%
     margin: 0
     padding: 0
@@ -110,33 +102,32 @@ comment
     transform:  scale(1,1)
     -webkit-transform: scale(1,1)
     -moz-transform: scale(1,1)
+comment
+  .main
+    transform-origin: top left
+    -webkit-transform-origin: top left
+    -moz-transform-origin: top left
 
-.main
-  transform-origin: top left
-  -webkit-transform-origin: top left
-  -moz-transform-origin: top left
-
-  -webkit-transform: scale(1)
-  -moz-transform: scale(1)
-  transform: scale(1)
+    -webkit-transform: scale(1)
+    -moz-transform: scale(1)
+    transform: scale(1)
 
 
-  -webkit-transition: all 200ms ease-in-out
-  -moz-transition: all 200ms ease-in-out
-  -webkit-transition: all 200ms ease-in-out
-  
-  &.active
-    -webkit-transform: scale(0)
-    -moz-transform: scale(0)
-    transform: scale(0)
-  .footer
-    a
-      font-size: 12px
-      color: #bbb
-      margin-right: 6px
+    -webkit-transition: all 200ms ease-in-out
+    -moz-transition: all 200ms ease-in-out
+    -webkit-transition: all 200ms ease-in-out
+    
+    &.active
+      -webkit-transform: scale(0)
+      -moz-transform: scale(0)
+      transform: scale(0)
+    .footer
+      a
+        color: #bbb
+        margin-right: 6px
 
-.reply
-  .body
-    textarea
-      background-color: #f5f5f5
-  .footer
+  .reply
+    .body
+      textarea
+        background-color: #f5f5f5
+    .footer

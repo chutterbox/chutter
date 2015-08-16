@@ -9,17 +9,6 @@ class Page
     communities: []
   posts: []
   
-  #this shit should be in a nav class or data structure
-  selectSection: (section) ->
-    @selectedSection = section
-  toggleSelectSection: (section) ->
-    if section is @selectedSection
-      @selectedSection = null
-    else
-      @selectedSection = section 
-    # section.open = !section.open
-  isSectionSelected: (section) ->
-    @selectedSection is section
 
 class MediaControls
   post: {}

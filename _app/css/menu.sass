@@ -1,45 +1,43 @@
 .nav-menu
+  span, .fa
+    color: #767676
+    font-size: 0.8vw
+    font-weight: normal
+    margin: 0
   .fa-plus
     color: #616161
-.site-sidenav md-content 
-  background: transparent
-
-.site-sidenav,
-.site-sidenav.md-locked-open-add-active,
-.site-sidenav.md-locked-open 
-  width: 256px
-  min-width: 256px
-  max-width: 256px
-
-.site-sidenav > * 
-  min-width: 218px
-
 
 .menu-toggle
   &.active
-    background-color: #f4f4f4
 
 .nav-menu,
 .nav-menu ul 
   list-style: none
-  padding: 0
+  padding: 0.25vw
   margin: 0
 
 .nav-menu li 
   margin: 0
+  min-height: 2.5vw
+  .menu-toggle-list
+    height: 0
+  &.active
+    background: #fff
+    border: 1px 0 1px 0 solid #ddd
+    .menu-toggle-list
+      height: auto
+    .menu-toggle
+      div
+        span
+          font-weight: 500
 
 .nav-menu > li:nth-child(1) 
   border: none
 
-.md-whiteframe-glow-z1 
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084)
-
 .nav-menu > li 
   border-bottom: none 
 
-
 .nav-menu .md-button
-  color: #616161 
   border-radius: 0
   cursor: pointer
   display: block
@@ -48,7 +46,7 @@
   margin: 0
   max-height: 40px
   overflow: hidden
-  padding: 0px 16px
+  padding: 0px 1.75vw
   text-align: left
   text-decoration: none
   text-transform: capitalize
@@ -57,11 +55,9 @@
 .nav-menu .md-button md-icon 
   color: white
 
-
 .nav-menu md-select 
   margin: 0
   width: 100%
-
 
 .nav-menu md-select md-select-label 
   justify-content: flex-end
@@ -69,12 +65,9 @@
 
 
 .nav-menu md-select md-select-label span 
-  margin-right: auto
-  padding-left: 13px
 
 
 .nav-menu md-select .md-select-icon 
-  margin-right: 28px
 
 
 .nav-menu button.md-button::-moz-focus-inner 
@@ -84,10 +77,9 @@
 .nav-menu 
   menu-link
     .md-button.active
-      background: #f6f6f6
+      //background: #f6f6f6
       border-left: 3px solid #000
     .md-button
-      padding-left: 18%
 .menu-heading 
   display: block
   line-height: 32px
@@ -104,7 +96,6 @@
   overflow: hidden
   position: relative
   z-index: 1
-  background-color: #f9f9f9
   -webkit-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1)
   -webkit-transition-property: height
   -moz-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1)
@@ -114,17 +105,13 @@
 
 .nav-menu .menu-toggle-list a.md-button 
   display: block
-  padding: 0 16px 0 17%
   text-transform: none
-  text-rendering: optimizeLegibility
-  font-size: 12px
-  font-weight: 400
-
-
-.md-button-toggle .md-toggle-icon 
+  padding: 0 2.5vw
+  font-size: 0.75vw
+.md-button-toggle .md-toggle-icon
+  text-align: center
   color: #616161
   outline: none
-  margin: 0 8px
   display: block
   speak: none
   vertical-align: middle
@@ -134,7 +121,8 @@
   -webkit-transition: -webkit-transform 0.5s ease-in-out
 
 .md-button-toggle .md-toggle-icon.active 
-  transform: rotate(90deg)
-  -webkit-transform: rotate(90deg)
+  transform: rotate(-180deg)
+  -webkit-transform: rotate(180deg)
+  -moz-transform: rotate(-180deg)
 
 

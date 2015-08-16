@@ -19,22 +19,6 @@
 
     Page.prototype.posts = [];
 
-    Page.prototype.selectSection = function(section) {
-      return this.selectedSection = section;
-    };
-
-    Page.prototype.toggleSelectSection = function(section) {
-      if (section === this.selectedSection) {
-        return this.selectedSection = null;
-      } else {
-        return this.selectedSection = section;
-      }
-    };
-
-    Page.prototype.isSectionSelected = function(section) {
-      return this.selectedSection === section;
-    };
-
     return Page;
 
   })();

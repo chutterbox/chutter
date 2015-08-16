@@ -6,19 +6,19 @@
   app.directive('menuLink', function() {
     return {
       scope: {
-        community: '='
+        community: '=',
+        network: "="
       },
       templateUrl: '../app/partials/main/menu/link.html',
-      link: function($scope, $element) {
-        var controller;
-        controller = $element.parent().controller();
-        $scope.isSelected = function() {
-          return controller.isSelected($scope.community);
-        };
-        $scope.focusSection = function() {
-          controller.autoFocusContent = true;
-        };
-      }
+      controller: [
+        "$stateParams", "Page", "$scope", function($stateParams, Page, $scope) {
+          if ($stateParams.community === $scope.community.slug || $scope.network.slug === $stateParams.network) {
+            $scope.network.active = true;
+            $scope.network.listElement.className += " active";
+            return console.log($scope.network.listElement);
+          }
+        }
+      ]
     };
   });
 
@@ -51,46 +51,10 @@
           }
         ],
         link: function($scope, $element) {
-          var $ul, controller, originalHeight, parentNode;
+          var controller, originalHeight;
           controller = $element.parent().controller();
-          $ul = $element.find('ul');
+          $scope.network.listElement = $element[0].parentNode;
           originalHeight = void 0;
-          $scope.isOpen = function() {
-            return controller.isOpen($scope.network);
-          };
-          $scope.toggle = function() {
-            controller.toggleOpen($scope.network);
-          };
-          $scope.editNetworks = function() {
-            return controller.editNetworks;
-          };
-          if ($element.find("a").hasClass("active")) {
-            $timeout((function() {
-              return $scope.toggle();
-            }), 100);
-          }
-          $scope.$watch($scope.isOpen, function(open) {
-            var getTargetHeight, targetHeight;
-            $ul = $element.find('ul');
-            getTargetHeight = function() {
-              var targetHeight;
-              var targetHeight;
-              targetHeight = void 0;
-              $ul.addClass('no-transition');
-              $ul.css('height', '');
-              targetHeight = $ul.prop('clientHeight');
-              $ul.css('height', 0);
-              $ul.removeClass('no-transition');
-              return targetHeight;
-            };
-            targetHeight = open ? getTargetHeight() : 0;
-            return $timeout((function() {
-              return $ul.css({
-                height: targetHeight + 'px'
-              });
-            }), 0, false);
-          });
-          parentNode = $element[0].parentNode.parentNode.parentNode;
         }
       };
     }

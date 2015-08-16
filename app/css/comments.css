@@ -10,14 +10,6 @@
   height: 90%;
   max-height: 550px; }
 
-#comment-toolbar {
-  position: relative;
-  min-height: 32px;
-  height: 32px; }
-  #comment-toolbar .md-toolbar-tools {
-    height: 32px;
-    font-size: 14px; }
-
 comment,
 comment-embed {
   width: 95%;
@@ -58,7 +50,6 @@ comment-embed {
     color: #bbb; }
   comment .collapse-toggle,
   comment-embed .collapse-toggle {
-    font-size: 10px;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -126,7 +117,7 @@ comment .main {
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1); }
 
-.main {
+comment .main {
   transform-origin: top left;
   -webkit-transform-origin: top left;
   -moz-transform-origin: top left;
@@ -136,16 +127,14 @@ comment .main {
   -webkit-transition: all 200ms ease-in-out;
   -moz-transition: all 200ms ease-in-out;
   -webkit-transition: all 200ms ease-in-out; }
-  .main.active {
+  comment .main.active {
     -webkit-transform: scale(0);
     -moz-transform: scale(0);
     transform: scale(0); }
-  .main .footer a {
-    font-size: 12px;
+  comment .main .footer a {
     color: #bbb;
     margin-right: 6px; }
-
-.reply .body textarea {
+comment .reply .body textarea {
   background-color: #f5f5f5; }
 
 /*# sourceMappingURL=comments.css.map */

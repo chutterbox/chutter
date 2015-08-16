@@ -126,7 +126,6 @@ module.exports = (grunt) ->
           "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
           "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
           "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
-          "app/partials/shared/comments.html" : "_app/partials/shared/comments.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
@@ -151,6 +150,7 @@ module.exports = (grunt) ->
           "app/partials/main/submit/discussion.html" : "_app/partials/main/submit/discussion.haml"
           "app/partials/main/submit/image.html" : "_app/partials/main/submit/image.haml"
           "app/partials/main/submit/webpage.html" : "_app/partials/main/submit/webpage.haml"
+          "app/partials/main/comments.html" : "_app/partials/main/comments.haml"
 
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"

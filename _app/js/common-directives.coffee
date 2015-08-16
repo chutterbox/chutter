@@ -20,16 +20,13 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
       scope.post.currentMedia = scope.post.media[0]
     else
       scope.post.currentMedia = {format: "body", body: scope.post.body}
+    
     scope.post.elements.postcontent = scope.post.elements.main.children[0]
-    scope.post.elements.media = scope.post.elements.postcontent.children[1]
-    scope.post.elements.middle = scope.post.elements.main.children[1] 
-    _.defer () ->
-      scope.ratioHeight = (scope.post.elements.postcontent.offsetWidth)*(3/4) - 80
-      scope.post.elements.postcontent.style.height = "#{scope.ratioHeight}px"
+    scope.post.elements.middle      = scope.post.elements.main.children[1] 
       
     if scope.post.currentMedia
-      scope.post.elements.media.style.backgroundImage = "url("+scope.post.currentMedia.thumbnail_link+")"
-      scope.post.elements.media.style.backgroundSize = "cover"
+      scope.post.elements.postcontent.style.backgroundImage = "url("+scope.post.currentMedia.thumbnail_link+")"
+      scope.post.elements.postcontent.style.backgroundSize = "cover"
       if scope.post.currentMedia.format is "music"
         scope.post.audio = new audio("#{scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 
@@ -47,7 +44,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
           #children[0] is always the image tag since we use ng-if to toggle between media types
           #this is needed in order to translate the ancestor divs by an additional amount since the
           #image will take up an unpredictable amount of vertical space.
-          scope.post.elements.media.children[0].onload = () ->
+          scope.post.elements.postcontent.children[0].onload = () ->
             setTimeout () ->
               scope.$apply () -> 
                 scope.setXTranslations()
@@ -55,9 +52,9 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
     
     scope.$watch "post.toggled", (newVal) ->
         if newVal is true
-          mdContent = document.getElementById("content")
+          # mdContent = document.getElementById("content")
           #todo if mobile
-          mdContent.scrollTop = scope.post.elements.post.offsetTop - (mdContent.clientHeight/3)
+          # mdContent.scrollTop = scope.post.elements.post.offsetTop - (mdContent.clientHeight/3)
           if scope.post.audio
             scope.post.audio.play()
         else if newVal is false and scope.post.audio
@@ -68,17 +65,20 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
       #check if it's an image
       #then check if the image tag is in dom (will be for values > 3)
       #check if image is finshed loading, if not, we can assume the lo-res version is still being shown
-      if scope.post.currentMedia.format != "video" and scope.post.zoomValue > 1 and scope.post.elements.media.children[0].complete
-        xTranslation = (scope.post.elements.media.children[0].offsetHeight * (scope.post.zoomValue/10)) - 100
+      if scope.post.currentMedia.format != "video" and scope.post.zoomValue > 1 and scope.post.elements.postcontent.children[0].complete
+        xTranslation = (scope.post.elements.postcontent.children[0].offsetHeight * (scope.post.zoomValue/10)) - 100
       else
         xTranslation = (scope.post.elements.postcontent.offsetHeight * (scope.post.zoomValue/10)) - 100
+      $("#active-post ~ post").unwrap()
+      $("#active-post ~ post").wrapAll "<div class='new-stuff' />"
+      elm = $(".new-stuff")
+      elm[0].style.cssText += 
+        "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px);"
+  
+      # targets = Page.posts
+      # _.each(targets.slice(scope.postIndex+1), (target) -> 
+      #   if target.elements && target.elements.post
 
-      targets = Page.posts
-      _.each(targets.slice(scope.postIndex+1), (target) -> 
-        if target.elements && target.elements.post
-          target.elements.post.style.cssText += 
-            "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px);"
-      )  
 
     scope.post.updateVote = (vote) ->
       if scope.post.vote == vote 
@@ -93,25 +93,39 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
         if Page.selectedPost.zoomValue != 1
           Page.selectedPost.zoomValue = 1
           Page.selectedPost.toggled = false
+          $("#active-post ~ post").unwrap()
+
+          scope.post.elements.post.id = ""
+
         
         else
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
+          
+          scope.post.elements.post.id = "active-post"
+
       else 
         #otherwise unzoom other post
         if Page.selectedPost
           Page.selectedPost.zoomValue = 1
           Page.selectedPost.toggled = false
+          $("#active-post ~ post").unwrap()
+
+          scope.post.elements.post.id = ""
+
           _.defer () ->
               scope.post.zoomValue = preferredScaleValue
               scope.$apply()
           Page.selectedPost = scope.post
           Page.selectedPost.toggled = true
+          scope.post.elements.post.id = "active-post"
+
 
         else
           Page.selectedPost = scope.post
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
+          scope.post.elements.post.id = "active-post"
 
 
   

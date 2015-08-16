@@ -1,4 +1,4 @@
-%md-content{layout: "row", flex: true}
+%md-content{layout: "row", flex: true, layout-align: "end end"}
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
       .toolbar-container
@@ -57,18 +57,18 @@
 
             
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.offset-toolbar.nav-menu.gray#scrolly-left{flex: true, role: "navigation", layout-fill: true, layout: "row"}
+    %md-content.offset-toolbar.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
       %ul.menu-nested-list.ng-cloak{flex: true}
-        %li{ng-repeat: "network in page.networks | orderBy:'name'", ng-class: "{'childActive' : isSectionSelected(network)}"}
+        %li{ng-repeat: "network in page.networks | orderBy:'name'", ui-sref-active: "active"}
           %menu-toggle{ng-if: "true", network: "network"}
               
-  %md-content.md-whiteframe-z1#content{flex: true, layout: "row",infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
+  .md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
     %media-controls#media-controls{layout: "column"}
 
-  %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    #scrolly-right{ng-switch: "page.scope", layout: "column"}
-      %md-content{ng-switch-when: "submit", layout-fill: true}
+  %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-content{ng-switch: "page.scope", layout: "column"}
+      %div{ng-switch-when: "submit", layout-fill: true}
         .description
           %md-list
             %md-list-item
@@ -82,7 +82,7 @@
               .md-list-item-text
                 %h5{ng-bind: "rule.brief_description"}
                 %p{ng-bind: "rule.detailed_explanation"}
-      %md-content{ng-switch-when: "community", layout-fill: true}
+      %div{ng-switch-when: "community", layout-fill: true}
 
         .description
           %md-list
@@ -100,7 +100,7 @@
 
         .moderators
  
-      %md-content{ng-switch-when: "all", layout: "column", layout-fill: true}
+      %div{ng-switch-when: "all", layout: "column", layout-fill: true}
         .description
           %h5
             Monthly Sub Goal
@@ -119,7 +119,7 @@
           %p
             P.S. - just click the post's picture to view an embedded / mirrored version of the link. Otherwise, click the title to visit the actual link.
 
-      %md-content{ng-switch-when: "network", layout: "column", layout-fill: true}
+      %div{ng-switch-when: "network", layout: "column", layout-fill: true}
         .description
           %h5
             Trending Communities

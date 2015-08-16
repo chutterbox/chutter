@@ -21,7 +21,6 @@ md-content {
     width: 100%;
     text-align: left; }
   .nav-list md-list-item i {
-    font-size: 16px;
     margin-right: 5px; }
 
 #notification-content .removal-notice {
@@ -45,8 +44,6 @@ md-content {
   width: 40%;
   padding: 15px;
   word-wrap: break-word; }
-#conversation .user {
-  font-size: 10px; }
 
 #reply {
   z-index: 999;

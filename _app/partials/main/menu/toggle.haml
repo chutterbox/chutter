@@ -1,15 +1,10 @@
-%md-button.md-button-toggle.menu-toggle{aria-controls: "docs-menu-{{network.name | nospace}}", aria-label: "network", aria-expanded: "{{isOpen()}}", ng-click:"toggle()", ui-sref: "home.network({network: network.slug})", ui-sref-active: "active"}
-  %div{flex: true, layout: "row"}
-    %span.md-toggle-icon{aria-hidden: true, ng-class: "{'active' : isOpen()}"}
-      %i.fa.fa-caret-right.fa-fw
-
-    {{::network.name}}
+%md-button.md-button-toggle.menu-toggle{aria-controls: "{{network.name}}", aria-label: "network", aria-expanded: "{{isOpen()}}", ng-click:"toggle()", ui-sref: "home.network({network: network.slug})", ui-sref-active: "active"}
+  .content{flex: true, layout: "row"}
+    %span
+      {{::network.name}}
     %span{flex: true}
-    %span{ng-show:"isOpen()", ng-click: "editCommunity()"}
+    %span{ng-show:"network.active", ng-click: "editCommunity()"}
       %i.fa.fa-sliders.fa-fw
-
-  %span.md-visually-hidden
-    Toggle {{isOpen()? 'expanded' : 'collapsed'}}
-%ul.menu-toggle-list{id: "docs-menu-{{network.name | nospace}}"}
+%ul.menu-toggle-list{id: "{{::network.name}}"}
   %li{ng-repeat: "community in network.communities"}
-    %menu-link{community: "::community"}
+    %menu-link{network: "network", community: "::community"}

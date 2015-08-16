@@ -7,35 +7,10 @@
 
   app.controller('navCtrl', [
     '$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
-      var content, element, isOpen, left, right, scrollHandler, toggleOpen;
+      var isOpen, toggleOpen;
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      console.log(Page);
-      element = document.getElementById("main-toolbar");
-      content = document.getElementById("content");
-      left = document.getElementById("scrolly-left");
-      right = document.getElementById("scrolly-right");
-      $("#content").scroll(function(e) {
-        return window.requestAnimationFrame(scrollHandler);
-      });
-      scrollHandler = function() {
-        var shift, velocity;
-        velocity = 1.4;
-        if (content.scrollTop * velocity < 64) {
-          shift = content.scrollTop * 1.7;
-          element.style.zIndex = 21;
-        } else {
-          shift = 64;
-          element.style.zIndex = 24;
-        }
-        element.style.transform = 'translate3d(0px,-' + shift + 'px, 0px)';
-        element.style.webkitTransform = 'translate3d(0px,-' + shift + 'px, 0px)';
-        left.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
-        left.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
-        right.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
-        return right.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)';
-      };
       $scope.$on("auth:validation-success", function() {});
       $scope.$on("auth:login-success", function() {});
       $scope.myPagingFunction = function() {
@@ -78,18 +53,9 @@
           clickOutsideToClose: true
         });
       };
-      $scope.$on('auth:login-success', function() {
+      return $scope.$on('auth:login-success', function() {
         return $scope.networks = $auth.user.networks;
       });
-      isOpen = function(section) {
-        return Page.isSectionSelected(section);
-      };
-      toggleOpen = function(section) {
-        return Page.toggleSelectSection(section);
-      };
-      this.isOpen = isOpen;
-      this.toggleOpen = toggleOpen;
-      return this.autoFocusContent = false;
     }
   ]);
 

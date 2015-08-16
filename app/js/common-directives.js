@@ -28,15 +28,10 @@
             };
           }
           scope.post.elements.postcontent = scope.post.elements.main.children[0];
-          scope.post.elements.media = scope.post.elements.postcontent.children[1];
           scope.post.elements.middle = scope.post.elements.main.children[1];
-          _.defer(function() {
-            scope.ratioHeight = scope.post.elements.postcontent.offsetWidth * (3 / 4) - 80;
-            return scope.post.elements.postcontent.style.height = scope.ratioHeight + "px";
-          });
           if (scope.post.currentMedia) {
-            scope.post.elements.media.style.backgroundImage = "url(" + scope.post.currentMedia.thumbnail_link + ")";
-            scope.post.elements.media.style.backgroundSize = "cover";
+            scope.post.elements.postcontent.style.backgroundImage = "url(" + scope.post.currentMedia.thumbnail_link + ")";
+            scope.post.elements.postcontent.style.backgroundSize = "cover";
             if (scope.post.currentMedia.format === "music") {
               scope.post.audio = new audio(scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
             }
@@ -52,7 +47,7 @@
               scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
               scope.setXTranslations();
               if (scope.post.currentMedia.format !== "video" && (newVal > 1 && (!oldVal || oldVal <= 1))) {
-                return scope.post.elements.media.children[0].onload = function() {
+                return scope.post.elements.postcontent.children[0].onload = function() {
                   return setTimeout(function() {
                     return scope.$apply(function() {
                       return scope.setXTranslations();
@@ -63,10 +58,7 @@
             }
           });
           scope.$watch("post.toggled", function(newVal) {
-            var mdContent;
             if (newVal === true) {
-              mdContent = document.getElementById("content");
-              mdContent.scrollTop = scope.post.elements.post.offsetTop - (mdContent.clientHeight / 3);
               if (scope.post.audio) {
                 return scope.post.audio.play();
               }
@@ -75,18 +67,16 @@
             }
           });
           scope.setXTranslations = function() {
-            var targets, xTranslation;
-            if (scope.post.currentMedia.format !== "video" && scope.post.zoomValue > 1 && scope.post.elements.media.children[0].complete) {
-              xTranslation = (scope.post.elements.media.children[0].offsetHeight * (scope.post.zoomValue / 10)) - 100;
+            var elm, xTranslation;
+            if (scope.post.currentMedia.format !== "video" && scope.post.zoomValue > 1 && scope.post.elements.postcontent.children[0].complete) {
+              xTranslation = (scope.post.elements.postcontent.children[0].offsetHeight * (scope.post.zoomValue / 10)) - 100;
             } else {
               xTranslation = (scope.post.elements.postcontent.offsetHeight * (scope.post.zoomValue / 10)) - 100;
             }
-            targets = Page.posts;
-            return _.each(targets.slice(scope.postIndex + 1), function(target) {
-              if (target.elements && target.elements.post) {
-                return target.elements.post.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
-              }
-            });
+            $("#active-post ~ post").unwrap();
+            $("#active-post ~ post").wrapAll("<div class='new-stuff' />");
+            elm = $(".new-stuff");
+            return elm[0].style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
           };
           scope.post.updateVote = function(vote) {
             if (scope.post.vote === vote) {
@@ -104,25 +94,32 @@
             if (Page.selectedPost === scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {
                 Page.selectedPost.zoomValue = 1;
-                return Page.selectedPost.toggled = false;
+                Page.selectedPost.toggled = false;
+                $("#active-post ~ post").unwrap();
+                return scope.post.elements.post.id = "";
               } else {
                 Page.selectedPost.zoomValue = preferredScaleValue;
-                return Page.selectedPost.toggled = true;
+                Page.selectedPost.toggled = true;
+                return scope.post.elements.post.id = "active-post";
               }
             } else {
               if (Page.selectedPost) {
                 Page.selectedPost.zoomValue = 1;
                 Page.selectedPost.toggled = false;
+                $("#active-post ~ post").unwrap();
+                scope.post.elements.post.id = "";
                 _.defer(function() {
                   scope.post.zoomValue = preferredScaleValue;
                   return scope.$apply();
                 });
                 Page.selectedPost = scope.post;
-                return Page.selectedPost.toggled = true;
+                Page.selectedPost.toggled = true;
+                return scope.post.elements.post.id = "active-post";
               } else {
                 Page.selectedPost = scope.post;
                 Page.selectedPost.zoomValue = preferredScaleValue;
-                return Page.selectedPost.toggled = true;
+                Page.selectedPost.toggled = true;
+                return scope.post.elements.post.id = "active-post";
               }
             }
           };

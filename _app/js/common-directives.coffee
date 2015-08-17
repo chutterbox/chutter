@@ -174,7 +174,12 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
     unless Object.prototype.toString.call( $scope.comment.children ) is '[object Array]'
       $scope.comment.children = []
     if $scope.comment && $scope.comment.children.length > 0
-      $compile('<comment class="child" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>') $scope, (cloned, scope) ->
+      $scope.comment.depth = $scope.comment.path.match(/[0-9]+/g).length
+      switch $scope.comment.depth
+        when 2,6,12 then $scope.comment.depthColor = 1
+        when 3,7,13 then $scope.comment.depthColor = 2
+        when 4,8,14 then $scope.comment.depthColor = 3
+      $compile('<comment class="child" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>') $scope, (cloned, scope) ->
          $element.append(cloned) 
     $scope.comment.elements = {}
     $scope.comment.element = $element[0]
@@ -193,12 +198,12 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
           $scope.comment.elements.collapsed.className = "collapsed active"
           _.each $scope.comment.childIds, (id) ->
             document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk"
-          $scope.comment.element.style.cssText = "height: 35px;"
+          $scope.comment.element.setAttribute("collapsed", true)
 
       else 
         $scope.comment.open = true
         window.requestAnimationFrame () ->
-          $scope.comment.element.style.cssText = ""
+          $scope.comment.element.setAttribute("collapsed", false)
           $scope.comment.elements.main.className = "main"
           $scope.comment.elements.collapsed.className = "collapsed"
           _.each $scope.comment.childIds, (id) ->

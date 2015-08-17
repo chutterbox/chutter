@@ -10,65 +10,64 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
 
   templateUrl: "../app/partials/shared/post.html"
 
-  link: (scope, element, attrs) ->
-    scope.post.elements = {}
-    scope.post.elements["post"] = element[0]
-    scope.post.toggled = false
+  link: ($scope, element, attrs) ->
+    $scope.post.elements = {}
+    $scope.post.elements["post"] = element[0]
+    $scope.post.toggled = false
     _.each element[0].children, (child) ->
-      scope.post.elements[child.className] = child
-    if scope.post.media.length > 0
-      scope.post.currentMedia = scope.post.media[0]
+      $scope.post.elements[child.className] = child
+    if $scope.post.media.length > 0
+      $scope.post.currentMedia = $scope.post.media[0]
     else
-      scope.post.currentMedia = {format: "body", body: scope.post.body}
+      $scope.post.currentMedia = {format: "body", body: $scope.post.body}
     
-    scope.post.elements.postcontent = scope.post.elements.main.children[0]
-    scope.post.elements.middle      = scope.post.elements.main.children[1] 
+    $scope.post.elements.postcontent = $scope.post.elements.main.children[0]
+    $scope.post.elements.middle      = $scope.post.elements.main.children[1] 
       
-    if scope.post.currentMedia
-      scope.post.elements.postcontent.style.backgroundImage = "url("+scope.post.currentMedia.thumbnail_link+")"
-      scope.post.elements.postcontent.style.backgroundSize = "cover"
-      if scope.post.currentMedia.format is "music"
-        scope.post.audio = new audio("#{scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
+    if $scope.post.currentMedia
+      $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
+      $scope.post.elements.postcontent.style.backgroundSize = "cover"
+      if $scope.post.currentMedia.format is "music"
+        $scope.post.audio = new audio("#{scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 
-    scope.$watch "post.zoomValue", (newVal, oldVal) ->
+    $scope.$watch "post.zoomValue", (newVal, oldVal) ->
       if newVal and newVal != oldVal
         if newVal is 0
           newVal = 1
         val = newVal/10
-        scope.post.elements.postcontent.style.cssText +=  
+        $scope.post.elements.postcontent.style.cssText +=  
           "transform: scale(#{val});-webkit-transform: scale(#{val});-moz-transform: scale(#{val});"
-        scope.post.elements.middle.style.cssText += 
+        $scope.post.elements.middle.style.cssText += 
           "transform: scale(#{1-val});-webkit-transform: scale(#{1-val});-moz-transform: scale(#{1-val});"
-        scope.setXTranslations()
-        if scope.post.currentMedia.format != "video" and (newVal > 1 and (!oldVal or oldVal <= 1))
+        $scope.setXTranslations()
+        if $scope.post.currentMedia.format != "video" and (newVal > 1 and (!oldVal or oldVal <= 1))
           #children[0] is always the image tag since we use ng-if to toggle between media types
           #this is needed in order to translate the ancestor divs by an additional amount since the
           #image will take up an unpredictable amount of vertical space.
-          scope.post.elements.postcontent.children[0].onload = () ->
+          $scope.post.elements.postcontent.children[0].onload = () ->
             setTimeout () ->
-              scope.$apply () -> 
-                scope.setXTranslations()
+              $scope.$apply () -> 
+                $scope.setXTranslations()
             , 350  
     
-    scope.$watch "post.toggled", (newVal) ->
+    $scope.$watch "post.toggled", (newVal) ->
         if newVal is true
           # mdContent = document.getElementById("content")
           #todo if mobile
-          # mdContent.scrollTop = scope.post.elements.post.offsetTop - (mdContent.clientHeight/3)
-          if scope.post.audio
-            scope.post.audio.play()
-        else if newVal is false and scope.post.audio
-          scope.post.audio.pause()
+          # mdContent.scrollTop = $scope.post.elements.post.offsetTop - (mdContent.clientHeight/3)
+          if $scope.post.audio
+            $scope.post.audio.play()
+        else if newVal is false and $scope.post.audio
+          $scope.post.audio.pause()
 
-
-    scope.setXTranslations = () ->
+    $scope.setXTranslations = () ->
       #check if it's an image
       #then check if the image tag is in dom (will be for values > 3)
       #check if image is finshed loading, if not, we can assume the lo-res version is still being shown
-      if scope.post.currentMedia.format != "video" and scope.post.zoomValue > 1 and scope.post.elements.postcontent.children[0].complete
-        xTranslation = (scope.post.elements.postcontent.children[0].offsetHeight * (scope.post.zoomValue/10)) - 100
+      if $scope.post.currentMedia.format != "video" and $scope.post.zoomValue > 1 and $scope.post.elements.postcontent.children[0].complete
+        xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue/10)) - 100
       else
-        xTranslation = (scope.post.elements.postcontent.offsetHeight * (scope.post.zoomValue/10)) - 100
+        xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue/10)) - 100
       $("#active-post ~ post").unwrap()
       $("#active-post ~ post").wrapAll "<div class='new-stuff' />"
       elm = $(".new-stuff")
@@ -80,29 +79,40 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
       #   if target.elements && target.elements.post
 
 
-    scope.post.updateVote = (vote) ->
-      if scope.post.vote == vote 
+    $scope.post.updateVote = (vote) ->
+      if $scope.post.vote == vote 
         vote = 0
-      scope.post.vote = vote
-      PostResource.vote({id: scope.post.id, vote: vote}) 
+      $scope.post.vote = vote
+      PostResource.vote({id: $scope.post.id, vote: vote}) 
+
+    $scope.post.toggleSave = () ->
+      if $scope.user and $scope.user.id
+        if $scope.post.saved
+          $scope.post.saved = false
+          PostResource.unsave({id: $scope.post.id})
+        else
+          $scope.post.saved = true
+          PostResource.save({id: $scope.post.id})
+      else
+        $scope.$emit ('auth:show-signin')
  
-    scope.post.toggle = (post) ->
-      preferredScaleValue = if scope.post.currentMedia.format is "music" then 4 else 5
+    $scope.post.toggle = (post) ->
+      preferredScaleValue = if $scope.post.currentMedia.format is "music" then 4 else 5
       #unzoom the zoomed post
-      if Page.selectedPost is scope.post
+      if Page.selectedPost is $scope.post
         if Page.selectedPost.zoomValue != 1
           Page.selectedPost.zoomValue = 1
           Page.selectedPost.toggled = false
           $("#active-post ~ post").unwrap()
 
-          scope.post.elements.post.id = ""
+          $scope.post.elements.post.id = ""
 
         
         else
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
           
-          scope.post.elements.post.id = "active-post"
+          $scope.post.elements.post.id = "active-post"
 
       else 
         #otherwise unzoom other post
@@ -111,21 +121,21 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
           Page.selectedPost.toggled = false
           $("#active-post ~ post").unwrap()
 
-          scope.post.elements.post.id = ""
+          $scope.post.elements.post.id = ""
 
           _.defer () ->
-              scope.post.zoomValue = preferredScaleValue
-              scope.$apply()
-          Page.selectedPost = scope.post
+              $scope.post.zoomValue = preferredScaleValue
+              $scope.$apply()
+          Page.selectedPost = $scope.post
           Page.selectedPost.toggled = true
-          scope.post.elements.post.id = "active-post"
+          $scope.post.elements.post.id = "active-post"
 
 
         else
-          Page.selectedPost = scope.post
+          Page.selectedPost = $scope.post
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
-          scope.post.elements.post.id = "active-post"
+          $scope.post.elements.post.id = "active-post"
 
 
   
@@ -133,6 +143,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
 
   controller: ["$scope", "$rootScope", "$mdBottomSheet", ($scope, $rootScope, $mdBottomSheet) ->
       $scope.user = $rootScope.user
+
       $scope.moderate = () ->
         if $scope.user.moderator
           $mdBottomSheet.show({

@@ -39,10 +39,27 @@
           url: API.makeURL('/posts/:id/ban'),
           method: 'POST'
         },
+        save: {
+          url: API.makeURL('/posts/:id/save'),
+          method: 'POST'
+        },
+        unsave: {
+          url: API.makeURL('/posts/:id/unsave'),
+          method: 'POST'
+        },
         notifications: {
           url: API.makeURL('/posts/:id/notifications'),
           method: 'GET',
           isArray: true
+        },
+        saved: {
+          url: API.makeURL('/posts/saved'),
+          isArray: true,
+          interceptor: {
+            'response': function(response) {
+              return Page.posts = response.data;
+            }
+          }
         }
       });
     }

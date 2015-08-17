@@ -29,8 +29,10 @@
         about 34 minutes ago
     .footer{layout: "row"}
       %a{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
-      %a{ng-click: "save()"}
+      %a{ng-if: "!post.saved", ng-click: "post.toggleSave()"}
         save
+      %a{ng-if: "post.saved", ng-click: "post.toggleSave()"}
+        unsave
       %a{ng-click: "report()"}
         report
       %a{ng-click: "moderate()", ng-if: "user && user.moderator"}

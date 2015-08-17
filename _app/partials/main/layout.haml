@@ -57,7 +57,7 @@
 
             
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.offset-toolbar.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
+    %md-content.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
       %ul.menu-nested-list.ng-cloak{flex: true}
         %li{ng-repeat: "network in page.networks | orderBy:'name'", ui-sref-active: "active"}
           %menu-toggle{ng-if: "true", network: "network"}

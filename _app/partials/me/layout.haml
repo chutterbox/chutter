@@ -1,48 +1,49 @@
-%md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
-  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-    .toolbar-container
-      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
-      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-        chutter
+%md-content{layout: "row", flex: true, layout-align: "end end"}
+  %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
+    .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
+      .toolbar-container
+        %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
+        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+          chutter
 
-      %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-        %i.fa.fa-list
-    %span{flex: true}
-    .toolbar-container{layout: "row", layout-align: "end end"}
-      %md-button{ng-click: "signIn()"}
-        Sign In
-  
-  .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-    .toolbar-container 
-      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
-      %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
-        %i.fa.fa-align-justify.fa-fw
-      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-        chutter
-    %span{flex: true}
-    .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-      %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
-        moderation
-      %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
-        management
-      %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
-      %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-        %i.fa.fa-envelope-o.fa-fw
-        %md-tooltip
-          Messages
-      %md-button{ng-click: "logout()", hide-sm: true}
-        %i.fa.fa-sign-out.fa-fw
-        %md-tooltip
-          Log out
-  .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-    .toolbar-container{layout: "row", layout-align: "center center"}
-      %p{ng-bind: "::user.username", flex: true}
+        %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+          %i.fa.fa-list
       %span{flex: true}
-    %span{flex: true}
-    .toolbar-container{layout: "row", layout-align: "center center"}
-%md-content{layout: "row", flex: true}
+      .toolbar-container{layout: "row", layout-align: "end end"}
+        %md-button{ng-click: "signIn()"}
+          Sign In
+    
+    .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
+      .toolbar-container 
+        %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+        %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
+          %i.fa.fa-align-justify.fa-fw
+        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+          chutter
+      %span{flex: true}
+      .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
+        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
+          moderation
+        %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
+          management
+        %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+        %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+          %i.fa.fa-envelope-o.fa-fw
+          %md-tooltip
+            Messages
+        %md-button{ng-click: "logout()", hide-sm: true}
+          %i.fa.fa-sign-out.fa-fw
+          %md-tooltip
+            Log out
+    .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
+      .toolbar-container{layout: "row", layout-align: "center center"}
+        %p{ng-bind: "::user.username", flex: true}
+        %span{flex: true}
+      %span{flex: true}
+      .toolbar-container{layout: "row", layout-align: "center center"}
+
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.nav-menu#scrolly-left
+    %md-content.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
       %md-list.nav-list
         %md-list-item
           %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
@@ -69,9 +70,9 @@
             %i.fa.fa-line-chart.fa-fw
             Stats            
   %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
-    %ui-view{layout-fill: "true", layout: "column"}
-    %media-player#player{layout: "column"}
+    %ui-view{layout: "column", layout-fill: "true"}
+    %media-controls#media-controls{layout: "column"}
 
-  %md-sidenav.md-sidenav-right.gray#right-rail{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content#scrolly-right
+  %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+    %md-content
       %div{layout: "column", ui-view: "right-rail"}

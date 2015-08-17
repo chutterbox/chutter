@@ -20,10 +20,21 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
     ban:
       url: API.makeURL('/posts/:id/ban')
       method: 'POST'
+    save: 
+      url: API.makeURL('/posts/:id/save')
+      method: 'POST'     
+    unsave: 
+      url: API.makeURL('/posts/:id/unsave')
+      method: 'POST'  
     notifications:
       url: API.makeURL('/posts/:id/notifications')
       method: 'GET'
       isArray: true
+    saved:
+      url: API.makeURL('/posts/saved')
+      isArray: true
+      interceptor: 'response': (response) ->
+        Page.posts = response.data
 ]
 
 app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->

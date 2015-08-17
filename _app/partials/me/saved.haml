@@ -1,5 +1,22 @@
-%md-toolbar.md-hue-2
+%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
   .md-toolbar-tools
-    .toolbar-container
-      Saved
-    %span{flex: true}
+    %md-tabs.md-primary.md-hue-2
+      %md-tab{ui-sref: "home.saved_posts.all"}
+        %md-tab-label
+          all
+      %md-tab{ui-sref: "home.saved_posts.filtered({format: 'image'})"}
+        %md-tab-label
+          image
+      %md-tab{ui-sref: "home.saved_posts.filtered({format: 'video'})"}
+        %md-tab-label
+          video
+      %md-tab{ui-sref: "home.saved_posts.filtered({format: 'music'})"}
+        %md-tab-label
+          music
+      %md-tab{ui-sref: "home.saved_posts.filtered({format: 'webpage'})"}
+        %md-tab-label
+          webpage  
+      %md-tab{ui-sref: "home.saved_posts.filtered({format: 'disucssion'})"}
+        %md-tab-label
+          discussion          
+%md-content{ui-view: "posts"}

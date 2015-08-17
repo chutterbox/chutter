@@ -12,114 +12,131 @@
           postIndex: "="
         },
         templateUrl: "../app/partials/shared/post.html",
-        link: function(scope, element, attrs) {
-          scope.post.elements = {};
-          scope.post.elements["post"] = element[0];
-          scope.post.toggled = false;
+        link: function($scope, element, attrs) {
+          $scope.post.elements = {};
+          $scope.post.elements["post"] = element[0];
+          $scope.post.toggled = false;
           _.each(element[0].children, function(child) {
-            return scope.post.elements[child.className] = child;
+            return $scope.post.elements[child.className] = child;
           });
-          if (scope.post.media.length > 0) {
-            scope.post.currentMedia = scope.post.media[0];
+          if ($scope.post.media.length > 0) {
+            $scope.post.currentMedia = $scope.post.media[0];
           } else {
-            scope.post.currentMedia = {
+            $scope.post.currentMedia = {
               format: "body",
-              body: scope.post.body
+              body: $scope.post.body
             };
           }
-          scope.post.elements.postcontent = scope.post.elements.main.children[0];
-          scope.post.elements.middle = scope.post.elements.main.children[1];
-          if (scope.post.currentMedia) {
-            scope.post.elements.postcontent.style.backgroundImage = "url(" + scope.post.currentMedia.thumbnail_link + ")";
-            scope.post.elements.postcontent.style.backgroundSize = "cover";
-            if (scope.post.currentMedia.format === "music") {
-              scope.post.audio = new audio(scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
+          $scope.post.elements.postcontent = $scope.post.elements.main.children[0];
+          $scope.post.elements.middle = $scope.post.elements.main.children[1];
+          if ($scope.post.currentMedia) {
+            $scope.post.elements.postcontent.style.backgroundImage = "url(" + $scope.post.currentMedia.thumbnail_link + ")";
+            $scope.post.elements.postcontent.style.backgroundSize = "cover";
+            if ($scope.post.currentMedia.format === "music") {
+              $scope.post.audio = new audio(scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
             }
           }
-          scope.$watch("post.zoomValue", function(newVal, oldVal) {
+          $scope.$watch("post.zoomValue", function(newVal, oldVal) {
             var val;
             if (newVal && newVal !== oldVal) {
               if (newVal === 0) {
                 newVal = 1;
               }
               val = newVal / 10;
-              scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + ");-moz-transform: scale(" + val + ");";
-              scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
-              scope.setXTranslations();
-              if (scope.post.currentMedia.format !== "video" && (newVal > 1 && (!oldVal || oldVal <= 1))) {
-                return scope.post.elements.postcontent.children[0].onload = function() {
+              $scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + ");-moz-transform: scale(" + val + ");";
+              $scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
+              $scope.setXTranslations();
+              if ($scope.post.currentMedia.format !== "video" && (newVal > 1 && (!oldVal || oldVal <= 1))) {
+                return $scope.post.elements.postcontent.children[0].onload = function() {
                   return setTimeout(function() {
-                    return scope.$apply(function() {
-                      return scope.setXTranslations();
+                    return $scope.$apply(function() {
+                      return $scope.setXTranslations();
                     });
                   }, 350);
                 };
               }
             }
           });
-          scope.$watch("post.toggled", function(newVal) {
+          $scope.$watch("post.toggled", function(newVal) {
             if (newVal === true) {
-              if (scope.post.audio) {
-                return scope.post.audio.play();
+              if ($scope.post.audio) {
+                return $scope.post.audio.play();
               }
-            } else if (newVal === false && scope.post.audio) {
-              return scope.post.audio.pause();
+            } else if (newVal === false && $scope.post.audio) {
+              return $scope.post.audio.pause();
             }
           });
-          scope.setXTranslations = function() {
+          $scope.setXTranslations = function() {
             var elm, xTranslation;
-            if (scope.post.currentMedia.format !== "video" && scope.post.zoomValue > 1 && scope.post.elements.postcontent.children[0].complete) {
-              xTranslation = (scope.post.elements.postcontent.children[0].offsetHeight * (scope.post.zoomValue / 10)) - 100;
+            if ($scope.post.currentMedia.format !== "video" && $scope.post.zoomValue > 1 && $scope.post.elements.postcontent.children[0].complete) {
+              xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue / 10)) - 100;
             } else {
-              xTranslation = (scope.post.elements.postcontent.offsetHeight * (scope.post.zoomValue / 10)) - 100;
+              xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue / 10)) - 100;
             }
             $("#active-post ~ post").unwrap();
             $("#active-post ~ post").wrapAll("<div class='new-stuff' />");
             elm = $(".new-stuff");
             return elm[0].style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
           };
-          scope.post.updateVote = function(vote) {
-            if (scope.post.vote === vote) {
+          $scope.post.updateVote = function(vote) {
+            if ($scope.post.vote === vote) {
               vote = 0;
             }
-            scope.post.vote = vote;
+            $scope.post.vote = vote;
             return PostResource.vote({
-              id: scope.post.id,
+              id: $scope.post.id,
               vote: vote
             });
           };
-          return scope.post.toggle = function(post) {
+          $scope.post.toggleSave = function() {
+            if ($scope.user && $scope.user.id) {
+              if ($scope.post.saved) {
+                $scope.post.saved = false;
+                return PostResource.unsave({
+                  id: $scope.post.id
+                });
+              } else {
+                $scope.post.saved = true;
+                return PostResource.save({
+                  id: $scope.post.id
+                });
+              }
+            } else {
+              return $scope.$emit('auth:show-signin');
+            }
+          };
+          return $scope.post.toggle = function(post) {
             var preferredScaleValue;
-            preferredScaleValue = scope.post.currentMedia.format === "music" ? 4 : 5;
-            if (Page.selectedPost === scope.post) {
+            preferredScaleValue = $scope.post.currentMedia.format === "music" ? 4 : 5;
+            if (Page.selectedPost === $scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {
                 Page.selectedPost.zoomValue = 1;
                 Page.selectedPost.toggled = false;
                 $("#active-post ~ post").unwrap();
-                return scope.post.elements.post.id = "";
+                return $scope.post.elements.post.id = "";
               } else {
                 Page.selectedPost.zoomValue = preferredScaleValue;
                 Page.selectedPost.toggled = true;
-                return scope.post.elements.post.id = "active-post";
+                return $scope.post.elements.post.id = "active-post";
               }
             } else {
               if (Page.selectedPost) {
                 Page.selectedPost.zoomValue = 1;
                 Page.selectedPost.toggled = false;
                 $("#active-post ~ post").unwrap();
-                scope.post.elements.post.id = "";
+                $scope.post.elements.post.id = "";
                 _.defer(function() {
-                  scope.post.zoomValue = preferredScaleValue;
-                  return scope.$apply();
+                  $scope.post.zoomValue = preferredScaleValue;
+                  return $scope.$apply();
                 });
-                Page.selectedPost = scope.post;
+                Page.selectedPost = $scope.post;
                 Page.selectedPost.toggled = true;
-                return scope.post.elements.post.id = "active-post";
+                return $scope.post.elements.post.id = "active-post";
               } else {
-                Page.selectedPost = scope.post;
+                Page.selectedPost = $scope.post;
                 Page.selectedPost.zoomValue = preferredScaleValue;
                 Page.selectedPost.toggled = true;
-                return scope.post.elements.post.id = "active-post";
+                return $scope.post.elements.post.id = "active-post";
               }
             }
           };

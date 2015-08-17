@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var commentNotifications, conversationCompose, conversationContent, conversations, dashboard, home, notificationSubscriptions, postNotifications, preferences, saved, stats, submissions, view_url;
+      var commentNotifications, conversationCompose, conversationContent, conversations, dashboard, home, notificationSubscriptions, postNotifications, preferences, saved_posts, saved_posts_all, saved_posts_filtered, stats, submissions, view_url;
       view_url = "../app/partials/me";
       home = {
         name: "home",
@@ -128,11 +128,48 @@
           }
         }
       };
-      saved = {
-        name: "home.saved",
-        url: "/saved",
-        templateUrl: view_url + "/saved.html",
-        controller: "savedCtrl"
+      saved_posts = {
+        name: "home.saved_posts",
+        url: "/saved/posts/",
+        templateUrl: view_url + "/saved.html"
+      };
+      saved_posts_filtered = {
+        name: "home.saved_posts.filtered",
+        url: ":format",
+        views: {
+          "posts": {
+            controller: "savedCtrl",
+            template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>',
+            resolve: {
+              Posts: [
+                "PostResource", "$stateParams", function(PostResource, $stateParams) {
+                  return PostResource.saved({
+                    format: $stateParams.format
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      saved_posts_all = {
+        name: "home.saved_posts.all",
+        url: "^/saved/posts",
+        views: {
+          "posts": {
+            controller: "savedCtrl",
+            template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>',
+            resolve: {
+              Posts: [
+                "PostResource", "$stateParams", function(PostResource, $stateParams) {
+                  return PostResource.saved({
+                    format: $stateParams.format
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
       };
       preferences = {
         name: "home.preferences",
@@ -171,8 +208,9 @@
       $stateProvider.state(notificationSubscriptions);
       $stateProvider.state(postNotifications);
       $stateProvider.state(commentNotifications);
-      $stateProvider.state(saved);
-      $stateProvider.state(preferences);
+      $stateProvider.state(saved_posts);
+      $stateProvider.state(saved_posts_filtered);
+      $stateProvider.state(saved_posts_all);
       $stateProvider.state(stats);
       return $stateProvider.state(submissions);
     }

@@ -92,12 +92,36 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Notifications: ["Page", "CommentResource", "$stateParams", (Page, CommentResource, $stateParams) ->
               CommentResource.notifications({id: $stateParams.id}).$promise
             ]
-    saved =
-      name: "home.saved"
-      url: "/saved"
+    saved_posts =
+      name: "home.saved_posts"
+      url: "/saved/posts/"
       templateUrl: "#{view_url}/saved.html"
-      controller: "savedCtrl"  
     
+
+
+    saved_posts_filtered = 
+      name: "home.saved_posts.filtered"
+      url: ":format"
+      views:
+        "posts":
+          controller: "savedCtrl"
+          template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>'
+          resolve:
+            Posts: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
+              PostResource.saved({format: $stateParams.format}).$promise
+            ]
+
+    saved_posts_all = 
+      name: "home.saved_posts.all"
+      url: "^/saved/posts"
+      views:
+        "posts":
+          controller: "savedCtrl"
+          template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>'
+          resolve:
+            Posts: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
+              PostResource.saved({format: $stateParams.format}).$promise
+            ]
     preferences =
       name: "home.preferences"
       url: "/preferences"
@@ -122,6 +146,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/stats"
       templateUrl: "#{view_url}/stats.html"
       controller: "savedCtrl"      
+    
     $stateProvider.state(home)
     $stateProvider.state(dashboard)
     $stateProvider.state(conversations)
@@ -130,8 +155,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(notificationSubscriptions)
     $stateProvider.state(postNotifications)
     $stateProvider.state(commentNotifications)
-    $stateProvider.state(saved)
-    $stateProvider.state(preferences)
+    $stateProvider.state(saved_posts)
+    $stateProvider.state(saved_posts_filtered)
+    $stateProvider.state(saved_posts_all)
     $stateProvider.state(stats)
     $stateProvider.state(submissions)
 

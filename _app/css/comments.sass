@@ -1,24 +1,30 @@
 .comment-page
   padding: 15px
 #comments
-  margin-top: 30px
+  overflow: scroll
+  padding-top: 20px
+  height: 100%
   md-backdrop
     display: none
-  
+
 #reply
   height: 90%
   max-height: 550px
 
+#comment-toolbar
+  position: relative
+  md-tabs .md-tab
+    color: #f3f3f3
+  .comments
+    margin-right: calc(2.5% - 16px)
 
 comment,
 comment-embed
-  width: 95%
-  margin: auto
-  border-left: 1px solid #ddd
+  width: 98.5%
+  margin-left: 1.5%
   -webkit-transform-style: preserve-3d
   transform-style: preserve-3d
   -moz-transform-style: preserve-3d
-
   -webkit-transform: scale(1)
   -moz-transform: scale(1)
   transform: scale(1)
@@ -43,6 +49,7 @@ comment-embed
   -webkit-transform-origin: top left
   -moz-transform-origin: top left
   .collapse-toggle
+    font-size: 10px
     width: 100%
     margin: 0
     padding: 0
@@ -50,36 +57,97 @@ comment-embed
     line-height: inherit
     min-height: 20px
 
+  .content
+    margin: 5px 5px 0
+    
   .vote
+    margin-top: 5px
     min-height: 85px
-    max-height: 85px
+    max-height: 100%
+    height: inherit // Chrome layout-fill fix @/angular/material/issues/2058
     max-width: 3%
     .md-button
-      min-width: 100%
-      padding: 0
-      margin: 0
-
-
-  .header,
-  .vote
-    .username
-      font-weight: 500
-      padding-left: 4px
-    height: 25px
-    button.md-button
-      line-height: 25px
+      line-height: 30px
       padding: 0 !important
       margin: 0 !important
-      min-height: 25px
-      height: 25px
+      max-height: 30px
+      min-height: 30px
+      height: 30px
       min-width: 15px
-      span
-        height: 100%
-        width: 25px
 
-comment
+  //Colored borders showing hierarchy
+  .border
+    width: 6px
+    height: 100%
+    position: absolute
+    cursor: pointer
+    padding: 0 2px
+    .line
+      width: 2px
+      height: 100%
+      opacity: 0.5
+      margin: auto
+
+  >.border
+    >.line
+      background: #f44336
+  &[color='1']
+    >.border
+      >.line
+        background: #3f51b5
+  &[color='2']
+    >.border
+      >.line
+        background: #ffc107
+  &[color='3']
+    >.border
+      >.line
+        background: #4caf50
+
+  .border:hover
+    >.line
+      background: #3f3f3f
   .main
-    margin-bottom: 30px
+    .body
+      margin: 0 5px
+      h1,h3,h4,h5,h6,p,li,blockquote
+        font-size: 14px
+
+  .header
+    height: 25px
+    .time,
+    .points
+      color: #bdbdbd
+      font-size: 0.6em
+    .username
+      font-size: 0.8em
+      font-weight: bold
+      padding-left: 4px
+      cursor: pointer
+    .points
+      margin-left: 10px
+      line-height: 25px
+    .time
+      margin-right: 10px
+
+  &[collapsed="true"]
+    height: 48px
+    margin: 5px 0px 10px auto
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 5px
+    .header
+      height: 48px
+    .username,
+    .points,
+    .time
+      line-height: 48px
+      margin-right: 1%
+
+  .main
+    margin-left: 10px
+    margin-bottom: 15px
+    float: left
+    border-top: 1px solid #F3F3F3
+
 .collapsed
   transform-origin: top left
   -webkit-transform-origin: top left
@@ -102,32 +170,56 @@ comment
     transform:  scale(1,1)
     -webkit-transform: scale(1,1)
     -moz-transform: scale(1,1)
-comment
-  .main
-    transform-origin: top left
-    -webkit-transform-origin: top left
-    -moz-transform-origin: top left
 
-    -webkit-transform: scale(1)
-    -moz-transform: scale(1)
-    transform: scale(1)
+.main
+  transform-origin: top left
+  -webkit-transform-origin: top left
+  -moz-transform-origin: top left
 
+  -webkit-transform: scale(1)
+  -moz-transform: scale(1)
+  transform: scale(1)
 
-    -webkit-transition: all 200ms ease-in-out
-    -moz-transition: all 200ms ease-in-out
-    -webkit-transition: all 200ms ease-in-out
-    
-    &.active
-      -webkit-transform: scale(0)
-      -moz-transform: scale(0)
-      transform: scale(0)
-    .footer
-      a
-        color: #bbb
-        margin-right: 6px
+  -webkit-transition: all 200ms ease-in-out
+  -moz-transition: all 200ms ease-in-out
 
-  .reply
-    .body
-      textarea
-        background-color: #f5f5f5
-    .footer
+  &.active
+    -webkit-transform: scale(0)
+    -moz-transform: scale(0)
+    transform: scale(0)
+  .footer
+    height: 25px
+    a
+      font-size: 12px
+      color: #bbb
+      margin-right: 6px
+      cursor: pointer
+
+.reply
+  .body
+    textarea
+      background-color: #f5f5f5
+  .footer
+
+//Style first comment different (card style)
+#comments > comment
+  width: 95%
+  margin: 10px auto auto
+  border-radius: 2px
+  background-color: #FFF
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16)
+  >.main
+    border-top: none
+
+  &:last-of-type
+    margin-bottom: 40px
+
+.post-comment
+  position: fixed
+  margin-right: 312px
+  bottom: 10px
+  right: 10px
+@media (max-width: 1200px)
+  .post-comment
+    margin-right: 0px
+    right: 20px

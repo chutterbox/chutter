@@ -192,7 +192,24 @@
             $scope.comment.children = [];
           }
           if ($scope.comment && $scope.comment.children.length > 0) {
-            $compile('<comment class="child" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>')($scope, function(cloned, scope) {
+            $scope.comment.depth = $scope.comment.path.match(/[0-9]+/g).length;
+            switch ($scope.comment.depth) {
+              case 2:
+              case 6:
+              case 12:
+                $scope.comment.depthColor = 1;
+                break;
+              case 3:
+              case 7:
+              case 13:
+                $scope.comment.depthColor = 2;
+                break;
+              case 4:
+              case 8:
+              case 14:
+                $scope.comment.depthColor = 3;
+            }
+            $compile('<comment class="child" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>')($scope, function(cloned, scope) {
               return $element.append(cloned);
             });
           }
@@ -215,12 +232,12 @@
                 _.each($scope.comment.childIds, function(id) {
                   return document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk";
                 });
-                return $scope.comment.element.style.cssText = "height: 35px;";
+                return $scope.comment.element.setAttribute("collapsed", true);
               });
             } else {
               $scope.comment.open = true;
               return window.requestAnimationFrame(function() {
-                $scope.comment.element.style.cssText = "";
+                $scope.comment.element.setAttribute("collapsed", false);
                 $scope.comment.elements.main.className = "main";
                 $scope.comment.elements.collapsed.className = "collapsed";
                 return _.each($scope.comment.childIds, function(id) {

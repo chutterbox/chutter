@@ -1,26 +1,40 @@
+.border{ng-click: "toggle()"}
+  .line
 .collapsed{layout-fill: true, layout: "column"}
-  .header
+  .header{layout: "row"}
     %md-button.md-button-toggle{aria-label: "toggle comment"}
       %span.md-toggle-icon{ng-click: "toggle()"}
         %i.fa.fa-plus.fa-fw
-    %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+    %span
+      %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+      %span.points{ng-bind: "comment.points + ' points'"}
+    %span{flex: true}
+    %span.time{layout-align: "end"} 42 minutes ago
 
 .main{layout: "row"} 
   .vote{layout: "column", layout-fill: true}
-    %md-button.md-button-toggle{aria-label: "toggle comment"}
-      %span{ng-click: "toggle()"}
-        %i.fa.fa-minus.fa-fw    
-    %md-button{flex: true, aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
+    %md-button{flex: "30", aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
       %i.fa.fa-caret-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
-    %md-button{flex: true, aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
+    %md-button{flex: "30", aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
       %i.fa.fa-caret-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
-  .content{flex: "75", layout: "column"}
-    .header
-      %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
-    .body{marked: "comment.body"}
+    %span{flex: true}
+    %md-button.md-button-toggle{flex: "30",aria-label: "toggle comment", layout-align: "end center"}
+      %span{ng-click: "toggle()"}
+        %i.fa.fa-minus.fa-fw
+  .content{layout: "column", layout-fill: true}
+    .header{layout: "row"}
+      .wrap
+        %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+        %span.points{ng-bind: "comment.points + ' points'"}
+      %span{flex: true}
+      %span.time{layout-align: "end"} 42 minutes ago
+    .body.md-body-2{marked: "comment.body"}
     .footer
       %a{ng-click: "reply()"}
         Reply
+      %a
+        Save
+      %a
+        Flag
       %a{ng-click: "resource.delete({id: post.id})"}
         Delete
-  .options{flex: "5"}

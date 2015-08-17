@@ -34,6 +34,12 @@ app.factory "MediaControls", [ ->
   new MediaControls
 ]
 
+app.factory "WrapperDiv", [ ->
+  () -> 
+    div = document.createElement("div")
+    div.id = "under-active-post-wrapper"
+    return div
+]
 app.factory "CommunityRule", [ ->
   return () ->
     {

@@ -2,7 +2,7 @@
 
 app = angular.module("Chutter")
 
-app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$document", (MediaControls, PostResource, Page, audio, $document) ->
+app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "WrapperDiv", (MediaControls, PostResource, Page, audio, WrapperDiv) ->
   restrict: "E"
   scope: 
     post: "="
@@ -35,10 +35,20 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
         if newVal is 0
           newVal = 1
         val = newVal/10
-        $scope.post.elements.postcontent.style.cssText +=  
-          "transform: scale(#{val});-webkit-transform: scale(#{val});-moz-transform: scale(#{val});"
-        $scope.post.elements.middle.style.cssText += 
-          "transform: scale(#{1-val});-webkit-transform: scale(#{1-val});-moz-transform: scale(#{1-val});"
+
+        #if the post is being zoomed up, beyond 2, wrap its ancestors in a div
+        if $scope.post.toggled and oldVal != newVal
+          $scope.wrapperDiv = new WrapperDiv
+          elms = _.rest(Page.posts, $scope.postIndex + 1).map (post) ->
+            $scope.wrapperDiv.appendChild(post.elements.post)
+          $scope.post.elements.post.parentNode.insertBefore($scope.wrapperDiv, $scope.post.elements.post.nextSibling)
+
+        window.requestAnimationFrame () ->
+          $scope.post.elements.postcontent.style.cssText +=  
+            "transform: scale(#{val});-webkit-transform: scale(#{val});-moz-transform: scale(#{val});"
+          $scope.post.elements.middle.style.cssText += 
+            "transform: scale(#{1-val});-webkit-transform: scale(#{1-val});-moz-transform: scale(#{1-val});"
+        
         $scope.setXTranslations()
         if $scope.post.currentMedia.format != "video" and (newVal > 1 and (!oldVal or oldVal <= 1))
           #children[0] is always the image tag since we use ng-if to toggle between media types
@@ -68,15 +78,11 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
         xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue/10)) - 100
       else
         xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue/10)) - 100
-      $("#active-post ~ post").unwrap()
-      $("#active-post ~ post").wrapAll "<div class='new-stuff' />"
-      elm = $(".new-stuff")
-      elm[0].style.cssText += 
-        "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px);"
+      
+      window.requestAnimationFrame () ->
+        $scope.wrapperDiv.style.cssText += 
+          "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px);"
   
-      # targets = Page.posts
-      # _.each(targets.slice(scope.postIndex+1), (target) -> 
-      #   if target.elements && target.elements.post
 
 
     $scope.post.updateVote = (vote) ->
@@ -103,39 +109,30 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
         if Page.selectedPost.zoomValue != 1
           Page.selectedPost.zoomValue = 1
           Page.selectedPost.toggled = false
-          $("#active-post ~ post").unwrap()
-
-          $scope.post.elements.post.id = ""
-
-        
         else
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
-          
-          $scope.post.elements.post.id = "active-post"
-
       else 
         #otherwise unzoom other post
         if Page.selectedPost
-          Page.selectedPost.zoomValue = 1
+          #wrap new post contents
+          if Page.selectedPost.wrapperDiv
+            range = document.createRange()
+            range.selectNodeContents(Page.selectedPost.wrapperDiv)
+            frag = range.extractContents()
+            Page.selectedPost.wrapperDiv.parentNode.replaceChild(frag, Page.selectedPost.wrapperDiv)
+
           Page.selectedPost.toggled = false
-          $("#active-post ~ post").unwrap()
-
-          $scope.post.elements.post.id = ""
-
-          _.defer () ->
-              $scope.post.zoomValue = preferredScaleValue
-              $scope.$apply()
+          Page.selectedPost.zoomValue = 1
+          $scope.post.zoomValue = preferredScaleValue
           Page.selectedPost = $scope.post
           Page.selectedPost.toggled = true
-          $scope.post.elements.post.id = "active-post"
 
 
         else
           Page.selectedPost = $scope.post
           Page.selectedPost.zoomValue = preferredScaleValue
           Page.selectedPost.toggled = true
-          $scope.post.elements.post.id = "active-post"
 
 
   

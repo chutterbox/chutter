@@ -33,7 +33,7 @@
             $scope.post.elements.postcontent.style.backgroundImage = "url(" + $scope.post.currentMedia.thumbnail_link + ")";
             $scope.post.elements.postcontent.style.backgroundSize = "cover";
             if ($scope.post.currentMedia.format === "music") {
-              $scope.post.audio = new audio(scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
+              $scope.post.audio = new audio($scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
             }
           }
           $scope.$watch("post.zoomValue", function(newVal, oldVal) {

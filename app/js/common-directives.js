@@ -92,12 +92,12 @@
             if ($scope.user && $scope.user.id) {
               if ($scope.post.saved) {
                 $scope.post.saved = false;
-                return PostResource.unsave({
+                return PostResource.unsave_post({
                   id: $scope.post.id
                 });
               } else {
                 $scope.post.saved = true;
-                return PostResource.save({
+                return PostResource.save_post({
                   id: $scope.post.id
                 });
               }

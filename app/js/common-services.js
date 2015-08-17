@@ -39,11 +39,11 @@
           url: API.makeURL('/posts/:id/ban'),
           method: 'POST'
         },
-        save: {
+        save_post: {
           url: API.makeURL('/posts/:id/save'),
           method: 'POST'
         },
-        unsave: {
+        unsave_post: {
           url: API.makeURL('/posts/:id/unsave'),
           method: 'POST'
         },

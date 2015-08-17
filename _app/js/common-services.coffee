@@ -20,10 +20,11 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
     ban:
       url: API.makeURL('/posts/:id/ban')
       method: 'POST'
-    save: 
+    #regular save is reserved for #create
+    save_post: 
       url: API.makeURL('/posts/:id/save')
       method: 'POST'     
-    unsave: 
+    unsave_post: 
       url: API.makeURL('/posts/:id/unsave')
       method: 'POST'  
     notifications:

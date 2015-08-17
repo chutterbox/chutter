@@ -89,10 +89,10 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "$docum
       if $scope.user and $scope.user.id
         if $scope.post.saved
           $scope.post.saved = false
-          PostResource.unsave({id: $scope.post.id})
+          PostResource.unsave_post({id: $scope.post.id})
         else
           $scope.post.saved = true
-          PostResource.save({id: $scope.post.id})
+          PostResource.save_post({id: $scope.post.id})
       else
         $scope.$emit ('auth:show-signin')
  

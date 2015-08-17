@@ -4,7 +4,7 @@
   app = angular.module("Chutter");
 
   app.directive('post', [
-    "MediaControls", "PostResource", "Page", "audio", "$document", function(MediaControls, PostResource, Page, audio, $document) {
+    "MediaControls", "PostResource", "Page", "audio", "WrapperDiv", function(MediaControls, PostResource, Page, audio, WrapperDiv) {
       return {
         restrict: "E",
         scope: {
@@ -37,14 +37,23 @@
             }
           }
           $scope.$watch("post.zoomValue", function(newVal, oldVal) {
-            var val;
+            var elms, val;
             if (newVal && newVal !== oldVal) {
               if (newVal === 0) {
                 newVal = 1;
               }
               val = newVal / 10;
-              $scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + ");-moz-transform: scale(" + val + ");";
-              $scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
+              if ($scope.post.toggled && oldVal !== newVal) {
+                $scope.wrapperDiv = new WrapperDiv;
+                elms = _.rest(Page.posts, $scope.postIndex + 1).map(function(post) {
+                  return $scope.wrapperDiv.appendChild(post.elements.post);
+                });
+                $scope.post.elements.post.parentNode.insertBefore($scope.wrapperDiv, $scope.post.elements.post.nextSibling);
+              }
+              window.requestAnimationFrame(function() {
+                $scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + ");-moz-transform: scale(" + val + ");";
+                return $scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
+              });
               $scope.setXTranslations();
               if ($scope.post.currentMedia.format !== "video" && (newVal > 1 && (!oldVal || oldVal <= 1))) {
                 return $scope.post.elements.postcontent.children[0].onload = function() {
@@ -67,16 +76,15 @@
             }
           });
           $scope.setXTranslations = function() {
-            var elm, xTranslation;
+            var xTranslation;
             if ($scope.post.currentMedia.format !== "video" && $scope.post.zoomValue > 1 && $scope.post.elements.postcontent.children[0].complete) {
               xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue / 10)) - 100;
             } else {
               xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue / 10)) - 100;
             }
-            $("#active-post ~ post").unwrap();
-            $("#active-post ~ post").wrapAll("<div class='new-stuff' />");
-            elm = $(".new-stuff");
-            return elm[0].style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
+            return window.requestAnimationFrame(function() {
+              return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
+            });
           };
           $scope.post.updateVote = function(vote) {
             if ($scope.post.vote === vote) {
@@ -106,37 +114,33 @@
             }
           };
           return $scope.post.toggle = function(post) {
-            var preferredScaleValue;
+            var frag, preferredScaleValue, range;
             preferredScaleValue = $scope.post.currentMedia.format === "music" ? 4 : 5;
             if (Page.selectedPost === $scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {
                 Page.selectedPost.zoomValue = 1;
-                Page.selectedPost.toggled = false;
-                $("#active-post ~ post").unwrap();
-                return $scope.post.elements.post.id = "";
+                return Page.selectedPost.toggled = false;
               } else {
                 Page.selectedPost.zoomValue = preferredScaleValue;
-                Page.selectedPost.toggled = true;
-                return $scope.post.elements.post.id = "active-post";
+                return Page.selectedPost.toggled = true;
               }
             } else {
               if (Page.selectedPost) {
-                Page.selectedPost.zoomValue = 1;
+                if (Page.selectedPost.wrapperDiv) {
+                  range = document.createRange();
+                  range.selectNodeContents(Page.selectedPost.wrapperDiv);
+                  frag = range.extractContents();
+                  Page.selectedPost.wrapperDiv.parentNode.replaceChild(frag, Page.selectedPost.wrapperDiv);
+                }
                 Page.selectedPost.toggled = false;
-                $("#active-post ~ post").unwrap();
-                $scope.post.elements.post.id = "";
-                _.defer(function() {
-                  $scope.post.zoomValue = preferredScaleValue;
-                  return $scope.$apply();
-                });
+                Page.selectedPost.zoomValue = 1;
+                $scope.post.zoomValue = preferredScaleValue;
                 Page.selectedPost = $scope.post;
-                Page.selectedPost.toggled = true;
-                return $scope.post.elements.post.id = "active-post";
+                return Page.selectedPost.toggled = true;
               } else {
                 Page.selectedPost = $scope.post;
                 Page.selectedPost.zoomValue = preferredScaleValue;
-                Page.selectedPost.toggled = true;
-                return $scope.post.elements.post.id = "active-post";
+                return Page.selectedPost.toggled = true;
               }
             }
           };

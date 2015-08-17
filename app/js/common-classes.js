@@ -67,6 +67,17 @@
     }
   ]);
 
+  app.factory("WrapperDiv", [
+    function() {
+      return function() {
+        var div;
+        div = document.createElement("div");
+        div.id = "under-active-post-wrapper";
+        return div;
+      };
+    }
+  ]);
+
   app.factory("CommunityRule", [
     function() {
       return function() {

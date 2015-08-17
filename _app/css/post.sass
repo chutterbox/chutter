@@ -1,7 +1,18 @@
 @import 'chutter'
 
+@mixin post-transform-animation 
+  transform: translate3d(0,0,0)
+  -webkit-transform: translate3d(0,0,0)
+  -moz-transform: translate3d(0,0,0)
+  transition: transform 250ms ease-out
+  -moz-transition: transform 250ms ease-out
+  -webkit-transition: transform 250ms ease-out
+
 md-list#posts 
   padding-top: 0
+#under-active-post-wrapper
+  @include post-transform-animation
+
 .post
   position: relative
   padding: 0.5vw 0
@@ -10,10 +21,6 @@ md-list#posts
   height: $four-three-height-scaled + 1vw
   @media(max-width: 960px) 
     height: calc(100vw * (0.075 * 2))
-
-  transition: transform 250ms ease-out
-  -moz-transition: transform 250ms ease-out
-  -webkit-transition: transform 250ms ease-out
   .postcontrols 
     position: absolute
     left: 0
@@ -25,13 +32,15 @@ md-list#posts
         color: #fff
   .postcontent
     height: $four-three-height
+    img
+      width: $four-three-width
+      position: absolute
+      top: 0
   .postcontent,
   .middle
     width:  $four-three-width
     position: absolute
-    transition: transform 250ms ease-out
-    -moz-transition: transform 250ms ease-out
-    -webkit-transition: transform 250ms ease-out
+    @include post-transform-animation
     @media(max-width: 960px) 
       width: 100vw
       height: 75vw 

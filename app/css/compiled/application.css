@@ -7851,15 +7851,20 @@ post {
 md-list#posts {
   padding-top: 0; }
 
+#under-active-post-wrapper {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transition: transform 250ms ease-out;
+  -moz-transition: transform 250ms ease-out;
+  -webkit-transition: transform 250ms ease-out; }
+
 .post {
   position: relative;
   padding: 0.5vw 0;
   z-index: 21;
   width: 64vw;
-  height: 5.35vw;
-  transition: transform 250ms ease-out;
-  -moz-transition: transform 250ms ease-out;
-  -webkit-transition: transform 250ms ease-out; }
+  height: 5.35vw; }
 @media(max-width: 960px) {
   .post {
     height: calc(100vw * (0.075 * 2)); } }
@@ -7873,10 +7878,17 @@ md-list#posts {
       color: #fff; }
   .post .postcontent {
     height: 43.5vw; }
+    .post .postcontent img {
+      width: 58vw;
+      position: absolute;
+      top: 0; }
   .post .postcontent,
   .post .middle {
     width: 58vw;
     position: absolute;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
     transition: transform 250ms ease-out;
     -moz-transition: transform 250ms ease-out;
     -webkit-transition: transform 250ms ease-out; }

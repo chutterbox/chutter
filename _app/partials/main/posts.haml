@@ -1,10 +1,14 @@
 %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
-  .md-toolbar-tools
-    %md-tabs.md-primary.md-hue-2
-      %md-tab{label: "hot"}
-      %md-tab{label: "new"}
-      %md-tab
-        %md-tab-label
-          top
+  .md-toolbar-tools{ng-switch: "page.scope"}
+    %md-tabs.md-primary.md-hue-2{ng-switch-when: "all"}
+      %md-tab{ui-sref: "home.all.hot", label: "hot"}
+      %md-tab{ui-sref: "home.all.new", label: "new"}
+      %md-tab{ui-sref: "home.all.top", label: "top"}
+    %md-tabs.md-primary.md-hue-2{ng-switch-when: "network"}
+      %md-tab{ui-sref: "^.network", label: "hot"}
+      %md-tab{ui-sref: ".new", label: "new"}
+      %md-tab{ui-sref: ".top", label: "top"}
+    %span{flex: true}
+      %md-slider
 %md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
   %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

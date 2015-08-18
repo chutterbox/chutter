@@ -15,30 +15,56 @@
   list-style: none
   padding: 0.25vw
   margin: 0
-
+  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
+  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
 .nav-menu li 
   margin: 0
   min-height: 2.5vw
+  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
+  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)  
   .menu-toggle-list
-    height: 0
-  &.active
     background: #fff
+    transform-origin: top left
+    -webkit-transform-origin: top left
+    -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
+    transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
+    max-height: 0
+    overflow: hidden
+    transform: scale(0)
+    -webkit-transform: scale(0)
+  &.active
     border: 1px 0 1px 0 solid #ddd
+    .md-button
+      width: 80%
+      &.md-icon-button
+        width: 20%
+        transform-origin: top right
+        -webkit-transform-origin: top right
+        -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1)
+        transform: scale(1)
+      > span
+        font-weight: 500
+        color: rgb(3,169,244)
+
     .menu-toggle-list
-      height: auto
-    .menu-toggle
-      div
-        span
-          font-weight: 500
+      transform: scale(1)
+      -webkit-transform: scale(1)
+      -webkit-transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1)
+      transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1)
+      max-height: 100%
 
-.nav-menu > li:nth-child(1) 
-  border: none
 
-.nav-menu > li 
-  border-bottom: none 
 
 .nav-menu .md-button
+  &.md-icon-button
+    transform-origin: top right
+    -webkit-transform-origin: top right
+    -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1)
+    transform: scale(0)
+    width: 0%
+    position: absolute
   border-radius: 0
+  width: 100%
   cursor: pointer
   display: block
   align-items: inherit
@@ -96,33 +122,11 @@
   overflow: hidden
   position: relative
   z-index: 1
-  -webkit-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1)
-  -webkit-transition-property: height
-  -moz-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1)
-  -moz-transition-property: height
-  transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1)
-  transition-property: height
 
 .nav-menu .menu-toggle-list a.md-button 
   display: block
   text-transform: none
   padding: 0 2.5vw
   font-size: 0.75vw
-.md-button-toggle .md-toggle-icon
-  text-align: center
-  color: #616161
-  outline: none
-  display: block
-  speak: none
-  vertical-align: middle
-  transform: rotate(0deg)
-  -webkit-transform: rotate(0deg)
-  transition: transform 0.5s ease-in-out
-  -webkit-transition: -webkit-transform 0.5s ease-in-out
-
-.md-button-toggle .md-toggle-icon.active 
-  transform: rotate(-180deg)
-  -webkit-transform: rotate(180deg)
-  -moz-transform: rotate(-180deg)
 
 

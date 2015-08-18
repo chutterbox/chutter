@@ -97,6 +97,13 @@ md-toolbar#me-toolbar {
       margin: 0;
       min-width: auto;
       text-transform: none; }
+      md-toolbar#main-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#moderation-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#management-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#me-toolbar .md-toolbar-tools .md-button.md-fab {
+        margin: 0.5vw;
+        position: absolute;
+        right: 0; }
   md-toolbar#main-toolbar .toolbar-container,
   md-toolbar#moderation-toolbar .toolbar-container,
   md-toolbar#management-toolbar .toolbar-container,
@@ -105,6 +112,11 @@ md-toolbar#me-toolbar {
     min-width: 18vw;
     max-width: 18vw;
     padding: 0 1.75vw; }
+    md-toolbar#main-toolbar .toolbar-container#titles,
+    md-toolbar#moderation-toolbar .toolbar-container#titles,
+    md-toolbar#management-toolbar .toolbar-container#titles,
+    md-toolbar#me-toolbar .toolbar-container#titles {
+      position: relative; }
     md-toolbar#main-toolbar .toolbar-container a,
     md-toolbar#moderation-toolbar .toolbar-container a,
     md-toolbar#management-toolbar .toolbar-container a,
@@ -115,13 +127,6 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
       font-size: 0.8vmax; }
-  md-toolbar#main-toolbar md-fab-speed-dial,
-  md-toolbar#moderation-toolbar md-fab-speed-dial,
-  md-toolbar#management-toolbar md-fab-speed-dial,
-  md-toolbar#me-toolbar md-fab-speed-dial {
-    position: absolute;
-    right: 0;
-    top: 75%; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -136,6 +141,8 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar #primary-title,
   md-toolbar#me-toolbar #secondary-title,
   md-toolbar#me-toolbar #primary-title {
+    position: absolute;
+    left: 1.5vw;
     -webkit-transition: transform 150ms ease-in-out;
     -moz-transition: transform 150ms ease-in-out;
     -webkit-transition: transform 150ms ease-in-out; }

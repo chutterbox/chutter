@@ -7281,6 +7281,13 @@ md-toolbar#me-toolbar {
       margin: 0;
       min-width: auto;
       text-transform: none; }
+      md-toolbar#main-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#moderation-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#management-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#me-toolbar .md-toolbar-tools .md-button.md-fab {
+        margin: 0.5vw;
+        position: absolute;
+        right: 0; }
   md-toolbar#main-toolbar .toolbar-container,
   md-toolbar#moderation-toolbar .toolbar-container,
   md-toolbar#management-toolbar .toolbar-container,
@@ -7289,6 +7296,11 @@ md-toolbar#me-toolbar {
     min-width: 18vw;
     max-width: 18vw;
     padding: 0 1.75vw; }
+    md-toolbar#main-toolbar .toolbar-container#titles,
+    md-toolbar#moderation-toolbar .toolbar-container#titles,
+    md-toolbar#management-toolbar .toolbar-container#titles,
+    md-toolbar#me-toolbar .toolbar-container#titles {
+      position: relative; }
     md-toolbar#main-toolbar .toolbar-container a,
     md-toolbar#moderation-toolbar .toolbar-container a,
     md-toolbar#management-toolbar .toolbar-container a,
@@ -7299,13 +7311,6 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
       font-size: 0.8vmax; }
-  md-toolbar#main-toolbar md-fab-speed-dial,
-  md-toolbar#moderation-toolbar md-fab-speed-dial,
-  md-toolbar#management-toolbar md-fab-speed-dial,
-  md-toolbar#me-toolbar md-fab-speed-dial {
-    position: absolute;
-    right: 0;
-    top: 75%; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7320,6 +7325,8 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar #primary-title,
   md-toolbar#me-toolbar #secondary-title,
   md-toolbar#me-toolbar #primary-title {
+    position: absolute;
+    left: 1.5vw;
     -webkit-transition: transform 150ms ease-in-out;
     -moz-transition: transform 150ms ease-in-out;
     -webkit-transition: transform 150ms ease-in-out; }
@@ -7401,29 +7408,48 @@ post {
 .nav-menu ul {
   list-style: none;
   padding: 0.25vw;
-  margin: 0; }
+  margin: 0;
+  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1);
+  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1); }
 
 .nav-menu li {
   margin: 0;
-  min-height: 2.5vw; }
+  min-height: 2.5vw;
+  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1);
+  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1); }
   .nav-menu li .menu-toggle-list {
-    height: 0; }
-  .nav-menu li.active {
     background: #fff;
+    transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1);
+    transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1);
+    max-height: 0;
+    overflow: hidden;
+    transform: scale(0);
+    -webkit-transform: scale(0); }
+  .nav-menu li.active {
     border: 1px 0 1px 0 solid #ddd; }
+    .nav-menu li.active .md-button {
+      width: 80%; }
+      .nav-menu li.active .md-button.md-icon-button {
+        width: 20%;
+        transform-origin: top right;
+        -webkit-transform-origin: top right;
+        -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1);
+        transform: scale(1); }
+      .nav-menu li.active .md-button > span {
+        font-weight: 500;
+        color: #03a9f4; }
     .nav-menu li.active .menu-toggle-list {
-      height: auto; }
-    .nav-menu li.active .menu-toggle div span {
-      font-weight: 500; }
-
-.nav-menu > li:nth-child(1) {
-  border: none; }
-
-.nav-menu > li {
-  border-bottom: none; }
+      transform: scale(1);
+      -webkit-transform: scale(1);
+      -webkit-transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1);
+      transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1);
+      max-height: 100%; }
 
 .nav-menu .md-button {
   border-radius: 0;
+  width: 100%;
   cursor: pointer;
   display: block;
   align-items: inherit;
@@ -7436,6 +7462,13 @@ post {
   text-decoration: none;
   text-transform: capitalize;
   white-space: normal; }
+  .nav-menu .md-button.md-icon-button {
+    transform-origin: top right;
+    -webkit-transform-origin: top right;
+    -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1);
+    transform: scale(0);
+    width: 0%;
+    position: absolute; }
 
 .nav-menu .md-button md-icon {
   color: white; }
@@ -7469,36 +7502,13 @@ post {
 .menu-toggle-list {
   overflow: hidden;
   position: relative;
-  z-index: 1;
-  -webkit-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-  -webkit-transition-property: height;
-  -moz-transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-  -moz-transition-property: height;
-  transition: 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-  transition-property: height; }
+  z-index: 1; }
 
 .nav-menu .menu-toggle-list a.md-button {
   display: block;
   text-transform: none;
   padding: 0 2.5vw;
   font-size: 0.75vw; }
-
-.md-button-toggle .md-toggle-icon {
-  text-align: center;
-  color: #616161;
-  outline: none;
-  display: block;
-  speak: none;
-  vertical-align: middle;
-  transform: rotate(0deg);
-  -webkit-transform: rotate(0deg);
-  transition: transform 0.5s ease-in-out;
-  -webkit-transition: -webkit-transform 0.5s ease-in-out; }
-
-.md-button-toggle .md-toggle-icon.active {
-  transform: rotate(-180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(-180deg); }
 
 /*# sourceMappingURL=menu.css.map */
 
@@ -7507,8 +7517,6 @@ post {
 
 #comments {
   background: #f7f7f7;
-  overflow: scroll;
-  padding-top: 20px;
   height: 100%; }
   #comments md-backdrop {
     display: none; }
@@ -7841,6 +7849,13 @@ md-toolbar#me-toolbar {
       margin: 0;
       min-width: auto;
       text-transform: none; }
+      md-toolbar#main-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#moderation-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#management-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#me-toolbar .md-toolbar-tools .md-button.md-fab {
+        margin: 0.5vw;
+        position: absolute;
+        right: 0; }
   md-toolbar#main-toolbar .toolbar-container,
   md-toolbar#moderation-toolbar .toolbar-container,
   md-toolbar#management-toolbar .toolbar-container,
@@ -7849,6 +7864,11 @@ md-toolbar#me-toolbar {
     min-width: 18vw;
     max-width: 18vw;
     padding: 0 1.75vw; }
+    md-toolbar#main-toolbar .toolbar-container#titles,
+    md-toolbar#moderation-toolbar .toolbar-container#titles,
+    md-toolbar#management-toolbar .toolbar-container#titles,
+    md-toolbar#me-toolbar .toolbar-container#titles {
+      position: relative; }
     md-toolbar#main-toolbar .toolbar-container a,
     md-toolbar#moderation-toolbar .toolbar-container a,
     md-toolbar#management-toolbar .toolbar-container a,
@@ -7859,13 +7879,6 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
       font-size: 0.8vmax; }
-  md-toolbar#main-toolbar md-fab-speed-dial,
-  md-toolbar#moderation-toolbar md-fab-speed-dial,
-  md-toolbar#management-toolbar md-fab-speed-dial,
-  md-toolbar#me-toolbar md-fab-speed-dial {
-    position: absolute;
-    right: 0;
-    top: 75%; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7880,6 +7893,8 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar #primary-title,
   md-toolbar#me-toolbar #secondary-title,
   md-toolbar#me-toolbar #primary-title {
+    position: absolute;
+    left: 1.5vw;
     -webkit-transition: transform 150ms ease-in-out;
     -moz-transition: transform 150ms ease-in-out;
     -webkit-transition: transform 150ms ease-in-out; }

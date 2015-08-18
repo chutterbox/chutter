@@ -3,8 +3,6 @@
 
 #comments {
   background: #f7f7f7;
-  overflow: scroll;
-  padding-top: 20px;
   height: 100%; }
   #comments md-backdrop {
     display: none; }

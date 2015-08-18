@@ -1,10 +1,8 @@
-%md-button.md-button-toggle.menu-toggle{aria-controls: "{{network.name}}", aria-label: "network", aria-expanded: "{{isOpen()}}", ng-click:"toggle()", ui-sref: "home.network({network: network.slug})", ui-sref-active: "active"}
-  .content{flex: true, layout: "row"}
-    %span
-      {{::network.name}}
-    %span{flex: true}
-    %span{ng-show:"network.active", ng-click: "editCommunity()"}
-      %i.icon.ion-android-options
+.network{layout: "row"}
+  %md-button.md-button-toggle.menu-toggle{aria-controls: "{{network.name}}", aria-label: "network", aria-expanded: "false", ng-click:"network.toggle()"}
+    %span{ng-bind: "::network.name"}
+  %md-button.md-icon-button.md-secondary{ng-click: "editCommunity()"}
+    %i.icon.ion-android-options
 %ul.menu-toggle-list{id: "{{::network.name}}"}
   %li{ng-repeat: "community in network.communities"}
     %menu-link{network: "network", community: "::community"}

@@ -1,6 +1,6 @@
 app = angular.module("MainApp")
 
-app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", "Network", ( $scope, $state, $rootScope, $stateParams, $timeout, Page, Network) ->
+app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", ( $scope, $state, $rootScope, $stateParams, $timeout, Page) ->
   $scope.page = Page
 ]
 

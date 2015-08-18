@@ -7878,6 +7878,9 @@ md-list#posts {
       color: #fff; }
   .post .postcontent {
     height: 43.5vw; }
+    .post .postcontent embed-video {
+      width: 100%;
+      height: 100%; }
     .post .postcontent img {
       width: 58vw;
       position: absolute;
@@ -8062,37 +8065,6 @@ md-list#posts {
     opacity: 1; } }
 
 /*# sourceMappingURL=post.css.map */
-
-#media-controls {
-  background: transparent;
-  display: none;
-  left: 0;
-  width: 125px;
-  position: absolute;
-  z-index: 1; }
-  #media-controls md-slider .md-track-container {
-    background-color: #fff; }
-  #media-controls.active {
-    display: block;
-    -webkit-animation: fade 1000ms ease-in-out;
-    -moz-animation: fade 1000ms ease-in-out;
-    animation: fade 1000ms ease-in-out; }
-@keyframes fade {
-  0% {
-    opacity: 0; }
-  50% {
-    opacity: 0.5; }
-  100% {
-    opacity: 1; } }
-@-webkit-keyframes fade {
-  0% {
-    opacity: 0; }
-  50% {
-    opacity: 0.5; }
-  100% {
-    opacity: 1; } }
-
-/*# sourceMappingURL=mediaPlayer.css.map */
 
 #notifications-container notification,
 #notifications-container .notification-list-item {

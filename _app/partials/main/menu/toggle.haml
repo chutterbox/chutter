@@ -4,7 +4,7 @@
       {{::network.name}}
     %span{flex: true}
     %span{ng-show:"network.active", ng-click: "editCommunity()"}
-      %i.fa.fa-sliders.fa-fw
+      %i.icon.ion-android-options
 %ul.menu-toggle-list{id: "{{::network.name}}"}
   %li{ng-repeat: "community in network.communities"}
     %menu-link{network: "network", community: "::community"}

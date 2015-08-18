@@ -233,6 +233,9 @@ md-list#posts {
       color: #fff; }
   .post .postcontent {
     height: 43.5vw; }
+    .post .postcontent embed-video {
+      width: 100%;
+      height: 100%; }
     .post .postcontent img {
       width: 58vw;
       position: absolute;

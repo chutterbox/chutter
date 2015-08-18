@@ -198,7 +198,6 @@ module.exports = (grunt) ->
           'app/css/menu.css',
           'app/css/comments.css',
           'app/css/post.css',
-          'app/css/mediaPlayer.css'
           'app/css/notifications.css'
         ],
         dest: 'app/css/compiled/application.css'

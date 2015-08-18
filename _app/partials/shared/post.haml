@@ -1,8 +1,14 @@
+.controls{style: "position: absolute; top: 5.5vw; width: 4vw;", layout: "column", layout-align: "start center", layout-fill: "true", ng-if: "post.toggled"}
+  %md-button.md-icon-button{ng-click: "post.zoomValue = 10"}
+    %i.icon.ion-arrow-expand
+  %md-button.md-icon-button{ng-click: "post.toggle"}
+    %i.icon.ion-close
+    
 .vote{hide-sm: "true", layout: "column", layout-fill: true}
   %md-button{flex: true, aria-label: "Upvote", ng-click: "post.updateVote(1)"}
-    %i.fa.fa-caret-up.fa-2x.md-primary{ng-class: "{'active-up' : (post.vote == 1)}"}
+    %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
   %md-button{flex: true, aria-label: "Downvote", ng-click: "post.updateVote(-1)"}
-    %i.fa.fa-caret-down.fa-2x{ng-class: "{'active-down' : (post.vote == -1)}"}
+    %i.icon.ion-chevron-down{ng-class: "{'active-down' : (post.vote == -1)}"}
 .main
   .postcontent{layout: "column",layout-align: "center center", ng-click: "post.toggle($event)"}
     %embed-video{ng-if: "post.currentMedia.format == 'video' && post.zoomValue > 1", data-ng-href: "{{post.media[0].stream_link}}", autoplay: "1", width: "100%", height: "100%"}

@@ -1,7 +1,7 @@
 .controls{style: "position: absolute; top: 5.5vw; width: 4vw;", layout: "column", layout-align: "start center", layout-fill: "true", ng-if: "post.toggled"}
   %md-button.md-icon-button{ng-click: "post.zoomValue = 10"}
     %i.icon.ion-arrow-expand
-  %md-button.md-icon-button{ng-click: "post.toggle"}
+  %md-button.md-icon-button{ng-click: "post.toggle()"}
     %i.icon.ion-close
     
 .vote{hide-sm: "true", layout: "column", layout-fill: true}

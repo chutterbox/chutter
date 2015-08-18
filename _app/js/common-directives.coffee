@@ -34,13 +34,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
       if newVal and newVal != oldVal
         if newVal is 0
           newVal = 1
-        if newVal > 5
-          mdContent = document.getElementById("scrolly")
-          window.requestAnimationFrame () ->
-            mdContent.scrollTop = $scope.post.elements.post.offsetTop - 64
-
         val = newVal/10
-
         #if the post is being zoomed up, beyond 2, wrap its ancestors in a div
         if $scope.post.toggled and oldVal != newVal
           $scope.wrapperDiv = new WrapperDiv
@@ -110,11 +104,6 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
       #unzoom the zoomed post
       if Page.selectedPost is $scope.post
         if Page.selectedPost.zoomValue != 1
-         #reset the scrolltop
-          if Page.selectedPost.zoomValue > 5
-            mdContent = document.getElementById("scrolly")
-            mdContent.scrollTop = $scope.post.elements.post.offsetTop - 64
-
           Page.selectedPost.zoomValue = 1
           Page.selectedPost.toggled = false
 

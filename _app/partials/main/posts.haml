@@ -6,5 +6,5 @@
       %md-tab
         %md-tab-label
           top
-%md-content#scrolly{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
+%md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
   %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

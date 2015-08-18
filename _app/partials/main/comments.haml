@@ -1,5 +1,6 @@
-%post.post.md-whiteframe-z1{post: "page.post",  layout: "row"}
-%md-toolbar#comment-toolbar.md-hue-2{layout: "row"}
+%div{style: "z-index: 120;"}
+  %post.post{post: "page.post",  layout: "row"}
+%md-toolbar#comment-toolbar.md-hue-2{layout: "row", md-scroll-shrink: "true"}
   .md-toolbar-tools
     %md-tabs.md-hue-2
       %md-tab{label: "hot"}
@@ -7,8 +8,8 @@
       %md-tab{label: "top"}
     %span{flex: true}
     %span.comments{ng-bind: "page.post.comments_count + ' comments'"}
+%md-content#comments
 
-#comments
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 
 %md-button.md-fab.post-comment{aria-label: "Comment", ng-click: "reply()"}

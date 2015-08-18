@@ -10,20 +10,12 @@
         network: "="
       },
       templateUrl: '../app/partials/main/menu/link.html',
-      controller: [
-        "$stateParams", "Page", "$scope", function($stateParams, Page, $scope) {
-          if ($stateParams.community === $scope.community.slug || $scope.network.slug === $stateParams.network) {
-            $scope.network.active = true;
-            $scope.network.listElement.className += " active";
-            return console.log($scope.network.listElement);
-          }
-        }
-      ]
+      controller: ["$stateParams", "Page", "$scope", function($stateParams, Page, $scope) {}]
     };
   });
 
   app.directive('menuToggle', [
-    '$timeout', '$state', function($timeout, $state) {
+    '$timeout', '$state', 'Page', function($timeout, $state, Page) {
       return {
         scope: {
           network: '='
@@ -51,10 +43,35 @@
           }
         ],
         link: function($scope, $element) {
-          var controller, originalHeight;
-          controller = $element.parent().controller();
-          $scope.network.listElement = $element[0].parentNode;
+          var originalHeight;
+          $scope.network.menuListItem = $element[0].parentNode;
+          $scope.network.menuToggle = $element[0];
           originalHeight = void 0;
+          $scope.network.close = function() {
+            console.log("called wtf");
+            $scope.network.menuListItem.className = "";
+            return $scope.network.toggled = false;
+          };
+          $scope.network.open = function() {
+            $scope.network.menuListItem.className = "active";
+            return $scope.network.toggled = true;
+          };
+          $scope.network.toggle = function() {
+            if ($scope.network.toggled) {
+              $scope.network.close();
+              if (Page.selectedNetwork) {
+                Page.selectedNetwork.close();
+                return Page.selectedNetwork = void 0;
+              }
+            } else {
+              console.log(Page.selectedNetwork);
+              if (Page.selectedNetwork) {
+                Page.selectedNetwork.close();
+              }
+              $scope.network.open();
+              return Page.selectedNetwork = $scope.network;
+            }
+          };
         }
       };
     }

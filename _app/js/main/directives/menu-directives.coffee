@@ -8,14 +8,10 @@ app.directive 'menuLink', ->
     templateUrl: '../app/partials/main/menu/link.html'
     controller: ["$stateParams", "Page", "$scope", ($stateParams, Page, $scope) ->
 
-      if $stateParams.community is $scope.community.slug or $scope.network.slug is $stateParams.network
-        $scope.network.active = true
-        $scope.network.listElement.className += " active"
-        console.log $scope.network.listElement
     ]
   }
 
-app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
+app.directive 'menuToggle', ['$timeout', '$state', 'Page', ($timeout, $state, Page) ->
     {
       scope: 
         network: '='
@@ -35,11 +31,33 @@ app.directive 'menuToggle', ['$timeout', '$state', ($timeout, $state) ->
           })
       ]
       link: ($scope, $element) ->
-        controller = $element.parent().controller()
-        $scope.network.listElement = $element[0].parentNode
+        $scope.network.menuListItem = $element[0].parentNode
+        $scope.network.menuToggle = $element[0]
         originalHeight = undefined
         
-    
+
+        $scope.network.close = () ->
+          console.log "called wtf"
+          $scope.network.menuListItem.className = ""
+          $scope.network.toggled = false
+        
+        $scope.network.open = () ->
+          $scope.network.menuListItem.className = "active"
+          $scope.network.toggled = true
+
+        $scope.network.toggle = () -> 
+          if $scope.network.toggled 
+            $scope.network.close()
+            if Page.selectedNetwork
+              Page.selectedNetwork.close()
+              Page.selectedNetwork = undefined 
+          
+          else
+            console.log Page.selectedNetwork
+            if Page.selectedNetwork
+              Page.selectedNetwork.close()
+            $scope.network.open()
+            Page.selectedNetwork = $scope.network
 
         # $scope.editNetworks = ->
         #   controller.editNetworks  

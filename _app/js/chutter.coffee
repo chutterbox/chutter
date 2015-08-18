@@ -18,14 +18,16 @@ app = angular.module('Chutter', [
   'infinite-scroll'
   'hc.marked'
 ]).constant('API',
-  baseURL: 'http://chutter-api.elasticbeanstalk.com/api/v1'
+  baseURL: 'http://localhost:3000/api/v1'
   makeURL: (url) ->
     @baseURL + url
 ).config([
   '$locationProvider'
   '$authProvider'
-  'API'
-  ($locationProvider, $authProvider, API) ->
+  'API',
+  '$rootScopeProvider'
+  ($locationProvider, $authProvider, API, $rootScopeProvider) ->
+    $rootScopeProvider.digestTtl(30)
     $authProvider.configure apiUrl: API.baseURL
     $locationProvider.html5Mode true
 ]).config([

@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, comments, community, create, home, network, submit, view_url;
+      var all, all_hot, all_new, all_top, comments, community, create, home, network, network_new, network_top, submit, view_url;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
@@ -25,39 +25,59 @@
       };
       all = {
         name: "home.all",
-        url: "/",
+        abstract: true,
         templateUrl: view_url + "/posts.html",
-        controller: [
-          "$scope", "Page", function($scope, Page) {
-            return $scope.page = Page;
+        onEnter: [
+          "Page", function(Page) {
+            Page.scope = "all";
+            Page.title = "All";
+            return Page.url_prefix = "/";
           }
-        ],
+        ]
+      };
+      all_hot = {
+        name: "home.all.hot",
+        url: "/",
         resolve: {
           Posts: [
             "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
               return PostResource.query({
-                scope: "all"
+                sort: "hot"
               }).$promise;
             }
           ]
-        },
-        onEnter: [
-          "Page", function(Page) {
-            Page.scope = "all";
-            return Page.title = "All";
-          }
-        ]
+        }
+      };
+      all_new = {
+        name: "home.all.new",
+        url: "/new",
+        resolve: {
+          Posts: [
+            "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
+              return PostResource.query({
+                sort: "new"
+              }).$promise;
+            }
+          ]
+        }
+      };
+      all_top = {
+        name: "home.all.top",
+        url: "/top",
+        resolve: {
+          Posts: [
+            "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
+              return PostResource.query({
+                sort: "top"
+              }).$promise;
+            }
+          ]
+        }
       };
       network = {
         name: "home.network",
-        url: "/n/:network",
         templateUrl: view_url + "/posts.html",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.scope = "network";
-          }
-        ],
-        controller: "networkCtrl",
+        url: "/n/:network",
         resolve: {
           Network: [
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
@@ -69,7 +89,42 @@
           Posts: [
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
               return NetworkResource.posts({
-                id: $stateParams.network
+                id: $stateParams.network,
+                sort: "hot"
+              }).$promise;
+            }
+          ]
+        },
+        onEnter: [
+          "Page", function(Page) {
+            return Page.scope = "network";
+          }
+        ],
+        controller: "networkCtrl"
+      };
+      network_new = {
+        name: "home.network.new",
+        url: "/new",
+        resolve: {
+          Posts: [
+            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+              return NetworkResource.posts({
+                id: $stateParams.network,
+                sort: "new"
+              }).$promise;
+            }
+          ]
+        }
+      };
+      network_top = {
+        name: "home.network.top",
+        url: "/top",
+        resolve: {
+          Posts: [
+            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+              return NetworkResource.posts({
+                id: $stateParams.network,
+                sort: "top"
               }).$promise;
             }
           ]
@@ -163,7 +218,12 @@
       };
       $stateProvider.state(home);
       $stateProvider.state(all);
+      $stateProvider.state(all_hot);
+      $stateProvider.state(all_new);
+      $stateProvider.state(all_top);
       $stateProvider.state(network);
+      $stateProvider.state(network_new);
+      $stateProvider.state(network_top);
       $stateProvider.state(community);
       $stateProvider.state(submit);
       $stateProvider.state(create);

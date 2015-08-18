@@ -4,7 +4,7 @@
   app = angular.module("MainApp");
 
   app.controller("networkCtrl", [
-    "$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", "Network", function($scope, $state, $rootScope, $stateParams, $timeout, Page, Network) {
+    "$scope", "$state", "$rootScope", "$stateParams", "$timeout", "Page", function($scope, $state, $rootScope, $stateParams, $timeout, Page) {
       return $scope.page = Page;
     }
   ]);

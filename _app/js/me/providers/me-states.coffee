@@ -86,12 +86,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/comment/:id"
       views: 
         "@home":
-          templateUrl: "#{view_url}/notifications/notifications.html"
+          templateUrl: "#{view_url}/notifications/commentNotifications.html"
           controller: "notificationsCtrl"
           resolve:
             Notifications: ["Page", "CommentResource", "$stateParams", (Page, CommentResource, $stateParams) ->
               CommentResource.notifications({id: $stateParams.id}).$promise
-            ]
+            ]          
     saved_posts =
       name: "home.saved_posts"
       url: "/saved/posts/"

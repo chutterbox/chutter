@@ -73,6 +73,16 @@
         vote: {
           method: 'PUT',
           url: API.makeURL('/comments/:id/vote')
+        },
+        notifications: {
+          url: API.makeURL('/comments/:id/notifications'),
+          method: 'GET',
+          isArray: true,
+          interceptor: {
+            'response': function(response) {
+              return Page.comments = response.data;
+            }
+          }
         }
       });
     }

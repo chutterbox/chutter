@@ -114,7 +114,7 @@
         url: "/comment/:id",
         views: {
           "@home": {
-            templateUrl: view_url + "/notifications/notifications.html",
+            templateUrl: view_url + "/notifications/commentNotifications.html",
             controller: "notificationsCtrl",
             resolve: {
               Notifications: [

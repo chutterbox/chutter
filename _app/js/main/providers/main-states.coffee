@@ -18,41 +18,71 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           NetworkResource.query().$promise
         ]
 
+
     all =
       name: "home.all"
-      url: "/"
+      abstract: true
       templateUrl: "#{view_url}/posts.html"
-      controller: ["$scope", "Page", ($scope, Page) ->
-        $scope.page = Page
-      ]
-      resolve:
-        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
-          PostResource.query({scope: "all"}).$promise
-        ]
       onEnter: ["Page", (Page) ->
         Page.scope = "all"
         Page.title = "All"
+        Page.url_prefix = "/"
       ]
+    all_hot =
+      name: "home.all.hot"
+      url: "/"
+      resolve:
+        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+          PostResource.query({sort: "hot"}).$promise
+        ]
 
-    
+    all_new = 
+      name: "home.all.new"
+      url: "/new"
+      resolve:
+        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+          PostResource.query({sort: "new"}).$promise
+        ]
+    all_top = 
+      name: "home.all.top"
+      url: "/top"
+      resolve:
+        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+          PostResource.query({sort: "top"}).$promise
+        ]
+
+
+
     network =
       name: "home.network"
-      url: "/n/:network"
       templateUrl: "#{view_url}/posts.html"
-      onEnter: ["Page", (Page) ->
-        Page.scope = "network"
-        
-      ]
-      controller: "networkCtrl"
+      url: "/n/:network"
       resolve:
         Network: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
           NetworkResource.show({id: $stateParams.network})
-
         ]
         Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.posts({id: $stateParams.network}).$promise
+          NetworkResource.posts({id: $stateParams.network, sort: "hot"}).$promise
         ]
+      onEnter: ["Page", (Page) ->
+        Page.scope = "network"
+      ]
+      controller: "networkCtrl"
 
+    network_new = 
+      name: "home.network.new"
+      url: "/new"
+      resolve:
+        Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
+          NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
+        ]
+    network_top = 
+      name: "home.network.top"
+      url: "/top"
+      resolve:
+        Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
+          NetworkResource.posts({id: $stateParams.network, sort: "top"}).$promise
+        ]
 
     community =
       name: "home.community"
@@ -130,7 +160,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 
     $stateProvider.state(home)
     $stateProvider.state(all)
+    $stateProvider.state(all_hot)
+    $stateProvider.state(all_new)
+    $stateProvider.state(all_top)
     $stateProvider.state(network)
+    $stateProvider.state(network_new)
+    $stateProvider.state(network_top)
     $stateProvider.state(community)
     $stateProvider.state(submit)
     $stateProvider.state(create)

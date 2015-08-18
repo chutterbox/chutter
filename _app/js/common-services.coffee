@@ -43,6 +43,12 @@ app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, AP
       vote:
         method: 'PUT'
         url: API.makeURL('/comments/:id/vote')
+      notifications:
+        url: API.makeURL('/comments/:id/notifications')
+        method: 'GET'
+        isArray: true
+        interceptor: 'response': (response) ->
+          Page.comments = response.data
 ]
 
 app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->

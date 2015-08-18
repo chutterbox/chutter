@@ -1,6 +1,7 @@
 .comment-page
   padding: 15px
 #comments
+  background: #f7f7f7
   overflow: scroll
   padding-top: 20px
   height: 100%
@@ -44,12 +45,11 @@ comment-embed
     -moz-transform: scale(0)
     -webkit-transform: scale(0)
   i
-    color: #bbb
+    color: #767676
   transform-origin: top left
   -webkit-transform-origin: top left
   -moz-transform-origin: top left
   .collapse-toggle
-    font-size: 10px
     width: 100%
     margin: 0
     padding: 0
@@ -77,11 +77,11 @@ comment-embed
 
   //Colored borders showing hierarchy
   .border
-    width: 6px
     height: 100%
     position: absolute
+    left: 0
     cursor: pointer
-    padding: 0 2px
+    padding: 0 .25vw 0 0
     .line
       width: 2px
       height: 100%
@@ -152,11 +152,11 @@ comment-embed
   transform-origin: top left
   -webkit-transform-origin: top left
   -moz-transform-origin: top left
-  -webkit-transition: all 200ms ease-in-out
-  -moz-transition: all 200ms ease-in-out
-  transition: all 200ms ease-in-out
+  -webkit-transition: transform 250ms ease-in-out
+  -moz-transition: transform 250ms ease-in-out
+  transition: transform 250ms ease-in-out
 
-  background: #f7f7f7
+  background: #767676
   background-color: #f6f6f6
   
   -webkit-transform: scale(0,1)
@@ -180,8 +180,9 @@ comment-embed
   -moz-transform: scale(1)
   transform: scale(1)
 
-  -webkit-transition: all 200ms ease-in-out
-  -moz-transition: all 200ms ease-in-out
+  transition: transform 250ms ease-in-out
+  -webkit-transition: transform 250ms ease-in-out
+  -moz-transition: transform 250ms ease-in-out
 
   &.active
     -webkit-transform: scale(0)
@@ -191,7 +192,7 @@ comment-embed
     height: 25px
     a
       font-size: 12px
-      color: #bbb
+      color: #767676
       margin-right: 6px
       cursor: pointer
 
@@ -215,10 +216,9 @@ comment-embed
     margin-bottom: 40px
 
 .post-comment
-  position: fixed
-  margin-right: 312px
-  bottom: 10px
-  right: 10px
+  position: absolute
+  bottom: 1vw
+  right: 1vw
 @media (max-width: 1200px)
   .post-comment
     margin-right: 0px

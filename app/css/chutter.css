@@ -3,7 +3,7 @@ a {
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, p, span, a {
-  text-rendering: geometricPrecision; }
+  text-rendering: optimizeLegibility; }
 
 p {
   font-size: 0.8vmax !important; }

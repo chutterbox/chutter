@@ -7,31 +7,6 @@ app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 
     isOpen = undefined
     toggleOpen = undefined
     $scope.page = Page
-    # element = document.getElementById("main-toolbar")
-    # content    = document.getElementById("content") 
-
-    # left   = document.getElementById("scrolly-left")     
-    # right    = document.getElementById("scrolly-right")     
-    # $("#content").scroll (e) ->
-    #     window.requestAnimationFrame(scrollHandler)
-   
-    # scrollHandler = () ->
-    #   velocity = 1.4
-    #   if content.scrollTop * velocity < 64
-    #     shift = (content.scrollTop*1.7)
-    #     element.style.zIndex = 20
-
-    #   else
-    #     shift = 64 
-    #     element.style.zIndex = 24
-
-    #   element.style.transform = 'translate3d(0px,-' + shift + 'px, 0px)'
-    #   element.style.webkitTransform = 'translate3d(0px,-' + shift + 'px, 0px)'
-    #   left.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
-    #   left.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
-    #   right.style.transform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
-    #   right.style.webkitTransform = 'translate3d(0px,' + (65 - shift) + 'px, 0px)'
-    
     $scope.$on "auth:validation-success", () -> 
       # poller.get API.makeURL('/users/notifications') 
     

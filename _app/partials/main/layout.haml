@@ -28,11 +28,11 @@
           management
         %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
         %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-          %i.fa.fa-envelope-o.fa-fw
+          %i.icon.ion-android-mail
           %md-tooltip
             Messages
         %md-button{ng-click: "logout()", hide-sm: true}
-          %i.fa.fa-sign-out.fa-fw
+          %i.icon.ion-log-out
           %md-tooltip
             Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
@@ -64,7 +64,8 @@
               
   .md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
-    %media-controls#media-controls{layout: "column"}
+    %md-button.md-fab
+      %i.fa.fa-play
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content{ng-switch: "page.scope", layout: "column"}

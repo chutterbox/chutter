@@ -2,9 +2,9 @@
   .line
 .collapsed{layout-fill: true, layout: "column"}
   .header{layout: "row"}
-    %md-button.md-button-toggle{aria-label: "toggle comment"}
-      %span.md-toggle-icon{ng-click: "toggle()"}
-        %i.fa.fa-plus.fa-fw
+    %md-button.md-button-toggle{aria-label: "toggle comment", ng-click: "toggle()"}
+      %span.md-toggle-icon
+        %i.ion-ios-plus-outline
     %span
       %a.username{ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
       %span.points{ng-bind: "comment.points + ' points'"}
@@ -14,13 +14,13 @@
 .main{layout: "row"} 
   .vote{layout: "column", layout-fill: true}
     %md-button{flex: "30", aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
-      %i.fa.fa-caret-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
+      %i.icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
     %md-button{flex: "30", aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
-      %i.fa.fa-caret-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
+      %i.icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
     %span{flex: true}
-    %md-button.md-button-toggle{flex: "30",aria-label: "toggle comment", layout-align: "end center"}
-      %span{ng-click: "toggle()"}
-        %i.fa.fa-minus.fa-fw
+    %md-button.md-button-toggle{ng-click: "toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
+      %span
+        %i.ion-ios-minus-outline
   .content{layout: "column", layout-fill: true}
     .header{layout: "row"}
       .wrap

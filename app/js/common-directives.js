@@ -37,10 +37,16 @@
             }
           }
           $scope.$watch("post.zoomValue", function(newVal, oldVal) {
-            var elms, val;
+            var elms, mdContent, val;
             if (newVal && newVal !== oldVal) {
               if (newVal === 0) {
                 newVal = 1;
+              }
+              if (newVal > 5) {
+                mdContent = document.getElementById("scrolly");
+                window.requestAnimationFrame(function() {
+                  return mdContent.scrollTop = $scope.post.elements.post.offsetTop - 64;
+                });
               }
               val = newVal / 10;
               if ($scope.post.toggled && oldVal !== newVal) {
@@ -114,10 +120,14 @@
             }
           };
           return $scope.post.toggle = function(post) {
-            var frag, preferredScaleValue, range;
+            var frag, mdContent, preferredScaleValue, range;
             preferredScaleValue = $scope.post.currentMedia.format === "music" ? 4 : 5;
             if (Page.selectedPost === $scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {
+                if (Page.selectedPost.zoomValue > 5) {
+                  mdContent = document.getElementById("scrolly");
+                  mdContent.scrollTop = $scope.post.elements.post.offsetTop - 64;
+                }
                 Page.selectedPost.zoomValue = 1;
                 return Page.selectedPost.toggled = false;
               } else {

@@ -8,10 +8,10 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
     toggleOpen = undefined
     $scope.page = Page
     $scope.$on "auth:validation-success", () -> 
-      # poller.get API.makeURL('/users/notifications') 
+      poller.get API.makeURL('/users/ephemeral_notifications') 
     
     $scope.$on "auth:login-success", () -> 
-      # poller.get API.makeURL('/users/notifications') 
+      poller.get API.makeURL('/users/ephemeral_notifications') 
     
     $scope.myPagingFunction = () ->
       console.log "Here"

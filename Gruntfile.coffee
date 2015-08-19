@@ -151,6 +151,11 @@ module.exports = (grunt) ->
           "app/partials/main/submit/image.html" : "_app/partials/main/submit/image.haml"
           "app/partials/main/submit/webpage.html" : "_app/partials/main/submit/webpage.haml"
           "app/partials/main/comments.html" : "_app/partials/main/comments.haml"
+          "app/partials/main/sidebar/all.html" : "_app/partials/main/sidebar/all.haml"
+          "app/partials/main/sidebar/comment.html" : "_app/partials/main/sidebar/comment.haml"
+          "app/partials/main/sidebar/community.html" : "_app/partials/main/sidebar/community.haml"
+          "app/partials/main/sidebar/network.html" : "_app/partials/main/sidebar/network.haml"
+          "app/partials/main/sidebar/submission.html" : "_app/partials/main/sidebar/submission.haml"
 
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"

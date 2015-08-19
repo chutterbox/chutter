@@ -11,8 +11,12 @@
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      $scope.$on("auth:validation-success", function() {});
-      $scope.$on("auth:login-success", function() {});
+      $scope.$on("auth:validation-success", function() {
+        return poller.get(API.makeURL('/users/ephemeral_notifications'));
+      });
+      $scope.$on("auth:login-success", function() {
+        return poller.get(API.makeURL('/users/ephemeral_notifications'));
+      });
       $scope.myPagingFunction = function() {
         return console.log("Here");
       };

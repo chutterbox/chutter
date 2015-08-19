@@ -50,9 +50,9 @@ md-tabs md-content {
   background: #fff; }
 
 md-sidenav.md-locked-open {
-  width: 18vw;
-  min-width: 18vw;
-  max-width: 18vw;
+  width: 16vw;
+  min-width: 16vw;
+  max-width: 16vw;
   z-index: 18; }
 
 md-sidenav,
@@ -77,6 +77,9 @@ i.active-down {
   color: #03a9f4;
   cursor: hand;
   margin-right: 4px; }
+
+md-toolbar.extra-width {
+  width: calc(100% + 1px); }
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
@@ -108,9 +111,9 @@ md-toolbar#me-toolbar {
   md-toolbar#moderation-toolbar .toolbar-container,
   md-toolbar#management-toolbar .toolbar-container,
   md-toolbar#me-toolbar .toolbar-container {
-    width: 18vw;
-    min-width: 18vw;
-    max-width: 18vw;
+    width: 16vw;
+    min-width: 16vw;
+    max-width: 16vw;
     padding: 0 1.75vw; }
     md-toolbar#main-toolbar .toolbar-container#titles,
     md-toolbar#moderation-toolbar .toolbar-container#titles,

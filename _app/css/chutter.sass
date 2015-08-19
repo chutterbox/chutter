@@ -5,7 +5,7 @@
   max-width: $width
 
 
-$sidenav-width: 18vw
+$sidenav-width: 16vw
 
 $four-three-width:  100vw - ($sidenav-width * 2) - 6vw
 $four-three-height:  ($four-three-width * .75)
@@ -109,6 +109,9 @@ i
 
 // toolbar css. this is all the css relating to the toolbars
 // section specific toolbar css will be located in <appname>.sass
+md-toolbar.extra-width
+  width: calc(100% + 1px)
+
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,

@@ -1,40 +1,57 @@
 (function() {
-  var app;
+  var VIEW_URL, app;
 
   app = angular.module("MainApp");
 
-  app.directive('allSidebar', function() {
+  VIEW_URL = "../app/partials/main";
+
+  app.directive("allSidebar", function() {
     return {
       restrict: "E",
-      templateUrl: '../app/partials/main/sidebar/all.html'
+      templateUrl: VIEW_URL + "/sidebar/all-sidebar.html",
+      scope: {
+        page: "="
+      }
     };
   });
 
-  app.directive('commentSidebar', function() {
+  app.directive("commentSidebar", function() {
     return {
       restrict: "E",
-      templateUrl: '../app/partials/main/sidebar/comment.html'
+      templateUrl: VIEW_URL + "/sidebar/comments-sidebar.html",
+      scope: {
+        page: "="
+      }
     };
   });
 
-  app.directive('communitySidebar', function() {
+  app.directive("communitySidebar", function() {
     return {
       restrict: "E",
-      templateUrl: '../app/partials/main/sidebar/community.html'
+      templateUrl: VIEW_URL + "/sidebar/community-sidebar.html",
+      scope: {
+        page: "="
+      }
     };
   });
 
-  app.directive('networkSidebar', function() {
+  app.directive("networkSidebar", function() {
     return {
       restrict: "E",
-      templateUrl: '../app/partials/main/sidebar/network.html'
+      templateUrl: VIEW_URL + "/sidebar/network-sidebar.html",
+      scope: {
+        page: "="
+      }
     };
   });
 
-  app.directive('submissionSidebar', function() {
+  app.directive("submissionSidebar", function() {
     return {
       restrict: "E",
-      templateUrl: '../app/partials/main/sidebar/submission.html'
+      templateUrl: VIEW_URL + "/sidebar/submission-sidebar.html",
+      scope: {
+        page: "="
+      }
     };
   });
 

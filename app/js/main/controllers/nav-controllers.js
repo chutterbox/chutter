@@ -5,7 +5,7 @@
 
   app.controller('toastCtrl', function() {});
 
-  app.controller('navCtrl', [
+  app.controller('pageCtrl', [
     '$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
       var isOpen, toggleOpen;
       isOpen = void 0;

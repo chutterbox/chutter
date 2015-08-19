@@ -63,14 +63,14 @@
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content{ng-switch: "page.scope", layout: "column"}
       %div{ng-switch-when: "submit", layout-fill: true}
-        %submission-sidebar
+        %submission-sidebar{page: "page"}
       %div{ng-switch-when: "community", layout-fill: true}
-        %community-sidebar
+        %community-sidebar{page: "page"}
       %div{ng-switch-when: "all", layout: "column", layout-fill: true}
-        %all-sidebar
+        %all-sidebar{page: "page"}
       %div{ng-switch-when: "network", layout: "column", layout-fill: true}
-        %network-sidebar
-      %div{ng-switch-when: "comment", layout: "column", layout-fill: true}
-        %comment-sidebar
+        %network-sidebar{page: "page"}
+      %div{ng-switch-when: "comments", layout: "column", layout-fill: true}
+        %comment-sidebar{page: "page"}
     #footer{ng-if: "page.scope == 'all'"}
 

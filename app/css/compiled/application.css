@@ -7676,8 +7676,7 @@ comment-embed {
     comment-embed[collapsed="true"] .username,
     comment-embed[collapsed="true"] .points,
     comment-embed[collapsed="true"] .time {
-      line-height: 48px;
-      margin-right: 1%; }
+      line-height: 48px; }
   comment .main,
   comment-embed .main {
     margin-left: 10px;
@@ -7983,7 +7982,7 @@ md-list#posts {
   position: relative;
   padding: 0.5vw 0;
   z-index: 21;
-  width: 68vw;
+  width: 100%;
   height: 5.65vw; }
 @media(max-width: 960px) {
   .post {

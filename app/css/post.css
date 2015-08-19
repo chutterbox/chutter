@@ -228,7 +228,7 @@ md-list#posts {
   position: relative;
   padding: 0.5vw 0;
   z-index: 21;
-  width: 68vw;
+  width: 100%;
   height: 5.65vw; }
 @media(max-width: 960px) {
   .post {

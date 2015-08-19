@@ -159,8 +159,7 @@ comment-embed {
     comment-embed[collapsed="true"] .username,
     comment-embed[collapsed="true"] .points,
     comment-embed[collapsed="true"] .time {
-      line-height: 48px;
-      margin-right: 1%; }
+      line-height: 48px; }
   comment .main,
   comment-embed .main {
     margin-left: 10px;

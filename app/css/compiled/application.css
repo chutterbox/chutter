@@ -7224,6 +7224,9 @@ i {
 
   .md-button {
     font-size: 1.8vmax; } }
+body {
+  overflow: hidden; }
+
 body,
 md-sidenav,
 md-content {
@@ -7794,6 +7797,9 @@ i {
 
   .md-button {
     font-size: 1.8vmax; } }
+body {
+  overflow: hidden; }
+
 body,
 md-sidenav,
 md-content {

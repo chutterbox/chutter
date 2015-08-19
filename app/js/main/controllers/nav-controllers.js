@@ -11,20 +11,64 @@
       isOpen = void 0;
       toggleOpen = void 0;
       $scope.page = Page;
-      $scope.$on("auth:validation-success", function() {
-        return poller.get(API.makeURL('/users/ephemeral_notifications'));
+      if ($scope.user && $scope.user.id) {
+        $scope.poller = poller;
+        $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
+          delay: 30000
+        }).promise.then(null, null, function(data) {
+          return $scope.showNotifications(data.data);
+        });
+      }
+      $scope.$on("auth:logout-success", function() {
+        return $scope.poller.stopAll();
       });
       $scope.$on("auth:login-success", function() {
-        return poller.get(API.makeURL('/users/ephemeral_notifications'));
+        $scope.poller = poller;
+        return $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
+          delay: 30000
+        }).promise.then(null, null, function(data) {
+          return $scope.showNotifications(data.data);
+        });
       });
       $scope.myPagingFunction = function() {
         return console.log("Here");
       };
-      $mdToast.show({
-        controller: 'toastCtrl',
-        templateUrl: '/partials/toasts/comment-toast.html',
-        position: 'bottom right'
-      });
+      $scope.showNotifications = function(notifications) {
+        var cascade, ephemeral_notifications;
+        ephemeral_notifications = _.reject(notifications, function(n) {
+          return n.ephemeral_count === 0;
+        });
+        if (ephemeral_notifications.length > 0) {
+          if (ephemeral_notifications.length > 1) {
+            cascade = true;
+          }
+          return _.each(ephemeral_notifications, function(notification) {
+            console.log(notification);
+            if (cascade) {
+              return setTimeout(function() {
+                return $scope.showNotification(notification);
+              }, 5000);
+            } else {
+              return $scope.showNotification(notification);
+            }
+          });
+        }
+      };
+      $scope.showNotification = function(notification) {
+        var title;
+        if (notification.entityable === "comment") {
+          return $mdToast.show({
+            templateUrl: '/partials/toasts/comment-toast.html',
+            position: 'bottom right'
+          });
+        } else if (notification.entityable === "post") {
+          title = notification.title.substring(0, 50);
+          if (title.length > 49) {
+            title += "...";
+          }
+          return $mdToast.show($mdToast.simple().content("Re: " + title).position("bottom right").action(notification.ephemeral_count + " new").hideDelay(5000));
+        }
+      };
       $scope.$on("auth:show-signin", function() {
         return $mdDialog.show({
           controller: 'authCtrl',

@@ -7,20 +7,53 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
     isOpen = undefined
     toggleOpen = undefined
     $scope.page = Page
-    $scope.$on "auth:validation-success", () -> 
-      poller.get API.makeURL('/users/ephemeral_notifications') 
-    
+    if $scope.user and $scope.user.id
+      $scope.poller = poller
+      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
+        $scope.showNotifications(data.data)
+
+    $scope.$on("auth:logout-success", () ->
+      $scope.poller.stopAll()
+    )
+
     $scope.$on "auth:login-success", () -> 
-      poller.get API.makeURL('/users/ephemeral_notifications') 
-    
+      $scope.poller = poller
+      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
+        $scope.showNotifications(data.data)
+
     $scope.myPagingFunction = () ->
       console.log "Here"
 
-    $mdToast.show
-      controller: 'toastCtrl'
-      templateUrl: '/partials/toasts/comment-toast.html'
-      position: 'bottom right'
-      
+
+    $scope.showNotifications = (notifications) ->
+      ephemeral_notifications = _.reject(notifications, (n) -> n.ephemeral_count is 0)
+      if ephemeral_notifications.length > 0
+        cascade = true if ephemeral_notifications.length > 1
+        _.each ephemeral_notifications, (notification) ->
+          console.log notification
+          if cascade
+            setTimeout () ->
+              $scope.showNotification(notification)
+            , 5000
+          else
+            $scope.showNotification(notification)
+                  
+    $scope.showNotification = (notification) ->
+      if notification.entityable is "comment"
+        $mdToast.show
+          templateUrl: '/partials/toasts/comment-toast.html'
+          position: 'bottom right'
+      else if notification.entityable is "post"
+        title = notification.title.substring(0,50)
+        title += "..." if title.length > 49
+
+        $mdToast.show(
+          $mdToast.simple()
+            .content("Re: #{title}")
+            .position("bottom right")
+            .action("#{notification.ephemeral_count} new")
+            .hideDelay(5000)
+        )
     $scope.$on("auth:show-signin", () ->
       $mdDialog.show
        controller: 'authCtrl'

@@ -195,6 +195,7 @@ module.exports = (grunt) ->
           "app/partials/management/community/dashboard.html" : "_app/partials/management/community/dashboard.haml"
           #toast partials
           "app/partials/toasts/comment-toast.html" : "_app/partials/toasts/comment-toast.haml"
+          "app/partials/toasts/post-toast.html" : "_app/partials/toasts/post-toast.haml"
     
     concat: 
       dist:

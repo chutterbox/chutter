@@ -1,6 +1,8 @@
 angular.module('templates-shared', []).run(['$templateCache', function($templateCache) {
   $templateCache.put("../app/partials/toasts/comment-toast.html",
     "<md-toast>example notification for when you get a comment</md-toast>");
+  $templateCache.put("../app/partials/toasts/post-toast.html",
+    "<md-toast><span ng-bind=\"::(('Re: ' + notification.title + '...') | limitTo: 50)\"></span><span ng-if=\"notification.title.length &gt; 49\">...</span><md-action>{{::notification.ephemeral_count}} new notifications</md-action></md-toast>");
   $templateCache.put("../app/partials/shared/communityRule.html",
     "<md-dialog md-dynamic-height=md-dynamic-height style=\"min-height: 300px\" aria-label=\"Create Rule\"></md-dialog>");
   $templateCache.put("../app/partials/shared/createCommunityRule.html",

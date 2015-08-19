@@ -40,9 +40,16 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
                   
     $scope.showNotification = (notification) ->
       if notification.entityable is "comment"
-        $mdToast.show
-          templateUrl: '/partials/toasts/comment-toast.html'
-          position: 'bottom right'
+        body = notification.body.substring(0,50)
+        body += "..." if body.length > 49
+
+        $mdToast.show(
+          $mdToast.simple()
+            .content("Re: #{body}")
+            .position("bottom right")
+            .action("#{notification.ephemeral_count} new")
+            .hideDelay(5000)
+        )
       else if notification.entityable is "post"
         title = notification.title.substring(0,50)
         title += "..." if title.length > 49

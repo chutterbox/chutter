@@ -223,7 +223,7 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
     
     $scope.reply = () ->
       $mdBottomSheet.show({
-        templateUrl: '../app/partials/main/comments/replyPanel.html'
+        templateUrl: '../app/partials/shared/comments/replyPanel.html'
         clickOutsideToClose: true
         preserveScope: true
         disableParentScroll: true

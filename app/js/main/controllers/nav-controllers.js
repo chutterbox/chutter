@@ -55,12 +55,13 @@
         }
       };
       $scope.showNotification = function(notification) {
-        var title;
+        var body, title;
         if (notification.entityable === "comment") {
-          return $mdToast.show({
-            templateUrl: '/partials/toasts/comment-toast.html',
-            position: 'bottom right'
-          });
+          body = notification.body.substring(0, 50);
+          if (body.length > 49) {
+            body += "...";
+          }
+          return $mdToast.show($mdToast.simple().content("Re: " + body).position("bottom right").action(notification.ephemeral_count + " new").hideDelay(5000));
         } else if (notification.entityable === "post") {
           title = notification.title.substring(0, 50);
           if (title.length > 49) {

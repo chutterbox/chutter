@@ -1,22 +1,27 @@
 app = angular.module("MainApp")
-
-app.directive 'allSidebar', ->
+VIEW_URL = "../app/partials/main" 
+app.directive "allSidebar", ->
   restrict: "E"
-  templateUrl: '../app/partials/main/sidebar/all.html'
-
-app.directive 'commentSidebar', ->
+  templateUrl: "#{VIEW_URL}/sidebar/all-sidebar.html"
+  scope: 
+    page: "="
+app.directive "commentSidebar", ->
   restrict: "E"
-  templateUrl: '../app/partials/main/sidebar/comment.html'
-
-app.directive 'communitySidebar', ->
+  templateUrl: "#{VIEW_URL}/sidebar/comments-sidebar.html"
+  scope: 
+    page: "="
+app.directive "communitySidebar", ->
   restrict: "E"
-  templateUrl: '../app/partials/main/sidebar/community.html'
-
-app.directive 'networkSidebar', ->
+  templateUrl: "#{VIEW_URL}/sidebar/community-sidebar.html"
+  scope: 
+    page: "="
+app.directive "networkSidebar", ->
   restrict: "E"
-  templateUrl: '../app/partials/main/sidebar/network.html'
-
-app.directive 'submissionSidebar', ->
+  templateUrl: "#{VIEW_URL}/sidebar/network-sidebar.html"
+  scope: 
+    page: "="
+app.directive "submissionSidebar", ->
   restrict: "E"
-  templateUrl: '../app/partials/main/sidebar/submission.html'
-
+  templateUrl: "#{VIEW_URL}/sidebar/submission-sidebar.html"
+  scope: 
+    page: "="

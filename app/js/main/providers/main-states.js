@@ -14,7 +14,7 @@
         name: "home",
         abstract: true,
         templateUrl: view_url + "/layout.html",
-        controller: "navCtrl",
+        controller: "pageCtrl",
         resolve: {
           Networks: [
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
@@ -40,7 +40,7 @@
         url: "/",
         resolve: {
           Posts: [
-            "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
+            "PostResource", function(PostResource) {
               return PostResource.query({
                 sort: "hot"
               }).$promise;
@@ -53,7 +53,7 @@
         url: "/new",
         resolve: {
           Posts: [
-            "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
+            "PostResource", function(PostResource) {
               return PostResource.query({
                 sort: "new"
               }).$promise;
@@ -66,7 +66,7 @@
         url: "/top",
         resolve: {
           Posts: [
-            "PostResource", "$stateParams", "$state", "$rootScope", "$auth", function(PostResource, $stateParams, $state, $rootScope, $auth) {
+            "PostResource", function(PostResource) {
               return PostResource.query({
                 sort: "top"
               }).$promise;

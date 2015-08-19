@@ -1,0 +1,14 @@
+.content
+  .description
+    %md-list
+      %md-list-item
+        .md-list-item-text
+          %p{ng-bind: "page.community.description"}
+  .rules
+    %h5
+      Commenting Rules
+    %md-list
+      %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
+        .md-list-item-text
+          %h5{ng-bind: "rule.brief_description"}
+          %p{ng-bind: "rule.detailed_explanation"}

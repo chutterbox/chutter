@@ -2,7 +2,7 @@ app = angular.module('MainApp')
 
 app.controller 'toastCtrl', ->
 
-app.controller 'navCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API',
+app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API',
   ($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) ->
     isOpen = undefined
     toggleOpen = undefined

@@ -12,7 +12,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home"
       abstract: true
       templateUrl: "#{view_url}/layout.html"
-      controller: "navCtrl"
+      controller: "pageCtrl"
       resolve:
         Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
           NetworkResource.query().$promise
@@ -32,7 +32,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.all.hot"
       url: "/"
       resolve:
-        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+        Posts: ["PostResource", (PostResource) ->
           PostResource.query({sort: "hot"}).$promise
         ]
 
@@ -40,14 +40,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.all.new"
       url: "/new"
       resolve:
-        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+        Posts: ["PostResource", (PostResource) ->
           PostResource.query({sort: "new"}).$promise
         ]
     all_top = 
       name: "home.all.top"
       url: "/top"
       resolve:
-        Posts: ["PostResource", "$stateParams", "$state", "$rootScope", "$auth", (PostResource, $stateParams, $state, $rootScope, $auth) ->
+        Posts: ["PostResource", (PostResource) ->
           PostResource.query({sort: "top"}).$promise
         ]
 

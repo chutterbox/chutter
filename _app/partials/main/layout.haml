@@ -63,73 +63,14 @@
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content{ng-switch: "page.scope", layout: "column"}
       %div{ng-switch-when: "submit", layout-fill: true}
-        .description
-          %md-list
-            %md-list-item
-              .md-list-item-text
-                %p{ng-bind: "page.community.description"}
-        .rules
-          %h5
-            Submission Rules
-          %md-list
-            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
-              .md-list-item-text
-                %h5{ng-bind: "rule.brief_description"}
-                %p{ng-bind: "rule.detailed_explanation"}
+        %submission-sidebar
       %div{ng-switch-when: "community", layout-fill: true}
-
-        .description
-          %md-list
-            %md-list-item
-              .md-list-item-text
-                %p{ng-bind: "page.community.description"}
-        .rules
-          %h5
-            General Rules
-          %md-list
-            %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
-              .md-list-item-text
-                %h5{ng-bind: "rule.brief_description"}
-                %p{ng-bind: "rule.detailed_explanation"}
-
-        .moderators
- 
+        %community-sidebar
       %div{ng-switch-when: "all", layout: "column", layout-fill: true}
-        .description
-          %h5
-            Monthly Sub Goal
-          %div
-            %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
-          .md-padding{layout: "row", layout-align: "center center"}
-            %a
-              Help keep Chutter running
-        .news
-          %h5
-            Welcome to Chutter
-          %p
-            Chutter.co is a new place to share the best stuff on the web. To get started, check out some of the different 
-            %span.inline-link{ng-click: "editNetworks()"} networks 
-            When you subscribe to a network for the first time, you are auto-subscribed to their default communities. This can be changed by clicking the slider icon in the left menu upon entering a network.
-          %p
-            P.S. - just click the post's picture to view an embedded / mirrored version of the link. Otherwise, click the title to visit the actual link.
-
+        %all-sidebar
       %div{ng-switch-when: "network", layout: "column", layout-fill: true}
-        .description
-          %h5
-            Trending Communities
-
+        %network-sidebar
+      %div{ng-switch-when: "comment", layout: "column", layout-fill: true}
+        %comment-sidebar
     #footer{ng-if: "page.scope == 'all'"}
-      %md-divider
-      .md-toolbar-tools{layout: "row", layout-align: "center center"}
-        %a
-          help
-        %a 
-          contact
-        %a
-          bugs
-        %a
-          faq
-        %a
-          values
-        %a
-          rules
+

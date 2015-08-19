@@ -19,7 +19,7 @@ module.exports = (grunt) ->
           removeStyleLinkTypeAttributes: true
 
       main:
-        src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html'],
+        src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html', 'app/partials/main/sidebar/*.html'],
         dest: 'app/js/templates-main.js'
       moderation:
         src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html'],
@@ -203,7 +203,8 @@ module.exports = (grunt) ->
           'app/css/menu.css',
           'app/css/comments.css',
           'app/css/post.css',
-          'app/css/notifications.css'
+          'app/css/notifications.css',
+          'app/css/sidebar.css'
         ],
         dest: 'app/css/compiled/application.css'
     cssmin: 
@@ -225,6 +226,7 @@ module.exports = (grunt) ->
           'app/css/main.css' : '_app/css/main.sass'
           'app/css/menu.css' : '_app/css/menu.sass'
           'app/css/me.css' : '_app/css/me.sass'
+          'app/css/sidebar.css' : '_app/css/sidebar.sass'
           'app/css/comments.css' : '_app/css/comments.sass'
           'app/css/post.css' : '_app/css/post.sass'
           'app/css/mediaPlayer.css' : '_app/css/mediaPlayer.sass'

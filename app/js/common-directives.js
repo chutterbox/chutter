@@ -258,7 +258,7 @@
           };
           return $scope.reply = function() {
             return $mdBottomSheet.show({
-              templateUrl: '../app/partials/main/comments/replyPanel.html',
+              templateUrl: '../app/partials/shared/comments/replyPanel.html',
               clickOutsideToClose: true,
               preserveScope: true,
               disableParentScroll: true,

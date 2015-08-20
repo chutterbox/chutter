@@ -3,16 +3,16 @@
 %md-toolbar#comment-toolbar.md-hue-2{layout: "row", md-scroll-shrink: "true"}
   .md-toolbar-tools
     %md-tabs.md-hue-2
-      %md-tab{label: "hot"}
+      %md-tab{label: "best"}
       %md-tab{label: "new"}
-      %md-tab{label: "top"}
     %span{flex: true}
     %span.comments{ng-bind: "page.post.comments_count + ' comments'"}
+    %i.icon.ion-ios-trash
 %md-content#comments
 
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 
 %md-button.md-fab.post-comment{aria-label: "Comment", ng-click: "reply()"}
-  %span.fa.fa-comments.fa-fw
+  %i.icon.ion-ios-chatbubble
   %md-tooltip{md-direction: "left"}
     Comment

@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAEE;gDAAa;EAGX,MAAM,EAAE,CAAC;EACT;2DAAQ;IACN,KAAK,EAAE,OAAO;EAChB;wFAAqC;IACnC,UAAU,EAAE,IAAI;AACpB,qCAAY;EACV,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,iBAAiB;AAGlC,0CAAiB;EACf,UAAU,EAAE,IAAI;EAChB,qDAAU;IACR,UAAU,EAAE,IAAI",
-"sources": ["../../_app/css/notifications.sass"],
+"mappings": "",
+"sources": [],
 "names": [],
 "file": "notifications.css"
 }

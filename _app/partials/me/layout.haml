@@ -47,28 +47,46 @@
       %md-list.nav-list
         %md-list-item
           %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
-            %i.fa.fa-comments.fa-fw
-            Notifications
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.ion-android-notifications
+              %div
+                Notifications
         %md-list-item
           %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
-            %i.fa.fa-envelope-o.fa-fw
-            Inbox
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.icon.ion-android-mail
+              %div
+                Inbox
         %md-list-item
           %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
-            %i.fa.fa-navicon.fa-fw
-            Submissions
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.icon.ion-android-share
+              %div
+                Submissions
         %md-list-item
           %md-button{aria-label: "Saved", ui-sref: "home.saved_posts.all", ui-sref-active: "md-primary"}
-            %i.fa.fa-star.fa-fw
-            Saved
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.icon.ion-android-star
+              %div
+                Saved
         %md-list-item
           %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary"}
-            %i.fa.fa-cog.fa-fw
-            Preferences
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.icon.ion-ios-cog-outline
+              %div
+                Preferences
         %md-list-item
           %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
-            %i.fa.fa-line-chart.fa-fw
-            Stats            
+            %div{layout: "row"}
+              %div{flex: "10"}
+                %i.icon.ion-stats-bars
+              %div
+                Stats            
   %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 

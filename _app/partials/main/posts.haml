@@ -1,9 +1,15 @@
 %md-toolbar.md-primary.md-hue-2.extra-width{md-scroll-shrink: "true"}
   .md-toolbar-tools{ng-switch: "page.scope"}
     %md-tabs.md-primary.md-hue-2{ng-switch-when: "all"}
-      %md-tab{ui-sref: "home.all.hot", label: "hot"}
-      %md-tab{ui-sref: "home.all.new", label: "new"}
+      %md-tab{ui-sref: "home.all.hot"}
+        %md-tab-label
+          hot
+      %md-tab{ui-sref: "home.all.new"}
+        %md-tab-label
+          new
       %md-tab{ui-sref: "home.all.top", label: "top"}
+        %md-tab-label
+          top
     %md-tabs.md-primary.md-hue-2{ng-switch-when: "network"}
       %md-tab{ui-sref: "^.network", label: "hot"}
       %md-tab{ui-sref: ".new", label: "new"}

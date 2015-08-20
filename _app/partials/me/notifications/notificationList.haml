@@ -1,8 +1,11 @@
 %md-content#chutter-list{layout: "column"}
-  .chutter-list-item{ng-repeat: "subscription in page.notificationSubscriptions", layout: "row", layout-align: "center start", ng-switch: "subscription.entityable"}
-      %a.chutter-list-item-text{ng-switch-when: "post", ui-sref: "home.notifications.postNotifications({id: subscription.id})"}
-        %h6.title{ng-bind: "'Re: ' + subscription.title"}
-        %p.tagline{ng-bind: "(subscription.unread_count || 0) + ' unread notifications' "}
-      %a.chutter-list-item-text{ng-switch-when: "comment",ui-sref: "home.notifications.commentNotifications({id: subscription.id})"}
-        %h6.title{ng-bind: "::('Re: ' + subscription.body)"}
-        %p.tagline{ng-bind: "(subscription.unread_count || 0) + ' unread notifications' "}
+  %md-button{aria-label: "notification", ng-repeat: "subscription in page.notificationSubscriptions", ng-switch: "subscription.entityable", ui-sref-active: "md-primary",  ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})"}
+      %div{layout: "row", layout-align: "start center"}
+        %div{flex: "10"}
+          %i.icon.ion-ios-chatbubble
+        %div
+          %h6{ng-bind: "::(('Re: ' + subscription.title | limitTo: 30) + '...')"}
+      %div.tagline{layout: "row"}
+        %div{flex: "10"}
+        %div
+          %p{ng-bind: "(subscription.unread_count || 0) + ' unread notifications' "}

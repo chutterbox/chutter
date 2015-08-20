@@ -1,3 +1,4 @@
+@import "chutter"
 body,
 .md-sidenav-left,
 md-content
@@ -9,6 +10,7 @@ md-content
   h3
     margin-left: 15px
 .nav-list
+  width: $sidenav-width
   md-list-item
     width: 100%
     margin: 0
@@ -20,8 +22,6 @@ md-content
       padding-left: 15px
       width: 100%
       text-align: left
-    i
-      margin-right: 5px
 
 #notification-content
   .removal-notice
@@ -33,18 +33,20 @@ md-content
 
 //conversations
 #chutter-list
-  .chutter-list-item
-    margin: 8px 0
-    .chutter-list-item-text
-      width: 100%
-      .title
-        margin: 8px
-        padding: 0
-      .tagline
-        margin: 8px
-        padding: 0
-      border-bottom: 1px solid #ddd
+  width: $sidenav-width
 
+  a.md-button
+    width: 100%
+    margin: 0
+    h6
+      margin: 0
+    text-transform: none
+    .tagline 
+      font-weight: normal
+      text-align: left
+      p
+        margin: 0
+        padding: 0
 #conversation
   .message
     width: 40%

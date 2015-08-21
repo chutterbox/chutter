@@ -31,74 +31,139 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     all_hot =
       name: "home.all.hot"
       url: "/"
-      resolve:
-        Posts: ["PostResource", (PostResource) ->
-          PostResource.query({sort: "hot"}).$promise
-        ]
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["PostResource", (PostResource) ->
+              PostResource.query({sort: "hot"}).$promise
+            ]
 
     all_new = 
       name: "home.all.new"
       url: "/new"
-      resolve:
-        Posts: ["PostResource", (PostResource) ->
-          PostResource.query({sort: "new"}).$promise
-        ]
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["PostResource", (PostResource) ->
+              PostResource.query({sort: "new"}).$promise
+            ]
     all_top = 
       name: "home.all.top"
       url: "/top"
-      resolve:
-        Posts: ["PostResource", (PostResource) ->
-          PostResource.query({sort: "top"}).$promise
-        ]
-
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["PostResource", (PostResource) ->
+              PostResource.query({sort: "top"}).$promise
+            ]
 
 
     network =
       name: "home.network"
-      templateUrl: "#{view_url}/posts.html"
+      templateUrl: "#{view_url}/networkPosts.html"
       url: "/n/:network"
+      abstract: true
       resolve:
         Network: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.show({id: $stateParams.network})
-        ]
-        Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.posts({id: $stateParams.network, sort: "hot"}).$promise
-        ]
+          NetworkResource.show({id: $stateParams.network}).$promise
+      ]
       onEnter: ["Page", (Page) ->
         Page.scope = "network"
       ]
       controller: "networkCtrl"
-
+    
+    network_hot = 
+      name: "home.network.hot"
+      url: ""
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
+              console.log $stateParams
+              NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
+            ]
     network_new = 
       name: "home.network.new"
       url: "/new"
-      resolve:
-        Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
-        ]
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
+              NetworkResource.posts({id: $stateParams.newtwork, sort: "new"}).$promise
+            ]
+
     network_top = 
       name: "home.network.top"
       url: "/top"
-      resolve:
-        Posts: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.posts({id: $stateParams.network, sort: "top"}).$promise
-        ]
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
+              NetworkResource.posts({id: $stateParams.newtwork, sort: "top"}).$promise
+            ]
 
     community =
       name: "home.community"
+      templateUrl: "#{view_url}/communityPosts.html"
       url: "/c/:community"
+      abstract: true
+      resolve:
+        Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
+          CommunityResource.show({id: $stateParams.community})
+        ]
       onEnter: ["Page", (Page) ->
         Page.scope = "community"
       ]
-      resolve:
-        Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-          CommunityResource.show({id: $stateParams.community}).$promise
-        ]
-        Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-          CommunityResource.posts({id: $stateParams.community}).$promise
-        ]
-      templateUrl: "#{view_url}/posts.html"
       controller: "communityCtrl"
+    
+    community_hot = 
+      name: "home.community.hot"
+      url: ""
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
+              CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
+            ]
+    community_new = 
+      name: "home.community.new"
+      url: "/new"
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
+              CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
+            ]
+
+    community_top = 
+      name: "home.community.top"
+      url: "/top"
+      views:
+        "posts":
+          controller: "postsCtrl"
+          templateUrl: "../app/partials/shared/postListItem.html"
+          resolve:
+            Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
+              CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
+            ]
+
+
 
     submit =
       name: "home.community.submit"
@@ -166,7 +231,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(network)
     $stateProvider.state(network_new)
     $stateProvider.state(network_top)
+    $stateProvider.state(network_hot)
     $stateProvider.state(community)
+    $stateProvider.state(community_hot)
+    $stateProvider.state(community_top)
+    $stateProvider.state(community_new)
     $stateProvider.state(submit)
     $stateProvider.state(create)
     $stateProvider.state(comments)

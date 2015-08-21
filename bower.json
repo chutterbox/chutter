@@ -7,7 +7,7 @@
     "bootstrap": "3.3.5",
     "ng-token-auth": "0.0.24",
     "ionicons": "2.0.1",
-    "angular-material": "0.10.0",
+    "angular-material": "0.10.1",
     "angular-resource": "1.4.1",
     "ui-router": "0.2.15",
     "underscore": "1.8.3",

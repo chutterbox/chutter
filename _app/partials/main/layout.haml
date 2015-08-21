@@ -44,8 +44,8 @@
           %i.icon.ion-android-options
       %span{flex: true}
       .toolbar-container#titles{layout: "row", layout-align: "center center"}
-        %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
-        %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
+        %a#primary-title{ui-sref: "home.network({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
+        %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({community: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
         %span{flex: true}
         %md-button.md-fab.md-mini{md-direction: "down", ng-if: "page.scope == 'community'"}
           %i.icon.ion-android-share
@@ -61,16 +61,16 @@
     %ui-view{layout: "column", layout-fill: "true"}
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content{ng-switch: "page.scope", layout: "column"}
-      %div{ng-switch-when: "submit", layout-fill: true}
+    %md-content{ng-switch: "page.scope", layout: "column", layout-fill: "layout-fill"}
+      %div{ng-switch-when: "submit"}
         %submission-sidebar{page: "page"}
-      %div{ng-switch-when: "community", layout-fill: true}
+      %div{ng-switch-when: "community"}
         %community-sidebar{page: "page"}
-      %div{ng-switch-when: "all", layout: "column", layout-fill: true}
+      %div{ng-switch-when: "all", layout: "column"}
         %all-sidebar{page: "page"}
-      %div{ng-switch-when: "network", layout: "column", layout-fill: true}
+      %div{ng-switch-when: "network", layout: "column"}
         %network-sidebar{page: "page"}
-      %div{ng-switch-when: "comments", layout: "column", layout-fill: true}
+      %div{ng-switch-when: "comments", layout: "column"}
         %comment-sidebar{page: "page"}
-    #footer{ng-if: "page.scope == 'all'"}
-
+      %span{flex:true}
+      %footer-sidebar

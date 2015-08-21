@@ -26,7 +26,7 @@ app.directive 'menuToggle', ['$timeout', '$state', 'Page', ($timeout, $state, Pa
                 NetworkResource.communities({id: $scope.network.id})          
               ]
 
-            parent: angular.element(document.body),
+            parent: "#content",
             clickOutsideToClose:true
           })
       ]
@@ -37,7 +37,6 @@ app.directive 'menuToggle', ['$timeout', '$state', 'Page', ($timeout, $state, Pa
         
 
         $scope.network.close = () ->
-          console.log "called wtf"
           $scope.network.menuListItem.className = ""
           $scope.network.toggled = false
         

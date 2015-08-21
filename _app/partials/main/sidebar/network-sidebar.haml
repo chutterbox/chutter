@@ -1,3 +1,49 @@
-.content
-  %h5
-    Trending Communities
+.section-content
+  .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
+    .header{flex: 100, layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "space-between center"}
+        %h5
+          Welcome
+        %md-button{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
+          .icon{ng-class: "page.network.subscribed ? 'ion-minus-circled': 'ion-plus-circled'"}
+          %md-tooltip{md-direction: "left"}
+            %span{ng-bind: "page.network.subscribed ? 'Unsubscribe': 'Subscribe'"}
+      .light.sub-header
+        Some description on how to use this network and why is it even here in first place.
+    %md-button{flex: 100}
+      .light.small
+        20 Communities
+    .light.small.subscribers{flex: 100}
+      1425 Subscribers
+  %md-divider
+  .trending-communities
+    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "space-between center"}
+        %h5
+          Trending Communities
+        %md-button
+          .icon.ion-stats-bars
+          %md-tooltip{md-direction: "left"}
+            %span
+              More
+      .light.sub-header
+        Communities that shine the most
+    %md-list{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Rock
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Pop
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Dubstep
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Rap
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Jazz
+      %md-list-item{flex: 50}
+        %md-button{flex: true}
+          Metal

@@ -25,3 +25,8 @@ app.directive "submissionSidebar", ->
   templateUrl: "#{VIEW_URL}/sidebar/submission-sidebar.html"
   scope: 
     page: "="
+app.directive "footerSidebar", ->
+  restrict: "E"
+  templateUrl: "#{VIEW_URL}/sidebar/footer-sidebar.html"
+  scope:
+    page: "="

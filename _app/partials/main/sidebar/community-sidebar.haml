@@ -1,16 +1,73 @@
-.content
-  .description
-    %md-list
-      %md-list-item
-        .md-list-item-text
-          %p{ng-bind: "page.community.description"}
+.section-content
+  .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
+    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "space-between center"}
+        %h5
+          Welcome
+        %md-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
+          .icon{ng-class: "page.community.subscribed ? 'ion-minus-circled': 'ion-plus-circled'"}
+          %md-tooltip{md-direction: "left"}
+            %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
+      .light.sub-header{ng-bind: "::page.community.description"}
+    .light.small
+      1425 Subscribers
+  %md-divider
   .rules
-    %h5
-      General Rules
+    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "space-between center"}
+        %h5
+          General Rules
+        %md-button{aria-label: "More rules"}
+          .icon.ion-android-more-vertical
+          %md-tooltip{md-direction: "left"}
+            %span
+              Rules
+      .light.sub-header
+        You could get punished if you wont read them!
     %md-list
-      %md-list-item.md-2-line{ng-repeat: "rule in page.community.rules"}
-        .md-list-item-text
-          %h5{ng-bind: "rule.brief_description"}
-          %p{ng-bind: "rule.detailed_explanation"}
-
-    .moderators
+      %md-list-item{ng-repeat: "rule in page.community.rules"}
+        .header{layout: "row", layout-wrap: "layout-wrap"}
+          .title{layout: "row", flex: 100, layout-align: "space-between center"}
+            %h5{ng-bind: "::rule.brief_description"}
+          .light.sub-header{ng-bind: "::rule.detailed_explanation"}
+  %md-divider
+  .moderators
+    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "space-between center"}
+        %h5
+          Moderators
+        %md-button{aria-label: "Contact Moderators"}
+          .icon.ion-android-mail
+          %md-tooltip{md-direction: "left"}
+            %span
+              Message Moderators
+      .light.sub-header
+        The force is strong with this ones.
+    %md-list.special-list
+      %md-list-item{layout: "row"}
+        .type.admin{flex: 15, layout: "column", layout-align: "center center"}
+          .icon.ion-key
+          %md-tooltip{md-direction: "left"}
+            %span
+              Admin
+        %md-button.content{layout: "row", flex: true}
+          .title{flex: 75}
+            JacksonCobra
+      %md-list-item{layout: "row"}
+        .type.moderator{flex: 15, layout: "column", layout-align: "center center"}
+          .icon.ion-settings
+          %md-tooltip{md-direction: "left"}
+            %span
+              Moderator
+        %md-button.content{layout: "row", flex: true}
+          .title{flex: 75}
+            McKenny
+      %md-list-item{layout: "row"}
+        .type.moderator{flex: 15, layout: "column", layout-align: "center center"}
+          .icon.ion-settings
+          %md-tooltip{md-direction: "left"}
+            %span
+              Moderator
+        %md-button.content{layout: "row", flex: true}
+          .title{flex: 75}
+            MrModerator

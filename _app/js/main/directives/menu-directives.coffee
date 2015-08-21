@@ -17,7 +17,7 @@ app.directive 'menuToggle', ['$timeout', '$state', 'Page', ($timeout, $state, Pa
         network: '='
       templateUrl: '../app/partials/main/menu/toggle.html'
       controller: ["$mdDialog", "$scope", ($mdDialog, $scope) ->
-        $scope.editCommunity = () ->
+        $scope.editCommunity = (ev) ->
           $mdDialog.show({
             controller: "communityEditCtrl",
             templateUrl: '/partials/main/communityEdit.html',
@@ -26,8 +26,9 @@ app.directive 'menuToggle', ['$timeout', '$state', 'Page', ($timeout, $state, Pa
                 NetworkResource.communities({id: $scope.network.id})          
               ]
 
-            parent: "#content",
+            parent: angular.element(document.body),
             clickOutsideToClose:true
+            targetEvent: ev
           })
       ]
       link: ($scope, $element) ->

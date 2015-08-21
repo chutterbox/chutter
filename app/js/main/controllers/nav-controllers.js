@@ -87,19 +87,20 @@
       $scope.signIn = function() {
         return $scope.$broadcast("auth:show-signin");
       };
-      $scope.editNetworks = function() {
+      $scope.editNetworks = function(ev) {
         return $mdDialog.show({
           controller: 'networkEditCtrl',
-          templateUrl: '/partials/main/networkEdit.html',
+          templateUrl: '../app/partials/main/networkEdit.html',
+          clickOutsideToClose: true,
+          parent: angular.element(document.body),
+          targetEvent: ev,
           resolve: {
             List: [
               'NetworkResource', function(NetworkResource) {
                 return NetworkResource.list();
               }
             ]
-          },
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
+          }
         });
       };
       return $scope.$on('auth:login-success', function() {

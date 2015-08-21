@@ -5,22 +5,23 @@
       %span{flex: true}
       %md-button.md-icon-button{ng-click: "hideDialog()"}
         %i.fa.fa-close.fa-fw{aria-label="Close dialog"}
-  %md-dialog-content
-    %div{layout: "row"}
-      %md-input-container{flex: true}
+  %md-dialog-content{layout: "column", layout-fill: "true"}
+    %div{layout: "column"}
+      %md-input-container
         %label Search
         %input{ng-model: "networkFilter"}
-    %md-list-item.subscription-card{ng-repeat: "network in networks | filter: networkFilter", layout: "row"}
-      .subscription-info{layout: "column", flex: 90}
-        %h4{ng-bind:"network.name"}
-        %span{ng-bind:"network.description || 'some description here'"}
-        .stats
-          %span
-            %i.fa.fa-user.fa-fw
-            2,349
-          %span
-            %i.fa.fa-sitemap.fa-fw
-            {{network.communities_count || 0}}
-      %div{layout: "center center", layout-fill: true}
-        %md-switch{ng-model: "network.subscribed", aria-label: "Switch 1", ng-change: "toggle(network)"}
-      
+    %md-content#dialog-content{layout: "column"}
+      %md-list-item.subscription-card{ng-repeat: "network in networks | filter: networkFilter", layout: "row"}
+        .subscription-info{layout: "column", flex: 90}
+          %h4{ng-bind:"network.name"}
+          %span{ng-bind:"network.description || 'some description here'"}
+          .stats
+            %span
+              %i.fa.fa-user.fa-fw
+              2,349
+            %span
+              %i.fa.fa-sitemap.fa-fw
+              {{network.communities_count || 0}}
+        %div{layout: "center center", layout-fill: true}
+          %md-switch{ng-model: "network.subscribed", aria-label: "Switch 1", ng-change: "toggle(network)"}
+        

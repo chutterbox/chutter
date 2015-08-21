@@ -2,9 +2,19 @@
   %post.post{post: "page.post",  layout: "row"}
 %md-toolbar#comment-toolbar.md-hue-2{layout: "row", md-scroll-shrink: "true"}
   .md-toolbar-tools
-    %md-tabs.md-hue-2
-      %md-tab{label: "best"}
-      %md-tab{label: "new"}
+    %md-tabs.md-hue-2{layout: "row", layout-fill: "true", md-no-pagination: "true"}
+      %md-tab
+        %md-tab-label
+          %h3
+            best
+      %md-tab
+        %md-tab-label
+          %h3
+            top
+      %md-tab
+        %md-tab-label
+          %h3
+            live
     %span{flex: true}
     %span.comments{ng-bind: "page.post.comments_count + ' comments'"}
     %i.icon.ion-ios-trash

@@ -71,7 +71,6 @@ comment-embed {
     margin-top: 5px;
     min-height: 85px;
     max-height: 100%;
-    height: inherit;
     max-width: 3%; }
     comment .vote .md-button,
     comment-embed .vote .md-button {

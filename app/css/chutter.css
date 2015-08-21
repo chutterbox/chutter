@@ -28,6 +28,12 @@ i {
 .md-button {
   font-size: 0.8vmax; }
 
+.md-fab .icon {
+  font-size: 25px; }
+
+.md-mini .icon {
+  font-size: 17px; }
+
 @media(max-width: 960px) {
   p {
     font-size: 1.8vmax; }
@@ -186,12 +192,6 @@ table th {
   #content md-bottom-sheet {
     padding: 0 0 88px 0; }
 
-#footer {
-  position: absolute;
-  bottom: 0; }
-  #footer .md-toolbar-tools a {
-    margin: 8px; }
-
 post {
   background: #fff; }
 
@@ -217,5 +217,8 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+[layout-fill] {
+  height: inherit; }
 
 /*# sourceMappingURL=chutter.css.map */

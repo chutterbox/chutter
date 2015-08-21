@@ -157,6 +157,8 @@ module.exports = (grunt) ->
           "app/partials/main/sidebar/comments-sidebar.html" : "_app/partials/main/sidebar/comments-sidebar.haml"
           "app/partials/main/sidebar/network-sidebar.html" : "_app/partials/main/sidebar/network-sidebar.haml"
           "app/partials/main/sidebar/submission-sidebar.html" : "_app/partials/main/sidebar/submission-sidebar.haml"
+          "app/partials/main/sidebar/footer-sidebar.html" : "_app/partials/main/sidebar/footer-sidebar.haml"
+
 
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"

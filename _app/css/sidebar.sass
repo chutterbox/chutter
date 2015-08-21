@@ -1,0 +1,163 @@
+@import "chutter"
+//Variables
+$color-white: #fff
+$color-light: #F2F2F2
+$color-gray-600: #757575
+$color-dark: #3f3f3f
+$color-green: #4caf50
+$color-red: #f44336
+$color-orange: #ff9800
+$color-light-blue: #03a9f4
+
+$font-size-60: 0.60vmax
+$font-size-65: 0.65vmax
+$font-size-70: 0.7vmax
+$font-size-75: 0.75vmax
+$font-size-130: 1.3vmax
+
+.md-sidenav-right
+  .section-content
+    >div
+      padding: 1vmax 1vmax 1vmax 1.5vmax
+      overflow: hidden
+  h5
+    margin-top: 0
+  .light
+    color: $color-gray-600
+  .small
+    font-size: $font-size-70
+    @media(max-width: 960px) // Responsive font
+      font-size: $font-size-70 + 1
+  .md-button
+    text-transform: none
+  //Header
+  .header
+    margin-bottom: 0.8vmax
+    .title
+      h5
+        margin: 0
+      .icon-holder,
+      .md-button
+        margin-right: -6px // fix to make it more inline (counter the padding)
+        height: $h5-size
+        min-width: 35px
+        min-height: 36px
+        .icon
+          line-height: 36px
+          color: $color-light-blue
+          font-size: $font-size-130
+          @media(max-width: 960px) // Responsive font
+            font-size: $font-size-130 + 1
+        &:hover
+          .icon
+            color: $color-dark
+          .ion-minus-circled
+            color: $color-orange
+          .ion-plus-circled
+            color: $color-green
+    .sub-header
+      margin-top: 0.5vmax
+      font-size: $font-size-70
+      @media(max-width: 960px) // Responsive font
+        font-size: $font-size-70 +1
+  #footer
+    text-align: center
+    .links
+      margin: 0.5vmax 0
+      overflow: hidden
+      a
+        text-transform: capitalize
+        cursor: pointer
+        font-size: $font-size-65
+        @media(max-width: 960px) // Responsive font
+          font-size: $font-size-65 + 1
+        display: inline-block
+        margin: 0 0.25vmax
+        color: $color-gray-600
+        &:hover
+          color: $color-dark
+
+  // List styling (news/moderators)
+  $list-height: 2.5vmax
+  .special-list
+    md-list
+      padding: 0
+      background: $color-light
+    md-list-item
+      min-height: 36px
+      padding: 0
+      .content
+        height: $list-height
+        border-right: 1px solid #DDDDDD
+        border-bottom: 1px solid #DDDDDD
+      &:first-child
+        .content
+          border-top: 1px solid #DDDDDD
+      .type
+        min-height: 36px
+        height: $list-height
+        color: $color-white
+        text-align: center
+      .md-button
+        margin: 0
+        border-radius: 0
+        padding: 0 0.5vmax
+      .title
+        color: $color-gray-600
+        overflow: hidden
+        float: left
+        font-size: $font-size-75
+        @media(max-width: 960px) // Responsive font
+          font-size: $font-size-75 + 1
+        line-height: $list-height
+
+  //All [Chutter "front-page"]
+  all-sidebar
+    .sub-goal
+      .icon-holder
+        .icon,
+        .icon:hover
+          color: $color-red!important
+      .help
+        margin-top: 16px
+    .about
+      .icon-holder
+        .icon,
+        .icon:hover
+          color: $color-gray-600!important
+    .news
+      .special-list
+        .time
+          float: right
+          font-size: $font-size-60
+          @media(max-width: 960px) // Responsive font
+            font-size: $font-size-60 + 1
+          text-transform: uppercase
+          line-height: $list-height
+        .update
+          background: $color-green
+        .community
+          background: $color-light-blue
+        .important
+          background: $color-red
+
+  //Network
+  network-sidebar
+    .welcome
+      .md-button
+        margin: 0
+      .subscribers
+        text-align: center
+        line-height: 38px
+  //Community
+  community-sidebar
+    .moderators
+      .special-list
+        .admin
+          font-weight: 600
+          background: $color-red
+          .icon
+            transform: rotate(-90deg)
+        .moderator
+          font-weight: 600
+          background: $color-orange

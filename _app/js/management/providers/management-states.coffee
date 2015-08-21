@@ -15,7 +15,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/"
       templateUrl: "#{view_url}/dashboard.html"
       controller: "dashboardCtrl"
-    
+
     community =
       name: "home.community"
       url: "/community/:id"

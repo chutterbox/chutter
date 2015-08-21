@@ -23,7 +23,7 @@
         templateUrl: '../app/partials/main/menu/toggle.html',
         controller: [
           "$mdDialog", "$scope", function($mdDialog, $scope) {
-            return $scope.editCommunity = function() {
+            return $scope.editCommunity = function(ev) {
               return $mdDialog.show({
                 controller: "communityEditCtrl",
                 templateUrl: '/partials/main/communityEdit.html',
@@ -37,7 +37,8 @@
                   ]
                 },
                 parent: angular.element(document.body),
-                clickOutsideToClose: true
+                clickOutsideToClose: true,
+                targetEvent: ev
               });
             };
           }
@@ -48,7 +49,6 @@
           $scope.network.menuToggle = $element[0];
           originalHeight = void 0;
           $scope.network.close = function() {
-            console.log("called wtf");
             $scope.network.menuListItem.className = "";
             return $scope.network.toggled = false;
           };

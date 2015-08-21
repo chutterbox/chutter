@@ -48,9 +48,11 @@ md-sidenav,
 md-content {
   background: #f2f2f2; }
 
-md-dialog md-content,
 md-tabs md-content {
   background: #fff; }
+
+#dialog-content {
+  background-color: #fff; }
 
 md-sidenav.md-locked-open {
   width: 16vw;

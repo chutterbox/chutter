@@ -78,17 +78,18 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
     $scope.signIn = ->
       $scope.$broadcast("auth:show-signin")
 
-    $scope.editNetworks = ->
+    $scope.editNetworks = (ev) ->
       $mdDialog.show
         controller: 'networkEditCtrl'
-        templateUrl: '/partials/main/networkEdit.html'
-        resolve: List: [
-          'NetworkResource'
-          (NetworkResource) ->
-            NetworkResource.list()
-        ]
+        templateUrl: '../app/partials/main/networkEdit.html'
+        clickOutsideToClose:true 
         parent: angular.element(document.body)
-        clickOutsideToClose:true
+        targetEvent: ev
+        resolve: 
+          List: ['NetworkResource', (NetworkResource) ->
+            NetworkResource.list()
+          ]
+
 
 
     $scope.$on 'auth:login-success', ->

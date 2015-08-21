@@ -1,18 +1,19 @@
 %md-toolbar.md-primary.md-hue-2.extra-width{md-scroll-shrink: "true"}
-  .md-toolbar-tools{ng-switch: "page.scope"}
-    %md-tabs.md-primary.md-hue-2{ng-switch-when: "all"}
+  .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
+    %md-tabs.md-primary.md-hue-2{md-no-pagination: "true", flex: true}
       %md-tab{ui-sref: "home.all.hot"}
         %md-tab-label
-          hot
+          %h3
+            hot
       %md-tab{ui-sref: "home.all.new"}
         %md-tab-label
-          new
-      %md-tab{ui-sref: "home.all.top", label: "top"}
+          %h3
+            new
+
+      %md-tab{ui-sref: "home.all.top"}
         %md-tab-label
-          top
-    %md-tabs.md-primary.md-hue-2{ng-switch-when: "network"}
-      %md-tab{ui-sref: "^.network", label: "hot"}
-      %md-tab{ui-sref: ".new", label: "new"}
-      %md-tab{ui-sref: ".top", label: "top"}
-%md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 
+          %h3
+            top
+
+%md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3", ui-view: "posts"}
+  

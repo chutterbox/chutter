@@ -5,11 +5,9 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
       isArray: false
       url: API.makeURL('/posts/:id')
       interceptor: 'response': (response) ->
-        Page.post = response.data     
+        Page.post = response.data  
     query:
       isArray: true
-      interceptor: 'response': (response) ->
-        Page.posts = response.data
     comments:
       transformRequest: []
       url: API.makeURL('/posts/:id/comments')
@@ -35,6 +33,7 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
       url: API.makeURL('/posts/saved')
       isArray: true
       interceptor: 'response': (response) ->
+        console.log "here"
         Page.posts = response.data
 ]
 
@@ -70,8 +69,6 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
       method: 'GET'
       isArray: true
       url: API.makeURL('/networks/:id/posts')
-      interceptor: 'response': (response) ->
-        Page.posts = response.data
     list:
       method: 'GET'
       url: API.makeURL('/networks/list')

@@ -115,6 +115,7 @@
           };
           return $scope.post.toggle = function(post) {
             var frag, preferredScaleValue, range;
+            console.log("here");
             preferredScaleValue = $scope.post.currentMedia.format === "music" ? 4 : 5;
             if (Page.selectedPost === $scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {

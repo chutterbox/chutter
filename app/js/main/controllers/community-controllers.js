@@ -24,10 +24,8 @@
   ]);
 
   app.controller("communityCtrl", [
-    "$scope", "$state", "$rootScope", "$stateParams", "Page", "Posts", function($scope, $state, $rootScope, $stateParams, Page, Posts) {
-      $scope.page = Page;
-      $scope.page.posts.length = 0;
-      return $scope.page.posts = Posts;
+    "$scope", "Page", function($scope, Page) {
+      return $scope.page = Page;
     }
   ]);
 

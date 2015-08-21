@@ -16,11 +16,8 @@ app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "Com
 
 ]
 
-app.controller "communityCtrl", ["$scope", "$state", "$rootScope", "$stateParams", "Page", "Posts",( $scope, $state, $rootScope, $stateParams, Page, Posts) ->
+app.controller "communityCtrl", ["$scope", "Page", ( $scope, Page) ->
   $scope.page = Page
-  $scope.page.posts.length = 0
-  $scope.page.posts = Posts
-
 ]
 
 app.controller "communityPanelCtrl", ["$scope", "$mdBottomSheet", "Page", ($scope, $mdBottomSheet, Page) ->

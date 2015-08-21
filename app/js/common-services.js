@@ -19,12 +19,7 @@
           }
         },
         query: {
-          isArray: true,
-          interceptor: {
-            'response': function(response) {
-              return Page.posts = response.data;
-            }
-          }
+          isArray: true
         },
         comments: {
           transformRequest: [],
@@ -57,6 +52,7 @@
           isArray: true,
           interceptor: {
             'response': function(response) {
+              console.log("here");
               return Page.posts = response.data;
             }
           }
@@ -118,12 +114,7 @@
         posts: {
           method: 'GET',
           isArray: true,
-          url: API.makeURL('/networks/:id/posts'),
-          interceptor: {
-            'response': function(response) {
-              return Page.posts = response.data;
-            }
-          }
+          url: API.makeURL('/networks/:id/posts')
         },
         list: {
           method: 'GET',

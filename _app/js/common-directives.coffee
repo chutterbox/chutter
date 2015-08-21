@@ -100,6 +100,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
         $scope.$emit ('auth:show-signin')
  
     $scope.post.toggle = (post) ->
+      console.log "here"
       preferredScaleValue = if $scope.post.currentMedia.format is "music" then 4 else 5
       #unzoom the zoomed post
       if Page.selectedPost is $scope.post

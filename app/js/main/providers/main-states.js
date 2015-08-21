@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, all_hot, all_new, all_top, comments, community, create, home, network, network_new, network_top, submit, view_url;
+      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, network, network_hot, network_new, network_top, submit, view_url;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
@@ -38,59 +38,70 @@
       all_hot = {
         name: "home.all.hot",
         url: "/",
-        resolve: {
-          Posts: [
-            "PostResource", function(PostResource) {
-              return PostResource.query({
-                sort: "hot"
-              }).$promise;
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "PostResource", function(PostResource) {
+                  return PostResource.query({
+                    sort: "hot"
+                  }).$promise;
+                }
+              ]
             }
-          ]
+          }
         }
       };
       all_new = {
         name: "home.all.new",
         url: "/new",
-        resolve: {
-          Posts: [
-            "PostResource", function(PostResource) {
-              return PostResource.query({
-                sort: "new"
-              }).$promise;
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "PostResource", function(PostResource) {
+                  return PostResource.query({
+                    sort: "new"
+                  }).$promise;
+                }
+              ]
             }
-          ]
+          }
         }
       };
       all_top = {
         name: "home.all.top",
         url: "/top",
-        resolve: {
-          Posts: [
-            "PostResource", function(PostResource) {
-              return PostResource.query({
-                sort: "top"
-              }).$promise;
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "PostResource", function(PostResource) {
+                  return PostResource.query({
+                    sort: "top"
+                  }).$promise;
+                }
+              ]
             }
-          ]
+          }
         }
       };
       network = {
         name: "home.network",
-        templateUrl: view_url + "/posts.html",
+        templateUrl: view_url + "/networkPosts.html",
         url: "/n/:network",
+        abstract: true,
         resolve: {
           Network: [
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
               return NetworkResource.show({
                 id: $stateParams.network
-              });
-            }
-          ],
-          Posts: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkResource.posts({
-                id: $stateParams.network,
-                sort: "hot"
               }).$promise;
             }
           ]
@@ -102,60 +113,147 @@
         ],
         controller: "networkCtrl"
       };
+      network_hot = {
+        name: "home.network.hot",
+        url: "",
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
+                  console.log($stateParams);
+                  return NetworkResource.posts({
+                    id: $stateParams.network,
+                    sort: "new"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
       network_new = {
         name: "home.network.new",
         url: "/new",
-        resolve: {
-          Posts: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkResource.posts({
-                id: $stateParams.network,
-                sort: "new"
-              }).$promise;
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
+                  return NetworkResource.posts({
+                    id: $stateParams.newtwork,
+                    sort: "new"
+                  }).$promise;
+                }
+              ]
             }
-          ]
+          }
         }
       };
       network_top = {
         name: "home.network.top",
         url: "/top",
-        resolve: {
-          Posts: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkResource.posts({
-                id: $stateParams.network,
-                sort: "top"
-              }).$promise;
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
+                  return NetworkResource.posts({
+                    id: $stateParams.newtwork,
+                    sort: "top"
+                  }).$promise;
+                }
+              ]
             }
-          ]
+          }
         }
       };
       community = {
         name: "home.community",
+        templateUrl: view_url + "/communityPosts.html",
         url: "/c/:community",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.scope = "community";
-          }
-        ],
+        abstract: true,
         resolve: {
           Community: [
             "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
               return CommunityResource.show({
                 id: $stateParams.community
-              }).$promise;
-            }
-          ],
-          Posts: [
-            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
-              return CommunityResource.posts({
-                id: $stateParams.community
-              }).$promise;
+              });
             }
           ]
         },
-        templateUrl: view_url + "/posts.html",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.scope = "community";
+          }
+        ],
         controller: "communityCtrl"
+      };
+      community_hot = {
+        name: "home.community.hot",
+        url: "",
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "hot"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      community_new = {
+        name: "home.community.new",
+        url: "/new",
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "hot"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      community_top = {
+        name: "home.community.top",
+        url: "/top",
+        views: {
+          "posts": {
+            controller: "postsCtrl",
+            templateUrl: "../app/partials/shared/postListItem.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "hot"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
       };
       submit = {
         name: "home.community.submit",
@@ -224,7 +322,11 @@
       $stateProvider.state(network);
       $stateProvider.state(network_new);
       $stateProvider.state(network_top);
+      $stateProvider.state(network_hot);
       $stateProvider.state(community);
+      $stateProvider.state(community_hot);
+      $stateProvider.state(community_top);
+      $stateProvider.state(community_new);
       $stateProvider.state(submit);
       $stateProvider.state(create);
       return $stateProvider.state(comments);

@@ -55,4 +55,14 @@
     };
   });
 
+  app.directive("footerSidebar", function() {
+    return {
+      restrict: "E",
+      templateUrl: VIEW_URL + "/sidebar/footer-sidebar.html",
+      scope: {
+        page: "="
+      }
+    };
+  });
+
 }).call(this);

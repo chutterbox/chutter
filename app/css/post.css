@@ -251,6 +251,7 @@ md-list#posts {
       height: 100%; }
     .post .postcontent img {
       width: 62vw;
+      height: auto;
       position: absolute;
       top: 0;
       left: 0; }

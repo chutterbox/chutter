@@ -25,8 +25,11 @@ $a-size-lg: 1vmax
 $span-size: 0.8vmax
 $h6-size: 0.8vmax
 $h5-size: 0.85vmax
+
+$color-link: rgb(3,169,244)
+
 a
-  color: rgb(3,169,244)
+  color: $color-link
   text-decoration: none
 
 h1,h2,h3,h4,h5,h6,p,span, a
@@ -48,6 +51,12 @@ i
 .md-button
   font-size: $p-size
 
+.md-fab
+  .icon
+    font-size: 25px
+.md-mini
+  .icon
+    font-size: 17px
 
 @media(max-width: 960px) 
   p
@@ -117,7 +126,7 @@ md-toolbar.extra-width
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
-md-toolbar#me-toolbar,
+md-toolbar#me-toolbar
   z-index: $toolbar-z-index
   position: absolute
   top: 0
@@ -185,13 +194,6 @@ table
   md-bottom-sheet
     padding: 0 0 88px 0
   background: #fff
-//footer
-#footer
-  position: absolute
-  bottom: 0
-  .md-toolbar-tools
-    a 
-      margin: 8px
 
 post
   background: #fff
@@ -223,4 +225,6 @@ post
         margin-right: 5px
         color: #999
 
-  
+// Fixes
+[layout-fill]
+  height: inherit // Chrome layout-fill fix @/angular/material/issues/2058

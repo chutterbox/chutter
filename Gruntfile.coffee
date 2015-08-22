@@ -162,7 +162,6 @@ module.exports = (grunt) ->
           "app/partials/main/sidebar/submission-sidebar.html" : "_app/partials/main/sidebar/submission-sidebar.haml"
           "app/partials/main/sidebar/footer-sidebar.html" : "_app/partials/main/sidebar/footer-sidebar.haml"
 
-
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"
           "app/partials/me/layout.html" : "_app/partials/me/layout.haml"
@@ -211,7 +210,8 @@ module.exports = (grunt) ->
           'app/css/comments.css',
           'app/css/post.css',
           'app/css/notifications.css',
-          'app/css/sidebar.css'
+          'app/css/sidebar.css',
+          'app/css/main.css'
         ],
         dest: 'app/css/compiled/application.css'
     cssmin: 

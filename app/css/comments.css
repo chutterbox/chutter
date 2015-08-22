@@ -11,12 +11,10 @@
   height: 90%;
   max-height: 550px; }
 
-#comment-toolbar {
-  position: relative; }
-  #comment-toolbar md-tabs .md-tab {
-    color: #f3f3f3; }
-  #comment-toolbar .comments {
-    margin-right: calc(2.5% - 16px); }
+#comment-toolbar md-tabs .md-tab {
+  color: #f3f3f3; }
+#comment-toolbar .comments {
+  margin-right: calc(2.5% - 16px); }
 
 comment,
 comment-embed {

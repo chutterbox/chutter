@@ -1,8 +1,8 @@
 %div{style: "z-index: 120;"}
   %post.post{post: "page.post",  layout: "row"}
 %md-toolbar#comment-toolbar.md-hue-2{layout: "row", md-scroll-shrink: "true"}
-  .md-toolbar-tools
-    %md-tabs.md-hue-2{layout: "row", layout-fill: "true", md-no-pagination: "true"}
+  .md-toolbar-tools{layout: "row"}
+    %md-tabs.md-hue-2{flex: true}
       %md-tab
         %md-tab-label
           %h3
@@ -15,9 +15,9 @@
         %md-tab-label
           %h3
             live
-    %span{flex: true}
     %span.comments{ng-bind: "page.post.comments_count + ' comments'"}
-    %i.icon.ion-ios-trash
+    %md-button.md-icon-button
+      %i.icon.ion-ios-trash
 %md-content#comments
 
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}

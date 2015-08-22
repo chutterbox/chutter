@@ -2,23 +2,24 @@
 
   %md-toolbar.md-whiteframe-z1.md-tall#moderation-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
-      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-        chutter
-
-      %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-        %i.fa.fa-list
+      .toolbar-container{layout: "row"}
+        %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;"}
+        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
+          Chutter.co
+        %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
+          %i.fa.fa-list
       %span{flex: true}
-      %md-button{ng-click: "signIn()"}
-        Sign In
+      .toolbar-container{layout: "row", layout-align: "end end"}
+        %md-button{ng-click: "signIn()"}
+          Sign In
     
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-      .toolbar-container 
-        %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+      .toolbar-container{layout: "row"}
+        %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
+        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
+          Chutter.co
         %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
           %i.fa.fa-align-justify.fa-fw
-        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-          chutter
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
         %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
@@ -39,7 +40,7 @@
         %a
           Moderation
       %span{flex: true}
-      .toolbar-container{layout: "row", layout-align: "center center"}
+      #titles.toolbar-container{layout: "row", layout-align: "center center"}
         %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
 
@@ -53,7 +54,6 @@
         
   .md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
-    %media-controls#media-controls{layout: "column"}
 
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}

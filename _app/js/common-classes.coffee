@@ -49,7 +49,7 @@ app.factory "CommunityRule", [ ->
       ban: false
       removal: false
       discouraged: false
-      brief_description: ""
+      category: ""
       detailed_explanation: ""
     }
 ]

@@ -16,7 +16,7 @@
               Rule Violation
             %md-radio-group{ng-model: "activityLogEntry.rule_id"}
               %md-radio-button.md-primary{ng-repeat: "rule in community_rules | filter:{posts: true} ", ng-value: "rule.id"}
-                {{rule.brief_description}}
+                {{rule.category}}
             %md-input-container
               %label Detailed Explanation
               %textarea{ng-model: "activityLogEntry.detailed_explanation", type: "text", rows: 5}

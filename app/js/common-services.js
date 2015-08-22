@@ -201,6 +201,10 @@
           url: API.makeURL('/communities/:id/rules'),
           isArray: true
         },
+        reportableRules: {
+          url: API.makeURL('/communities/:id/reportable_rules'),
+          isArray: true
+        },
         activityLog: {
           url: API.makeURL('/communities/:id/activity_log')
         },

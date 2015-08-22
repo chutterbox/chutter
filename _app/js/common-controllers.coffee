@@ -36,8 +36,8 @@ app.controller "modSheetCtrl", ["$scope", "entityable", "entityableType", "Commu
 
   $scope.post = $scope.entityable_post #just for the embedded post section
   
-  CommunityResource.rules({id: $scope.entityable.community_slug}).$promise.then (data) ->
-    $scope.community_rules = data
+  CommunityResource.reportableRules({id: $scope.entityable.community_slug}).$promise.then (data) ->
+    $scope.communityRules = _.filter data, (rule) -> (rule.sitewide || rule.posts)
 
   #id here is assumed to be the id of the route we want to post to, i.e. /posts/12/remove
   $scope.activityLogEntry.id = $scope.entityable.id

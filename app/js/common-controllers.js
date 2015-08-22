@@ -38,10 +38,12 @@
       $scope.entityable = entityable;
       $scope.activityLogEntry = new ActivityLogEntry;
       $scope.post = $scope.entityable_post;
-      CommunityResource.rules({
+      CommunityResource.reportableRules({
         id: $scope.entityable.community_slug
       }).$promise.then(function(data) {
-        return $scope.community_rules = data;
+        return $scope.communityRules = _.filter(data, function(rule) {
+          return rule.sitewide || rule.posts;
+        });
       });
       $scope.activityLogEntry.id = $scope.entityable.id;
       $scope.submitEntityableForm = function() {

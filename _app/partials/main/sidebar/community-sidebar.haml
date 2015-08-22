@@ -27,7 +27,7 @@
       %md-list-item{ng-repeat: "rule in page.community.rules"}
         .header{layout: "row", layout-wrap: "layout-wrap"}
           .title{layout: "row", flex: 100, layout-align: "space-between center"}
-            %h5{ng-bind: "::rule.brief_description"}
+            %h5{ng-bind: "::rule.category"}
           .light.sub-header{ng-bind: "::rule.detailed_explanation"}
   %md-divider
   .moderators

@@ -4,7 +4,7 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5
           Welcome
-        %md-button{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
+        %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
           .icon{ng-class: "page.network.subscribed ? 'ion-minus-circled': 'ion-plus-circled'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.network.subscribed ? 'Unsubscribe': 'Subscribe'"}
@@ -21,7 +21,7 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5
           Trending Communities
-        %md-button
+        %md-button.md-icon-button
           .icon.ion-stats-bars
           %md-tooltip{md-direction: "left"}
             %span

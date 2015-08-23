@@ -2,9 +2,9 @@
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
       .toolbar-container{layout: "row"}
-        %img{ng-src: "(/vendor/mr-chutter.png", style: "width: 35px;"}
+        %img{ng-src: "(/vendor/mr-chutter.png", style: "width: 35px; height: 35px;"}
         %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-          Chutter.co
+          Chutter
         %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
           %i.fa.fa-list
       %span{flex: true}

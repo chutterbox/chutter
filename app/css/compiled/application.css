@@ -7481,6 +7481,9 @@ table th {
 post {
   background: #fff; }
 
+#posts {
+  height: 100%; }
+
 .ng-cloak {
   display: none !important; }
 
@@ -8059,6 +8062,9 @@ table th {
 post {
   background: #fff; }
 
+#posts {
+  height: 100%; }
+
 .ng-cloak {
   display: none !important; }
 
@@ -8508,6 +8514,9 @@ table th {
 
 post {
   background: #fff; }
+
+#posts {
+  height: 100%; }
 
 .ng-cloak {
   display: none !important; }

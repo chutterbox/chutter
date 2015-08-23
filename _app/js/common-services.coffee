@@ -4,8 +4,6 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
     get:
       isArray: false
       url: API.makeURL('/posts/:id')
-      interceptor: 'response': (response) ->
-        Page.post = response.data  
     query:
       isArray: true
     comments:

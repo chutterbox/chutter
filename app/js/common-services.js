@@ -11,12 +11,7 @@
       }, {
         get: {
           isArray: false,
-          url: API.makeURL('/posts/:id'),
-          interceptor: {
-            'response': function(response) {
-              return Page.post = response.data;
-            }
-          }
+          url: API.makeURL('/posts/:id')
         },
         query: {
           isArray: true

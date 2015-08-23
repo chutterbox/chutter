@@ -54,6 +54,9 @@ md-sidenav,
 md-content {
   background: #f2f2f2; }
 
+#brand {
+  line-height: 35px; }
+
 md-tabs md-content {
   background: #fff; }
 

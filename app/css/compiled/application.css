@@ -7337,6 +7337,9 @@ md-sidenav,
 md-content {
   background: #f2f2f2; }
 
+#brand {
+  line-height: 35px; }
+
 md-tabs md-content {
   background: #fff; }
 
@@ -7635,12 +7638,10 @@ post {
   height: 90%;
   max-height: 550px; }
 
-#comment-toolbar {
-  position: relative; }
-  #comment-toolbar md-tabs .md-tab {
-    color: #f3f3f3; }
-  #comment-toolbar .comments {
-    margin-right: calc(2.5% - 16px); }
+#comment-toolbar md-tabs .md-tab {
+  color: #f3f3f3; }
+#comment-toolbar .comments {
+  margin-right: calc(2.5% - 16px); }
 
 comment,
 comment-embed {
@@ -7913,6 +7914,9 @@ body,
 md-sidenav,
 md-content {
   background: #f2f2f2; }
+
+#brand {
+  line-height: 35px; }
 
 md-tabs md-content {
   background: #fff; }
@@ -8361,6 +8365,9 @@ md-sidenav,
 md-content {
   background: #f2f2f2; }
 
+#brand {
+  line-height: 35px; }
+
 md-tabs md-content {
   background: #fff; }
 
@@ -8660,3 +8667,7 @@ post {
   background: #ff9800; }
 
 /*# sourceMappingURL=sidebar.css.map */
+
+
+
+/*# sourceMappingURL=main.css.map */

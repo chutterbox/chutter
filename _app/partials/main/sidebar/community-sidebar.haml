@@ -3,7 +3,7 @@
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5{ng-bind: "'/c/'+page.community.slug"}
-        %md-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
+        %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
           .icon{ng-class: "page.community.subscribed ? 'ion-minus-circled': 'ion-plus-circled'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
@@ -16,7 +16,7 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5
           General Rules
-        %md-button{aria-label: "More rules"}
+        %md-button.md-icon-button{aria-label: "More rules"}
           .icon.ion-android-more-vertical
           %md-tooltip{md-direction: "left"}
             %span
@@ -35,7 +35,7 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5
           Moderators
-        %md-button{aria-label: "Contact Moderators"}
+        %md-button.md-icon-button{aria-label: "Contact Moderators"}
           .icon.ion-android-mail
           %md-tooltip{md-direction: "left"}
             %span

@@ -41,18 +41,16 @@ app.controller "modSheetCtrl", ["$scope", "entityable", "entityableType", "Commu
 
   #id here is assumed to be the id of the route we want to post to, i.e. /posts/12/remove
   $scope.activityLogEntry.id = $scope.entityable.id
+  
   $scope.submitEntityableForm = () ->
     #this is the id for the entity being moderated, not the activity log entry id
     if entityableType is "post"
       PostResource.delete($scope.activityLogEntry)
   
+  
   $scope.submitUserForm = () ->
     if entityableType is "post"
       PostResource.ban($scope.activityLogEntry)  
-
-
-
-
 
 ]
 

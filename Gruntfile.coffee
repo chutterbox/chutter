@@ -127,6 +127,7 @@ module.exports = (grunt) ->
           "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
           "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
           "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
+          "app/partials/shared/subscriptionDialog.html" : "_app/partials/shared/subscriptionDialog.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"

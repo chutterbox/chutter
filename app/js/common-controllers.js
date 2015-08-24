@@ -105,10 +105,11 @@
 
   app.controller("postsCtrl", [
     "$scope", "Page", "Posts", function($scope, Page, Posts) {
-      console.log("here2342");
       $scope.page = Page;
       return $scope.page.posts = Posts;
     }
   ]);
+
+  app.controller("subscriptionDialogCtrl", ["$scope", function($scope) {}]);
 
 }).call(this);

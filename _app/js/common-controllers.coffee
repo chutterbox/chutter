@@ -97,7 +97,10 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
 ]
 
 app.controller "postsCtrl", ["$scope", "Page", "Posts", ($scope, Page, Posts) ->
-  console.log "here2342"
   $scope.page = Page
   $scope.page.posts = Posts
+]
+
+app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->
+
 ]

@@ -11,7 +11,19 @@
       templateUrl: VIEW_URL + "/sidebar/all-sidebar.html",
       scope: {
         page: "="
-      }
+      },
+      controller: [
+        "$scope", "$mdDialog", function($scope, $mdDialog) {
+          return $scope.openSubscriptionDialog = function() {
+            return $mdDialog.show({
+              controller: 'subscriptionDialogCtrl',
+              templateUrl: '../app/partials/shared/subscriptionDialog.html',
+              parent: angular.element(document.body),
+              clickOutsideToClose: true
+            });
+          };
+        }
+      ]
     };
   });
 

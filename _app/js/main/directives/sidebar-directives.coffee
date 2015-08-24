@@ -5,6 +5,18 @@ app.directive "allSidebar", ->
   templateUrl: "#{VIEW_URL}/sidebar/all-sidebar.html"
   scope: 
     page: "="
+
+  controller: ["$scope", "$mdDialog", ($scope, $mdDialog) ->
+    $scope.openSubscriptionDialog = () ->
+      $mdDialog.show
+       controller: 'subscriptionDialogCtrl'
+       templateUrl: '../app/partials/shared/subscriptionDialog.html'
+       parent: angular.element(document.body)
+       clickOutsideToClose: true
+
+
+
+  ]
 app.directive "commentSidebar", ->
   restrict: "E"
   templateUrl: "#{VIEW_URL}/sidebar/comments-sidebar.html"

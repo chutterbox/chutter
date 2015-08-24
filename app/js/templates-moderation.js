@@ -15,6 +15,8 @@ angular.module('templates-moderation', []).run(['$templateCache', function($temp
     "<h1>hi 2</h1>");
   $templateCache.put("../app/partials/moderation/community/logs.html",
     "");
+  $templateCache.put("../app/partials/moderation/community/moderators.html",
+    "");
   $templateCache.put("../app/partials/moderation/community/monitor.html",
     "<hi>h1</hi>");
   $templateCache.put("../app/partials/moderation/community/policy-groups.html",

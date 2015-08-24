@@ -7507,6 +7507,21 @@ post {
     margin-right: 5px;
     color: #999; }
 
+#chutter-list {
+  width: 16vw; }
+  #chutter-list a.md-button {
+    width: 100%;
+    margin: 0;
+    text-transform: none; }
+    #chutter-list a.md-button h6 {
+      margin: 0; }
+    #chutter-list a.md-button .tagline {
+      font-weight: normal;
+      text-align: left; }
+      #chutter-list a.md-button .tagline p {
+        margin: 0;
+        padding: 0; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -8088,6 +8103,21 @@ post {
     margin-right: 5px;
     color: #999; }
 
+#chutter-list {
+  width: 16vw; }
+  #chutter-list a.md-button {
+    width: 100%;
+    margin: 0;
+    text-transform: none; }
+    #chutter-list a.md-button h6 {
+      margin: 0; }
+    #chutter-list a.md-button .tagline {
+      font-weight: normal;
+      text-align: left; }
+      #chutter-list a.md-button .tagline p {
+        margin: 0;
+        padding: 0; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -8540,6 +8570,21 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#chutter-list {
+  width: 16vw; }
+  #chutter-list a.md-button {
+    width: 100%;
+    margin: 0;
+    text-transform: none; }
+    #chutter-list a.md-button h6 {
+      margin: 0; }
+    #chutter-list a.md-button .tagline {
+      font-weight: normal;
+      text-align: left; }
+      #chutter-list a.md-button .tagline p {
+        margin: 0;
+        padding: 0; }
 
 [layout-fill] {
   height: inherit; }

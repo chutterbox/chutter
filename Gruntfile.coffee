@@ -22,7 +22,7 @@ module.exports = (grunt) ->
         src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html', 'app/partials/main/sidebar/*.html'],
         dest: 'app/js/templates-main.js'
       moderation:
-        src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html'],
+        src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html','app/partials/moderation/community/moderators*.html'],
         dest: 'app/js/templates-moderation.js'
       shared:
         src: ['app/partials/toasts/*.html', 'app/partials/shared/*.html','app/partials/shared/comments/*.html'],
@@ -165,7 +165,6 @@ module.exports = (grunt) ->
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"
           "app/partials/me/layout.html" : "_app/partials/me/layout.haml"
-          "app/partials/me/dashboard.html" : "_app/partials/me/dashboard.haml"
           "app/partials/me/conversations/conversationList.html" : "_app/partials/me/conversations/conversationList.haml"
           "app/partials/me/conversations/conversation.html" : "_app/partials/me/conversations/conversation.haml"
           "app/partials/me/conversations/compose.html" : "_app/partials/me/conversations/compose.haml"
@@ -181,9 +180,10 @@ module.exports = (grunt) ->
           "app/partials/moderation/index.html" : "_app/partials/moderation/index.haml"
           "app/partials/moderation/layout.html" : "_app/partials/moderation/layout.haml"
           "app/partials/moderation/dashboard.html" : "_app/partials/moderation/dashboard.haml"
-          "app/partials/moderation/community/dashboard.html" : "_app/partials/moderation/community/dashboard.haml"
           "app/partials/moderation/community/community.html" : "_app/partials/moderation/community/community.haml"
           "app/partials/moderation/community/policy-groups.html" : "_app/partials/moderation/community/policy-groups.haml"
+          "app/partials/moderation/community/moderators/moderatorList.html" : "_app/partials/moderation/community/moderators/moderatorList.haml"
+          "app/partials/moderation/community/moderators/editModerator.html" : "_app/partials/moderation/community/moderators/editModerator.haml"
           "app/partials/moderation/community/queue.html" : "_app/partials/moderation/community/queue.haml"
           "app/partials/moderation/community/rules.html" : "_app/partials/moderation/community/rules.haml"
           "app/partials/moderation/community/modwatch.html" : "_app/partials/moderation/community/modwatch.haml"

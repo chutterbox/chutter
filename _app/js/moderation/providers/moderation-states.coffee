@@ -96,14 +96,31 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     moderators =
       name: "home.community.moderators"
       url: "/moderators"
-      templateUrl: "#{view_url}/community/moderators.html"
-      resolve:        
-        Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
-          CommunityResource.moderators({id: $stateParams.id}).$promise
-        ]
-      controller: ["$scope", "Moderators", ($scope, Moderators) -> 
-        $scope.moderators = Moderators
-      ]
+      views: 
+        "right-rail@home":
+          resolve:        
+            Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.moderators({id: $stateParams.id}).$promise
+            ]
+          templateUrl: "#{view_url}/community/moderators/moderatorList.html"
+          controller: "moderatorListCtrl"
+
+    moderatorEdit =
+      name: "home.community.moderators.edit"
+      url: "/:user_id"
+      views: 
+        "@home.community":
+          resolve:        
+            Moderator: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.moderator({id: $stateParams.id, user_id: $stateParams.user_id}).$promise
+            ]
+          templateUrl: "#{view_url}/community/moderators/editModerator.html"
+          controller: "editModeratorCtrl"
+
+    moderatorRequests =
+      name: "home.community.moderators.requests"
+      url: "/requests"
+
     #community specific dashboard
    
     $stateProvider.state(home)
@@ -118,6 +135,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(settings)
     $stateProvider.state(activityLog)
     $stateProvider.state(moderators)
+    $stateProvider.state(moderatorEdit)
     # $stateProvider.state(conversationCompose)
     # $stateProvider.state(conversationContent)
     # $stateProvider.state(notifications)

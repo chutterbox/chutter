@@ -41,5 +41,5 @@
         unsave
       %a{ng-click: "report()"}
         report
-      %a{ng-click: "moderate()", ng-if: "user && user.moderator"}
+      %a{ng-click: "moderate()", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
         mod

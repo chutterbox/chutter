@@ -132,6 +132,11 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
       moderators:
         url: API.makeURL('/communities/:id/moderators')
         isArray: true
+      moderator:
+        url: API.makeURL('/communities/:id/moderator')
+      updateModerator:
+        method: "PUT"
+        url: API.makeURL('/communities/:id/update_moderator')
       banList:
         url: API.makeURL('/communities/:id/ban_list')
         isArray: true

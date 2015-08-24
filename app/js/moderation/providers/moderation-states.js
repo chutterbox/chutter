@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var activityLog, community, communityDashboard, communityInbox, communityQueue, dashboard, home, moderators, modwatch, policyGroups, rules, settings, view_url;
+      var activityLog, community, communityDashboard, communityInbox, communityQueue, dashboard, home, moderatorEdit, moderatorRequests, moderators, modwatch, policyGroups, rules, settings, view_url;
       view_url = "/partials/moderation";
       home = {
         name: "home",
@@ -134,21 +134,45 @@
       moderators = {
         name: "home.community.moderators",
         url: "/moderators",
-        templateUrl: view_url + "/community/moderators.html",
-        resolve: {
-          Moderators: [
-            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
-              return CommunityResource.moderators({
-                id: $stateParams.id
-              }).$promise;
-            }
-          ]
-        },
-        controller: [
-          "$scope", "Moderators", function($scope, Moderators) {
-            return $scope.moderators = Moderators;
+        views: {
+          "right-rail@home": {
+            resolve: {
+              Moderators: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.moderators({
+                    id: $stateParams.id
+                  }).$promise;
+                }
+              ]
+            },
+            templateUrl: view_url + "/community/moderators/moderatorList.html",
+            controller: "moderatorListCtrl"
           }
-        ]
+        }
+      };
+      moderatorEdit = {
+        name: "home.community.moderators.edit",
+        url: "/:user_id",
+        views: {
+          "@home.community": {
+            resolve: {
+              Moderator: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.moderator({
+                    id: $stateParams.id,
+                    user_id: $stateParams.user_id
+                  }).$promise;
+                }
+              ]
+            },
+            templateUrl: view_url + "/community/moderators/editModerator.html",
+            controller: "editModeratorCtrl"
+          }
+        }
+      };
+      moderatorRequests = {
+        name: "home.community.moderators.requests",
+        url: "/requests"
       };
       $stateProvider.state(home);
       $stateProvider.state(dashboard);
@@ -161,7 +185,8 @@
       $stateProvider.state(policyGroups);
       $stateProvider.state(settings);
       $stateProvider.state(activityLog);
-      return $stateProvider.state(moderators);
+      $stateProvider.state(moderators);
+      return $stateProvider.state(moderatorEdit);
     }
   ]);
 

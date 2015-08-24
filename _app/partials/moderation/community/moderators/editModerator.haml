@@ -1,0 +1,26 @@
+.md-padding
+  %form{ng-submit: "updateModerator()"}
+    %div{layout: "row"}
+      %div{flex: "true"}
+        %h3{ng-bind: "::moderator.username"}
+      %span{flex: "true"}
+      %md-switch
+    %md-divider
+    .md-padding
+      %fieldset.standard
+        %legend
+          Moderator Restrictions
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_removing_posts", ng-true-value: "1", ng-false-value: "0"}
+          restrict from removing posts
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_removing_comments", ng-true-value: "1", ng-false-value: "0"}
+          restrict from removing comments
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_policy_groups", ng-true-value: "1", ng-false-value: "0"}
+          restrict from altering policy groups
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_inbox", ng-true-value: "1", ng-false-value: "0"}
+          restrict from inbox
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_modwatch", ng-true-value: "1", ng-false-value: "0"}
+          restrict from modwatch
+        %md-checkbox{ng-model: "moderator.community_subscription.restricted_from_editing_moderators", ng-true-value: "1", ng-false-value: "0"}
+          restrict from editing moderators
+    %md-button.md-primary{type: "submit"}
+      Save    

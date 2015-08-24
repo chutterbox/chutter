@@ -47,7 +47,7 @@
         %a#primary-title{ui-sref: "home.network({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({community: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
         %span{flex: true}
-        %md-button.md-fab.md-mini{md-direction: "down", ng-if: "page.scope == 'community'"}
+        %md-button.md-fab.md-mini{md-direction: "down", ng-if: "page.scope == 'community'", ui-sref: "home.community.submit({community: page.community.slug})"}
           %i.icon.ion-android-share
 
             

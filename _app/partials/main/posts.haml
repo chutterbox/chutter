@@ -1,4 +1,4 @@
-%md-toolbar.md-primary.md-hue-2.extra-width{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
+%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
   .md-toolbar-tools{ng-switch: "page.scope"}
     %md-tabs.md-primary.md-hue-2{md-no-pagination: "true", flex: true}
       %md-tab{ui-sref: "home.all.hot"}
@@ -15,5 +15,5 @@
           %h3
             top
 
-%md-content#posts{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3", ui-view: "posts"}
+%md-content#posts.primary-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3", ui-view: "posts"}
   

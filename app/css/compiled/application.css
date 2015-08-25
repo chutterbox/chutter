@@ -7299,6 +7299,7 @@ span {
 
 h6 {
   font-weight: 500;
+  margin: 0;
   font-size: 0.8vmax; }
 
 h5 {
@@ -7335,7 +7336,11 @@ body {
 body,
 md-sidenav,
 md-content {
-  background: #f2f2f2; }
+  background-color: #f2f2f2; }
+  body.primary-content,
+  md-sidenav.primary-content,
+  md-content.primary-content {
+    background-color: #fff; }
 
 #brand {
   line-height: 35px; }
@@ -7895,6 +7900,7 @@ span {
 
 h6 {
   font-weight: 500;
+  margin: 0;
   font-size: 0.8vmax; }
 
 h5 {
@@ -7931,7 +7937,11 @@ body {
 body,
 md-sidenav,
 md-content {
-  background: #f2f2f2; }
+  background-color: #f2f2f2; }
+  body.primary-content,
+  md-sidenav.primary-content,
+  md-content.primary-content {
+    background-color: #fff; }
 
 #brand {
   line-height: 35px; }
@@ -8363,6 +8373,7 @@ span {
 
 h6 {
   font-weight: 500;
+  margin: 0;
   font-size: 0.8vmax; }
 
 h5 {
@@ -8399,7 +8410,11 @@ body {
 body,
 md-sidenav,
 md-content {
-  background: #f2f2f2; }
+  background-color: #f2f2f2; }
+  body.primary-content,
+  md-sidenav.primary-content,
+  md-content.primary-content {
+    background-color: #fff; }
 
 #brand {
   line-height: 35px; }

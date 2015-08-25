@@ -1,5 +1,57 @@
-%md-toolbar.md-hue-2
+%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
   .md-toolbar-tools
-    .toolbar-container
-      Stats
-    %span{flex: true}
+    Stats for {{user.username}}
+%md-content.primary-content
+  %div{layout-margin: "true", layout: "row", flex: "100"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "submission_distribution"}
+      %div{layout: "row", layout-align: "center space-between"}
+        %div{flex: "90", layout-align: "start center", layout: "row"}
+          %h6
+            Post Distribution
+        %md-button.md-icon-button{flex: "10"}
+          %i.icon.ion-eye
+      %md-divider
+      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
+        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "submission_distribution.data", labels: "submission_distribution.labels", legend: "true"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "comment_distribution"}
+      %div{layout: "row", layout-align: "center space-between"}
+        %div{flex: "90", layout-align: "start center", layout: "row"}
+          %h6
+            Comment Distribution
+        %md-button.md-icon-button{flex: "10"}
+          %i.icon.ion-eye
+      %md-divider
+      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
+        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "comment_distribution.data", labels: "comment_distribution.labels", legend: "true"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "domain_distribution"}
+      %div{layout: "row", layout-align: "center space-between"}
+        %div{flex: "90", layout-align: "start center", layout: "row"}
+          %h6
+            Domain Distribution
+        %md-button.md-icon-button{flex: "10"}
+          %i.icon.ion-eye
+      %md-divider
+      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
+        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
+  %div{layout-margin: "true", layout: "row", flex: "100"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true"}
+      %div{layout: "row", layout-align: "center space-between"}
+        %div{flex: "90", layout-align: "start center", layout: "row"}
+          %h6
+            Point Distribution
+        %md-button.md-icon-button{flex: "10"}
+          %i.icon.ion-eye
+      %md-divider
+      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
+        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "data", labels: "labels"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true"}
+      %div{layout: "row", layout-align: "center space-between"}
+        %div{flex: "90", layout-align: "start center", layout: "row"}
+          %h6
+            Submission Distribution
+        %md-button.md-icon-button{flex: "10"}
+          %i.icon.ion-eye
+      %md-divider
+      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
+        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "data", labels: "labels"}
+   

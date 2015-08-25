@@ -1,1 +1,1 @@
-app = angular.module("MeApp", ["Chutter", "templates-me"])
+app = angular.module("MeApp", ["Chutter", "chart.js", "templates-me"])

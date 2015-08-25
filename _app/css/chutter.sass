@@ -42,6 +42,7 @@ span
   font-size: $span-size
 h6
   font-weight: 500
+  margin: 0
   font-size: $h6-size
 h5
   font-weight: 500
@@ -75,7 +76,9 @@ body
 body,
 md-sidenav,
 md-content
-  background: #f2f2f2
+  background-color: #f2f2f2
+  &.primary-content
+    background-color: #fff
 #brand
   line-height: 35px
 //md-content inside dialogs/tabs should be white
@@ -84,7 +87,6 @@ md-tabs
     background: #fff
 #dialog-content
   background-color: #fff
-
 
 // custom sidenav overrides using vw/vh units
 md-sidenav.md-locked-open

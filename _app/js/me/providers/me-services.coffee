@@ -15,6 +15,9 @@ app.factory 'UserResource', ['$resource', 'API', "Page", ($resource, API, Page) 
       notifications:
         url: API.makeURL('/users/notifications/:id')
         isArray: true
+      stats:
+        url: API.makeURL('/users/stats')
+        isArray: true
 
 ]
 app.factory 'ConversationResource', ['$resource', 'API', ($resource, API) ->

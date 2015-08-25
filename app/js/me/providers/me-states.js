@@ -198,7 +198,14 @@
         name: "home.stats",
         url: "/stats",
         templateUrl: view_url + "/stats.html",
-        controller: "savedCtrl"
+        resolve: {
+          Stats: [
+            "UserResource", function(UserResource) {
+              return UserResource.stats().$promise;
+            }
+          ]
+        },
+        controller: "statsCtrl"
       };
       $stateProvider.state(home);
       $stateProvider.state(dashboard);

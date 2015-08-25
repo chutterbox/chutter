@@ -30,6 +30,10 @@
         notifications: {
           url: API.makeURL('/users/notifications/:id'),
           isArray: true
+        },
+        stats: {
+          url: API.makeURL('/users/stats'),
+          isArray: true
         }
       });
     }

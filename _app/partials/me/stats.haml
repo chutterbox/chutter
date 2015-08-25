@@ -34,7 +34,7 @@
       .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
         %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
   %div{layout-margin: "true", layout: "row", flex: "100"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true"}
+    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "point_distribution"}
       %div{layout: "row", layout-align: "center space-between"}
         %div{flex: "90", layout-align: "start center", layout: "row"}
           %h6
@@ -43,7 +43,7 @@
           %i.icon.ion-eye
       %md-divider
       .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "data", labels: "labels"}
+        %canvas#bar.chart.chart-bar{data: "point_distribution.data", labels: "point_distribution.labels"}
     .md-whiteframe-z1.md-padding{layout: "column", flex: "true"}
       %div{layout: "row", layout-align: "center space-between"}
         %div{flex: "90", layout-align: "start center", layout: "row"}

@@ -38,7 +38,6 @@ $font-size-130: 1.3vmax
         margin: 0
       .icon-holder,
       .md-button
-        margin-right: -6px // fix to make it more inline (counter the padding)
         height: $h5-size
         min-width: 35px
         min-height: 36px
@@ -151,6 +150,15 @@ $font-size-130: 1.3vmax
         line-height: 38px
   //Community
   community-sidebar
+    .welcome,
+    .moderators
+      .md-button
+        text-align: left
+        margin: 0
+    .rules
+      md-list
+        md-list-item
+          padding-left: 0
     .moderators
       .special-list
         .admin

@@ -8609,7 +8609,6 @@ post {
     margin: 0; }
   .md-sidenav-right .header .title .icon-holder,
   .md-sidenav-right .header .title .md-button {
-    margin-right: -6px;
     height: 0.85vmax;
     min-width: 35px;
     min-height: 36px; }
@@ -8711,6 +8710,12 @@ post {
 .md-sidenav-right network-sidebar .welcome .subscribers {
   text-align: center;
   line-height: 38px; }
+.md-sidenav-right community-sidebar .welcome .md-button,
+.md-sidenav-right community-sidebar .moderators .md-button {
+  text-align: left;
+  margin: 0; }
+.md-sidenav-right community-sidebar .rules md-list md-list-item {
+  padding-left: 0; }
 .md-sidenav-right community-sidebar .moderators .special-list .admin {
   font-weight: 600;
   background: #f44336; }

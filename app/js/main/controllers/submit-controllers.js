@@ -34,14 +34,12 @@
         media: [{}]
       };
       $scope.querySearch = function(query) {
+        console.log(query);
         if (query && query.length > 0) {
           return ExternalServicesResource.search({
             q: query
-          });
+          }).$promise;
         }
-      };
-      $scope.searchTextChange = function(text) {
-        console.log(text);
       };
       $scope.submit = function() {
         $scope.newPost.community_id = $scope.page.community.id;

@@ -23,12 +23,9 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
     title: ""
     media: [{}]
   $scope.querySearch = (query) ->
+    console.log query
     if query and query.length > 0 
-      ExternalServicesResource.search({q: query})
-     
-  $scope.searchTextChange = (text) ->
-    console.log text
-    return
+      ExternalServicesResource.search({q: query}).$promise
 
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id

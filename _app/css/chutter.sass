@@ -51,6 +51,11 @@ i
   font-size: $span-size
 .md-button
   font-size: $p-size
+  &.large-icon
+    line-height: 1vw
+    font-size: $p-size + 1
+    i
+      font-size: $p-size + 1
 
 .md-fab
   .icon
@@ -70,7 +75,7 @@ i
     font-size: $p-size + 1
 
 
-//global
+//global / overrides
 body
   overflow: hidden
 body,
@@ -79,14 +84,20 @@ md-content
   background-color: #f2f2f2
   &.primary-content
     background-color: #fff
-#brand
-  line-height: 35px
 //md-content inside dialogs/tabs should be white
 md-tabs
   md-content
     background: #fff
-#dialog-content
-  background-color: #fff
+
+md-bottom-sheet
+  padding: 0
+  border-top: 0
+  width: 90vw
+  margin: auto
+  @media(max-width: 960px)
+    width: 100vw
+
+
 
 // custom sidenav overrides using vw/vh units
 md-sidenav.md-locked-open
@@ -99,6 +110,11 @@ md-backdrop.md-sidenav-backdrop
   overflow: hidden
   z-index: $sidenav-z-index-sm
 
+#brand
+  line-height: 35px
+
+#dialog-content
+  background-color: #fff
 
 //vote icons
 i
@@ -195,8 +211,6 @@ table
   z-index: $content-z-index-lg
   @media(max-width: 960px) 
     z-index: $content-z-index-sm
-  md-bottom-sheet
-    padding: 0 0 88px 0
   background: #fff
 
 post

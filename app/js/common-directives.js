@@ -149,11 +149,11 @@
         controller: [
           "$scope", "$rootScope", "$mdBottomSheet", function($scope, $rootScope, $mdBottomSheet) {
             $scope.user = $rootScope.user;
-            $scope.moderate = function() {
+            $scope.post.moderate = function() {
               if ($scope.user.moderator) {
                 return $mdBottomSheet.show({
                   templateUrl: '../app/partials/shared/modSheet.html',
-                  parent: "#posts",
+                  parent: angular.element(document.body),
                   disableParentScroll: true,
                   locals: {
                     entityable: $scope.post,
@@ -163,10 +163,10 @@
                 });
               }
             };
-            return $scope.report = function() {
+            return $scope.post.report = function() {
               return $mdBottomSheet.show({
                 templateUrl: '../app/partials/shared/reportSheet.html',
-                parent: "#posts",
+                parent: angular.element(document.body),
                 disableParentScroll: true,
                 locals: {
                   entityable: $scope.post,
@@ -181,13 +181,14 @@
   ]);
 
   app.directive('comment', [
-    "$compile", "$mdBottomSheet", "CommentResource", function($compile, $mdBottomSheet, CommentResource) {
+    "$compile", function($compile) {
       return {
         restrict: "E",
         scope: {
           comment: "=",
           parent: "="
         },
+        templateUrl: "../app/partials/shared/comments/comment.html",
         link: function($scope, $element) {
           if (Object.prototype.toString.call($scope.comment.children) !== '[object Array]') {
             $scope.comment.children = [];
@@ -224,7 +225,7 @@
           $scope.comment.childIds = _.map($scope.comment.children, function(child) {
             return "c" + child.path;
           });
-          $scope.toggle = function() {
+          return $scope.toggle = function() {
             if ($scope.comment.open) {
               $scope.comment.open = false;
               return window.requestAnimationFrame(function() {
@@ -247,29 +248,47 @@
               });
             }
           };
-          $scope.comment.updateVote = function(vote) {
-            if ($scope.comment.vote === vote) {
-              vote = 0;
-            }
-            $scope.comment.vote = vote;
-            return CommentResource.vote({
-              id: $scope.comment.id,
-              vote: vote
-            });
-          };
-          return $scope.reply = function() {
-            return $mdBottomSheet.show({
-              templateUrl: '../app/partials/shared/comments/replyPanel.html',
-              clickOutsideToClose: true,
-              preserveScope: true,
-              disableParentScroll: true,
-              parent: angular.element(document.body),
-              controller: "replyCtrl",
-              scope: $scope
-            });
-          };
         },
-        templateUrl: "../app/partials/shared/comments/comment.html"
+        controller: [
+          "$scope", "CommentResource", "$mdBottomSheet", "$rootScope", function($scope, CommentResource, $mdBottomSheet, $rootScope) {
+            $scope.user = $rootScope.user;
+            $scope.comment.updateVote = function(vote) {
+              if ($scope.comment.vote === vote) {
+                vote = 0;
+              }
+              $scope.comment.vote = vote;
+              return CommentResource.vote({
+                id: $scope.comment.id,
+                vote: vote
+              });
+            };
+            $scope.comment.reply = function() {
+              return $mdBottomSheet.show({
+                templateUrl: '../app/partials/shared/comments/replyPanel.html',
+                clickOutsideToClose: true,
+                preserveScope: true,
+                disableParentScroll: true,
+                parent: angular.element(document.body),
+                controller: "replyCtrl",
+                scope: $scope
+              });
+            };
+            return $scope.comment.moderate = function() {
+              if ($scope.user) {
+                return $mdBottomSheet.show({
+                  templateUrl: '../app/partials/shared/modSheet.html',
+                  parent: angular.element(document.body),
+                  disableParentScroll: true,
+                  locals: {
+                    entityable: $scope.comment,
+                    entityableType: "comment"
+                  },
+                  controller: "modSheetCtrl"
+                });
+              }
+            };
+          }
+        ]
       };
     }
   ]);

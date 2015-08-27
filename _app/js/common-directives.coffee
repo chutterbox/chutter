@@ -140,23 +140,23 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
   controller: ["$scope", "$rootScope", "$mdBottomSheet", ($scope, $rootScope, $mdBottomSheet) ->
       $scope.user = $rootScope.user
 
-      $scope.moderate = () ->
+      $scope.post.moderate = () ->
         if $scope.user.moderator
           $mdBottomSheet.show({
             templateUrl: '../app/partials/shared/modSheet.html'
             #has to have leading digit on id
-            parent: "#posts"
+            parent: angular.element(document.body)
             disableParentScroll: true
             locals:
               entityable: $scope.post
               entityableType: "post"
             controller: "modSheetCtrl"
           })
-      $scope.report = () ->
+      $scope.post.report = () ->
         $mdBottomSheet.show({
           templateUrl: '../app/partials/shared/reportSheet.html'
           #has to have leading digit on id
-          parent: "#posts"
+          parent: angular.element(document.body)
           disableParentScroll: true
           locals:
             entityable: $scope.post
@@ -169,11 +169,12 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
 ]
 
 
-app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($compile, $mdBottomSheet, CommentResource) ->
+app.directive 'comment', ["$compile", ($compile) ->
   restrict: "E"
   scope: 
     comment: "="
     parent: "="
+  templateUrl: "../app/partials/shared/comments/comment.html"
   link: ($scope, $element) ->
     #apparently stack overflow thinks this is the best way to tell if the object property is an array or object literal
     #redis cjson.encode returns nested tables (from lua) as json object literals, when they should be arrays. depending
@@ -216,13 +217,15 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
           _.each $scope.comment.childIds, (id) ->
             document.getElementById(id).className = "ng-scope ng-isolate-scope"
 
+  controller: ["$scope", "CommentResource", "$mdBottomSheet", "$rootScope", ($scope, CommentResource, $mdBottomSheet, $rootScope) ->
+    $scope.user = $rootScope.user
     $scope.comment.updateVote = (vote) -> 
       if $scope.comment.vote == vote 
         vote = 0
       $scope.comment.vote = vote
       CommentResource.vote({id: $scope.comment.id, vote: vote}) 
     
-    $scope.reply = () ->
+    $scope.comment.reply = () ->
       $mdBottomSheet.show({
         templateUrl: '../app/partials/shared/comments/replyPanel.html'
         clickOutsideToClose: true
@@ -232,7 +235,22 @@ app.directive 'comment', ["$compile", "$mdBottomSheet", "CommentResource", ($com
         controller: "replyCtrl"
         scope: $scope
       })
-  templateUrl: "../app/partials/shared/comments/comment.html"
+    $scope.comment.moderate = () ->
+      #validations aren't super important here, because ng-if contols mod button display
+      #and if they actually do get to the mod panel the server side validations would ensure
+      #they're a moderator
+      if $scope.user
+        $mdBottomSheet.show({
+          templateUrl: '../app/partials/shared/modSheet.html'
+          #has to have leading digit on id
+          parent: angular.element(document.body)
+          disableParentScroll: true
+          locals:
+            entityable: $scope.comment
+            entityableType: "comment"
+          controller: "modSheetCtrl"
+        })
+  ]
 ]  
  
 

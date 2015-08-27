@@ -28,7 +28,7 @@
   ]);
 
   app.controller("modSheetCtrl", [
-    "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", function($scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) {
+    "$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", function($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) {
       if (entityableType === "post") {
         $scope.entityable_post = entityable;
       }
@@ -51,10 +51,13 @@
           return PostResource["delete"]($scope.activityLogEntry);
         }
       };
-      return $scope.submitUserForm = function() {
+      $scope.submitUserForm = function() {
         if (entityableType === "post") {
           return PostResource.ban($scope.activityLogEntry);
         }
+      };
+      return $scope.closeModSheet = function() {
+        return $mdBottomSheet.hide();
       };
     }
   ]);

@@ -26,7 +26,7 @@ app.controller "createCommunityRuleCtrl", ["$scope", "$mdDialog", ($scope, $mdDi
     $mdDialog.hide()
 ]
 
-app.controller "modSheetCtrl", ["$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
+app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
   $scope.entityable_post             = entityable if entityableType is "post"
   $scope.entityable_comment          = entityable if entityableType is "comment"
   $scope.entityable                  = entityable
@@ -51,6 +51,10 @@ app.controller "modSheetCtrl", ["$scope", "entityable", "entityableType", "Commu
   $scope.submitUserForm = () ->
     if entityableType is "post"
       PostResource.ban($scope.activityLogEntry)  
+
+  $scope.closeModSheet = () ->
+    $mdBottomSheet.hide()
+
 
 ]
 

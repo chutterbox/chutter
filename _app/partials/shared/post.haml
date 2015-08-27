@@ -39,7 +39,7 @@
         save
       %a{ng-if: "post.saved", ng-click: "post.toggleSave()"}
         unsave
-      %a{ng-click: "report()"}
+      %a{ng-click: "post.report()"}
         report
-      %a{ng-click: "moderate()", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
+      %a{ng-click: "post.moderate()", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
         mod

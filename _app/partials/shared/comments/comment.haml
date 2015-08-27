@@ -30,11 +30,13 @@
       %span.time{layout-align: "end"} 42 minutes ago
     .body{marked: "comment.body"}
     .footer
-      %a{ng-click: "reply()"}
-        Reply
+      %a{ng-click: "comment.reply()"}
+        reply
       %a
-        Save
+        save
       %a
-        Flag
+        report
       %a{ng-click: "resource.delete({id: post.id})"}
-        Delete
+        delete
+      %a{ng-click: "comment.moderate()", ng-if: "comment.moderates && !comment.restricted_from_removing_comments"}
+        mod

@@ -7311,6 +7311,11 @@ i {
 
 .md-button {
   font-size: 0.8vmax; }
+  .md-button.large-icon {
+    line-height: 1vw;
+    font-size: 1.8vmax; }
+    .md-button.large-icon i {
+      font-size: 1.8vmax; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -7342,15 +7347,17 @@ md-content {
   md-content.primary-content {
     background-color: #fff; }
 
-#brand {
-  line-height: 35px; }
-
 md-tabs md-content {
   background: #fff; }
 
-#dialog-content {
-  background-color: #fff; }
-
+md-bottom-sheet {
+  padding: 0;
+  border-top: 0;
+  width: 90vw;
+  margin: auto; }
+@media(max-width: 960px) {
+  md-bottom-sheet {
+    width: 100vw; } }
 md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
@@ -7362,6 +7369,12 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
+
+#brand {
+  line-height: 35px; }
+
+#dialog-content {
+  background-color: #fff; }
 
 i.active-up {
   color: #03a9f4; }
@@ -7480,9 +7493,6 @@ table th {
 @media(max-width: 960px) {
   #content {
     z-index: 22; } }
-  #content md-bottom-sheet {
-    padding: 0 0 88px 0; }
-
 post {
   background: #fff; }
 
@@ -7912,6 +7922,11 @@ i {
 
 .md-button {
   font-size: 0.8vmax; }
+  .md-button.large-icon {
+    line-height: 1vw;
+    font-size: 1.8vmax; }
+    .md-button.large-icon i {
+      font-size: 1.8vmax; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -7943,15 +7958,17 @@ md-content {
   md-content.primary-content {
     background-color: #fff; }
 
-#brand {
-  line-height: 35px; }
-
 md-tabs md-content {
   background: #fff; }
 
-#dialog-content {
-  background-color: #fff; }
-
+md-bottom-sheet {
+  padding: 0;
+  border-top: 0;
+  width: 90vw;
+  margin: auto; }
+@media(max-width: 960px) {
+  md-bottom-sheet {
+    width: 100vw; } }
 md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
@@ -7963,6 +7980,12 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
+
+#brand {
+  line-height: 35px; }
+
+#dialog-content {
+  background-color: #fff; }
 
 i.active-up {
   color: #03a9f4; }
@@ -8081,9 +8104,6 @@ table th {
 @media(max-width: 960px) {
   #content {
     z-index: 22; } }
-  #content md-bottom-sheet {
-    padding: 0 0 88px 0; }
-
 post {
   background: #fff; }
 
@@ -8385,6 +8405,11 @@ i {
 
 .md-button {
   font-size: 0.8vmax; }
+  .md-button.large-icon {
+    line-height: 1vw;
+    font-size: 1.8vmax; }
+    .md-button.large-icon i {
+      font-size: 1.8vmax; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -8416,15 +8441,17 @@ md-content {
   md-content.primary-content {
     background-color: #fff; }
 
-#brand {
-  line-height: 35px; }
-
 md-tabs md-content {
   background: #fff; }
 
-#dialog-content {
-  background-color: #fff; }
-
+md-bottom-sheet {
+  padding: 0;
+  border-top: 0;
+  width: 90vw;
+  margin: auto; }
+@media(max-width: 960px) {
+  md-bottom-sheet {
+    width: 100vw; } }
 md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
@@ -8436,6 +8463,12 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
+
+#brand {
+  line-height: 35px; }
+
+#dialog-content {
+  background-color: #fff; }
 
 i.active-up {
   color: #03a9f4; }
@@ -8554,9 +8587,6 @@ table th {
 @media(max-width: 960px) {
   #content {
     z-index: 22; } }
-  #content md-bottom-sheet {
-    padding: 0 0 88px 0; }
-
 post {
   background: #fff; }
 

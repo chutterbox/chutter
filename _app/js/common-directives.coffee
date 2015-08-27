@@ -68,13 +68,16 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
           $scope.post.audio.pause()
 
     $scope.setXTranslations = () ->
-      #check if it's an image
-      #then check if the image tag is in dom (will be for values > 3)
-      #check if image is finshed loading, if not, we can assume the lo-res version is still being shown
-      if $scope.post.currentMedia.format != "video" and $scope.post.zoomValue > 1 and $scope.post.elements.postcontent.children[0].complete
-        xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue/10)) - 100
+      originalScaleValue = 1
+      scaleValue = ($scope.post.zoomValue/(10 - originalScaleValue))
+      if originalScaleValue is $scope.post.zoomValue
+        xTranslation = 0
+      else if $scope.post.currentMedia.format is not "video" and $scope.post.zoomValue > 1 and $scope.post.elements.postcontent.children[0].complete
+        newHeight = $scope.post.elements.postcontent.children[0].offsetHeight
+        xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * scaleValue)
       else
-        xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue/10)) - 100
+        newHeight = $scope.post.elements.postcontent.offsetHeight
+        xTranslation = (newHeight * scaleValue)
       
       window.requestAnimationFrame () ->
         $scope.wrapperDiv.style.cssText += 

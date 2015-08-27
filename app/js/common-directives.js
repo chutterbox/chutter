@@ -76,11 +76,17 @@
             }
           });
           $scope.setXTranslations = function() {
-            var xTranslation;
-            if ($scope.post.currentMedia.format !== "video" && $scope.post.zoomValue > 1 && $scope.post.elements.postcontent.children[0].complete) {
-              xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * ($scope.post.zoomValue / 10)) - 100;
+            var newHeight, originalScaleValue, scaleValue, xTranslation;
+            originalScaleValue = 1;
+            scaleValue = $scope.post.zoomValue / (10 - originalScaleValue);
+            if (originalScaleValue === $scope.post.zoomValue) {
+              xTranslation = 0;
+            } else if ($scope.post.currentMedia.format === !"video" && $scope.post.zoomValue > 1 && $scope.post.elements.postcontent.children[0].complete) {
+              newHeight = $scope.post.elements.postcontent.children[0].offsetHeight;
+              xTranslation = $scope.post.elements.postcontent.children[0].offsetHeight * scaleValue;
             } else {
-              xTranslation = ($scope.post.elements.postcontent.offsetHeight * ($scope.post.zoomValue / 10)) - 100;
+              newHeight = $scope.post.elements.postcontent.offsetHeight;
+              xTranslation = newHeight * scaleValue;
             }
             return window.requestAnimationFrame(function() {
               return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";

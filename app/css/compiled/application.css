@@ -8169,7 +8169,7 @@ md-list#posts {
   height: 5.65vw; }
 @media(max-width: 960px) {
   .post {
-    height: calc(100vw * (0.075 * 2)); } }
+    height: 15.1vw; } }
   .post .postcontrols {
     position: absolute;
     left: 0;

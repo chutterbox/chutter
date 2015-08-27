@@ -1,7 +1,7 @@
 (function() {
-  var happ;
+  var app;
 
-  happ = angular.module("ModerationApp", ["Chutter", "chart.js", "templates-moderation"]);
+  app = angular.module("ModerationApp", ["Chutter", "chart.js", "templates-moderation"]);
 
   app.config([
     "$mdThemingProvider", function($mdThemingProvider) {

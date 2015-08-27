@@ -74,7 +74,6 @@ app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottom
       disableParentScroll: true
       #important, do not remove since we're passing in scope reference
       preserveScope: true
-      parent: "#content"
       parent: angular.element(document.body)
       clickOutsideToClose: true
     })

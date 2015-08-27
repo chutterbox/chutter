@@ -74,7 +74,6 @@
           controller: "replyCtrl",
           disableParentScroll: true,
           preserveScope: true,
-          parent: "#content",
           parent: angular.element(document.body),
           clickOutsideToClose: true
         });

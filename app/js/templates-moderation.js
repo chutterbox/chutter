@@ -9,16 +9,8 @@ angular.module('templates-moderation', []).run(['$templateCache', function($temp
     "<md-content><table><tr><th>moderator</th><th>action</th><th>what</th><th>entity</th><th>cited rule</th></tr><tr ng-repeat=\"entry in activityLog.activity_log_entries\" ng-switch=entry.entityable_type><td ng-bind=entry.user.username></td><td ng-bind=entry.action></td><td ng-bind=entry.entityable_type></td><td ng-switch-when=Post ng-bind=entry.entityable.title></td><td ng-switch-when=Comment ng-bind=entry.entityable.body></td><td ng-switch-when=User ng-bind=entry.entityable.username></td><td ng-bind=::entry.rule.category></td></tr></table></md-content>");
   $templateCache.put("../app/partials/moderation/community/community.html",
     "<md-toolbar md-scroll-shrink=true layout-align=center layout=column class=\"md-primary md-hue-2\"><div class=md-toolbar-tools><md-tabs flex=flex class=\"md-primary md-hue-2\"><md-tab ui-sref=\"home.community.dashboard({id: page.community.slug})\"><md-tab-label>Dashboard</md-tab-label></md-tab><md-tab ui-sref=\"home.community.modwatch({id: page.community.slug})\"><md-tab-label>Modwatch</md-tab-label></md-tab><md-tab ui-sref=\"home.community.inbox({id: page.community.slug})\"><md-tab-label>Inbox</md-tab-label></md-tab><md-tab ui-sref=\"home.community.queue({id: page.community.slug})\"><md-tab-label>Queue</md-tab-label></md-tab><md-tab ui-sref=\"home.community.policyGroups({id: page.community.slug})\"><md-tab-label>Policy Groups</md-tab-label></md-tab><md-tab ui-sref=\"home.community.settings({id: page.community.slug})\"><md-tab-label>Settings</md-tab-label></md-tab><md-tab ui-sref=\"home.community.rules({id: page.community.slug})\"><md-tab-label>Rules</md-tab-label></md-tab><md-tab ui-sref=\"home.community.activityLog({id: page.community.slug})\"><md-tab-label>Activity Log</md-tab-label></md-tab><md-tab ui-sref=\"home.community.moderators({id: page.community.slug})\"><md-tab-label>Moderators</md-tab-label></md-tab></md-tabs></div></md-toolbar><ui-view></ui-view>");
-  $templateCache.put("../app/partials/moderation/community/dashboard.html",
-    "<div layout=column layout-fill=layout-fill flex=flex class=md-padding><div layout=row layout-align=\"center center\"><div flex=50 layout=column><h3>Page Views</h3><canvas id=line class=\"chart, chart-line chart-xl\" data=data options=options labels=labels legend=undefined click=onClick></canvas></div><div flex=50 layout=column><h3>New Subscribers</h3><canvas id=line class=\"chart, chart-line chart-xl\" data=data options=options labels=labels legend=undefined click=onClick></canvas></div></div></div>");
   $templateCache.put("../app/partials/moderation/community/inbox.html",
     "<h1>hi 2</h1>");
-  $templateCache.put("../app/partials/moderation/community/logs.html",
-    "");
-  $templateCache.put("../app/partials/moderation/community/moderators.html",
-    "");
-  $templateCache.put("../app/partials/moderation/community/monitor.html",
-    "<hi>h1</hi>");
   $templateCache.put("../app/partials/moderation/community/policy-groups.html",
     "<div class=md-padding><h3>Banned Users</h3></div>");
   $templateCache.put("../app/partials/moderation/community/queue.html",

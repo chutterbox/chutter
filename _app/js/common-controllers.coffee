@@ -27,9 +27,9 @@ app.controller "createCommunityRuleCtrl", ["$scope", "$mdDialog", ($scope, $mdDi
 ]
 
 app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
-  $scope.entityable_post             = entityable if entityableType is "post"
-  $scope.entityable_comment          = entityable if entityableType is "comment"
-  $scope.entityable                  = entityable
+  $scope.post             = entityable if entityableType is "post"
+  $scope.comment          = entityable if entityableType is "comment"
+  $scope.entityable       = entityable
   
 
   $scope.activityLogEntry = new ActivityLogEntry
@@ -68,7 +68,7 @@ app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottom
 
   $scope.reply = () ->
     $mdBottomSheet.show({
-      templateUrl: '/partials/main/comments/replyPanel.html'
+      templateUrl: '/partials/shared/comments/replyPanel.html'
       #has to have leading digit on id
       controller: "replyCtrl"
       disableParentScroll: true

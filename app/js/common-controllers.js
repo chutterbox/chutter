@@ -30,10 +30,10 @@
   app.controller("modSheetCtrl", [
     "$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", function($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) {
       if (entityableType === "post") {
-        $scope.entityable_post = entityable;
+        $scope.post = entityable;
       }
       if (entityableType === "comment") {
-        $scope.entityable_comment = entityable;
+        $scope.comment = entityable;
       }
       $scope.entityable = entityable;
       $scope.activityLogEntry = new ActivityLogEntry;
@@ -70,7 +70,7 @@
       $scope.resource = CommentResource;
       return $scope.reply = function() {
         return $mdBottomSheet.show({
-          templateUrl: '/partials/main/comments/replyPanel.html',
+          templateUrl: '/partials/shared/comments/replyPanel.html',
           controller: "replyCtrl",
           disableParentScroll: true,
           preserveScope: true,

@@ -1,4 +1,6 @@
 %md-content
+  %md-button.md-icon-button.md-primary{ui-sref: "home.conversations.compose"}
+    %i.icon.ion-ios-compose-outline
   %md-list
     %md-list-item.md-3-line{ng-repeat: "convo in conversationState.conversations"}
       %a{ui-sref: "home.conversations.conversation({id: convo.id})"}

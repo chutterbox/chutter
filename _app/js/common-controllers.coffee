@@ -34,8 +34,6 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
 
   $scope.activityLogEntry = new ActivityLogEntry
 
-  $scope.post = $scope.entityable_post #just for the embedded post section
-  
   CommunityResource.reportableRules({id: $scope.entityable.community_slug}).$promise.then (data) ->
     $scope.communityRules = _.filter data, (rule) -> (rule.sitewide || rule.posts)
 

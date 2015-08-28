@@ -37,7 +37,6 @@
       }
       $scope.entityable = entityable;
       $scope.activityLogEntry = new ActivityLogEntry;
-      $scope.post = $scope.entityable_post;
       CommunityResource.reportableRules({
         id: $scope.entityable.community_slug
       }).$promise.then(function(data) {

@@ -123,7 +123,6 @@
             resolve: {
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
-                  console.log($stateParams);
                   return NetworkResource.posts({
                     id: $stateParams.network,
                     sort: "new"
@@ -145,7 +144,7 @@
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
                   return NetworkResource.posts({
-                    id: $stateParams.newtwork,
+                    id: $stateParams.network,
                     sort: "new"
                   }).$promise;
                 }
@@ -165,7 +164,7 @@
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
                   return NetworkResource.posts({
-                    id: $stateParams.newtwork,
+                    id: $stateParams.network,
                     sort: "top"
                   }).$promise;
                 }

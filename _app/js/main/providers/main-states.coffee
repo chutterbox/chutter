@@ -87,7 +87,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
-              console.log $stateParams
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
             ]
     network_new = 
@@ -99,7 +98,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
-              NetworkResource.posts({id: $stateParams.newtwork, sort: "new"}).$promise
+              NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
             ]
 
     network_top = 
@@ -111,7 +110,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
-              NetworkResource.posts({id: $stateParams.newtwork, sort: "top"}).$promise
+              NetworkResource.posts({id: $stateParams.network, sort: "top"}).$promise
             ]
 
     community =

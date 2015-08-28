@@ -226,7 +226,7 @@
                 "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
                   return CommunityResource.posts({
                     id: $stateParams.community,
-                    sort: "hot"
+                    sort: "new"
                   }).$promise;
                 }
               ]
@@ -246,7 +246,7 @@
                 "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
                   return CommunityResource.posts({
                     id: $stateParams.community,
-                    sort: "hot"
+                    sort: "top"
                   }).$promise;
                 }
               ]

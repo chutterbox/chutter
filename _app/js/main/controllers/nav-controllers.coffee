@@ -22,7 +22,7 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
         $scope.showNotifications(data.data)
 
     $scope.myPagingFunction = () ->
-      console.log "Here"
+      # console.log "Here"
 
 
     $scope.showNotifications = (notifications) ->

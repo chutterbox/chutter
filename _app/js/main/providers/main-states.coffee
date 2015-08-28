@@ -147,7 +147,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-              CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
+              CommunityResource.posts({id: $stateParams.community, sort: "new"}).$promise
             ]
 
     community_top = 
@@ -159,7 +159,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-              CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
+              CommunityResource.posts({id: $stateParams.community, sort: "top"}).$promise
             ]
 
 

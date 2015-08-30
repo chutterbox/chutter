@@ -64,6 +64,8 @@ md-content {
   md-content.primary-content {
     background-color: #fff; }
 
+md-tabs md-tab-item {
+  max-width: none !important; }
 md-tabs md-content {
   background-color: #fff; }
   md-tabs md-content.detailed-list {

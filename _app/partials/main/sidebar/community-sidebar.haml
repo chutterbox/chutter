@@ -3,7 +3,7 @@
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)", flex: "10"}
-          .icon{ng-class: "page.community.subscribed ? 'ion-ios-plus-outline': 'ion-ios-plus-outline'"}
+          .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
         %h5{ng-bind: "'/c/'+page.community.slug", flex: "90"}
@@ -15,7 +15,7 @@
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         .icon-holder{flex: "10", aria-label: "More rules"}
-          .icon.ion-ios-list-outline
+          .icon.ion-clipboard
           %md-tooltip{md-direction: "left"}
             General rules are rules that apply throughout the community. Rules listed in red could result in banning if they are broken.
         %h5{flex: "90"}
@@ -33,7 +33,7 @@
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %md-button.md-icon-button{aria-label: "Contact Moderators", flex: "10"}
-          .icon.ion-ios-email-outline
+          .icon.ion-android-mail
           %md-tooltip{md-direction: "left"}
             %span
               Message Moderators

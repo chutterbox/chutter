@@ -5,7 +5,7 @@
         %h5
           Welcome
         %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
-          .icon{ng-class: "page.network.subscribed ? 'ion-minus-circled': 'ion-plus-circled'"}
+          .icon{ng-class: "page.network.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.network.subscribed ? 'Unsubscribe': 'Subscribe'"}
       .light.sub-header
@@ -15,7 +15,6 @@
         20 Communities
     .light.small.subscribers{flex: 100}
       1425 Subscribers
-  %md-divider
   .trending-communities
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}

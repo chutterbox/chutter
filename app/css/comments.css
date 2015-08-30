@@ -16,7 +16,6 @@
 
 comment,
 comment-embed {
-  width: 98.5%;
   margin-left: 1.5%;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -208,8 +207,7 @@ comment-embed {
   background-color: #f5f5f5; }
 
 #comments > comment {
-  width: 95%;
-  margin: 10px auto auto;
+  margin: 10px 16px;
   border-radius: 2px;
   background-color: #FFF;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16); }

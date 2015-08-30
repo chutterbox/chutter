@@ -1,132 +1,64 @@
-.nav-menu
-  span, .fa
-    color: #767676
-    font-size: 0.8vw
-    font-weight: normal
-    margin: 0
-  .fa-plus
-    color: #616161
-
-.menu-toggle
-  &.active
-
-.nav-menu,
-.nav-menu ul 
-  list-style: none
-  padding: 0.25vw
-  margin: 0
-  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
-  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
-.nav-menu li 
-  margin: 0
-  min-height: 2.5vw
-  -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
-  transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)  
-  .menu-toggle-list
-    background: #fff
-    transform-origin: top left
-    -webkit-transform-origin: top left
-    -webkit-transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
-    transition: all 250ms cubic-bezier(0.35, 0, 0.25, 1)
-    max-height: 0
-    overflow: hidden
-    transform: scale(0)
-    -webkit-transform: scale(0)
-  &.active
-    border: 1px 0 1px 0 solid #ddd
-    .md-button
-      width: 80%
-      &.md-icon-button
-        width: 20%
-        transform-origin: top right
-        -webkit-transform-origin: top right
-        -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1)
-        transform: scale(1)
-      > span
-        font-weight: 500
-        color: rgb(3,169,244)
-
-    .menu-toggle-list
-      transform: scale(1)
-      -webkit-transform: scale(1)
-      -webkit-transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1)
-      transition: max-height 2500ms cubic-bezier(0.35, 0, 0.25, 1)
-      max-height: 100%
+@import "chutter"
 
 
-
-.nav-menu .md-button
-  &.md-icon-button
-    transform-origin: top right
-    -webkit-transform-origin: top right
-    -webkit-transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1)
-    transform: scale(0)
-    width: 0%
-    position: absolute
-  border-radius: 0
-  width: 100%
-  cursor: pointer
-  display: block
-  align-items: inherit
-  line-height: 40px
-  margin: 0
-  max-height: 40px
-  overflow: hidden
-  padding: 0px 1.75vw
-  text-align: left
-  text-decoration: none
-  text-transform: capitalize
-  white-space: normal
-
-.nav-menu .md-button md-icon 
-  color: white
-
-.nav-menu md-select 
-  margin: 0
-  width: 100%
-
-.nav-menu md-select md-select-label 
-  justify-content: flex-end
-  padding-top: 10px
-
-
-.nav-menu md-select md-select-label span 
-
-
-.nav-menu md-select .md-select-icon 
-
-
-.nav-menu button.md-button::-moz-focus-inner 
-  padding: 0
-
-
-.nav-menu 
-  menu-link
-    .md-button.active
-      //background: #f6f6f6
-      border-left: 3px solid #000
-    .md-button
-.menu-heading 
-  display: block
-  line-height: 32px
-  margin: 0
-  padding: 8px 16px 0
-  text-align: left
-  width: 100%
-
-.nav-menu li.parentActive,
-.nav-menu li.parentActive .menu-toggle-list 
-  /*background-color: #2C80D2 !important*/
-
-.menu-toggle-list 
-  overflow: hidden
+.md-sidenav-left,
+.toolbar-container
   position: relative
-  z-index: 1
+  .nav-list-item
+    .md-button
+      height: 48px
+      line-height: 48px
+      font-weight: normal
+      p,
+      span
+        margin: 0
+        padding: 0
+      span:focus
+        outline: none
+      text-transform: none
+      text-align: left
+      padding: $sidenav-padding
+      margin: 0
+      @include min-and-max-width($sidenav-width)
 
-.nav-menu .menu-toggle-list a.md-button 
-  display: block
-  text-transform: none
-  padding: 0 2.5vw
-  font-size: 0.75vw
+      &.secondary-action
+        padding: 0
+        position: absolute
+        right: 1.25vw
+        text-align: center
+        height: 48px
+        line-height: 48px
+        @include min-and-max-width(3vw)
+
+.md-sidenav-right
+  position: relative
+  .detailed-list-item
+    .md-button
+      line-height: normal
+      font-weight: normal
+      p,
+      span
+        margin: 0
+        padding: 0
+      span
+        font-size: $p-size - 0.1
+        color: #767676
+        font-weight: 500
+        :focus
+          outline: none
+      text-transform: none
+      text-align: left
+      padding: 1.25vw
+      margin: 0
+      @include min-and-max-width($sidenav-width)
+
+      &.secondary-action
+        padding: 0
+        position: absolute
+        right: 1.25vw
+        text-align: center
+        height: 48px
+        line-height: 48px
+        @include min-and-max-width(3vw)
 
 

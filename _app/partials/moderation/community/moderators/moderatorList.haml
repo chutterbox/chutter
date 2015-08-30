@@ -1,14 +1,8 @@
 %md-tabs
   %md-tab{label: "Moderators"}
-    %md-content#chutter-list{layout: "column"}
-      %md-button{aria-label: "notification", ng-repeat: "moderator in moderators", ng-class: "{'md-primary': moderator.editing}", ui-sref: ".edit({user_id: moderator.id})"}
-          %div{layout: "row"}
-            %div{flex: "10"}
-              %i.icon.ion-ios-chatbubble
-            %div
-              %h6{ng-bind: "::moderator.username"}
-          %div.tagline{layout: "row"}
-            %div{flex: "10"}
-            %div
-              %p
+    %md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .detailed-list-item{ng-repeat: "moderator in moderators", layout: "row"}
+        %md-button{ui-sref: ".edit({user_id: moderator.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+          %p{ng-bind: "::moderator.username"}
+
   %md-tab{label: "Requests"}

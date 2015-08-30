@@ -45,18 +45,16 @@
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
 
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
-      %md-list.nav-list
-        %md-list-item{ng-repeat: "community in communities"}
-          %md-button{aria-label: "Community", ui-sref: "home.community.dashboard({id: community.slug})", ui-sref-active: "md-primary"}
-            %i.fa.fa-fw
-            {{community.name}}
+    %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .nav-list-item{ng-repeat: "community in communities", layout: "row"}
+        %md-button{ui-sref-active: "active",ui-sref: "home.community.dashboard({id: community.slug})", layout: "row", layout-align: "center start"}
+          %p{ng-bind: "::community.name"}
+               
         
   .md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content
-      %div{layout: "column", ui-view: "right-rail"}
+    %div{layout: "column", ui-view: "right-rail"}
       

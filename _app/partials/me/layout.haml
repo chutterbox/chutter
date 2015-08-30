@@ -36,59 +36,33 @@
             Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
       .toolbar-container{layout: "row", layout-align: "center center"}
-        %p{ng-bind: "::user.username", flex: true}
+        %span{ng-bind: "::user.username", flex: true}
         %span{flex: true}
       %span{flex: true}
       .toolbar-container{layout: "row", layout-align: "center center"}
 
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
-      %md-list.nav-list
-        %md-list-item
-          %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.ion-android-notifications
-              %div
-                Notifications
-        %md-list-item
-          %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.icon.ion-android-mail
-              %div
-                Inbox
-        %md-list-item
-          %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.icon.ion-android-share
-              %div
-                Submissions
-        %md-list-item
-          %md-button{aria-label: "Saved", ui-sref: "home.saved_posts.all", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.icon.ion-android-star
-              %div
-                Saved
-        %md-list-item
-          %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.icon.ion-ios-cog-outline
-              %div
-                Preferences
-        %md-list-item
-          %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary"}
-            %div{layout: "row"}
-              %div{flex: "10"}
-                %i.icon.ion-stats-bars
-              %div
-                Stats            
+    %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .nav-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.notifications", ui-sref-active: "md-primary",layout: "row", layout-align: "center center"}
+          Notifications
+      .nav-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary", layout-align: "center start"}
+          Inbox
+      .nav-list-item
+        %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary", layout-align: "center start"}
+          Submissions
+      .nav-list-item 
+        %md-button{aria-label: "Saved", ui-sref: "home.saved_posts", ui-sref-active: "md-primary", layout-align: "center start"}
+          Saved Posts
+      .nav-list-item
+        %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary", layout-align: "center start"}
+          Preferences
+      .nav-list-item
+        %md-button{aria-label: "Stats", ui-sref: "home.stats", ui-sref-active: "md-primary", layout-align: "center start"}
+          Stats            
   %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content
-      %div{layout: "column", ui-view: "right-rail"}
+    %div{layout: "column", ui-view: "right-rail"}

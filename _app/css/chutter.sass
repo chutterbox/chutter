@@ -1,11 +1,15 @@
 //variables/mixins
-@mixin width-max-and-min($width) 
+@mixin min-and-max-width($width) 
   width: $width
   min-width: $width
   max-width: $width
-
+@mixin min-and-max-height($height) 
+  height: $height
+  min-height: $height
+  max-height: $height
 
 $sidenav-width: 16vw
+$sidenav-padding: 0 1.25vw
 
 $four-three-width:  100vw - ($sidenav-width * 2) - 6vw
 $four-three-height:  ($four-three-width * .75)
@@ -91,7 +95,9 @@ md-content
 //md-content inside dialogs/tabs should be white
 md-tabs
   md-content
-    background: #fff
+    background-color: #fff
+    &.detailed-list
+      background-color: #f2f2f2
 
 md-bottom-sheet
   padding: 0
@@ -104,7 +110,7 @@ md-bottom-sheet
 
 // custom sidenav overrides using vw/vh units
 md-sidenav.md-locked-open
-  @include width-max-and-min($sidenav-width)
+  @include min-and-max-width($sidenav-width)
   z-index: $sidenav-z-index-lg
   
 md-sidenav,
@@ -166,12 +172,14 @@ md-toolbar#me-toolbar
   .toolbar-container
     &#titles
       position: relative
-    a
+    a,
+    span
       font-size: $a-size-lg
     a.md-button
       font-size: $a-size
-    @include width-max-and-min($sidenav-width)
-    padding: 0 1.75vw
+    @include min-and-max-width($sidenav-width)
+    padding: $sidenav-padding
+
 
   #breadcrumb 
     padding-top: 4px
@@ -248,25 +256,6 @@ post
       span
         margin-right: 5px
         color: #999
-
-
-//generic sidenav list
-#chutter-list
-  width: $sidenav-width
-
-  a.md-button
-    width: 100%
-    margin: 0
-    h6
-      margin: 0
-    text-transform: none
-    .tagline 
-      font-weight: normal
-      text-align: left
-      p
-        margin: 0
-        padding: 0
-
 
 // Fixes
 [layout-fill]

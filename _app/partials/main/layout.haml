@@ -37,11 +37,11 @@
             Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
       .toolbar-container{layout: "row", layout-align: "center center"}
-        %a{ui-sref: "home.all.hot", flex: true}
-          All
-        %span{flex: true}
-        %md-button.md-icon-button{ng-click: "editNetworks()"}
-          %i.icon.ion-android-options
+        .nav-list-item
+          %md-button
+            %p All
+          %md-button.secondary-action.md-icon-button
+            %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"} 
       %span{flex: true}
       .toolbar-container#titles{layout: "row", layout-align: "center center"}
         %a#primary-title{ui-sref: "home.network({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
@@ -52,25 +52,22 @@
 
             
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.nav-menu.gray{flex: true, role: "navigation", layout-fill: true, layout: "row"}
-      %ul.menu-nested-list.ng-cloak{flex: true}
-        %li{ng-repeat: "network in page.networks | orderBy:'name'", ui-sref-active: "active"}
-          %menu-toggle{ng-if: "true", network: "network"}
-              
-  .md-whiteframe-z1#content{flex: true, layout: "row"}
+    %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .nav-list-item{ng-repeat: "network in page.networks | orderBy:'name'", layout: "row"}
+        %md-button{ui-sref-active: "active",ng-click:"network.toggle()", layout: "row", layout-align: "center start"}
+          %p{ng-bind: "::network.name"}
+        %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
+          %span.ion-ios-settings{aria-controls: "{{network.name}}", aria-label: "edit communities"} 
+               
+  #content.md-whiteframe-z1{flex: true, layout: "row", layout-fill: "true"}
     %ui-view{layout: "column", layout-fill: "true"}
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content{ng-switch: "page.scope", layout: "column", layout-fill: "layout-fill"}
-      %div{ng-switch-when: "submit"}
-        %submission-sidebar{page: "page"}
-      %div{ng-switch-when: "community"}
-        %community-sidebar{page: "page"}
-      %div{ng-switch-when: "all", layout: "column"}
-        %all-sidebar{page: "page"}
-      %div{ng-switch-when: "network", layout: "column"}
-        %network-sidebar{page: "page"}
-      %div{ng-switch-when: "comments", layout: "column"}
-        %comment-sidebar{page: "page"}
+      %submission-sidebar{ng-switch-when: "submit", page: "page"}
+      %community-sidebar{ng-switch-when: "community", page: "page"}
+      %all-sidebar{ng-switch-when: "all", page: "page"}
+      %network-sidebar{ng-switch-when: "network", page: "page"}
+      %comment-sidebar{ng-switch-when: "comments", page: "page"}
       %span{flex:true}
       %footer-sidebar

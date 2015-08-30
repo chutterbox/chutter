@@ -1,12 +1,5 @@
-%md-content
-  %md-button.md-icon-button.md-primary{ui-sref: "home.conversations.compose"}
-    %i.icon.ion-ios-compose-outline
-  %md-list
-    %md-list-item.md-3-line{ng-repeat: "convo in conversationState.conversations"}
-      %a{ui-sref: "home.conversations.conversation({id: convo.id})"}
-        .md-avatar
-        .md-list-item-text
-
-          %h3{ng-bind: "convo.recipient_name"}
-            
-          %p{ng-bind: "convo.lru_message"}
+%md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+  .detailed-list-item{ng-repeat: "convo in conversationState.conversations", layout: "row"}
+    %md-button{ui-sref: "home.conversations.conversation({id: convo.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+      %p{ng-bind: "::convo.recipient_name"}
+      %span{ng-bind: "::((convo.lru_message | limitTo: 30) + '...')"}

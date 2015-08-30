@@ -5,10 +5,9 @@
   height: 100%; }
   #comments md-backdrop {
     display: none; }
-
-#reply {
-  height: 90%;
-  max-height: 550px; }
+  #comments #reply {
+    height: 90%;
+    max-height: 550px; }
 
 #comment-toolbar md-tabs .md-tab {
   color: #f3f3f3; }

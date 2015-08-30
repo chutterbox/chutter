@@ -65,7 +65,9 @@ md-content {
     background-color: #fff; }
 
 md-tabs md-content {
-  background: #fff; }
+  background-color: #fff; }
+  md-tabs md-content.detailed-list {
+    background-color: #f2f2f2; }
 
 md-bottom-sheet {
   padding: 0;
@@ -146,16 +148,20 @@ md-toolbar#me-toolbar {
     width: 16vw;
     min-width: 16vw;
     max-width: 16vw;
-    padding: 0 1.75vw; }
+    padding: 0 1.25vw; }
     md-toolbar#main-toolbar .toolbar-container#titles,
     md-toolbar#moderation-toolbar .toolbar-container#titles,
     md-toolbar#management-toolbar .toolbar-container#titles,
     md-toolbar#me-toolbar .toolbar-container#titles {
       position: relative; }
     md-toolbar#main-toolbar .toolbar-container a,
+    md-toolbar#main-toolbar .toolbar-container span,
     md-toolbar#moderation-toolbar .toolbar-container a,
+    md-toolbar#moderation-toolbar .toolbar-container span,
     md-toolbar#management-toolbar .toolbar-container a,
-    md-toolbar#me-toolbar .toolbar-container a {
+    md-toolbar#management-toolbar .toolbar-container span,
+    md-toolbar#me-toolbar .toolbar-container a,
+    md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1vmax; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
@@ -239,48 +245,8 @@ post {
     margin-right: 5px;
     color: #999; }
 
-#chutter-list {
-  width: 16vw; }
-  #chutter-list a.md-button {
-    width: 100%;
-    margin: 0;
-    text-transform: none; }
-    #chutter-list a.md-button h6 {
-      margin: 0; }
-    #chutter-list a.md-button .tagline {
-      font-weight: normal;
-      text-align: left; }
-      #chutter-list a.md-button .tagline p {
-        margin: 0;
-        padding: 0; }
-
 [layout-fill] {
   height: inherit; }
-
-body,
-.md-sidenav-left,
-md-content {
-  background: #f2f2f2; }
-
-.md-sidenav-left {
-  z-index: 1; }
-
-.nav-header h3 {
-  margin-left: 15px; }
-
-.nav-list {
-  width: 16vw; }
-  .nav-list md-list-item {
-    width: 100%;
-    margin: 0;
-    color: #757575; }
-    .nav-list md-list-item a {
-      padding: 10px;
-      margin: 0;
-      text-transform: capitalize;
-      padding-left: 15px;
-      width: 100%;
-      text-align: left; }
 
 #notification-content .removal-notice {
   width: 95%;
@@ -291,9 +257,5 @@ md-content {
   width: 40%;
   padding: 15px;
   word-wrap: break-word; }
-
-#reply {
-  z-index: 999;
-  background: #f2f2f2; }
 
 /*# sourceMappingURL=me.css.map */

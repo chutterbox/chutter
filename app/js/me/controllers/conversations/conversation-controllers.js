@@ -4,9 +4,8 @@
   app = angular.module("MeApp");
 
   app.controller("conversationContentCtrl", [
-    "$stateParams", "ConversationResource", "$scope", "ConversationState", "Conversation", function($stateParams, ConversationResource, $scope, ConversationState, Conversation) {
-      $scope.conversationState = ConversationState;
-      $scope.conversationState.conversation = Conversation;
+    "$stateParams", "ConversationResource", "$scope", "Conversation", function($stateParams, ConversationResource, $scope, Conversation) {
+      $scope.conversation = Conversation;
       return $scope.reply = function() {
         return ConversationResource.reply({
           id: $stateParams.id,
@@ -23,9 +22,8 @@
   ]);
 
   app.controller("conversationListCtrl", [
-    "$scope", "ConversationState", "Conversations", "ConversationResource", function($scope, ConversationState, Conversations, ConversationResource) {
-      $scope.conversationState = ConversationState;
-      return $scope.conversationState.conversations = Conversations;
+    "$scope", "Conversations", "ConversationResource", function($scope, Conversations, ConversationResource) {
+      return $scope.conversations = Conversations;
     }
   ]);
 

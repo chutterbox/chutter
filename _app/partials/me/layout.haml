@@ -39,8 +39,18 @@
         %span{ng-bind: "::user.username", flex: true}
         %span{flex: true}
       %span{flex: true}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-
+      .toolbar-container{layout: "row", layout-align: "center center", ng-if: "$state.current.name.indexOf('conversations') > -1"}
+        .nav-list-item{layout: "row"}
+          %md-button{layout: "row", layout-align: "center start"}
+            %p Conversations
+          %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ui-sref: "home.conversations.compose"}
+            %span.ion-ios-compose{aria-controls: "compose", aria-label: "compose message"} 
+      .toolbar-container{layout: "row", layout-align: "center center", ng-if: "$state.current.name.indexOf('notifications') > -1"}
+        .nav-list-item{layout: "row"}
+          %md-button{layout: "row", layout-align: "center start"}
+            %p
+              Notifications
+                 
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
       .nav-list-item

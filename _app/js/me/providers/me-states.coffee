@@ -33,7 +33,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     #register this first so the path matches
     conversationCompose =
       name: "home.conversations.compose"
-      url: "/compose"
+      url: "/compose"      
       views:
         "@home":
           templateUrl: "#{view_url}/conversations/compose.html"

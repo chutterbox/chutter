@@ -22,10 +22,8 @@
           %i.fa.fa-align-justify.fa-fw
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
-          moderation
-        %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
-          management
+        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
+        %md-button{ng-if: "user.manager", href: "/management", target: "_self", ng-bind: "'management'"}
         %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
         %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
           %i.icon.ion-android-mail
@@ -38,7 +36,7 @@
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
       .toolbar-container{layout: "row", layout-align: "center center"}
         .nav-list-item
-          %md-button
+          %md-button{ui-sref: "home.all.hot"}
             %p All
           %md-button.secondary-action.md-icon-button
             %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"} 
@@ -63,11 +61,6 @@
     %ui-view{layout: "column", layout-fill: "true"}
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content{ng-switch: "page.scope", layout: "column", layout-fill: "layout-fill"}
-      %submission-sidebar{ng-switch-when: "submit", page: "page"}
-      %community-sidebar{ng-switch-when: "community", page: "page"}
-      %all-sidebar{ng-switch-when: "all", page: "page"}
-      %network-sidebar{ng-switch-when: "network", page: "page"}
-      %comment-sidebar{ng-switch-when: "comments", page: "page"}
+    %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
       %span{flex:true}
       %footer-sidebar

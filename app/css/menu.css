@@ -253,8 +253,6 @@ post {
   position: relative; }
   .md-sidenav-left .nav-list-item .md-button,
   .toolbar-container .nav-list-item .md-button {
-    height: 48px;
-    line-height: 48px;
     font-weight: normal;
     text-transform: none;
     text-align: left;
@@ -278,11 +276,17 @@ post {
       position: absolute;
       right: 1.25vw;
       text-align: center;
-      height: 48px;
-      line-height: 48px;
       width: 3vw;
       min-width: 3vw;
       max-width: 3vw; }
+
+.md-sidenav-left .nav-list-item .md-button {
+  height: 48px;
+  line-height: 48px; }
+
+.toolbar-container .nav-list-item .md-button {
+  height: 64px;
+  line-height: 64px; }
 
 .md-sidenav-right {
   position: relative; }

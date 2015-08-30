@@ -4,8 +4,9 @@
   app = angular.module("MeApp");
 
   app.controller("homeCtrl", [
-    "$scope", "$state", function($scope, $state) {
-      return $scope.state = $state;
+    "$scope", "$state", "Page", "$rootScope", function($scope, $state, Page, $rootScope) {
+      $scope.page = Page;
+      return $rootScope.$state = $state;
     }
   ]);
 

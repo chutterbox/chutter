@@ -3,8 +3,10 @@
 
   app = angular.module("ManagementApp");
 
-  app.controller("homeCtrl", function() {
-    return console.log("home");
-  });
+  app.controller("homeCtrl", [
+    "Page", "$rootScope", function(Page, $rootScope) {
+      return $scope.page = Page;
+    }
+  ]);
 
 }).call(this);

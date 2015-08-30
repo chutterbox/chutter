@@ -26,7 +26,14 @@
       all = {
         name: "home.all",
         abstract: true,
-        templateUrl: view_url + "/posts.html",
+        views: {
+          "": {
+            templateUrl: view_url + "/posts.html"
+          },
+          "right-rail": {
+            template: "<all-sidebar page='page'></all-sidebar>"
+          }
+        },
         onEnter: [
           "Page", function(Page) {
             Page.scope = "all";
@@ -94,9 +101,16 @@
       };
       network = {
         name: "home.network",
-        templateUrl: view_url + "/networkPosts.html",
         url: "/n/:network",
         abstract: true,
+        views: {
+          "": {
+            templateUrl: view_url + "/networkPosts.html"
+          },
+          "right-rail": {
+            template: "<network-sidebar page='page'></network-sidebar>"
+          }
+        },
         resolve: {
           Network: [
             "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
@@ -175,8 +189,15 @@
       };
       community = {
         name: "home.community",
-        templateUrl: view_url + "/communityPosts.html",
         url: "/c/:community",
+        views: {
+          "": {
+            templateUrl: view_url + "/communityPosts.html"
+          },
+          "right-rail": {
+            template: "<community-sidebar page='page'></community-sidebar>"
+          }
+        },
         abstract: true,
         resolve: {
           Community: [
@@ -266,6 +287,9 @@
           "@home": {
             templateUrl: view_url + "/submit.html",
             controller: "submitCtrl"
+          },
+          "right-rail@home": {
+            template: "<submission-sidebar page='page'></submission-sidebar>"
           }
         }
       };

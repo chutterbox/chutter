@@ -1,8 +1,8 @@
 app = angular.module("MeApp")
 
-app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource", "$scope", "ConversationState", "Conversation", ($stateParams, ConversationResource, $scope, ConversationState, Conversation) ->
-  $scope.conversationState = ConversationState
-  $scope.conversationState.conversation = Conversation
+app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource", "$scope", "Conversation", ($stateParams, ConversationResource, $scope, Conversation) ->
+  $scope.conversation = Conversation
+  
 
   $scope.reply = () ->
     ConversationResource.reply({id: $stateParams.id, body: $scope.replyText}).$promise.then () ->
@@ -11,9 +11,8 @@ app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource
 
 ]
 
-app.controller "conversationListCtrl", ["$scope", "ConversationState", "Conversations", "ConversationResource", ($scope, ConversationState, Conversations, ConversationResource) ->
-  $scope.conversationState = ConversationState
-  $scope.conversationState.conversations = Conversations
+app.controller "conversationListCtrl", ["$scope", "Conversations", "ConversationResource", ($scope, Conversations, ConversationResource) ->
+  $scope.conversations = Conversations
 
 ]
 

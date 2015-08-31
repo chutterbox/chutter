@@ -9,21 +9,15 @@ p {
   font-size: 1em !important; }
 
 a {
-  font-size: 0.9em; }
+  font-size: 1em; }
 
 span {
   font-size: 1em; }
 
-post > span {
-  font-size: 0.8em; }
-
 h6 {
-  font-weight: 500;
-  margin: 0;
   font-size: 1em; }
 
 h5 {
-  font-weight: 500;
   font-size: 1em; }
 
 i {
@@ -32,7 +26,6 @@ i {
 .md-button span {
   font-size: 1em; }
 .md-button.large-icon {
-  line-height: 1vw;
   font-size: 1em; }
   .md-button.large-icon i {
     font-size: 1em; }
@@ -155,12 +148,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1em; }
+      font-size: 1.1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.9em; }
+      font-size: 1em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,

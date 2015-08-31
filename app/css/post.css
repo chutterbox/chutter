@@ -9,21 +9,15 @@ p {
   font-size: 1em !important; }
 
 a {
-  font-size: 0.9em; }
+  font-size: 1em; }
 
 span {
   font-size: 1em; }
 
-post > span {
-  font-size: 0.8em; }
-
 h6 {
-  font-weight: 500;
-  margin: 0;
   font-size: 1em; }
 
 h5 {
-  font-weight: 500;
   font-size: 1em; }
 
 i {
@@ -32,7 +26,6 @@ i {
 .md-button span {
   font-size: 1em; }
 .md-button.large-icon {
-  line-height: 1vw;
   font-size: 1em; }
   .md-button.large-icon i {
     font-size: 1em; }
@@ -155,12 +148,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1em; }
+      font-size: 1.1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.9em; }
+      font-size: 1em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -327,7 +320,6 @@ md-list#posts {
     width: 100vw;
     height: 15vw; } }
   .post .postcontent {
-    background: #000;
     transform: scale(0.1);
     transform-origin: top left;
     -webkit-transform: scale(0.1);
@@ -383,11 +375,11 @@ md-list#posts {
         color: #767676;
         font-weight: 500; }
       .post .middle .top .attribution {
-        font-weight: 300;
         padding: 0 8px;
         color: #bbb; }
     .post .middle .tagline,
     .post .middle .footer {
+      font-size: 0.9em;
       padding-top: 0.5vmax;
       padding-left: 1vmax; }
       .post .middle .tagline span,
@@ -400,8 +392,7 @@ md-list#posts {
         .post .middle .footer span.votes,
         .post .middle .footer a.votes {
           margin-right: 6px;
-          color: #999;
-          font-weight: bolder; }
+          color: #999; }
         .post .middle .tagline span.submitted-by-text, .post .middle .tagline span.time-ago,
         .post .middle .tagline a.submitted-by-text,
         .post .middle .tagline a.time-ago,
@@ -409,8 +400,7 @@ md-list#posts {
         .post .middle .footer span.time-ago,
         .post .middle .footer a.submitted-by-text,
         .post .middle .footer a.time-ago {
-          margin-right: 4px;
-          font-weight: 300; }
+          margin-right: 4px; }
       .post .middle .tagline .user-link,
       .post .middle .footer .user-link {
         margin-right: 4px; }

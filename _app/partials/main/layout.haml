@@ -16,7 +16,7 @@
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container{layout: "row"}
         %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px; height: 35px;", hide-sm: "true"}
-        %a#brand{ui-sref: "home.all.hot", flex: true, ng-click: "toggleLeft()", hide-sm: "true"}
+        %a{ui-sref: "home.all.hot", flex: true, ng-click: "toggleLeft()", hide-sm: "true"}
           Chutter
         %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
           %i.fa.fa-align-justify.fa-fw

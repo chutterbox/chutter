@@ -81,7 +81,6 @@ md-list#posts
       width: $four-three-width-mobile
       height: $four-three-height-scaled-mobile
   .postcontent
-    background: #000
     transform: scale(0.1)
     transform-origin: top left
 
@@ -145,11 +144,11 @@ md-list#posts
           color: #767676
           font-weight: 500
       .attribution
-        font-weight: 300
         padding: 0 8px
         color: #bbb
     .tagline,
     .footer
+      font-size: $span-small-size
       padding-top: 0.5vmax
       padding-left: 1vmax
       span,
@@ -158,11 +157,9 @@ md-list#posts
         &.votes
           margin-right: 6px
           color: #999
-          font-weight: bolder
         &.submitted-by-text,
         &.time-ago,
           margin-right: 4px
-          font-weight: 300
       .user-link
         margin-right: 4px
 

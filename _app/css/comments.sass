@@ -1,3 +1,4 @@
+@import "chutter"
 .comment-page
   padding: 15px
 #comments
@@ -53,7 +54,7 @@ comment-embed
     min-height: 20px
 
   .content
-    margin: 5px 5px 0
+    padding: 8px
     
   .vote
     margin-top: 5px
@@ -103,9 +104,8 @@ comment-embed
       background: #3f3f3f
   .main
     .body
-      margin: 0 5px
       h1,h3,h4,h5,h6,p,li,blockquote
-        font-size: 14px
+        font-size: 0.9em
 
   .header
     height: 25px
@@ -126,7 +126,7 @@ comment-embed
 
   &[collapsed="true"]
     height: 48px
-    margin: 5px 0px 10px auto
+    margin-bottom: 8px
     box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 5px
     .header
       height: 48px
@@ -182,11 +182,13 @@ comment-embed
     -moz-transform: scale(0)
     transform: scale(0)
   .footer
-    height: 25px
+    font-size: 0.8em
+    font-weight: 500
+    padding-top: 0.5vmax
+    span,
     a
-      color: #767676
-      margin-right: 6px
-      cursor: pointer
+      color: #999
+      margin-right: 8px
 
 .reply
   .body

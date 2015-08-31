@@ -5,30 +5,11 @@ a {
 h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
-p {
-  font-size: 1em !important; }
-
-a {
-  font-size: 1em; }
-
-span {
-  font-size: 1em; }
-
 h6 {
   font-size: 1em; }
 
 h5 {
   font-size: 1em; }
-
-i {
-  font-size: 1em; }
-
-.md-button span {
-  font-size: 1em; }
-.md-button.large-icon {
-  font-size: 1em; }
-  .md-button.large-icon i {
-    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -101,6 +82,9 @@ i.active-down {
 md-toolbar.extra-width {
   width: calc(100% + 1px); }
 
+.md-toolbar-tools {
+  font-size: 14px; }
+
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
@@ -149,11 +133,6 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
-    md-toolbar#main-toolbar .toolbar-container a.md-button,
-    md-toolbar#moderation-toolbar .toolbar-container a.md-button,
-    md-toolbar#management-toolbar .toolbar-container a.md-button,
-    md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 1em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,

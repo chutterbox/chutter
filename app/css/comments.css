@@ -1,3 +1,218 @@
+a {
+  color: #03a9f4;
+  text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6, p, span, a {
+  text-rendering: optimizeLegibility; }
+
+h6 {
+  font-size: 1em; }
+
+h5 {
+  font-size: 1em; }
+
+.md-fab .icon {
+  font-size: 25px; }
+
+.md-mini .icon {
+  font-size: 17px; }
+
+body {
+  overflow: hidden; }
+
+body,
+md-sidenav,
+md-content {
+  background-color: #f2f2f2; }
+  body.primary-content,
+  md-sidenav.primary-content,
+  md-content.primary-content {
+    background-color: #fff; }
+
+md-tabs md-tab-item {
+  max-width: none !important; }
+md-tabs md-content {
+  background-color: #fff; }
+  md-tabs md-content.detailed-list {
+    background-color: #f2f2f2; }
+
+md-bottom-sheet {
+  padding: 0;
+  border-top: 0;
+  width: 90vw;
+  margin: auto; }
+@media(max-width: 960px) {
+  md-bottom-sheet {
+    width: 100vw; } }
+md-sidenav.md-locked-open {
+  width: 16vw;
+  min-width: 16vw;
+  max-width: 16vw;
+  z-index: 18; }
+
+md-sidenav,
+md-backdrop.md-sidenav-backdrop {
+  height: calc(100vh - 128px);
+  overflow: hidden;
+  z-index: 18; }
+
+#brand {
+  line-height: 35px; }
+
+#dialog-content {
+  background-color: #fff; }
+
+i.active-up {
+  color: #03a9f4; }
+i.active-down {
+  color: #f44336; }
+
+#create md-content {
+  background: #fff; }
+
+#submit md-autocomplete {
+  width: 100%;
+  min-width: 100%; }
+
+.inline-link {
+  color: #03a9f4;
+  cursor: hand;
+  margin-right: 4px; }
+
+md-toolbar.extra-width {
+  width: calc(100% + 1px); }
+
+.md-toolbar-tools {
+  font-size: 14px; }
+
+md-toolbar#main-toolbar,
+md-toolbar#moderation-toolbar,
+md-toolbar#management-toolbar,
+md-toolbar#me-toolbar {
+  z-index: 19;
+  position: absolute;
+  top: 0; }
+  md-toolbar#main-toolbar .md-toolbar-tools,
+  md-toolbar#moderation-toolbar .md-toolbar-tools,
+  md-toolbar#management-toolbar .md-toolbar-tools,
+  md-toolbar#me-toolbar .md-toolbar-tools {
+    padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools .md-button,
+    md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
+    md-toolbar#management-toolbar .md-toolbar-tools .md-button,
+    md-toolbar#me-toolbar .md-toolbar-tools .md-button {
+      margin: 0;
+      min-width: auto;
+      text-transform: none; }
+      md-toolbar#main-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#moderation-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#management-toolbar .md-toolbar-tools .md-button.md-fab,
+      md-toolbar#me-toolbar .md-toolbar-tools .md-button.md-fab {
+        margin: 0.5vw;
+        position: absolute;
+        right: 0; }
+  md-toolbar#main-toolbar .toolbar-container,
+  md-toolbar#moderation-toolbar .toolbar-container,
+  md-toolbar#management-toolbar .toolbar-container,
+  md-toolbar#me-toolbar .toolbar-container {
+    width: 16vw;
+    min-width: 16vw;
+    max-width: 16vw;
+    padding: 0 1.25vw; }
+    md-toolbar#main-toolbar .toolbar-container#titles,
+    md-toolbar#moderation-toolbar .toolbar-container#titles,
+    md-toolbar#management-toolbar .toolbar-container#titles,
+    md-toolbar#me-toolbar .toolbar-container#titles {
+      position: relative; }
+    md-toolbar#main-toolbar .toolbar-container a,
+    md-toolbar#main-toolbar .toolbar-container span,
+    md-toolbar#moderation-toolbar .toolbar-container a,
+    md-toolbar#moderation-toolbar .toolbar-container span,
+    md-toolbar#management-toolbar .toolbar-container a,
+    md-toolbar#management-toolbar .toolbar-container span,
+    md-toolbar#me-toolbar .toolbar-container a,
+    md-toolbar#me-toolbar .toolbar-container span {
+      font-size: 1.1em; }
+  md-toolbar#main-toolbar #breadcrumb,
+  md-toolbar#moderation-toolbar #breadcrumb,
+  md-toolbar#management-toolbar #breadcrumb,
+  md-toolbar#me-toolbar #breadcrumb {
+    padding-top: 4px;
+    margin: 0 8px 0 12px; }
+  md-toolbar#main-toolbar #secondary-title,
+  md-toolbar#main-toolbar #primary-title,
+  md-toolbar#moderation-toolbar #secondary-title,
+  md-toolbar#moderation-toolbar #primary-title,
+  md-toolbar#management-toolbar #secondary-title,
+  md-toolbar#management-toolbar #primary-title,
+  md-toolbar#me-toolbar #secondary-title,
+  md-toolbar#me-toolbar #primary-title {
+    position: absolute;
+    left: 1.5vw;
+    -webkit-transition: transform 150ms ease-in-out;
+    -moz-transition: transform 150ms ease-in-out;
+    -webkit-transition: transform 150ms ease-in-out; }
+    md-toolbar#main-toolbar #secondary-title.active,
+    md-toolbar#main-toolbar #primary-title.active,
+    md-toolbar#moderation-toolbar #secondary-title.active,
+    md-toolbar#moderation-toolbar #primary-title.active,
+    md-toolbar#management-toolbar #secondary-title.active,
+    md-toolbar#management-toolbar #primary-title.active,
+    md-toolbar#me-toolbar #secondary-title.active,
+    md-toolbar#me-toolbar #primary-title.active {
+      transform-origin: top left;
+      -webkit-transform-origin: top left;
+      -moz-transform-origin: top left;
+      transform: translateY(-26px) scale(0.6);
+      -webkit-transform: translateY(-26px) scale(0.6);
+      -moz-transform: translateY(-26px) scale(0.6); }
+
+table th {
+  padding: 8px 0; }
+table th {
+  text-align: left; }
+
+#content {
+  height: calc(100vh - 64px);
+  overflow: hidden;
+  position: relative;
+  z-index: 22;
+  background: #fff; }
+@media(max-width: 960px) {
+  #content {
+    z-index: 22; } }
+post {
+  background: #fff; }
+
+#posts {
+  height: 100%; }
+
+.ng-cloak {
+  display: none !important; }
+
+.header-caption-wrapper {
+  margin: 5% 0 0 0; }
+  .header-caption-wrapper h2 {
+    margin: 0; }
+
+.image {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: translate3d(0, 0, 0); }
+
+.subscription-card {
+  margin: 10px 0; }
+  .subscription-card .subscription-info h4 {
+    color: #000;
+    margin: 0; }
+  .subscription-card .subscription-info span {
+    color: #757575; }
+  .subscription-card .subscription-info .stats span {
+    margin-right: 5px;
+    color: #999; }
+
+[layout-fill] {
+  height: inherit; }
+
 .comment-page {
   padding: 15px; }
 
@@ -60,7 +275,7 @@ comment-embed {
     min-height: 20px; }
   comment .content,
   comment-embed .content {
-    margin: 5px 5px 0; }
+    padding: 8px; }
   comment .vote,
   comment-embed .vote {
     margin-top: 5px;
@@ -104,19 +319,16 @@ comment-embed {
   comment .border:hover > .line,
   comment-embed .border:hover > .line {
     background: #3f3f3f; }
-  comment .main .body,
-  comment-embed .main .body {
-    margin: 0 5px; }
-    comment .main .body h1, comment .main .body h3, comment .main .body h4, comment .main .body h5, comment .main .body h6, comment .main .body p, comment .main .body li, comment .main .body blockquote,
-    comment-embed .main .body h1,
-    comment-embed .main .body h3,
-    comment-embed .main .body h4,
-    comment-embed .main .body h5,
-    comment-embed .main .body h6,
-    comment-embed .main .body p,
-    comment-embed .main .body li,
-    comment-embed .main .body blockquote {
-      font-size: 14px; }
+  comment .main .body h1, comment .main .body h3, comment .main .body h4, comment .main .body h5, comment .main .body h6, comment .main .body p, comment .main .body li, comment .main .body blockquote,
+  comment-embed .main .body h1,
+  comment-embed .main .body h3,
+  comment-embed .main .body h4,
+  comment-embed .main .body h5,
+  comment-embed .main .body h6,
+  comment-embed .main .body p,
+  comment-embed .main .body li,
+  comment-embed .main .body blockquote {
+    font-size: 0.9em; }
   comment .header,
   comment-embed .header {
     height: 25px; }
@@ -142,7 +354,7 @@ comment-embed {
   comment[collapsed="true"],
   comment-embed[collapsed="true"] {
     height: 48px;
-    margin: 5px 0px 10px auto;
+    margin-bottom: 8px;
     box-shadow: rgba(0, 0, 0, 0.15686) 0px 1px 5px; }
     comment[collapsed="true"] .header,
     comment-embed[collapsed="true"] .header {
@@ -196,11 +408,13 @@ comment-embed {
     -moz-transform: scale(0);
     transform: scale(0); }
   .main .footer {
-    height: 25px; }
+    font-size: 0.8em;
+    font-weight: 500;
+    padding-top: 0.5vmax; }
+    .main .footer span,
     .main .footer a {
-      color: #767676;
-      margin-right: 6px;
-      cursor: pointer; }
+      color: #999;
+      margin-right: 8px; }
 
 .reply .body textarea {
   background-color: #f5f5f5; }

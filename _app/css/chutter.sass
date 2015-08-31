@@ -27,10 +27,7 @@ $content-z-index-lg: 22
 
 $toolbar-z-index: 19
 
-$p-size: 1em
-$a-size: 1em
 $a-size-lg: 1.1em
-$span-size: 1em
 $span-small-size: 0.9em
 $h6-size: 1em
 $h5-size: 1em
@@ -43,26 +40,10 @@ a
 
 h1,h2,h3,h4,h5,h6,p,span, a
   text-rendering: optimizeLegibility
-p
-  font-size: $p-size !important
-a
-  font-size: $a-size
-span
-  font-size: $span-size
 h6
   font-size: $h6-size
 h5
   font-size: $h5-size
-i
-  font-size: $span-size
-.md-button
-  span
-    font-size: $span-size
-  &.large-icon
-    font-size: $p-size 
-    i
-      font-size: $p-size
-
 .md-fab
   .icon
     font-size: 25px
@@ -140,6 +121,9 @@ i
 // section specific toolbar css will be located in <appname>.sass
 md-toolbar.extra-width
   width: calc(100% + 1px)
+//set base font size
+.md-toolbar-tools
+  font-size: 14px
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
@@ -163,9 +147,7 @@ md-toolbar#me-toolbar
       position: relative
     a,
     span
-      font-size: $a-size-lg
-    a.md-button
-      font-size: $a-size
+      font-size: 1.1em
     @include min-and-max-width($sidenav-width)
     padding: $sidenav-padding
 

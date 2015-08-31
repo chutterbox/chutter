@@ -16,8 +16,8 @@
   .about{layout: "column"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        .icon-holder{flex: "10"}
-          .icon.ion-information
+        .icon-holder{flex: "10", style: "height: 36px;"}
+          %img{src: "/img/small-logo.png", style: "max-height: 100%;"}
         %h5{flex: "90"}
           Chutter.co
       .light.sub-header
@@ -29,7 +29,6 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         .icon-holder{flex: "10"}
           .icon.ion-ios-pulse-strong
-
         %h5{flex: "90"}
           News
 

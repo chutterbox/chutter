@@ -1,5 +1,11 @@
 @import "chutter"
-
+@mixin open-menu-animation
+  -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1)
+  -webkit-transition-property: height
+  -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1)
+  -moz-transition-property: height
+  transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1)
+  transition-property: height
 
 .md-sidenav-left,
 .toolbar-container
@@ -33,15 +39,18 @@
         @include min-and-max-width(3vw)
   .subnav-list-item
     height: 0
+    @include open-menu-animation
     overflow: hidden
     .md-button
       padding: 0 1.75vw
       font-size: 0.8em
 .md-sidenav-left
   .nav-list-item
+    display: block
     min-height: 48px
     height: 48px
     .md-button
+      min-height: 48px
       height: 48px
       line-height: 48px
 .toolbar-container
@@ -49,6 +58,7 @@
     height: 64px
     line-height: 64px
     .md-button
+      min-height: 48px
       height: 64px
       line-height: 64px
 

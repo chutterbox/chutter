@@ -46,7 +46,7 @@
             
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-      %div{ng-repeat: "network in page.networks | orderBy:'name'"}
+      .nav-list-wrapper{ng-repeat: "network in page.networks | orderBy:'name'"}
         .nav-list-item{ui-sref-active: "opened"}
           %md-button{ui-sref: "home.network.hot({network: network.slug})", layout: "row", layout-align: "center start"}
             %p{ng-bind: "::network.name"}

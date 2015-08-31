@@ -3,8 +3,14 @@
 
 .md-sidenav-left,
 .toolbar-container
-  position: relative
+
   .nav-list-item
+    &.opened
+      ~ .subnav-list-item
+        height: 100%
+    position: relative
+  .nav-list-item,
+  .subnav-list-item 
     .md-button
       font-weight: normal
       p,
@@ -25,20 +31,30 @@
         right: 1.25vw
         text-align: center
         @include min-and-max-width(3vw)
+  .subnav-list-item
+    height: 0
+    overflow: hidden
+    .md-button
+      padding: 0 1.75vw
+      font-size: 0.8em
 .md-sidenav-left
   .nav-list-item
+    min-height: 48px
+    height: 48px
     .md-button
       height: 48px
       line-height: 48px
 .toolbar-container
   .nav-list-item
+    height: 64px
+    line-height: 64px
     .md-button
       height: 64px
       line-height: 64px
 
 .md-sidenav-right
-  position: relative
   .detailed-list-item
+    position: relative
     .md-button
       line-height: normal
       font-weight: normal

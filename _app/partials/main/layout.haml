@@ -29,7 +29,7 @@
           %md-tooltip
             Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-      .toolbar-container{layout: "row", layout-align: "center center"}
+      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
         .nav-list-item
           %md-button{ui-sref: "home.all.hot"}
             %p All
@@ -37,7 +37,7 @@
             %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"} 
       %span{flex: true}
       .toolbar-container#titles{layout: "row", layout-align: "center center"}
-        %a#primary-title{ui-sref: "home.network({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
+        %a#primary-title{ui-sref: "home.network.hot({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({community: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
         %span{flex: true}
         %md-button.md-fab.md-mini{md-direction: "down", ng-if: "page.scope == 'community'", ui-sref: "home.community.submit({community: page.community.slug})"}
@@ -46,12 +46,14 @@
             
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-      .nav-list-item{ng-repeat: "network in page.networks | orderBy:'name'", layout: "row"}
-        %md-button{ui-sref-active: "active",ng-click:"network.toggle()", layout: "row", layout-align: "center start"}
-          %p{ng-bind: "::network.name"}
-        %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
-          %span.ion-ios-settings{aria-controls: "{{network.name}}", aria-label: "edit communities"} 
-               
+      %div{ng-repeat: "network in page.networks | orderBy:'name'"}
+        .nav-list-item{ui-sref-active: "opened"}
+          %md-button{ui-sref: "home.network.hot({network: network.slug})", layout: "row", layout-align: "center start"}
+            %p{ng-bind: "::network.name"}
+          %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
+            %span.ion-ios-settings{aria-controls: "{{network.name}}", aria-label: "edit communities"} 
+        .subnav-list-item
+          %md-button{ng-repeat: "community in network.communities", ng-bind: "community.name"}      
   #content.md-whiteframe-z1{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 

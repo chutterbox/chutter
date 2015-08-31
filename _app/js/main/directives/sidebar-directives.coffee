@@ -17,7 +17,7 @@ app.directive "allSidebar", ->
 
 
   ]
-app.directive "commentSidebar", ->
+app.directive "commentsSidebar", ->
   restrict: "E"
   templateUrl: "#{VIEW_URL}/sidebar/comments-sidebar.html"
   scope: 

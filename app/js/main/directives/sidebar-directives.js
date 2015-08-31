@@ -27,7 +27,7 @@
     };
   });
 
-  app.directive("commentSidebar", function() {
+  app.directive("commentsSidebar", function() {
     return {
       restrict: "E",
       templateUrl: VIEW_URL + "/sidebar/comments-sidebar.html",

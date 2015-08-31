@@ -215,6 +215,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         "@home": 
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsCtrl"
+        "right-rail@home": 
+          template: "<comments-sidebar page='page'></comments-sidebar>"
     
     # user = 
     #   name: "user"

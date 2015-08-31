@@ -2,24 +2,20 @@
 
   %md-toolbar.md-whiteframe-z1.md-tall#moderation-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-      .toolbar-container{layout: "row"}
-        %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px; height: 35px;"}
-        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-          Chutter
-        %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-          %i.fa.fa-list
+      .toolbar-container{layout: "row", layout-align: "center center"}
+          .nav-list-item
+            %md-button#logo{style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
+              %img{ng-src: "/img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{layout: "row", layout-align: "end end"}
         %md-button{ng-click: "signIn()"}
           Sign In
     
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-      .toolbar-container{layout: "row"}
-        %img{ng-src: "/vendor/mr-chutter.png", style: "width: 35px; height: 35px;", hide-sm: true}
-        %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-          Chutter
-        %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
-          %i.fa.fa-align-justify.fa-fw
+      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
+          .nav-list-item
+            %md-button#logo{style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
+              %img{ng-src: "/img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
         %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}

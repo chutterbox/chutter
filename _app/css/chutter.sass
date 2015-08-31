@@ -52,6 +52,12 @@ h5
     font-size: 17px
 
 //global / overrides
+a.md-button#logo
+  img
+    margin-top: 6%
+    max-width: 50%
+    max-height: 50%
+
 body
   overflow: hidden
 body,
@@ -89,8 +95,6 @@ md-backdrop.md-sidenav-backdrop
   overflow: hidden
   z-index: $sidenav-z-index-sm
 
-#brand
-  line-height: 35px
 
 #dialog-content
   background-color: #fff
@@ -150,6 +154,8 @@ md-toolbar#me-toolbar
       font-size: 1.1em
     @include min-and-max-width($sidenav-width)
     padding: $sidenav-padding
+    &.no-padding
+      padding: 0
 
 
   #breadcrumb 

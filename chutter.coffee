@@ -23,6 +23,8 @@ chutter.use "/vendor", express.static(__dirname + "/vendor")
 #   console.log "crawled"
 # ))
 
+chutter.use(favicon(__dirname + '/favicon.ico'));
+
 chutter.get "/moderation", (req, res) ->
   res.render "partials/moderation/index.html"
 

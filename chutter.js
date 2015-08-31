@@ -21,6 +21,8 @@
 
   chutter.use("/vendor", express["static"](__dirname + "/vendor"));
 
+  chutter.use(favicon(__dirname + '/favicon.ico'));
+
   chutter.get("/moderation", function(req, res) {
     return res.render("partials/moderation/index.html");
   });

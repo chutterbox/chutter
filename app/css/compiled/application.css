@@ -7300,6 +7300,11 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
+a.md-button#logo img {
+  margin-top: 6%;
+  max-width: 50%;
+  max-height: 50%; }
+
 body {
   overflow: hidden; }
 
@@ -7338,9 +7343,6 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
-
-#brand {
-  line-height: 35px; }
 
 #dialog-content {
   background-color: #fff; }
@@ -7416,6 +7418,11 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
+    md-toolbar#main-toolbar .toolbar-container.no-padding,
+    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
+    md-toolbar#management-toolbar .toolbar-container.no-padding,
+    md-toolbar#me-toolbar .toolbar-container.no-padding {
+      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7517,6 +7524,11 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
+a.md-button#logo img {
+  margin-top: 6%;
+  max-width: 50%;
+  max-height: 50%; }
+
 body {
   overflow: hidden; }
 
@@ -7555,9 +7567,6 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
-
-#brand {
-  line-height: 35px; }
 
 #dialog-content {
   background-color: #fff; }
@@ -7633,6 +7642,11 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
+    md-toolbar#main-toolbar .toolbar-container.no-padding,
+    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
+    md-toolbar#management-toolbar .toolbar-container.no-padding,
+    md-toolbar#me-toolbar .toolbar-container.no-padding {
+      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7806,6 +7820,11 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
+a.md-button#logo img {
+  margin-top: 6%;
+  max-width: 50%;
+  max-height: 50%; }
+
 body {
   overflow: hidden; }
 
@@ -7844,9 +7863,6 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
-
-#brand {
-  line-height: 35px; }
 
 #dialog-content {
   background-color: #fff; }
@@ -7922,6 +7938,11 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
+    md-toolbar#main-toolbar .toolbar-container.no-padding,
+    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
+    md-toolbar#management-toolbar .toolbar-container.no-padding,
+    md-toolbar#me-toolbar .toolbar-container.no-padding {
+      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -8249,6 +8270,11 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
+a.md-button#logo img {
+  margin-top: 6%;
+  max-width: 50%;
+  max-height: 50%; }
+
 body {
   overflow: hidden; }
 
@@ -8287,9 +8313,6 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
-
-#brand {
-  line-height: 35px; }
 
 #dialog-content {
   background-color: #fff; }
@@ -8365,6 +8388,11 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
+    md-toolbar#main-toolbar .toolbar-container.no-padding,
+    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
+    md-toolbar#management-toolbar .toolbar-container.no-padding,
+    md-toolbar#me-toolbar .toolbar-container.no-padding {
+      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -8676,6 +8704,11 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
+a.md-button#logo img {
+  margin-top: 6%;
+  max-width: 50%;
+  max-height: 50%; }
+
 body {
   overflow: hidden; }
 
@@ -8714,9 +8747,6 @@ md-backdrop.md-sidenav-backdrop {
   height: calc(100vh - 128px);
   overflow: hidden;
   z-index: 18; }
-
-#brand {
-  line-height: 35px; }
 
 #dialog-content {
   background-color: #fff; }
@@ -8792,6 +8822,11 @@ md-toolbar#me-toolbar {
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
       font-size: 1.1em; }
+    md-toolbar#main-toolbar .toolbar-container.no-padding,
+    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
+    md-toolbar#management-toolbar .toolbar-container.no-padding,
+    md-toolbar#me-toolbar .toolbar-container.no-padding {
+      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,

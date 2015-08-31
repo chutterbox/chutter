@@ -12,6 +12,9 @@ a {
   font-size: 0.9em; }
 
 span {
+  font-size: 1em; }
+
+post > span {
   font-size: 0.8em; }
 
 h6 {
@@ -24,10 +27,10 @@ h5 {
   font-size: 1em; }
 
 i {
-  font-size: 0.8em; }
+  font-size: 1em; }
 
 .md-button span {
-  font-size: 0.8em; }
+  font-size: 1em; }
 .md-button.large-icon {
   line-height: 1vw;
   font-size: 1em; }

@@ -10,5 +10,5 @@
       %md-tab
         %md-tab-label
           %h3 top
-%md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
+%md-content.primary-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
   %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

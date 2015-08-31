@@ -28,7 +28,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
       $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
       $scope.post.elements.postcontent.style.backgroundSize = "cover"
       if $scope.post.currentMedia.format is "music"
-        $scope.post.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
+        $scope.post.currentMedia.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 
     $scope.$watch "post.zoomValue", (newVal, oldVal) ->
       if newVal and newVal != oldVal
@@ -62,22 +62,33 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
     $scope.$watch "post.toggled", (newVal) ->
         if newVal is true
           #todo if mobile
-          if $scope.post.audio
-            $scope.post.audio.play()
-        else if newVal is false and $scope.post.audio
-          $scope.post.audio.pause()
+          if $scope.post.currentMedia.audio
+            $scope.post.currentMedia.audio.play()
+        else if newVal is false and $scope.post.currentMedia.audio
+          $scope.post.currentMedia.audio.pause()
+
+    $scope.post.toggleExpand = () ->
+      if $scope.post.zoomValue is 10
+        $scope.post.zoomValue = 5
+      else
+        $scope.post.zoomValue = 10
+
 
     $scope.setXTranslations = () ->
       originalScaleValue = 1
-      scaleValue = ($scope.post.zoomValue/(10 - originalScaleValue))
+      #because it's already offset by the height of a post
+      originalHeight = 100
+      
       if originalScaleValue is $scope.post.zoomValue
         xTranslation = 0
-      else if $scope.post.currentMedia.format is not "video" and $scope.post.zoomValue > 1 and $scope.post.elements.postcontent.children[0].complete
-        newHeight = $scope.post.elements.postcontent.children[0].offsetHeight
-        xTranslation = ($scope.post.elements.postcontent.children[0].offsetHeight * scaleValue)
       else
-        newHeight = $scope.post.elements.postcontent.offsetHeight
-        xTranslation = (newHeight * scaleValue)
+        currentMediaHeight = $scope.post.elements.postcontent.children[0].offsetHeight
+        if currentMediaHeight > 0
+          newHeight = currentMediaHeight
+        else
+          newHeight = $scope.post.elements.postcontent.offsetHeight
+
+        xTranslation = ((newHeight * ($scope.post.zoomValue/10)) - originalHeight)
       
       window.requestAnimationFrame () ->
         $scope.wrapperDiv.style.cssText += 
@@ -103,7 +114,6 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
         $scope.$emit ('auth:show-signin')
  
     $scope.post.toggle = (post) ->
-      console.log "here"
       preferredScaleValue = if $scope.post.currentMedia.format is "music" then 4 else 5
       #unzoom the zoomed post
       if Page.selectedPost is $scope.post

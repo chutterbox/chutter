@@ -7289,33 +7289,33 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
 p {
-  font-size: 0.8vmax !important; }
+  font-size: 1em !important; }
 
 a {
-  font-size: 0.8vmax; }
+  font-size: 0.9em; }
 
 span {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
 h6 {
   font-weight: 500;
   margin: 0;
-  font-size: 0.8vmax; }
+  font-size: 1em; }
 
 h5 {
   font-weight: 500;
-  font-size: 0.85vmax; }
+  font-size: 1em; }
 
 i {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
-.md-button {
-  font-size: 0.8vmax; }
-  .md-button.large-icon {
-    line-height: 1vw;
-    font-size: 1.8vmax; }
-    .md-button.large-icon i {
-      font-size: 1.8vmax; }
+.md-button span {
+  font-size: 0.8em; }
+.md-button.large-icon {
+  line-height: 1vw;
+  font-size: 1em; }
+  .md-button.large-icon i {
+    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -7323,18 +7323,6 @@ i {
 .md-mini .icon {
   font-size: 17px; }
 
-@media(max-width: 960px) {
-  p {
-    font-size: 1.8vmax; }
-
-  a {
-    font-size: 1.8vmax; }
-
-  span {
-    font-size: 1.8vmax; }
-
-  .md-button {
-    font-size: 1.8vmax; } }
 body {
   overflow: hidden; }
 
@@ -7447,12 +7435,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1vmax; }
+      font-size: 1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.8vmax; }
+      font-size: 0.9em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7543,33 +7531,33 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
 p {
-  font-size: 0.8vmax !important; }
+  font-size: 1em !important; }
 
 a {
-  font-size: 0.8vmax; }
+  font-size: 0.9em; }
 
 span {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
 h6 {
   font-weight: 500;
   margin: 0;
-  font-size: 0.8vmax; }
+  font-size: 1em; }
 
 h5 {
   font-weight: 500;
-  font-size: 0.85vmax; }
+  font-size: 1em; }
 
 i {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
-.md-button {
-  font-size: 0.8vmax; }
-  .md-button.large-icon {
-    line-height: 1vw;
-    font-size: 1.8vmax; }
-    .md-button.large-icon i {
-      font-size: 1.8vmax; }
+.md-button span {
+  font-size: 0.8em; }
+.md-button.large-icon {
+  line-height: 1vw;
+  font-size: 1em; }
+  .md-button.large-icon i {
+    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -7577,18 +7565,6 @@ i {
 .md-mini .icon {
   font-size: 17px; }
 
-@media(max-width: 960px) {
-  p {
-    font-size: 1.8vmax; }
-
-  a {
-    font-size: 1.8vmax; }
-
-  span {
-    font-size: 1.8vmax; }
-
-  .md-button {
-    font-size: 1.8vmax; } }
 body {
   overflow: hidden; }
 
@@ -7701,12 +7677,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1vmax; }
+      font-size: 1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.8vmax; }
+      font-size: 0.9em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -7844,7 +7820,7 @@ post {
       margin: 0;
       padding: 0; }
     .md-sidenav-right .detailed-list-item .md-button span {
-      font-size: 0.7vmax;
+      font-size: 0.9em;
       color: #767676;
       font-weight: 500;
       focus-outline: none; }
@@ -8099,33 +8075,33 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
 p {
-  font-size: 0.8vmax !important; }
+  font-size: 1em !important; }
 
 a {
-  font-size: 0.8vmax; }
+  font-size: 0.9em; }
 
 span {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
 h6 {
   font-weight: 500;
   margin: 0;
-  font-size: 0.8vmax; }
+  font-size: 1em; }
 
 h5 {
   font-weight: 500;
-  font-size: 0.85vmax; }
+  font-size: 1em; }
 
 i {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
-.md-button {
-  font-size: 0.8vmax; }
-  .md-button.large-icon {
-    line-height: 1vw;
-    font-size: 1.8vmax; }
-    .md-button.large-icon i {
-      font-size: 1.8vmax; }
+.md-button span {
+  font-size: 0.8em; }
+.md-button.large-icon {
+  line-height: 1vw;
+  font-size: 1em; }
+  .md-button.large-icon i {
+    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -8133,18 +8109,6 @@ i {
 .md-mini .icon {
   font-size: 17px; }
 
-@media(max-width: 960px) {
-  p {
-    font-size: 1.8vmax; }
-
-  a {
-    font-size: 1.8vmax; }
-
-  span {
-    font-size: 1.8vmax; }
-
-  .md-button {
-    font-size: 1.8vmax; } }
 body {
   overflow: hidden; }
 
@@ -8257,12 +8221,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1vmax; }
+      font-size: 1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.8vmax; }
+      font-size: 0.9em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -8356,13 +8320,14 @@ md-list#posts {
 
 .post {
   position: relative;
-  padding: 0.5vw 0;
+  margin: 0.75vw 0;
   z-index: 21;
   width: 100%;
-  height: 5.65vw; }
+  height: 4.65vw; }
 @media(max-width: 960px) {
   .post {
-    height: 15.1vw; } }
+    margin-top: 2vw;
+    height: 15vw; } }
   .post .postcontrols {
     position: absolute;
     left: 0;
@@ -8377,7 +8342,7 @@ md-list#posts {
       width: 100%;
       height: 100%; }
     .post .postcontent img {
-      width: 62vw;
+      width: 100%;
       height: auto;
       position: absolute;
       top: 0;
@@ -8395,7 +8360,16 @@ md-list#posts {
 @media(max-width: 960px) {
   .post .postcontent,
   .post .middle {
-    width: 100vw;
+    width: 100vw; } }
+  .post .middle {
+    height: 4.65vw; }
+@media(max-width: 960px) {
+  .post .middle {
+    height: 15vw; } }
+  .post .postcontent {
+    height: 46.5vw; }
+@media(max-width: 960px) {
+  .post .postcontent {
     height: 75vw; } }
   .post .top, .post .tagline, .post .footer {
     padding-left: 8px; }
@@ -8411,11 +8385,13 @@ md-list#posts {
       line-height: 1.1625vw;
       padding: 0;
       margin: 0; }
-      .post .vote .md-button i {
-        font-size: 1vw; }
   .post .main {
     width: 62vw;
     height: 4.65vw; }
+@media(max-width: 960px) {
+  .post .main {
+    width: 100vw;
+    height: 15vw; } }
   .post .postcontent {
     background: #000;
     transform: scale(0.1);
@@ -8468,44 +8444,23 @@ md-list#posts {
     -moz-transform: scale(0.8);
     -moz-transform-origin: top right; } }
     .post .middle .top {
-      padding-top: 0.5vw;
-      padding-left: 1vw; }
+      padding-left: 1vmax; }
       .post .middle .top .title a.title-text {
         color: #767676;
-        font-weight: 500;
-        font-size: 0.9vmax; }
-@media(max-width: 960px) {
-  .post .middle .top .title a.title-text {
-    font-size: 2vmax; } }
+        font-weight: 500; }
       .post .middle .top .attribution {
         font-weight: 300;
         padding: 0 8px;
-        font-size: 0.75vw;
         color: #bbb; }
-@media(max-width: 960px) {
-  .post .middle .top .attribution {
-    font-size: 1vmax; } }
     .post .middle .tagline,
     .post .middle .footer {
-      padding-top: 0.5vw;
-      padding-left: 1vw;
-      font-size: 0.8vmax; }
-@media(max-width: 960px) {
-  .post .middle .tagline,
-  .post .middle .footer {
-    font-size: 2vmax; } }
+      padding-top: 0.5vmax;
+      padding-left: 1vmax; }
       .post .middle .tagline span,
       .post .middle .tagline a,
       .post .middle .footer span,
       .post .middle .footer a {
-        color: #999;
-        font-size: 0.8vmax; }
-@media(max-width: 960px) {
-  .post .middle .tagline span,
-  .post .middle .tagline a,
-  .post .middle .footer span,
-  .post .middle .footer a {
-    font-size: 2vmax; } }
+        color: #999; }
         .post .middle .tagline span.votes,
         .post .middle .tagline a.votes,
         .post .middle .footer span.votes,
@@ -8575,33 +8530,33 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
 p {
-  font-size: 0.8vmax !important; }
+  font-size: 1em !important; }
 
 a {
-  font-size: 0.8vmax; }
+  font-size: 0.9em; }
 
 span {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
 h6 {
   font-weight: 500;
   margin: 0;
-  font-size: 0.8vmax; }
+  font-size: 1em; }
 
 h5 {
   font-weight: 500;
-  font-size: 0.85vmax; }
+  font-size: 1em; }
 
 i {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
-.md-button {
-  font-size: 0.8vmax; }
-  .md-button.large-icon {
-    line-height: 1vw;
-    font-size: 1.8vmax; }
-    .md-button.large-icon i {
-      font-size: 1.8vmax; }
+.md-button span {
+  font-size: 0.8em; }
+.md-button.large-icon {
+  line-height: 1vw;
+  font-size: 1em; }
+  .md-button.large-icon i {
+    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -8609,18 +8564,6 @@ i {
 .md-mini .icon {
   font-size: 17px; }
 
-@media(max-width: 960px) {
-  p {
-    font-size: 1.8vmax; }
-
-  a {
-    font-size: 1.8vmax; }
-
-  span {
-    font-size: 1.8vmax; }
-
-  .md-button {
-    font-size: 1.8vmax; } }
 body {
   overflow: hidden; }
 
@@ -8733,12 +8676,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1vmax; }
+      font-size: 1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.8vmax; }
+      font-size: 0.9em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -8839,7 +8782,7 @@ post {
     margin: 0; }
   .md-sidenav-right .header .title .icon-holder,
   .md-sidenav-right .header .title .md-button {
-    height: 0.85vmax;
+    height: 1em;
     min-width: 35px;
     min-height: 36px; }
     .md-sidenav-right .header .title .icon-holder .icon,

@@ -1,9 +1,12 @@
 .controls{style: "position: absolute; top: 5.5vw; width: 4vw;", layout: "column", layout-align: "start center", layout-fill: "true", ng-if: "post.toggled"}
-  %md-button.md-icon-button{aria-label: "expand", ng-click: "post.zoomValue = 10"}
-    %i.icon.ion-arrow-expand
   %md-button.md-icon-button{aria-label: "close", ng-click: "post.toggle()"}
     %i.icon.ion-close
-    
+  %md-button.md-icon-button{aria-label: "close", ng-click: "post.currentMedia.audio.toggle()", ng-if: "post.currentMedia.audio", ng-switch: "post.currentMedia.audio.audioElement.paused"}
+    %i.icon.ion-pause{ng-switch-when: "false"}
+    %i.icon.ion-play{ng-switch-when: "true"}
+  %md-button.md-icon-button{aria-label: "expand", ng-click: "post.toggleExpand()", ng-if: "post.currentMedia.format != 'music'", ng-switch: "post.zoomValue"}
+    %i.icon.ion-android-expand{ng-switch-default: "true"}
+    %i.icon.ion-android-contract{ng-switch-when: "10"}
 .vote{hide-sm: "true", layout: "column", layout-fill: true}
   %md-button{flex: true, aria-label: "Upvote", ng-click: "post.updateVote(1)"}
     %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}

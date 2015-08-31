@@ -15,12 +15,14 @@ md-list#posts
 
 .post
   position: relative
-  padding: 0.5vw 0
+  margin: 0.75vw 0
+
   z-index: 21
   width:  100%
-  height: $four-three-height-scaled + 1vw
+  height: $four-three-height-scaled
   @media(max-width: 960px) 
-    height: $four-three-height-scaled-mobile + 1vw
+    margin-top: 2vw
+    height: $four-three-height-scaled-mobile
   .postcontrols 
     position: absolute
     left: 0
@@ -36,7 +38,7 @@ md-list#posts
       width: 100%
       height: 100%
     img
-      width: $four-three-width
+      width: 100%
       height: auto
       position: absolute
       top: 0
@@ -47,8 +49,16 @@ md-list#posts
     position: absolute
     @include post-transform-animation
     @media(max-width: 960px) 
-      width: 100vw
-      height: 75vw 
+      width: $four-three-width-mobile
+  .middle
+    height: $four-three-height-scaled
+    @media(max-width: 960px) 
+      height: $four-three-height-scaled-mobile
+  .postcontent
+    height: $four-three-height
+    @media(max-width: 960px) 
+      height: $four-three-height-mobile
+
   .top, .tagline, .footer
     padding-left: 8px
 
@@ -64,11 +74,12 @@ md-list#posts
       line-height: $four-three-height-scaled / 4
       padding: 0
       margin: 0
-      i
-        font-size: 1vw
   .main
     width: $four-three-width
     height: $four-three-height-scaled
+    @media(max-width: 960px)
+      width: $four-three-width-mobile
+      height: $four-three-height-scaled-mobile
   .postcontent
     background: #000
     transform: scale(0.1)
@@ -128,35 +139,22 @@ md-list#posts
       -moz-transform-origin: top right
     position: absolute
     .top
-      padding-top: 0.5vw
-      padding-left: 1vw
+      padding-left: 1vmax
       .title
         a.title-text
           color: #767676
           font-weight: 500
-          font-size: 0.9vmax
-          @media(max-width: 960px) 
-            font-size: 2vmax
       .attribution
         font-weight: 300
         padding: 0 8px
-        font-size: 0.75vw
-        @media(max-width: 960px) 
-          font-size: 1vmax
         color: #bbb
     .tagline,
     .footer
-      padding-top: 0.5vw
-      padding-left: 1vw
-      font-size: 0.8vmax
-      @media(max-width: 960px) 
-        font-size: 2vmax
+      padding-top: 0.5vmax
+      padding-left: 1vmax
       span,
       a
         color: #999
-        font-size: 0.8vmax
-        @media(max-width: 960px) 
-          font-size: 2vmax        
         &.votes
           margin-right: 6px
           color: #999

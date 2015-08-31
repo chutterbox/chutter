@@ -6,33 +6,33 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   text-rendering: optimizeLegibility; }
 
 p {
-  font-size: 0.8vmax !important; }
+  font-size: 1em !important; }
 
 a {
-  font-size: 0.8vmax; }
+  font-size: 0.9em; }
 
 span {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
 h6 {
   font-weight: 500;
   margin: 0;
-  font-size: 0.8vmax; }
+  font-size: 1em; }
 
 h5 {
   font-weight: 500;
-  font-size: 0.85vmax; }
+  font-size: 1em; }
 
 i {
-  font-size: 0.8vmax; }
+  font-size: 0.8em; }
 
-.md-button {
-  font-size: 0.8vmax; }
-  .md-button.large-icon {
-    line-height: 1vw;
-    font-size: 1.8vmax; }
-    .md-button.large-icon i {
-      font-size: 1.8vmax; }
+.md-button span {
+  font-size: 0.8em; }
+.md-button.large-icon {
+  line-height: 1vw;
+  font-size: 1em; }
+  .md-button.large-icon i {
+    font-size: 1em; }
 
 .md-fab .icon {
   font-size: 25px; }
@@ -40,18 +40,6 @@ i {
 .md-mini .icon {
   font-size: 17px; }
 
-@media(max-width: 960px) {
-  p {
-    font-size: 1.8vmax; }
-
-  a {
-    font-size: 1.8vmax; }
-
-  span {
-    font-size: 1.8vmax; }
-
-  .md-button {
-    font-size: 1.8vmax; } }
 body {
   overflow: hidden; }
 
@@ -164,12 +152,12 @@ md-toolbar#me-toolbar {
     md-toolbar#management-toolbar .toolbar-container span,
     md-toolbar#me-toolbar .toolbar-container a,
     md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1vmax; }
+      font-size: 1em; }
     md-toolbar#main-toolbar .toolbar-container a.md-button,
     md-toolbar#moderation-toolbar .toolbar-container a.md-button,
     md-toolbar#management-toolbar .toolbar-container a.md-button,
     md-toolbar#me-toolbar .toolbar-container a.md-button {
-      font-size: 0.8vmax; }
+      font-size: 0.9em; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -270,7 +258,7 @@ post {
     margin: 0; }
   .md-sidenav-right .header .title .icon-holder,
   .md-sidenav-right .header .title .md-button {
-    height: 0.85vmax;
+    height: 1em;
     min-width: 35px;
     min-height: 36px; }
     .md-sidenav-right .header .title .icon-holder .icon,

@@ -33,7 +33,7 @@
             $scope.post.elements.postcontent.style.backgroundImage = "url(" + $scope.post.currentMedia.thumbnail_link + ")";
             $scope.post.elements.postcontent.style.backgroundSize = "cover";
             if ($scope.post.currentMedia.format === "music") {
-              $scope.post.audio = new audio($scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
+              $scope.post.currentMedia.audio = new audio($scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
             }
           }
           $scope.$watch("post.zoomValue", function(newVal, oldVal) {
@@ -68,25 +68,34 @@
           });
           $scope.$watch("post.toggled", function(newVal) {
             if (newVal === true) {
-              if ($scope.post.audio) {
-                return $scope.post.audio.play();
+              if ($scope.post.currentMedia.audio) {
+                return $scope.post.currentMedia.audio.play();
               }
-            } else if (newVal === false && $scope.post.audio) {
-              return $scope.post.audio.pause();
+            } else if (newVal === false && $scope.post.currentMedia.audio) {
+              return $scope.post.currentMedia.audio.pause();
             }
           });
+          $scope.post.toggleExpand = function() {
+            if ($scope.post.zoomValue === 10) {
+              return $scope.post.zoomValue = 5;
+            } else {
+              return $scope.post.zoomValue = 10;
+            }
+          };
           $scope.setXTranslations = function() {
-            var newHeight, originalScaleValue, scaleValue, xTranslation;
+            var currentMediaHeight, newHeight, originalHeight, originalScaleValue, xTranslation;
             originalScaleValue = 1;
-            scaleValue = $scope.post.zoomValue / (10 - originalScaleValue);
+            originalHeight = 100;
             if (originalScaleValue === $scope.post.zoomValue) {
               xTranslation = 0;
-            } else if ($scope.post.currentMedia.format === !"video" && $scope.post.zoomValue > 1 && $scope.post.elements.postcontent.children[0].complete) {
-              newHeight = $scope.post.elements.postcontent.children[0].offsetHeight;
-              xTranslation = $scope.post.elements.postcontent.children[0].offsetHeight * scaleValue;
             } else {
-              newHeight = $scope.post.elements.postcontent.offsetHeight;
-              xTranslation = newHeight * scaleValue;
+              currentMediaHeight = $scope.post.elements.postcontent.children[0].offsetHeight;
+              if (currentMediaHeight > 0) {
+                newHeight = currentMediaHeight;
+              } else {
+                newHeight = $scope.post.elements.postcontent.offsetHeight;
+              }
+              xTranslation = (newHeight * ($scope.post.zoomValue / 10)) - originalHeight;
             }
             return window.requestAnimationFrame(function() {
               return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
@@ -121,7 +130,6 @@
           };
           return $scope.post.toggle = function(post) {
             var frag, preferredScaleValue, range;
-            console.log("here");
             preferredScaleValue = $scope.post.currentMedia.format === "music" ? 4 : 5;
             if (Page.selectedPost === $scope.post) {
               if (Page.selectedPost.zoomValue !== 1) {

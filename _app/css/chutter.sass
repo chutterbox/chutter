@@ -15,7 +15,7 @@ $four-three-width:  100vw - ($sidenav-width * 2) - 6vw
 $four-three-height:  ($four-three-width * .75)
 $four-three-height-scaled: $four-three-height * 0.1
 
-$four-three-width-mobile:  100vw - 6vw
+$four-three-width-mobile:  100vw
 $four-three-height-mobile:  ($four-three-width-mobile * .75)
 $four-three-height-scaled-mobile: $four-three-height-mobile * 0.2
 
@@ -27,12 +27,12 @@ $content-z-index-lg: 22
 
 $toolbar-z-index: 19
 
-$p-size: 0.8vmax
-$a-size: 0.8vmax
-$a-size-lg: 1vmax
-$span-size: 0.8vmax
-$h6-size: 0.8vmax
-$h5-size: 0.85vmax
+$p-size: 1em
+$a-size: 0.9em
+$a-size-lg: 1em
+$span-size: 0.8em
+$h6-size: 1em
+$h5-size: 1em
 
 $color-link: rgb(3,169,244)
 
@@ -58,12 +58,13 @@ h5
 i
   font-size: $span-size
 .md-button
-  font-size: $p-size
+  span
+    font-size: $span-size
   &.large-icon
     line-height: 1vw
-    font-size: $p-size + 1
+    font-size: $p-size 
     i
-      font-size: $p-size + 1
+      font-size: $p-size
 
 .md-fab
   .icon
@@ -71,17 +72,6 @@ i
 .md-mini
   .icon
     font-size: 17px
-
-@media(max-width: 960px) 
-  p
-    font-size: $p-size + 1
-  a
-    font-size: $a-size + 1
-  span
-    font-size: $span-size + 1
-  .md-button
-    font-size: $p-size + 1
-
 
 //global / overrides
 body

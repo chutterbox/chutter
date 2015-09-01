@@ -19,7 +19,7 @@ h5 {
 
 a.md-button#logo img {
   margin-top: 6%;
-  max-width: 8vw;
+  max-width: 8vmax;
   max-height: 100%; }
 
 body {
@@ -53,14 +53,16 @@ md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
   max-width: 16vw;
+  height: calc(100vh - 128px);
   z-index: 18; }
 
 md-sidenav,
 md-backdrop.md-sidenav-backdrop {
-  height: calc(100vh - 128px);
-  overflow: hidden;
   z-index: 18; }
-
+@media(max-width: 960px) {
+  md-sidenav,
+  md-backdrop.md-sidenav-backdrop {
+    z-index: 25; } }
 #dialog-content {
   background-color: #fff; }
 

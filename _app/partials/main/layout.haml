@@ -2,10 +2,15 @@
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-          .nav-list-item
+          .nav-list-item{hide-sm: "true"}
             %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-              %img{ng-src: "/img/logo.png", hide-sm: "true"}   
-      %span{flex: true}
+              %img{ng-src: "/img/logo.png"} 
+          %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
+            %i.icon.ion-navicon  
+      %span{hide-sm: "true", flex: true}
+      %div{flex: "true", layout: "row", layout-align: "center center"}
+        %md-button.md-icon-button
+          %md-icon{md-svg-src: "/img/character.svg", style: "height: 40px; width: 40px; fill: #000;"}
       .toolbar-container{layout: "row", layout-align: "end end"}
         %md-button{ng-click: "signIn()"}
           Sign In

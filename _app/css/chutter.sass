@@ -20,7 +20,7 @@ $four-three-width-mobile:  100vw
 $four-three-height-mobile:  ($four-three-width-mobile * .75)
 $four-three-height-scaled-mobile: $four-three-height-mobile * 0.2
 
-$sidenav-z-index-sm: 18
+$sidenav-z-index-sm: 25
 $sidenav-z-index-lg: 18
 
 $content-z-index-sm: 22
@@ -56,7 +56,7 @@ h5
 a.md-button#logo
   img
     margin-top: 6%
-    max-width: 8vw
+    max-width: 8vmax
     max-height: 100%
 
 body
@@ -88,13 +88,14 @@ md-bottom-sheet
 // custom sidenav overrides using vw/vh units
 md-sidenav.md-locked-open
   @include min-and-max-width($sidenav-width)
+  height: calc(100vh - 128px)
   z-index: $sidenav-z-index-lg
   
 md-sidenav,
 md-backdrop.md-sidenav-backdrop
-  height: calc(100vh - 128px)
-  overflow: hidden
-  z-index: $sidenav-z-index-sm
+  z-index: $sidenav-z-index-lg
+  @media(max-width: 960px) 
+    z-index: $sidenav-z-index-sm
 
 
 #dialog-content

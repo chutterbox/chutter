@@ -19,7 +19,7 @@ h5 {
 
 a.md-button#logo img {
   margin-top: 6%;
-  max-width: 8vw;
+  max-width: 8vmax;
   max-height: 100%; }
 
 body {
@@ -53,14 +53,16 @@ md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
   max-width: 16vw;
+  height: calc(100vh - 128px);
   z-index: 18; }
 
 md-sidenav,
 md-backdrop.md-sidenav-backdrop {
-  height: calc(100vh - 128px);
-  overflow: hidden;
   z-index: 18; }
-
+@media(max-width: 960px) {
+  md-sidenav,
+  md-backdrop.md-sidenav-backdrop {
+    z-index: 25; } }
 #dialog-content {
   background-color: #fff; }
 
@@ -314,11 +316,11 @@ md-list#posts {
     -moz-transform-origin: top left; }
 @media(max-width: 960px) {
   .post .postcontent {
-    transform: scale(0.2);
+    transform: scale(0.1);
     transform-origin: top left;
-    -webkit-transform: scale(0.2);
+    -webkit-transform: scale(0.1);
     -webkit-transform-origin: top left;
-    -moz-transform: scale(0.2);
+    -moz-transform: scale(0.1);
     -moz-transform-origin: top left; } }
   .post .md-button.post-toggle {
     top: 10px;
@@ -350,10 +352,10 @@ md-list#posts {
 @media(max-width: 960px) {
   .post .middle {
     transform-origin: top right;
-    transform: scale(0.8);
-    -webkit-transform: scale(0.8);
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
     -webkit-transform-origin: top right;
-    -moz-transform: scale(0.8);
+    -moz-transform: scale(0.9);
     -moz-transform-origin: top right; } }
     .post .middle .top {
       padding-left: 1vmax; }

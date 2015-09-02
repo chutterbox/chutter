@@ -1,28 +1,24 @@
 %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
   .md-toolbar-tools
+    %p.chatting
+      Chatting with
+      %span.username{ng-bind: "::conversation.otherUser"}
 
-%div#content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %md-content
-    #conversation{ng-repeat: "message in conversation"}
-      %div{ng-if: "message.other_participant", layout: "row", flex: true, layout-padding: true}
-        %md-button.md-fab.md-accent.md-hue-2{ng-bind: "message.username.charAt(0)"}
-          %md-tooltip
-            {{message.username}}
-        .message.grey.md-whiteframe-z1{layout-padding: true, layout: "column"}
-          .body{ng-bind: "message.body"}
-      %div{ng-if: "!message.other_participant", layout: "row", flex: true, layout-padding: true, layout-align: "end start"}
-        .message.md-whiteframe-z1{layout-padding: true, layout: "column"}
-          .body{flex: true}
-            %p{ng-bind: "message.body"}
-        %md-button.md-fab.md-primary{ng-bind: "message.username.charAt(0)"}
-          %md-tooltip
-            {{message.username}}
-  #reply.md-padding
-    %form.reply{ng-submit: "reply()"}
-      %md-input-container{flex: true}
-        %label Reply
-        %textarea{ng-model: "replyText", type: "text"}
-      %div{layout: "row"}
-        %span{flex: true}
-        %md-button.md-raised.md-primary{type: "submit"}
-          Send 
+#content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
+  %md-content#conversation
+    .item{ng-repeat: "message in messages", ng-class: "message.other_participant? 'other-participant': 'you'"}
+      .wrap{layout-padding: "layout-padding", flex: "flex", layout: "row", ng-attr-layout-align: "{{message.other_participant ? '': 'end start'}}"}
+        .message{layout-padding: true, layout: "column"}
+          .body{flex: true, layout: "column"}
+            %p.text{ng-bind: "::message.body"}
+            %p.time
+              %span{ng-bind: "::message.created_at | date:'shortTime'"}
+              %md-tooltip{ng-bind: "::message.created_at | date:'medium'"}
+%md-divider
+#reply.md-padding
+  %form.reply{ng-submit: "reply()", layout: "row"}
+    %md-input-container{flex: true}
+      %label Reply
+      %textarea{ng-model: "replyText", type: "text"}
+    %md-button.md-raised.md-primary{type: "submit"}
+      Send

@@ -21,7 +21,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     conversations =
       name: "home.conversations"
       url: "/conversations"
-      views: 
+      views:
         "right-rail": 
           templateUrl: "#{view_url}/conversations/conversationList.html"
           controller: "conversationListCtrl"
@@ -48,6 +48,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           controller: "conversationContentCtrl"
           resolve:
             Conversation: ["ConversationResource", "$stateParams", (ConversationResource, $stateParams) ->
+              ConversationResource.get({id: $stateParams.id}).$promise
+            ]
+            Messages: ["ConversationResource", "$stateParams", (ConversationResource, $stateParams) ->
               ConversationResource.messages({id: $stateParams.id})
             ]
 

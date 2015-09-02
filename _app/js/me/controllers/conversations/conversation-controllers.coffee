@@ -1,17 +1,21 @@
 app = angular.module("MeApp")
 
-app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource", "$scope", "Conversation", ($stateParams, ConversationResource, $scope, Conversation) ->
-  $scope.conversation = Conversation
-  
+app.controller "conversationContentCtrl", ["$stateParams", "ConversationResource", "$scope", "Conversation", "Messages", ($stateParams, ConversationResource, $scope, Conversation, Messages) ->
+  $scope.conversation = Conversation.conversation
+  $scope.messages = Messages
+
+  if $scope.conversation.recipient_name == $scope.user.username
+    $scope.conversation.otherUser = $scope.conversation.sender_name
+  else
+    $scope.conversation.otherUser = $scope.conversation.recipient_name
 
   $scope.reply = () ->
     ConversationResource.reply({id: $stateParams.id, body: $scope.replyText}).$promise.then () ->
-      $scope.conversationState.conversation.push({body: $scope.replyText, username: $scope.user.username, other_participant: false})
-
+      $scope.messages.push({body: $scope.replyText, username: $scope.user.username, other_participant: false})
 
 ]
 
-app.controller "conversationListCtrl", ["$scope", "Conversations", "ConversationResource", ($scope, Conversations, ConversationResource) ->
+app.controller "conversationListCtrl", ["$scope", "Conversations", ($scope, Conversations) ->
   $scope.conversations = Conversations
 
 ]

@@ -7281,6 +7281,16 @@ md-tooltip {
   md-whiteframe {
     border: 1px solid #fff; } }
 
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
 a {
   color: #03a9f4;
   text-decoration: none; }
@@ -7501,12 +7511,28 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#subscription-section md-icon {
+  height: 40px;
+  width: 40px; }
+  #subscription-section md-icon i {
+    font-size: 40px; }
 
 [layout-fill] {
   height: inherit; }
 
 /*# sourceMappingURL=chutter.css.map */
 
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
 a {
   color: #03a9f4;
   text-decoration: none; }
@@ -7727,6 +7753,12 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#subscription-section md-icon {
+  height: 40px;
+  width: 40px; }
+  #subscription-section md-icon i {
+    font-size: 40px; }
 
 [layout-fill] {
   height: inherit; }
@@ -7794,6 +7826,10 @@ post {
   display: block;
   min-height: 48px;
   height: 48px; }
+  .md-sidenav-left .nav-list-item .secondary-action.md-icon-button {
+    display: none; }
+  .md-sidenav-left .nav-list-item.opened .secondary-action.md-icon-button {
+    display: inline-block; }
   .md-sidenav-left .nav-list-item .md-button {
     min-height: 48px;
     height: 48px;
@@ -7841,6 +7877,16 @@ post {
 
 /*# sourceMappingURL=menu.css.map */
 
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
 a {
   color: #03a9f4;
   text-decoration: none; }
@@ -8061,6 +8107,12 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#subscription-section md-icon {
+  height: 40px;
+  width: 40px; }
+  #subscription-section md-icon i {
+    font-size: 40px; }
 
 [layout-fill] {
   height: inherit; }
@@ -8293,6 +8345,16 @@ comment-embed {
 
 /*# sourceMappingURL=comments.css.map */
 
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
 a {
   color: #03a9f4;
   text-decoration: none; }
@@ -8513,6 +8575,12 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#subscription-section md-icon {
+  height: 40px;
+  width: 40px; }
+  #subscription-section md-icon i {
+    font-size: 40px; }
 
 [layout-fill] {
   height: inherit; }
@@ -8729,6 +8797,16 @@ md-list#posts {
 
 /*# sourceMappingURL=notifications.css.map */
 
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
 a {
   color: #03a9f4;
   text-decoration: none; }
@@ -8949,6 +9027,12 @@ post {
   .subscription-card .subscription-info .stats span {
     margin-right: 5px;
     color: #999; }
+
+#subscription-section md-icon {
+  height: 40px;
+  width: 40px; }
+  #subscription-section md-icon i {
+    font-size: 40px; }
 
 [layout-fill] {
   height: inherit; }

@@ -69,12 +69,7 @@
         }
       };
       $scope.$on("auth:show-signin", function() {
-        return $mdDialog.show({
-          controller: 'authCtrl',
-          templateUrl: '/partials/main/authenticate.html',
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
+        return $scope.signIn;
       });
       $scope.logout = function() {
         return $auth.signOut();
@@ -83,23 +78,32 @@
         return $mdSidenav('left').toggle();
       };
       $scope.signIn = function() {
-        return $scope.$broadcast("auth:show-signin");
+        return $mdDialog.show({
+          controller: 'authCtrl',
+          templateUrl: '/partials/main/authenticate.html',
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
+        });
       };
       $scope.editNetworks = function(ev) {
-        return $mdDialog.show({
-          controller: 'networkEditCtrl',
-          templateUrl: '../app/partials/main/networkEdit.html',
-          clickOutsideToClose: true,
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          resolve: {
-            List: [
-              'NetworkResource', function(NetworkResource) {
-                return NetworkResource.list();
-              }
-            ]
-          }
-        });
+        if (!($scope.user && $scope.user.id)) {
+          return $scope.signIn();
+        } else {
+          return $mdDialog.show({
+            controller: 'networkEditCtrl',
+            templateUrl: '../app/partials/main/networkEdit.html',
+            clickOutsideToClose: true,
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            resolve: {
+              List: [
+                'NetworkResource', function(NetworkResource) {
+                  return NetworkResource.list();
+                }
+              ]
+            }
+          });
+        }
       };
       return $scope.$on('auth:login-success', function() {
         return $scope.networks = $auth.user.networks;

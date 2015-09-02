@@ -62,11 +62,7 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
             .hideDelay(5000)
         )
     $scope.$on("auth:show-signin", () ->
-      $mdDialog.show
-       controller: 'authCtrl'
-       templateUrl: '/partials/main/authenticate.html'
-       parent: angular.element(document.body)
-       clickOutsideToClose: true
+      $scope.signIn
     )
 
     $scope.logout = ->
@@ -76,19 +72,26 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
       $mdSidenav('left').toggle()
 
     $scope.signIn = ->
-      $scope.$broadcast("auth:show-signin")
+      $mdDialog.show
+       controller: 'authCtrl'
+       templateUrl: '/partials/main/authenticate.html'
+       parent: angular.element(document.body)
+       clickOutsideToClose: true
 
     $scope.editNetworks = (ev) ->
-      $mdDialog.show
-        controller: 'networkEditCtrl'
-        templateUrl: '../app/partials/main/networkEdit.html'
-        clickOutsideToClose:true 
-        parent: angular.element(document.body)
-        targetEvent: ev
-        resolve: 
-          List: ['NetworkResource', (NetworkResource) ->
-            NetworkResource.list()
-          ]
+      unless $scope.user && $scope.user.id
+        $scope.signIn()
+      else
+        $mdDialog.show
+          controller: 'networkEditCtrl'
+          templateUrl: '../app/partials/main/networkEdit.html'
+          clickOutsideToClose:true 
+          parent: angular.element(document.body)
+          targetEvent: ev
+          resolve: 
+            List: ['NetworkResource', (NetworkResource) ->
+              NetworkResource.list()
+            ]
 
 
 

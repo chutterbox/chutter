@@ -38,7 +38,7 @@ body {
 body,
 md-sidenav,
 md-content {
-  background-color: #f2f2f2; }
+  background-color: #f5f5f5; }
   body.primary-content,
   md-sidenav.primary-content,
   md-content.primary-content {
@@ -352,7 +352,7 @@ md-list#posts {
     transform: translateY(75px);
     -webkit-transform: translateY(75px);
     -moz-transform: translateY(75px);
-    cursor: hand; }
+    cursor: pointer; }
 @media(max-width: 960px) {
   .post .media {
     width: 100vw;
@@ -409,7 +409,7 @@ md-list#posts {
       .post .middle .footer .user-link {
         margin-right: 4px; }
     .post .middle .footer a {
-      cursor: hand;
+      cursor: pointer;
       margin-right: 8px;
       font-weight: 500; }
   .post embed-video {

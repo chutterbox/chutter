@@ -1,7 +1,5 @@
 @import "chutter"
 
-$md-primary-md-hue-1: #7986CB //md-primary md-hue-1
-
 #notification-content
   .removal-notice
     width: 95%
@@ -19,65 +17,6 @@ md-toolbar
 #content
   overflow: auto
 
-#conversation
-  width: 95%
-  height: 100%
-  padding: 0 2.5%
-  @media(max-width: 960px)
-    width: 100%
-    padding: 0
-  .load-more
-    margin-top: 10px
-  .item
-    position: relative
-    margin-top: 10px
-  .message
-    max-width: 80%
-    word-wrap: break-word
-    background: #fff
-    .body
-      .text
-        margin: 0 0 2.5px 0
-        font-size: 0.95em
-      .time
-        margin: 0
-        color: material-color('grey', '600')
-        font-size: 0.7em
-  .you
-    margin-right: 15px
-    &:after
-      border: solid 10px transparent
-      border-top-color: #fff
-      border-left-color: #fff
-      position: absolute
-      right: -10px
-      top: 8px
-      height: 0
-      content: ""
-  .other-participant
-    margin-left: 15px
-    .message
-      background: $md-primary-md-hue-1 //md-primary md-hue-1
-      .body
-        .time,
-        .text
-          color: #fff
-    &:before
-      border: solid 10px transparent
-      border-top-color: $md-primary-md-hue-1 //md-primary md-hue-1
-      border-right-color: $md-primary-md-hue-1 //md-primary md-hue-1
-      position: absolute
-      left: -10px
-      top: 8px
-      height: 0
-      content: ""
-  .item.other-participant + .item.other-participant
-    margin-top: -10px
-    &:before
-      border: none
-  .item.you + .item.you
-    margin-top: -10px
-    &:after
-      border: none
+
 #reply
   background: #f2f2f2

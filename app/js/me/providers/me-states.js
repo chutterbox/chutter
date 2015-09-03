@@ -57,6 +57,13 @@
             resolve: {
               Conversation: [
                 "ConversationResource", "$stateParams", function(ConversationResource, $stateParams) {
+                  return ConversationResource.get({
+                    id: $stateParams.id
+                  }).$promise;
+                }
+              ],
+              Messages: [
+                "ConversationResource", "$stateParams", function(ConversationResource, $stateParams) {
                   return ConversationResource.messages({
                     id: $stateParams.id
                   });

@@ -235,6 +235,66 @@ post {
   #subscription-section md-icon i {
     font-size: 40px; }
 
+#conversation {
+  width: 95%;
+  height: 100%;
+  padding: 0 2.5%; }
+@media(max-width: 960px) {
+  #conversation {
+    width: 100%;
+    padding: 0; } }
+  #conversation .load-more {
+    margin-top: 10px; }
+  #conversation .item {
+    position: relative;
+    margin-top: 10px; }
+  #conversation .message {
+    max-width: 80%;
+    word-wrap: break-word;
+    background: #fff; }
+    #conversation .message .body .text {
+      margin: 0 0 2.5px 0;
+      font-size: 0.95em; }
+    #conversation .message .body .time {
+      margin: 0;
+      color: #757575;
+      font-size: 0.7em; }
+  #conversation .you {
+    margin-right: 15px; }
+    #conversation .you:after {
+      border: solid 10px transparent;
+      border-top-color: #fff;
+      border-left-color: #fff;
+      position: absolute;
+      right: -10px;
+      top: 8px;
+      height: 0;
+      content: ""; }
+  #conversation .other-participant {
+    margin-left: 15px; }
+    #conversation .other-participant .message {
+      background: #7986cb; }
+      #conversation .other-participant .message .body .time,
+      #conversation .other-participant .message .body .text {
+        color: #fff; }
+    #conversation .other-participant:before {
+      border: solid 10px transparent;
+      border-top-color: #7986cb;
+      border-right-color: #7986cb;
+      position: absolute;
+      left: -10px;
+      top: 8px;
+      height: 0;
+      content: ""; }
+  #conversation .item.other-participant + .item.other-participant {
+    margin-top: -10px; }
+    #conversation .item.other-participant + .item.other-participant:before {
+      border: none; }
+  #conversation .item.you + .item.you {
+    margin-top: -10px; }
+    #conversation .item.you + .item.you:after {
+      border: none; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -243,9 +303,15 @@ post {
   margin: 10px auto;
   background: #fff; }
 
-#conversation .message {
-  width: 40%;
-  padding: 15px;
-  word-wrap: break-word; }
+md-toolbar .chatting .username {
+  margin-left: 5px;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+#content {
+  overflow: auto; }
+
+#reply {
+  background: #f2f2f2; }
 
 /*# sourceMappingURL=me.css.map */

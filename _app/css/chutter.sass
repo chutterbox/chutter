@@ -245,6 +245,69 @@ post
       font-size: 40px
     
 
+
+
+#conversation
+  width: 95%
+  height: 100%
+  padding: 0 2.5%
+  @media(max-width: 960px)
+    width: 100%
+    padding: 0
+  .load-more
+    margin-top: 10px
+  .item
+    position: relative
+    margin-top: 10px
+  .message
+    max-width: 80%
+    word-wrap: break-word
+    background: #fff
+    .body
+      .text
+        margin: 0 0 2.5px 0
+        font-size: 0.95em
+      .time
+        margin: 0
+        color: material-color('grey', '600')
+        font-size: 0.7em
+  .you
+    margin-right: 15px
+    &:after
+      border: solid 10px transparent
+      border-top-color: #fff
+      border-left-color: #fff
+      position: absolute
+      right: -10px
+      top: 8px
+      height: 0
+      content: ""
+  .other-participant
+    margin-left: 15px
+    .message
+      background: material-color('indigo', '300')
+      .body
+        .time,
+        .text
+          color: #fff
+    &:before
+      border: solid 10px transparent
+      border-top-color: material-color('indigo', '300')
+      border-right-color: material-color('indigo', '300')
+      position: absolute
+      left: -10px
+      top: 8px
+      height: 0
+      content: ""
+  .item.other-participant + .item.other-participant
+    margin-top: -10px
+    &:before
+      border: none
+  .item.you + .item.you
+    margin-top: -10px
+    &:after
+      border: none
+
 // Fixes
 [layout-fill]
   height: inherit // Chrome layout-fill fix @/angular/material/issues/2058

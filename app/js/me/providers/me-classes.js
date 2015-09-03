@@ -8,6 +8,8 @@
 
     ConversationState.prototype.conversation = [];
 
+    ConversationState.prototype.messages = [];
+
     return ConversationState;
 
   })();

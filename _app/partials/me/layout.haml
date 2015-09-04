@@ -31,9 +31,9 @@
           %md-tooltip
             Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-        %span{ng-bind: "::user.username", flex: true}
-        %span{flex: true}
+      .toolbar-container{layout: "row", layout-align: "space-between center"}
+        .md-title.text-capitalize
+          {{::user.username}}'s Account
       %span{flex: true}
       .toolbar-container{layout: "row", layout-align: "center center", ng-if: "$state.current.name.indexOf('conversations') > -1"}
         .nav-list-item{layout: "row"}

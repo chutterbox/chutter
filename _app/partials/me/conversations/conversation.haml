@@ -5,7 +5,7 @@
       %span.username{ng-bind: "::conversation.otherUser"}
 
 #content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %md-content#conversation
+  %md-content#conversation.primary-content
     .item{ng-repeat: "message in messages", ng-class: "message.other_participant? 'other-participant': 'you'"}
       .wrap{layout-padding: "layout-padding", flex: "flex", layout: "row", ng-attr-layout-align: "{{message.other_participant ? '': 'end start'}}"}
         .message{layout-padding: true, layout: "column"}

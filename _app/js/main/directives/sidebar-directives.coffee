@@ -22,11 +22,6 @@ app.directive "commentsSidebar", ->
   templateUrl: "#{VIEW_URL}/sidebar/comments-sidebar.html"
   scope: 
     page: "="
-app.directive "communitySidebar", ->
-  restrict: "E"
-  templateUrl: "#{VIEW_URL}/sidebar/community-sidebar.html"
-  scope: 
-    page: "="
 app.directive "networkSidebar", ->
   restrict: "E"
   templateUrl: "#{VIEW_URL}/sidebar/network-sidebar.html"

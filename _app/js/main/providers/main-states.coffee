@@ -124,24 +124,32 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     community =
       name: "home.community"
       url: "/c/:community"
-      views:
-        "": 
-          templateUrl: "#{view_url}/communityPosts.html"
-        "right-rail": 
-          template: "<community-sidebar page='page'></community-sidebar>"
-      abstract: true
       resolve:
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
           CommunityResource.show({id: $stateParams.community}).$promise
-        ]
-        Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
-          CommunityResource.moderators({id: $stateParams.community}).$promise
         ]
       onEnter: ["Page", (Page) ->
         Page.scope = "community"
       ]
       controller: "communityCtrl"
-    
+      views:
+        "": 
+          templateUrl: "#{view_url}/communityPosts.html"
+        "right-rail": 
+          templateUrl: "../app/partials/main/sidebar/community-sidebar.html"
+          resolve:
+            Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.moderators({id: $stateParams.community}).$promise
+            ]
+          controller: ["$scope", "Page", "Moderators", "CommunityResource", ($scope, Page, Moderators, CommunityResource) ->
+            $scope.page = Page
+            $scope.moderators = Moderators
+            $scope.requestModerationPosition = () ->
+              CommunityResource.requestModerationPosition({id: $scope.page.community.id})
+              
+          ]
+      abstract: true
+
     community_hot = 
       name: "home.community.hot"
       url: ""

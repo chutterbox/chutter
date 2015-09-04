@@ -225,6 +225,14 @@
         update: {
           url: API.makeURL('/communities/:id'),
           method: "PUT"
+        },
+        requestModerationPosition: {
+          url: API.makeURL('/communities/:id/request_moderation_position'),
+          method: "POST"
+        },
+        moderationRequests: {
+          url: API.makeURL('/communities/:id/moderation_requests'),
+          isArray: true
         }
       });
     }

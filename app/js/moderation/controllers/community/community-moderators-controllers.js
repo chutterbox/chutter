@@ -4,8 +4,9 @@
   app = angular.module("ModerationApp");
 
   app.controller("moderatorListCtrl", [
-    "$scope", "Moderators", function($scope, Moderators) {
-      return $scope.moderators = Moderators;
+    "$scope", "Moderators", "ModerationRequests", function($scope, Moderators, ModerationRequests) {
+      $scope.moderators = Moderators;
+      return $scope.moderationRequests = ModerationRequests;
     }
   ]);
 

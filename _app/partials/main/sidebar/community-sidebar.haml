@@ -1,75 +1,65 @@
-.section-content
-  .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)", flex: "10"}
-          .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
-          %md-tooltip{md-direction: "left"}
-            %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
-        %h5{ng-bind: "'/c/'+page.community.slug", flex: "90"}
-        
-      .light.sub-header{ng-bind: "::page.community.description"}
-    .light.small
-      1425 Subscribers
-  .rules
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        .icon-holder{flex: "10", aria-label: "More rules"}
-          .icon.ion-clipboard
-          %md-tooltip{md-direction: "left"}
-            General rules are rules that apply throughout the community. Rules listed in red could result in banning if they are broken.
-        %h5{flex: "90"}
-          General Rules
+#community-sidebar
+  .section-content
+    .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
+      .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+        .title{layout: "row", flex: 100, layout-align: "space-between center"}
+          %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)", flex: "10"}
+            .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
+            %md-tooltip{md-direction: "left"}
+              %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
+          %h5{ng-bind: "'/c/'+page.community.slug", flex: "90"}
+          
+        .light.sub-header{ng-bind: "::page.community.description"}
+      .light.small
+        1425 Subscribers
+    .rules
+      .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+        .title{layout: "row", flex: 100, layout-align: "space-between center"}
+          .icon-holder{flex: "10", aria-label: "More rules"}
+            .icon.ion-clipboard
+            %md-tooltip{md-direction: "left"}
+              General rules are rules that apply throughout the community. Rules listed in red could result in banning if they are broken.
+          %h5{flex: "90"}
+            General Rules
 
-      .light.sub-header
-        You could get punished if you wont read them!
-    %md-list
-      %md-list-item{ng-repeat: "rule in page.community.rules"}
-        .header{layout: "row", layout-wrap: "layout-wrap"}
-          .title{layout: "row", flex: 100, layout-align: "space-between center"}
-            %h5{ng-bind: "::rule.category"}
-          .light.sub-header{ng-bind: "::rule.detailed_explanation"}
-  .moderators
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        %md-button.md-icon-button{aria-label: "Contact Moderators", flex: "10"}
-          .icon.ion-android-mail
-          %md-tooltip{md-direction: "left"}
-            %span
-              Message Moderators
-        %h5{flex: "90"}
-          Moderators
-        
-      .light.sub-header
-        The force is strong with this ones.
-    %md-list.special-list
-      %md-list-item{layout: "row"}
-        .type.admin{flex: 15, layout: "column", layout-align: "center center"}
-          .icon.ion-key
-          %md-tooltip{md-direction: "left"}
-            %span
-              Admin
-        %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
-            JacksonCobra
-      %md-list-item{layout: "row"}
-        .type.moderator{flex: 15, layout: "column", layout-align: "center center"}
-          .icon.ion-settings
-          %md-tooltip{md-direction: "left"}
-            %span
-              Moderator
-        %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
-            McKenny
-      %md-list-item{layout: "row"}
-        .type.moderator{flex: 15, layout: "column", layout-align: "center center"}
-          .icon.ion-settings
-          %md-tooltip{md-direction: "left"}
-            %span
-              Moderator
-        %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
-            MrModerator
-    %div{layout: "row", layout-align: "center center", layout-fill: "true"}
-      %md-button.md-primary.help{ng-if: "page.community.accepting_moderation_requests", aria-label: "Help Chutter"}
-        Request to be a moderator
+        .light.sub-header
+          You could get punished if you wont read them!
+      %md-list
+        %md-list-item{ng-repeat: "rule in page.community.rules"}
+          .header{layout: "row", layout-wrap: "layout-wrap"}
+            .title{layout: "row", flex: 100, layout-align: "space-between center"}
+              %h5{ng-bind: "::rule.category"}
+            .light.sub-header{ng-bind: "::rule.detailed_explanation"}
+    .moderators
+      .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+        .title{layout: "row", flex: 100, layout-align: "space-between center"}
+          %md-button.md-icon-button{aria-label: "Contact Moderators", flex: "10"}
+            .icon.ion-android-mail
+            %md-tooltip{md-direction: "left"}
+              %span
+                Message Moderators
+          %h5{flex: "90"}
+            Moderators
+          
+        .light.sub-header
+          The force is strong with this ones.
+      %md-list.special-list
+        %md-list-item{layout: "row", ng-repeat: "moderator in moderators"}
+          .type.admin{ng-if: "::moderator.moderation_restricted_from == 0", flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-key
+            %md-tooltip{md-direction: "left"}
+              %span
+                Admin
+          .type.moderator{ng-if: "::moderator.moderation_restricted_from > 0", flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-settings
+            %md-tooltip{md-direction: "left"}
+              %span
+                Moderator
+          %md-button.content{layout: "row", flex: true}
+            .title{flex: 75, ng-bind: "::moderator.username"}
+    
+      %div{layout: "row", layout-align: "center center", layout-fill: "true"}
+        %md-button.md-primary.help{ng-if: "page.community.accepting_moderation_requests && !page.community.moderation_position_requested", aria-label: "Help Chutter", ng-click: "requestModerationPosition()"}
+          Request to be a moderator
+        %md-button.md-primary.help.md-disabled{ng-if: "page.community.moderation_position_requested", aria-label: "Help Chutter"}
+          Requested

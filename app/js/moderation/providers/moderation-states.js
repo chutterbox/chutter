@@ -143,6 +143,13 @@
                     id: $stateParams.id
                   }).$promise;
                 }
+              ],
+              ModerationRequests: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.moderationRequests({
+                    id: $stateParams.id
+                  }).$promise;
+                }
               ]
             },
             templateUrl: view_url + "/community/moderators/moderatorList.html",

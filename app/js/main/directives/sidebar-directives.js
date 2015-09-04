@@ -37,16 +37,6 @@
     };
   });
 
-  app.directive("communitySidebar", function() {
-    return {
-      restrict: "E",
-      templateUrl: VIEW_URL + "/sidebar/community-sidebar.html",
-      scope: {
-        page: "="
-      }
-    };
-  });
-
   app.directive("networkSidebar", function() {
     return {
       restrict: "E",

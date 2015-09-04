@@ -6,3 +6,7 @@
           %p{ng-bind: "::moderator.username"}
 
   %md-tab{label: "Requests"}
+    %md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .detailed-list-item{ng-repeat: "request in moderationRequests", layout: "row"}
+        %md-button{ui-sref: ".edit({user_id: moderator.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+          %p{ng-bind: "::request.username"}

@@ -102,6 +102,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
               CommunityResource.moderators({id: $stateParams.id}).$promise
             ]
+            ModerationRequests: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.moderationRequests({id: $stateParams.id}).$promise
+            ]
           templateUrl: "#{view_url}/community/moderators/moderatorList.html"
           controller: "moderatorListCtrl"
 

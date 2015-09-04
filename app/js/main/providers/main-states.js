@@ -190,26 +190,10 @@
       community = {
         name: "home.community",
         url: "/c/:community",
-        views: {
-          "": {
-            templateUrl: view_url + "/communityPosts.html"
-          },
-          "right-rail": {
-            template: "<community-sidebar page='page'></community-sidebar>"
-          }
-        },
-        abstract: true,
         resolve: {
           Community: [
             "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
               return CommunityResource.show({
-                id: $stateParams.community
-              }).$promise;
-            }
-          ],
-          Moderators: [
-            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
-              return CommunityResource.moderators({
                 id: $stateParams.community
               }).$promise;
             }
@@ -220,7 +204,36 @@
             return Page.scope = "community";
           }
         ],
-        controller: "communityCtrl"
+        controller: "communityCtrl",
+        views: {
+          "": {
+            templateUrl: view_url + "/communityPosts.html"
+          },
+          "right-rail": {
+            templateUrl: "../app/partials/main/sidebar/community-sidebar.html",
+            resolve: {
+              Moderators: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.moderators({
+                    id: $stateParams.community
+                  }).$promise;
+                }
+              ]
+            },
+            controller: [
+              "$scope", "Page", "Moderators", "CommunityResource", function($scope, Page, Moderators, CommunityResource) {
+                $scope.page = Page;
+                $scope.moderators = Moderators;
+                return $scope.requestModerationPosition = function() {
+                  return CommunityResource.requestModerationPosition({
+                    id: $scope.page.community.id
+                  });
+                };
+              }
+            ]
+          }
+        },
+        abstract: true
       };
       community_hot = {
         name: "home.community.hot",

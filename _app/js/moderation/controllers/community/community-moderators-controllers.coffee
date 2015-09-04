@@ -1,7 +1,8 @@
 app = angular.module("ModerationApp")
 
-app.controller "moderatorListCtrl", ["$scope", "Moderators", ($scope, Moderators) ->
+app.controller "moderatorListCtrl", ["$scope", "Moderators", "ModerationRequests", ($scope, Moderators, ModerationRequests) ->
   $scope.moderators = Moderators
+  $scope.moderationRequests = ModerationRequests
 
 ]
 

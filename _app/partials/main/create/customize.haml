@@ -1,0 +1,25 @@
+%md-content.md-padding{layout: "column"}
+  %h2.md-display-1
+    Permitted Post Types
+  %p.md-body-1
+    Place holder for description
+  %div{layout: "row"}
+    %div{ng-repeat: "format in flowState.selectedNetwork.permitted_formats_list"}
+      %md-checkbox{ng-model: "newCommunity[format]", aria-label: "Checkbox 1"}
+        {{format}}
+  %div
+    %p.md-subhead
+      Rating :
+    %div
+      %md-checkbox
+        SFW
+      %md-checkbox
+        NSFW
+      %md-checkbox
+        NSFL
+  %div{layout: "row"}
+    %md-button.md-raised.md-primary{ng-click: "back()"}
+      Back: Change Details
+    %span{flex: true}
+    %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
+      Next: Review

@@ -1,0 +1,9 @@
+%md-content.md-padding
+  %h1.md-display-2
+    Coming Soon
+  %div{layout: "row"}
+    %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
+      Back: Change Customization
+    %span{flex: true}
+    %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "submit()"}
+      Create

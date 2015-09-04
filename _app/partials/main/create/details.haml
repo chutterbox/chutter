@@ -1,0 +1,22 @@
+%md-content.md-padding
+  %h2.md-display-1
+    Community Details
+  %p.md-body-1
+    Reserve a name, type a description, add tags
+  %div
+    %md-input-container
+      %label Name
+      %input{ng-model: "newCommunity.name", type: "text"}
+      %div{ng-messages: "true", ng-hide: "nameValid()"}
+        %div{ng-message: "required", ng-bind: "newCommunity.name + ' is not available'"}
+  %div
+    %md-input-container{flex: true}
+      %label Description
+      %textarea{ng-model: "newCommunity.description", type: "text"}
+
+  %div{layout: "row"}
+    %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
+      Back: Change Network
+    %span{flex: true}
+    %md-button.md-raised.md-primary{ng-disabled: "!nameValid()", ng-click: "next()"}
+      Next: Rules

@@ -2,11 +2,11 @@
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-          .nav-list-item{hide-sm: "true"}
-            %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-              %img{ng-src: "/img/logo.png"} 
-          %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
-            %i.icon.ion-navicon  
+        .nav-list-item{hide-sm: "true"}
+          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+            %img{ng-src: "/img/logo.png"}
+        %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
+          %i.icon.ion-navicon
       %span{hide-sm: "true", flex: true}
       %div{hide-gt-sm: "true", flex: "true", layout: "row", layout-align: "center center"}
         %md-button.md-icon-button
@@ -17,9 +17,9 @@
     
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-          .nav-list-item
-            %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-              %img{ng-src: "img/logo.png", hide-sm: "true"}
+        .nav-list-item
+          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+            %img{ng-src: "img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
         %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
@@ -39,7 +39,7 @@
           %md-button{ui-sref: "home.all.hot"}
             %p All
           %md-button.secondary-action.md-icon-button
-            %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"} 
+            %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"}
       %span{flex: true}
       .toolbar-container#titles{layout: "row", layout-align: "center center"}
         %a#primary-title{ui-sref: "home.network.hot({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}

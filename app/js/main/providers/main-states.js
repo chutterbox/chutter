@@ -204,7 +204,14 @@
             "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
               return CommunityResource.show({
                 id: $stateParams.community
-              });
+              }).$promise;
+            }
+          ],
+          Moderators: [
+            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+              return CommunityResource.moderators({
+                id: $stateParams.community
+              }).$promise;
             }
           ]
         },

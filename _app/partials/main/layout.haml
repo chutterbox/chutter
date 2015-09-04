@@ -58,7 +58,7 @@
           %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
             %span.ion-ios-settings{aria-controls: "{{network.name}}", aria-label: "edit communities"} 
         .subnav-list-item
-          %md-button{ng-repeat: "community in network.communities", ng-bind: "community.name"}      
+          %md-button{ng-repeat: "community in network.communities", ng-bind: "community.name", ui-sref: "home.community.hot({community: community.slug})"}      
   #content.md-whiteframe-z1{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 

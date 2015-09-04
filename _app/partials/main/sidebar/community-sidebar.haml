@@ -71,5 +71,5 @@
           .title{flex: 75}
             MrModerator
     %div{layout: "row", layout-align: "center center", layout-fill: "true"}
-      %md-button.md-primary.help{aria-label: "Help Chutter"}
+      %md-button.md-primary.help{ng-if: "page.community.accepting_moderation_requests", aria-label: "Help Chutter"}
         Request to be a moderator

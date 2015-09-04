@@ -132,7 +132,10 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       abstract: true
       resolve:
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
-          CommunityResource.show({id: $stateParams.community})
+          CommunityResource.show({id: $stateParams.community}).$promise
+        ]
+        Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+          CommunityResource.moderators({id: $stateParams.community}).$promise
         ]
       onEnter: ["Page", (Page) ->
         Page.scope = "community"

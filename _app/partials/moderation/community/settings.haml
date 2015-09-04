@@ -1,5 +1,6 @@
 %md-content.md-padding{layout: "column"}
   %form
+
     %div{layout: "row"}
       %md-input-container{flex: true, flex: "50"}
         %label
@@ -10,6 +11,11 @@
         %label
           Description
         %textarea{rows: 10, ng-model: "page.community.description"}
+    %div
+      %md-input-container{layout: "row"}
+        %md-checkbox{ng-model: "page.community.accepting_moderation_requests"}
+        %p
+          Accepting Moderation Requests
     %div
       %span{flex: true}
       %md-button.md-primary.md-raised{ng-click: "update()"}

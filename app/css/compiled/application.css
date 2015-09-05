@@ -8849,11 +8849,10 @@ md-list#posts {
   padding: 0.5vw 0;
   z-index: 21;
   width: 100%;
-  height: 5.65vw; }
+  height: auto; }
 @media(max-width: 960px) {
   .post {
-    margin-top: 2vw;
-    height: 16vw; } }
+    margin-top: 2vw; } }
   .post .postcontrols {
     position: absolute;
     left: 0;
@@ -8876,7 +8875,6 @@ md-list#posts {
   .post .postcontent,
   .post .middle {
     width: 62vw;
-    position: absolute;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -8888,11 +8886,9 @@ md-list#posts {
   .post .middle {
     width: 100vw; } }
   .post .middle {
-    height: 4.65vw; }
-@media(max-width: 960px) {
-  .post .middle {
-    height: 15vw; } }
+    height: 100%; }
   .post .postcontent {
+    position: absolute;
     height: 46.5vw; }
 @media(max-width: 960px) {
   .post .postcontent {
@@ -8912,13 +8908,12 @@ md-list#posts {
       padding: 0;
       margin: 0; }
   .post .main {
-    width: 62vw;
-    height: 4.65vw; }
+    width: 62vw; }
 @media(max-width: 960px) {
   .post .main {
-    width: 100vw;
-    height: 15vw; } }
+    width: 100vw; } }
   .post .postcontent {
+    top: 0;
     transform: scale(0.1);
     transform-origin: top left;
     -webkit-transform: scale(0.1);
@@ -8958,8 +8953,7 @@ md-list#posts {
     -webkit-transform: scale(0.9);
     -webkit-transform-origin: top right;
     -moz-transform: scale(0.9);
-    -moz-transform-origin: top right;
-    position: absolute; }
+    -moz-transform-origin: top right; }
 @media(max-width: 960px) {
   .post .middle {
     transform-origin: top right;

@@ -19,10 +19,9 @@ md-list#posts
 
   z-index: 21
   width:  100%
-  height: $four-three-height-scaled + (0.5vw*2)
+  height: auto
   @media(max-width: 960px) 
     margin-top: 2vw
-    height: $four-three-height-scaled-mobile + (0.5vw*2)
   .postcontrols 
     position: absolute
     left: 0
@@ -46,15 +45,13 @@ md-list#posts
   .postcontent,
   .middle
     width:  $four-three-width
-    position: absolute
     @include post-transform-animation
     @media(max-width: 960px) 
       width: $four-three-width-mobile
   .middle
-    height: $four-three-height-scaled
-    @media(max-width: 960px) 
-      height: $four-three-height-scaled-mobile
+    height: 100%
   .postcontent
+    position: absolute
     height: $four-three-height
     @media(max-width: 960px) 
       height: $four-three-height-mobile
@@ -76,11 +73,10 @@ md-list#posts
       margin: 0
   .main
     width: $four-three-width
-    height: $four-three-height-scaled
     @media(max-width: 960px)
       width: $four-three-width-mobile
-      height: $four-three-height-scaled-mobile
   .postcontent
+    top: 0
     transform: scale(0.1)
     transform-origin: top left
 
@@ -136,7 +132,6 @@ md-list#posts
 
       -moz-transform: scale(0.9)
       -moz-transform-origin: top right
-    position: absolute
     .top
       padding-left: 1vmax
       .title

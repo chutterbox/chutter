@@ -13,12 +13,6 @@
   %md-button{flex: true, aria-label: "Downvote", ng-click: "post.updateVote(-1)"}
     %i.icon.ion-chevron-down{ng-class: "{'active-down' : (post.vote == -1)}"}
 .main
-  .postcontent.md-whiteframe-z3{layout: "column",layout-align: "center center", ng-click: "post.toggle($event)"}
-    %embed-video{ng-if: "post.currentMedia.format == 'video' && post.zoomValue > 1", data-ng-href: "{{post.media[0].stream_link}}", autoplay: "1", width: "100%", height: "100%"}
-    %img{ng-if: "(post.currentMedia.format != 'video') && post.zoomValue > 1", ng-src: "{{post.currentMedia.image_link}}"}
-    .body{ng-if: "post.currentMedia.format == 'body'" , layout: "column"}
-      %md-content.md-whiteframe-z1.md-padding
-        %div.md-padding{marked: "::post.body"}
   .middle{layout: "column"}
     .top{ng-switch: "post.media.length"}
       %div{ng-switch-when: 0}
@@ -46,3 +40,9 @@
         report
       %a{ng-click: "post.moderate()", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
         mod
+  .postcontent.md-whiteframe-z3{layout: "column",layout-align: "center center", ng-click: "post.toggle($event)"}
+    %embed-video{ng-if: "post.currentMedia.format == 'video' && post.zoomValue > 1", data-ng-href: "{{post.media[0].stream_link}}", autoplay: "1", width: "100%", height: "100%"}
+    %img{ng-if: "(post.currentMedia.format != 'video') && post.zoomValue > 1", ng-src: "{{post.currentMedia.image_link}}"}
+    .body{ng-if: "post.currentMedia.format == 'body'" , layout: "column"}
+      %md-content.md-whiteframe-z1.md-padding
+        %div.md-padding{marked: "::post.body"}

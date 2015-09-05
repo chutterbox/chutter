@@ -27,8 +27,8 @@
               body: $scope.post.body
             };
           }
-          $scope.post.elements.postcontent = $scope.post.elements.main.children[0];
-          $scope.post.elements.middle = $scope.post.elements.main.children[1];
+          $scope.post.elements.postcontent = $scope.post.elements.main.children[1];
+          $scope.post.elements.middle = $scope.post.elements.main.children[0];
           if ($scope.post.currentMedia) {
             $scope.post.elements.postcontent.style.backgroundImage = "url(" + $scope.post.currentMedia.thumbnail_link + ")";
             $scope.post.elements.postcontent.style.backgroundSize = "cover";

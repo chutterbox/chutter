@@ -18,7 +18,7 @@ app = angular.module('Chutter', [
   'infinite-scroll'
   'hc.marked'
 ]).constant('API',
-  baseURL: 'http://www.chutterbuild.com/api/v1'
+  baseURL: 'http://api.chutterbuild.com/api/v1'
   makeURL: (url) ->
     @baseURL + url
 ).config([

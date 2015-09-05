@@ -8862,7 +8862,12 @@ md-list#posts {
     .post .postcontrols .reset-button span {
       color: #fff; }
   .post .postcontent {
-    height: 46.5vw; }
+    position: absolute;
+    height: 46.5vw;
+    top: 0; }
+@media(max-width: 960px) {
+  .post .postcontent {
+    height: 75vw; } }
     .post .postcontent embed-video {
       width: 100%;
       height: 100%; }
@@ -8872,6 +8877,10 @@ md-list#posts {
       position: absolute;
       top: 0;
       left: 0; }
+  .post .postcontent:focus {
+    outline: none; }
+    .post .postcontent:focus img:focus {
+      outline: none; }
   .post .postcontent,
   .post .middle {
     width: 62vw;
@@ -8885,14 +8894,6 @@ md-list#posts {
   .post .postcontent,
   .post .middle {
     width: 100vw; } }
-  .post .middle {
-    height: 100%; }
-  .post .postcontent {
-    position: absolute;
-    height: 46.5vw; }
-@media(max-width: 960px) {
-  .post .postcontent {
-    height: 75vw; } }
   .post .top, .post .tagline, .post .footer {
     padding-left: 8px; }
   .post .vote {
@@ -8913,7 +8914,6 @@ md-list#posts {
   .post .main {
     width: 100vw; } }
   .post .postcontent {
-    top: 0;
     transform: scale(0.1);
     transform-origin: top left;
     -webkit-transform: scale(0.1);
@@ -8950,6 +8950,7 @@ md-list#posts {
   .post .middle {
     transform-origin: top right;
     transform: scale(0.9);
+    height: 100%;
     -webkit-transform: scale(0.9);
     -webkit-transform-origin: top right;
     -moz-transform: scale(0.9);

@@ -32,7 +32,11 @@ md-list#posts
       span
         color: #fff
   .postcontent
+    position: absolute
     height: $four-three-height
+    top: 0
+    @media(max-width: 960px) 
+      height: $four-three-height-mobile
     embed-video
       width: 100%
       height: 100%
@@ -42,23 +46,18 @@ md-list#posts
       position: absolute
       top: 0
       left: 0
+  .postcontent:focus
+    outline: none
+    img:focus
+      outline: none
   .postcontent,
   .middle
     width:  $four-three-width
     @include post-transform-animation
     @media(max-width: 960px) 
       width: $four-three-width-mobile
-  .middle
-    height: 100%
-  .postcontent
-    position: absolute
-    height: $four-three-height
-    @media(max-width: 960px) 
-      height: $four-three-height-mobile
-
   .top, .tagline, .footer
     padding-left: 8px
-
   .vote
     max-width: 4vw
     height: $four-three-height-scaled
@@ -76,7 +75,6 @@ md-list#posts
     @media(max-width: 960px)
       width: $four-three-width-mobile
   .postcontent
-    top: 0
     transform: scale(0.1)
     transform-origin: top left
 
@@ -117,7 +115,7 @@ md-list#posts
   .middle
     transform-origin: top right
     transform: scale(0.9)
-
+    height: 100%
     -webkit-transform: scale(0.9)
     -webkit-transform-origin: top right
 

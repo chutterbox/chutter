@@ -51,59 +51,59 @@
           %p Some rules
 
   #content.md-whiteframe-z1{flex: true, layout: "column", layout-fill: "true"}
-    %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
-      .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
+    %md-content.primary-content
+      %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
+        .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
+          .progress-bar{layout: "column", flex: true}
+            .icons-wrap{layout: "row", layout-align: "space-between"}
+              .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
+                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                  .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                  .line
+              .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
+                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                  .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                  .line
+              .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                  .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                  .line
+              .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                  .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                  .line
+              .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                  .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+            .wrap{layout: "row", layout-align: "space-between"}
+              .caption
+                Network
+              .caption
+                Details
+              .caption
+                Rules
+              .caption
+                Customize
+              .caption
+                Review
 
-        .progress-bar{layout: "column", flex: true}
-          .icons-wrap{layout: "row", layout-align: "space-between"}
-            .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-          .wrap{layout: "row", layout-align: "space-between"}
-            .caption
-              Network
-            .caption
-              Details
-            .caption
-              Rules
-            .caption
-              Customize
-            .caption
-              Review
-
-    #create-community{layout: "column", layout-fill: "true"}
-      %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
-        %md-tab{label: "network"}
-          %md-content
-            %create-community-network
-        %md-tab{label: "details"}
-          %md-content
-            %create-community-details
-        %md-tab{label: "rules"}
-          %md-content
-            %create-community-rules
-        %md-tab{label: "customize"}
-          %md-content
-            %create-community-customize
-        %md-tab{label: "review"}
-          %md-content
-            %create-community-review
+      #create-community{layout: "column", layout-fill: "true"}
+        %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
+          %md-tab{label: "network"}
+            %md-content.primary-content
+              %create-community-network
+          %md-tab{label: "details"}
+            %md-content.primary-content
+              %create-community-details
+          %md-tab{label: "rules"}
+            %md-content.primary-content
+              %create-community-rules
+          %md-tab{label: "customize"}
+            %md-content.primary-content
+              %create-community-customize
+          %md-tab{label: "review"}
+            %md-content.primary-content
+              %create-community-review
 
 
   %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}

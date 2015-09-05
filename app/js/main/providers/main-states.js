@@ -225,6 +225,7 @@
                 $scope.page = Page;
                 $scope.moderators = Moderators;
                 return $scope.requestModerationPosition = function() {
+                  $scope.page.community.moderation_position_requested = true;
                   return CommunityResource.requestModerationPosition({
                     id: $scope.page.community.id
                   });

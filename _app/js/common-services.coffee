@@ -152,6 +152,12 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
       moderationRequests:
         url: API.makeURL('/communities/:id/moderation_requests')
         isArray: true
+      addModerator:
+        url: API.makeURL('/communities/:id/add_moderator')
+        method: "POST"
+      dismissModerationPositionRequest:
+        url: API.makeURL('/communities/:id/dismiss_moderation_position_request')
+        method: "POST"
 ]
 class AudioInterface
   constructor: (src, $document) ->

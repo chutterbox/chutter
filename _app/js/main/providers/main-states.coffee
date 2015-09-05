@@ -145,6 +145,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             $scope.page = Page
             $scope.moderators = Moderators
             $scope.requestModerationPosition = () ->
+              $scope.page.community.moderation_position_requested = true
               CommunityResource.requestModerationPosition({id: $scope.page.community.id})
               
           ]

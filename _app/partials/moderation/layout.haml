@@ -8,26 +8,26 @@
               %img{ng-src: "/img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{layout: "row", layout-align: "end end"}
-        %md-button{ng-click: "signIn()"}
+        %md-button{aria-label: "sign in", ng-click: "signIn()"}
           Sign In
     
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
           .nav-list-item
-            %md-button#logo{style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
+            %md-button#logo{aria-label: "logo", style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
               %img{ng-src: "/img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
+        %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
           moderation
-        %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
+        %md-button{aria-label: "management", ng-if: "user.manager", href: "/management", target: "_self"}
           management
-        %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+        %md-button{aria-label: "messages", href: "/me/notifications", ng-bind: "user.username", target: "_self"}
         %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
           %i.fa.fa-envelope-o.fa-fw
           %md-tooltip
             Messages
-        %md-button{ng-click: "logout()", hide-sm: true}
+        %md-button{aria-label: "log out", ng-click: "logout()", hide-sm: true}
           %i.fa.fa-sign-out.fa-fw
           %md-tooltip
             Log out

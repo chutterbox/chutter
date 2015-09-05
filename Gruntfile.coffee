@@ -186,6 +186,8 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/community.html" : "_app/partials/moderation/community/community.haml"
           "app/partials/moderation/community/policy-groups.html" : "_app/partials/moderation/community/policy-groups.haml"
           "app/partials/moderation/community/moderators/moderatorList.html" : "_app/partials/moderation/community/moderators/moderatorList.haml"
+          "app/partials/moderation/community/moderators/moderationRequestList.html" : "_app/partials/moderation/community/moderators/moderationRequestList.haml"
+          "app/partials/moderation/community/moderators/editModerationRequest.html" : "_app/partials/moderation/community/moderators/editModerationRequest.haml"
           "app/partials/moderation/community/moderators/editModerator.html" : "_app/partials/moderation/community/moderators/editModerator.haml"
           "app/partials/moderation/community/queue.html" : "_app/partials/moderation/community/queue.haml"
           "app/partials/moderation/community/rules.html" : "_app/partials/moderation/community/rules.haml"

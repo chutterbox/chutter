@@ -12,6 +12,10 @@
           url: API.makeURL('/users/moderated_communities'),
           method: "GET",
           isArray: true
+        },
+        stats: {
+          url: API.makeURL('/users/:id/stats'),
+          isArray: true
         }
       });
     }

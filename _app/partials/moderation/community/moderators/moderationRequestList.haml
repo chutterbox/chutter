@@ -1,0 +1,5 @@
+%md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+  .detailed-list-item{ng-repeat: "request in moderationRequests", layout: "row"}
+    %md-button{ui-sref: "home.community.moderationRequests.edit({user_id: request.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+      %p{ng-bind: "::request.username"}
+

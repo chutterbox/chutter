@@ -93,6 +93,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       controller: ["$scope", "activityLog", ($scope, activityLog) -> 
         $scope.activityLog = activityLog
       ]
+    
+
     moderators =
       name: "home.community.moderators"
       url: "/moderators"
@@ -102,9 +104,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
               CommunityResource.moderators({id: $stateParams.id}).$promise
             ]
-            ModerationRequests: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
-              CommunityResource.moderationRequests({id: $stateParams.id}).$promise
-            ]
+
           templateUrl: "#{view_url}/community/moderators/moderatorList.html"
           controller: "moderatorListCtrl"
 
@@ -119,10 +119,31 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             ]
           templateUrl: "#{view_url}/community/moderators/editModerator.html"
           controller: "editModeratorCtrl"
+    
+    moderationRequests =
+      name: "home.community.moderationRequests"
+      url: "/moderator_requests"
+      views: 
+        "right-rail@home":
+          resolve:        
+            ModerationRequests: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.moderationRequests({id: $stateParams.id}).$promise
+            ]
+          templateUrl: "#{view_url}/community/moderators/moderationRequestList.html"
+          controller: "moderationRequestListCtrl"
 
-    moderatorRequests =
-      name: "home.community.moderators.requests"
-      url: "/requests"
+    moderationRequestEdit =
+      name: "home.community.moderationRequests.edit"
+      url: "/:user_id"
+      views: 
+        "@home.community":
+          resolve:        
+            UserStats: ["UserResource", "$stateParams", (UserResource, $stateParams) -> 
+              UserResource.stats({id: $stateParams.id}).$promise
+            ]
+          templateUrl: "#{view_url}/community/moderators/editModerationRequest.html"
+          controller: "editModerationRequestCtrl"
+
 
     #community specific dashboard
    
@@ -139,6 +160,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(activityLog)
     $stateProvider.state(moderators)
     $stateProvider.state(moderatorEdit)
+    $stateProvider.state(moderationRequests)
+    $stateProvider.state(moderationRequestEdit)
     # $stateProvider.state(conversationCompose)
     # $stateProvider.state(conversationContent)
     # $stateProvider.state(notifications)

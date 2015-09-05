@@ -1,31 +1,34 @@
 %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
   .md-toolbar-tools
     %md-tabs.md-primary.md-hue-2{flex: true}
-      %md-tab{ui-sref: "home.community.dashboard({id: page.community.slug})"}
+      %md-tab{ui-sref: ".dashboard"}
         %md-tab-label
           Dashboard
-      %md-tab{ui-sref: "home.community.modwatch({id: page.community.slug})"}
+      %md-tab{ui-sref: ".modwatch"}
         %md-tab-label
           Modwatch
-      %md-tab{ui-sref: "home.community.inbox({id: page.community.slug})"}
+      %md-tab{ui-sref: ".inbox"}
         %md-tab-label
           Inbox
-      %md-tab{ui-sref: "home.community.queue({id: page.community.slug})"}
+      %md-tab{ui-sref: ".queue"}
         %md-tab-label
           Queue
-      %md-tab{ui-sref: "home.community.policyGroups({id: page.community.slug})"}
+      %md-tab{ui-sref: ".policyGroups"}
         %md-tab-label
           Policy Groups
-      %md-tab{ui-sref: "home.community.settings({id: page.community.slug})"}
+      %md-tab{ui-sref: ".settings"}
         %md-tab-label
           Settings
-      %md-tab{ui-sref: "home.community.rules({id: page.community.slug})"}
+      %md-tab{ui-sref: ".rules"}
         %md-tab-label
           Rules
-      %md-tab{ui-sref: "home.community.activityLog({id: page.community.slug})"}
+      %md-tab{ui-sref: ".activityLog"}
         %md-tab-label
           Activity Log
-      %md-tab{ui-sref: "home.community.moderators({id: page.community.slug})"}
+      %md-tab{ui-sref: ".moderators"}
         %md-tab-label
           Moderators
+      %md-tab{ui-sref: ".moderationRequests"}
+        %md-tab-label
+          Moderator Requests
 %ui-view

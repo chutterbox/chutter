@@ -11,6 +11,10 @@ app.controller "statsCtrl", ["$scope", "Stats", ($scope, Stats) ->
 
   $scope.point_distribution.data = [$scope.point_distribution.data]
 
+  $scope.chartOptions = {
+    responsive: true,
+    maintainAspectRatio: true
+  }
 
   $scope.onClick = (points, evt) ->
     console.log(points, evt)

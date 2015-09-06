@@ -3,9 +3,9 @@
     .md-subhead
       %h2
         Statistics
-%md-content.primary-content.dashboard{layout: "row", layout-wrap: true, layout-margin: true}
+%md-content.primary-content.dashboard{layout: "row", layout-wrap: true, layout-fill: true, layout: "row"}
 
-  .item.md-padding{layout: "column", ng-if: "submission_distribution", layout-align: "center space-between", flex: true}
+  .item.md-padding{layout: "column", ng-if: "submission_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
     .header{layout-align: "space-between center", layout: "row"}
       .md-title
         Post Distribution
@@ -16,9 +16,9 @@
         %md-tooltip
           Make private
     %md-divider
-    .content{layout: "row", layout-fill: "true", layout-align: "center center"}
+    .content
       %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "submission_distribution.data", labels: "submission_distribution.labels", legend: "true"}
-  .item.md-padding{layout: "column", ng-if: "comment_distribution", layout-align: "center space-between", flex: true}
+  .item.md-padding{layout: "column", ng-if: "comment_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
     .header{layout-align: "space-between center", layout: "row"}
       .md-title
         Comment Distribution
@@ -29,9 +29,9 @@
         %md-tooltip
           Make private
     %md-divider
-    .content{layout: "row", layout-fill: "true", layout-align: "center center"}
+    .content
       %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "comment_distribution.data", labels: "comment_distribution.labels", legend: "true"}
-  .item.md-padding{layout: "column", ng-if: "domain_distribution", layout-align: "center space-between", flex: true}
+  .item.md-padding{layout: "column", ng-if: "domain_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
     .header{layout-align: "space-between center", layout: "row"}
       .md-title
         Domain Distribution
@@ -42,9 +42,9 @@
         %md-tooltip
           Make private
     %md-divider
-    .content{layout: "row", layout-fill: "true", layout-align: "center center"}
-      %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
-  .item.md-padding{layout: "column", ng-if: "point_distribution", layout-align: "center space-between", flex: true}
+    .content
+      %canvas#doughnut.chart.chart-doughnut{options: "chartOptions", click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
+  .item.md-padding{layout: "column", ng-if: "point_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
     .header{layout-align: "space-between center", layout: "row"}
       .md-title
         Point Distribution
@@ -55,5 +55,5 @@
         %md-tooltip
           Make private
     %md-divider
-    .content{layout: "row", layout-fill: "true", layout-align: "center center"}
+    .content
       %canvas#bar.chart.chart-bar{data: "point_distribution.data", labels: "point_distribution.labels"}

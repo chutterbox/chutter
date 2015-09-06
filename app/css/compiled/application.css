@@ -7469,11 +7469,6 @@ md-toolbar#me-toolbar {
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
 
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
-
 #content {
   height: calc(100vh - 64px);
   overflow: hidden;
@@ -7772,11 +7767,6 @@ md-toolbar#me-toolbar {
       transform: translateY(-26px) scale(0.6);
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
-
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
 
 #content {
   height: calc(100vh - 64px);
@@ -8188,11 +8178,6 @@ md-toolbar#me-toolbar {
       transform: translateY(-26px) scale(0.6);
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
-
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
 
 #content {
   height: calc(100vh - 64px);
@@ -8719,11 +8704,6 @@ md-toolbar#me-toolbar {
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
 
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
-
 #content {
   height: calc(100vh - 64px);
   overflow: hidden;
@@ -9227,11 +9207,6 @@ md-toolbar#me-toolbar {
       transform: translateY(-26px) scale(0.6);
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
-
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
 
 #content {
   height: calc(100vh - 64px);

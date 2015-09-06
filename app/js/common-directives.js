@@ -185,7 +185,8 @@
                 locals: {
                   entityable: $scope.post,
                   entityableType: "post"
-                }
+                },
+                controller: "reportSheetCtrl"
               });
             };
           }

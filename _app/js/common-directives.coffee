@@ -174,7 +174,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
           locals:
             entityable: $scope.post
             entityableType: "post"
-          # controller: "modSheetCtrl"
+          controller: "reportSheetCtrl"
         })
 
   

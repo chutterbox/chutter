@@ -94,12 +94,13 @@ module.exports = (grunt) ->
               'vendor/Chart.js/Chart.js',
               'app/js/templates-moderation.js',
               'vendor/angular-chart.js/dist/angular-chart.js',
+              'vendor/angular-material-data-table/dist/md-data-table.js',
               'app/js/moderation/moderation.js',
               'app/js/moderation/controllers/*.js',
               'app/js/moderation/controllers/community/*.js',
               'app/js/moderation/directives/*.js',
               'app/js/moderation/providers/*.js',
-              'app/js/moderation/services/*.js',
+              'app/js/moderation/services/*.js'
 
             ]
           'app/js/compiled/management.min.js': [
@@ -189,7 +190,8 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/moderators/moderationRequestList.html" : "_app/partials/moderation/community/moderators/moderationRequestList.haml"
           "app/partials/moderation/community/moderators/editModerationRequest.html" : "_app/partials/moderation/community/moderators/editModerationRequest.haml"
           "app/partials/moderation/community/moderators/editModerator.html" : "_app/partials/moderation/community/moderators/editModerator.haml"
-          "app/partials/moderation/community/queue.html" : "_app/partials/moderation/community/queue.haml"
+          "app/partials/moderation/community/queue/queueList.html" : "_app/partials/moderation/community/queue/queueList.haml"
+          "app/partials/moderation/community/queue/queue.html" : "_app/partials/moderation/community/queue/queue.haml"
           "app/partials/moderation/community/rules.html" : "_app/partials/moderation/community/rules.haml"
           "app/partials/moderation/community/modwatch.html" : "_app/partials/moderation/community/modwatch.haml"
           "app/partials/moderation/community/inbox.html" : "_app/partials/moderation/community/inbox.haml"

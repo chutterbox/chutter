@@ -61,6 +61,38 @@
     }
   ]);
 
+  app.controller("reportSheetCtrl", [
+    "$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", function($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource) {
+      if (entityableType === "post") {
+        $scope.post = entityable;
+      }
+      if (entityableType === "comment") {
+        $scope.comment = entityable;
+      }
+      $scope.entityable = entityable;
+      CommunityResource.reportableRules({
+        id: $scope.entityable.community_slug
+      }).$promise.then(function(data) {
+        return $scope.communityRules = _.filter(data, function(rule) {
+          return rule.sitewide || rule.posts;
+        });
+      });
+      $scope.submitEntityableForm = function() {
+        if (entityableType === "post") {
+          return PostResource["delete"]($scope.activityLogEntry);
+        }
+      };
+      $scope.submitUserForm = function() {
+        if (entityableType === "post") {
+          return PostResource.ban($scope.activityLogEntry);
+        }
+      };
+      return $scope.closeSheet = function() {
+        return $mdBottomSheet.hide();
+      };
+    }
+  ]);
+
   app.controller("commentsCtrl", [
     "$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", function($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) {
       $scope.page = Page;

@@ -61,7 +61,11 @@
       communityQueue = {
         name: "home.community.queue",
         url: "/queue",
-        templateUrl: view_url + "/community/queue.html"
+        views: {
+          "right-rail@home": {
+            templateUrl: view_url + "/community/queue/queueList.html"
+          }
+        }
       };
       modwatch = {
         name: "home.community.modwatch",

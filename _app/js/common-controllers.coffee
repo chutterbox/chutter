@@ -56,7 +56,31 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
 
 ]
 
+app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource) ->
+  $scope.post             = entityable if entityableType is "post"
+  $scope.comment          = entityable if entityableType is "comment"
+  $scope.entityable       = entityable
+  
 
+
+  CommunityResource.reportableRules({id: $scope.entityable.community_slug}).$promise.then (data) ->
+    $scope.communityRules = _.filter data, (rule) -> (rule.sitewide || rule.posts)
+
+  $scope.submitEntityableForm = () ->
+    #this is the id for the entity being moderated, not the activity log entry id
+    if entityableType is "post"
+      PostResource.delete($scope.activityLogEntry)
+  
+  
+  $scope.submitUserForm = () ->
+    if entityableType is "post"
+      PostResource.ban($scope.activityLogEntry)  
+
+  $scope.closeSheet = () ->
+    $mdBottomSheet.hide()
+
+
+]
 app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", ($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) ->
   $scope.page = Page
   $scope.page.post = Post

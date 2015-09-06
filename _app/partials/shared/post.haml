@@ -8,9 +8,9 @@
     %i.icon.ion-android-expand{ng-switch-default: "true"}
     %i.icon.ion-android-contract{ng-switch-when: "10"}
 .vote{hide-sm: "true", layout: "column", layout-fill: true}
-  %md-button{flex: true, aria-label: "Upvote", ng-click: "post.updateVote(1)"}
+  %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "post.updateVote(1)"}
     %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
-  %md-button{flex: true, aria-label: "Downvote", ng-click: "post.updateVote(-1)"}
+  %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "post.updateVote(-1)"}
     %i.icon.ion-chevron-down{ng-class: "{'active-down' : (post.vote == -1)}"}
 .main
   .middle{layout: "column"}

@@ -32,6 +32,7 @@
           if ($scope.post.currentMedia) {
             $scope.post.elements.postcontent.style.backgroundImage = "url(" + $scope.post.currentMedia.thumbnail_link + ")";
             $scope.post.elements.postcontent.style.backgroundSize = "cover";
+            $scope.post.elements.postcontent.style.backgroundPosition = "50%";
             if ($scope.post.currentMedia.format === "music") {
               $scope.post.currentMedia.audio = new audio($scope.post.currentMedia.stream_link + "?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120");
             }
@@ -51,8 +52,8 @@
                 $scope.post.elements.post.parentNode.insertBefore($scope.wrapperDiv, $scope.post.elements.post.nextSibling);
               }
               window.requestAnimationFrame(function() {
-                $scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + ");-moz-transform: scale(" + val + ");";
-                return $scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + ");-moz-transform: scale(" + (1 - val) + ");";
+                $scope.post.elements.postcontent.style.cssText += "transform: scale(" + val + ");-webkit-transform: scale(" + val + "); -moz-transform: scale(" + val + ") rotate(0.01deg);";
+                return $scope.post.elements.middle.style.cssText += "transform: scale(" + (1 - val) + ");-webkit-transform: scale(" + (1 - val) + "); -moz-transform: scale(" + (1 - val) + ") rotate(0.01deg);";
               });
               $scope.setXTranslations();
               if ($scope.post.currentMedia.format !== "video" && (newVal > 1 && (!oldVal || oldVal <= 1))) {
@@ -98,7 +99,7 @@
               xTranslation = ((newHeight * ($scope.post.zoomValue / 10)) - originalHeight) + 35;
             }
             return window.requestAnimationFrame(function() {
-              return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";
+              return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px) rotate(0.01deg);";
             });
           };
           $scope.post.updateVote = function(vote) {

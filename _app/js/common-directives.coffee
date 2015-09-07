@@ -27,6 +27,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
     if $scope.post.currentMedia
       $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
       $scope.post.elements.postcontent.style.backgroundSize = "cover"
+      $scope.post.elements.postcontent.style.backgroundPosition = "50%"
       if $scope.post.currentMedia.format is "music"
         $scope.post.currentMedia.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 
@@ -42,11 +43,13 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
             $scope.wrapperDiv.appendChild(post.elements.post)
           $scope.post.elements.post.parentNode.insertBefore($scope.wrapperDiv, $scope.post.elements.post.nextSibling)
 
-        window.requestAnimationFrame () ->
+        window.requestAnimationFrame () -> 
+          #rotate firefox hack: 
+          #http://alexmatchneer.com/blog/2012/08/07/speeding-up-ff-css3-transform-transitions-with-rotate/
           $scope.post.elements.postcontent.style.cssText +=  
-            "transform: scale(#{val});-webkit-transform: scale(#{val});-moz-transform: scale(#{val});"
+            "transform: scale(#{val});-webkit-transform: scale(#{val}); -moz-transform: scale(#{val}) rotate(0.01deg);"
           $scope.post.elements.middle.style.cssText += 
-            "transform: scale(#{1-val});-webkit-transform: scale(#{1-val});-moz-transform: scale(#{1-val});"
+            "transform: scale(#{1-val});-webkit-transform: scale(#{1-val}); -moz-transform: scale(#{1-val}) rotate(0.01deg);"
         
         $scope.setXTranslations()
         if $scope.post.currentMedia.format != "video" and (newVal > 1 and (!oldVal or oldVal <= 1))
@@ -92,7 +95,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
       
       window.requestAnimationFrame () ->
         $scope.wrapperDiv.style.cssText += 
-          "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px);"
+          "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px) rotate(0.01deg);"
   
 
 

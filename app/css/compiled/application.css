@@ -7359,9 +7359,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -7658,9 +7660,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -8069,9 +8073,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -8292,7 +8298,10 @@ post {
   padding: 15px; }
 
 #comments {
-  height: 100%; }
+  overflow: auto;
+  padding-top: 20px;
+  height: 100%;
+  min-height: auto; }
   #comments md-backdrop {
     display: none; }
   #comments #reply {
@@ -8434,6 +8443,10 @@ comment-embed {
     comment[collapsed="true"] .header,
     comment-embed[collapsed="true"] .header {
       height: 48px; }
+      comment[collapsed="true"] .header .md-button,
+      comment-embed[collapsed="true"] .header .md-button {
+        margin-left: 10px;
+        margin-right: 3px; }
     comment[collapsed="true"] .username,
     comment[collapsed="true"] .points,
     comment[collapsed="true"] .time,
@@ -8441,6 +8454,12 @@ comment-embed {
     comment-embed[collapsed="true"] .points,
     comment-embed[collapsed="true"] .time {
       line-height: 48px; }
+    comment[collapsed="true"] .time,
+    comment-embed[collapsed="true"] .time {
+      margin-right: 18px; }
+    comment[collapsed="true"] .username,
+    comment-embed[collapsed="true"] .username {
+      padding-left: 0; }
   comment .main,
   comment-embed .main {
     margin-left: 10px;
@@ -8501,8 +8520,6 @@ comment-embed {
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16); }
   #comments > comment > .main {
     border-top: none; }
-  #comments > comment:last-of-type {
-    margin-bottom: 40px; }
 
 .post-comment {
   position: absolute;
@@ -8594,9 +8611,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -9098,9 +9117,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -9334,12 +9355,15 @@ post {
 .md-sidenav-right .header {
   margin-bottom: 0.8vmax; }
   .md-sidenav-right .header .title h5 {
+    font-size: 1em;
     margin: 0; }
   .md-sidenav-right .header .title .icon-holder,
   .md-sidenav-right .header .title .md-button {
     height: 1em;
-    min-width: 35px;
-    min-height: 36px; }
+    width: 36px;
+    height: 36px;
+    left: -10px;
+    margin: 0 -6px 0 6px; }
     .md-sidenav-right .header .title .icon-holder .icon,
     .md-sidenav-right .header .title .md-button .icon {
       line-height: 36px;
@@ -9351,12 +9375,12 @@ post {
     font-size: 2.3vmax; } }
     .md-sidenav-right .header .title .icon-holder:hover .icon,
     .md-sidenav-right .header .title .md-button:hover .icon {
-      color: #3f3f3f; }
-    .md-sidenav-right .header .title .icon-holder:hover .ion-minus-circled,
-    .md-sidenav-right .header .title .md-button:hover .ion-minus-circled {
+      cursor: default; }
+    .md-sidenav-right .header .title .icon-holder:hover .ion-minus-round,
+    .md-sidenav-right .header .title .md-button:hover .ion-minus-round {
       color: #ff9800; }
-    .md-sidenav-right .header .title .icon-holder:hover .ion-plus-circled,
-    .md-sidenav-right .header .title .md-button:hover .ion-plus-circled {
+    .md-sidenav-right .header .title .icon-holder:hover .ion-plus-round,
+    .md-sidenav-right .header .title .md-button:hover .ion-plus-round {
       color: #4caf50; }
   .md-sidenav-right .header .sub-header {
     margin-top: 0.5vmax;
@@ -9398,6 +9422,8 @@ post {
     height: 2.5vmax;
     color: #fff;
     text-align: center; }
+    .md-sidenav-right .special-list md-list-item .type:hover {
+      cursor: default; }
   .md-sidenav-right .special-list md-list-item .md-button {
     margin: 0;
     border-radius: 0;
@@ -9438,10 +9464,6 @@ post {
 .md-sidenav-right network-sidebar .welcome .subscribers {
   text-align: center;
   line-height: 38px; }
-.md-sidenav-right #community-sidebar .welcome .md-button,
-.md-sidenav-right #community-sidebar .moderators .md-button {
-  text-align: left;
-  margin: 0; }
 .md-sidenav-right #community-sidebar .rules md-list md-list-item {
   padding-left: 0; }
 .md-sidenav-right #community-sidebar .moderators .special-list .admin {

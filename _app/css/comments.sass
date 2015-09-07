@@ -2,7 +2,10 @@
 .comment-page
   padding: 15px
 #comments
+  overflow: auto
+  padding-top: 20px
   height: 100%
+  min-height: auto
   md-backdrop
     display: none
 
@@ -130,11 +133,17 @@ comment-embed
     box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 5px
     .header
       height: 48px
+      .md-button
+        margin-left: 10px
+        margin-right: 3px
     .username,
     .points,
     .time
       line-height: 48px
-
+    .time
+      margin-right: 18px
+    .username
+      padding-left: 0
   .main
     margin-left: 10px
     margin-bottom: 15px
@@ -204,9 +213,6 @@ comment-embed
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16)
   >.main
     border-top: none
-
-  &:last-of-type
-    margin-bottom: 40px
 
 .post-comment
   position: absolute

@@ -2,24 +2,23 @@
   .section-content
     .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-        .title{layout: "row", flex: 100, layout-align: "space-between center"}
-          %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)", flex: "10"}
+        .title{layout: "row", flex: 100, layout-align: "start center"}
+          %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
             .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
             %md-tooltip{md-direction: "left"}
               %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
-          %h5{ng-bind: "'/c/'+page.community.slug", flex: "90"}
-          
+          %h5.md-title{ng-bind: "'/c/'+page.community.slug"}
         .light.sub-header{ng-bind: "::page.community.description"}
       .light.small
         1425 Subscribers
     .rules
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-        .title{layout: "row", flex: 100, layout-align: "space-between center"}
-          .icon-holder{flex: "10", aria-label: "More rules"}
+        .title{layout: "row", flex: 100, layout-align: "start center"}
+          .icon-holder{aria-label: "More rules"}
             .icon.ion-clipboard
             %md-tooltip{md-direction: "left"}
               General rules are rules that apply throughout the community. Rules listed in red could result in banning if they are broken.
-          %h5{flex: "90"}
+          %h5.md-title
             General Rules
 
         .light.sub-header
@@ -32,15 +31,14 @@
             .light.sub-header{ng-bind: "::rule.detailed_explanation"}
     .moderators
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-        .title{layout: "row", flex: 100, layout-align: "space-between center"}
-          %md-button.md-icon-button{aria-label: "Contact Moderators", flex: "10"}
+        .title{layout: "row", flex: 100, layout-align: "start center"}
+          %md-button.md-icon-button{aria-label: "Contact Moderators"}
             .icon.ion-android-mail
             %md-tooltip{md-direction: "left"}
               %span
                 Message Moderators
-          %h5{flex: "90"}
+          %h5.md-title
             Moderators
-          
         .light.sub-header
           The force is strong with this ones.
       %md-list.special-list

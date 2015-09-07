@@ -429,7 +429,7 @@ md-list#posts {
       padding-left: 1vmax; }
       .post .middle .top .title a.title-text {
         color: #767676;
-        font-weight: 500; }
+        font-weight: bolder; }
       .post .middle .top .attribution {
         padding: 0 8px;
         color: #bbb; }

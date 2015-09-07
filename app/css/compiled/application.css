@@ -8821,8 +8821,8 @@ md-list#posts {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   transition: transform 250ms ease-in-out;
-  -moz-transition: transform 500ms ease-in-out;
-  -webkit-transition: transform 250ms ease-in-out; }
+  -moz-transition: -moz-transform 500ms ease-in-out;
+  -webkit-transition: -webkit-transform 250ms ease-in-out; }
 
 .post {
   position: relative;
@@ -8868,8 +8868,8 @@ md-list#posts {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transition: transform 250ms ease-in-out;
-    -moz-transition: transform 500ms ease-in-out;
-    -webkit-transition: transform 250ms ease-in-out; }
+    -moz-transition: -moz-transform 500ms ease-in-out;
+    -webkit-transition: -webkit-transform 250ms ease-in-out; }
 @media(max-width: 960px) {
   .post .postcontent,
   .post .middle {

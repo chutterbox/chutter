@@ -15,8 +15,9 @@ chutter.use(compress())
 
 chutter.engine "html", require("ejs").renderFile
 chutter.set "views", __dirname + "/app"
-chutter.use "/", express.static(__dirname + "/app")
-chutter.use "/vendor", express.static(__dirname + "/vendor")
+oneYear = 31557600000
+chutter.use "/", express.static(__dirname + "/app", {maxAge: oneYear})
+chutter.use "/vendor", express.static(__dirname + "/vendor", {maxAge: oneYear})
 
 # angular is bad for SEO, we have it prerendered in another heroku repo
 # chutter.use(require('prerender-node').set('prerenderServiceUrl', 'http://chutter-seo.herokuapp.com/').set('afterRender', (req, pres) ->

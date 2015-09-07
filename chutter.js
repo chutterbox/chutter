@@ -1,5 +1,5 @@
 (function() {
-  var chutter, cluster, compress, express, favicon, i, port;
+  var chutter, cluster, compress, express, favicon, i, oneYear, port;
 
   express = require("express");
 
@@ -17,9 +17,15 @@
 
   chutter.set("views", __dirname + "/app");
 
-  chutter.use("/", express["static"](__dirname + "/app"));
+  oneYear = 31557600000;
 
-  chutter.use("/vendor", express["static"](__dirname + "/vendor"));
+  chutter.use("/", express["static"](__dirname + "/app", {
+    maxAge: oneYear
+  }));
+
+  chutter.use("/vendor", express["static"](__dirname + "/vendor", {
+    maxAge: oneYear
+  }));
 
   chutter.use(favicon(__dirname + '/favicon.ico'));
 

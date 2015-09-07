@@ -2,12 +2,7 @@
 //Variables
 $color-white: #fff
 $color-light: #F2F2F2
-$color-gray-600: #757575
 $color-dark: #3f3f3f
-$color-green: #4caf50
-$color-red: #f44336
-$color-orange: #ff9800
-$color-light-blue: #03a9f4
 
 $font-size-60: 0.60vmax
 $font-size-65: 0.65vmax
@@ -23,7 +18,7 @@ $font-size-130: 1.3vmax
   h5
     margin-top: 0
   .light
-    color: $color-gray-600
+    color: material-color("grey", "600")
   .small
     font-size: $font-size-70
     @media(max-width: 960px) // Responsive font
@@ -39,21 +34,23 @@ $font-size-130: 1.3vmax
       .icon-holder,
       .md-button
         height: $h5-size
-        min-width: 35px
-        min-height: 36px
+        width: 36px
+        height: 36px
+        left: -10px
+        margin: 0 -6px 0 6px
         .icon
           line-height: 36px
-          color: $color-light-blue
+          color: material-color("light-blue") // TODO: Should use theme PRIMARY color
           font-size: $font-size-130
           @media(max-width: 960px) // Responsive font
             font-size: $font-size-130 + 1
         &:hover
           .icon
-            color: $color-dark
-          .ion-minus-circled
-            color: $color-orange
-          .ion-plus-circled
-            color: $color-green
+            cursor: default
+          .ion-minus-round
+            color: material-color("orange")
+          .ion-plus-round
+            color: material-color("green")
     .sub-header
       margin-top: 0.5vmax
       font-size: $font-size-70
@@ -72,7 +69,7 @@ $font-size-130: 1.3vmax
           font-size: $font-size-65 + 1
         display: inline-block
         margin: 0 0.25vmax
-        color: $color-gray-600
+        color: material-color("grey", "600")
         &:hover
           color: $color-dark
 
@@ -97,12 +94,14 @@ $font-size-130: 1.3vmax
         height: $list-height
         color: $color-white
         text-align: center
+        &:hover
+          cursor: default
       .md-button
         margin: 0
         border-radius: 0
         padding: 0 0.5vmax
       .title
-        color: $color-gray-600
+        color: material-color("grey", "600")
         overflow: hidden
         float: left
         font-size: $font-size-75
@@ -116,14 +115,14 @@ $font-size-130: 1.3vmax
       .icon-holder
         .icon,
         .icon:hover
-          color: $color-red!important
+          color: material-color("red")!important
       .help
         margin-top: 16px
     .about
       .icon-holder
         .icon,
         .icon:hover
-          color: $color-light-blue
+          color: material-color("light-blue") // TODO: Should use theme PRIMARY color
     .news
       .special-list
         .time
@@ -134,11 +133,11 @@ $font-size-130: 1.3vmax
           text-transform: uppercase
           line-height: $list-height
         .update
-          background: $color-green
+          background: material-color("green")
         .community
-          background: $color-light-blue
+          background: material-color("light-blue")
         .important
-          background: $color-red
+          background: material-color("red")
 
   //Network
   network-sidebar
@@ -150,11 +149,6 @@ $font-size-130: 1.3vmax
         line-height: 38px
   //Community
   #community-sidebar
-    .welcome,
-    .moderators
-      .md-button
-        text-align: left
-        margin: 0
     .rules
       md-list
         md-list-item
@@ -163,9 +157,9 @@ $font-size-130: 1.3vmax
       .special-list
         .admin
           font-weight: 600
-          background: $color-red
+          background: material-color("red")
           .icon
             transform: rotate(-90deg)
         .moderator
           font-weight: 600
-          background: $color-orange
+          background: material-color("orange")

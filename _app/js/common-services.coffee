@@ -13,8 +13,8 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
     vote:
       method: 'PUT'
       url: API.makeURL('/posts/:id/vote')
-    ban:
-      url: API.makeURL('/posts/:id/ban')
+    report:
+      url: API.makeURL('/posts/:id/report')
       method: 'POST'
     #regular save is reserved for #create
     save_post: 

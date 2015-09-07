@@ -47,7 +47,13 @@
       $scope.activityLogEntry.id = $scope.entityable.id;
       $scope.submitEntityableForm = function() {
         if (entityableType === "post") {
-          return PostResource["delete"]($scope.activityLogEntry);
+          return PostResource["delete"]($scope.activityLogEntry).$promise.then(function(data) {
+            if (data.status === 200) {
+              return $scope.closeSheet();
+            } else {
+              return $scope.closeSheet();
+            }
+          });
         }
       };
       $scope.submitUserForm = function() {
@@ -62,7 +68,7 @@
   ]);
 
   app.controller("reportSheetCtrl", [
-    "$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", function($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource) {
+    "$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", function($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) {
       if (entityableType === "post") {
         $scope.post = entityable;
       }
@@ -77,14 +83,18 @@
           return rule.sitewide || rule.posts;
         });
       });
+      $scope.activityLogEntry = new ActivityLogEntry;
+      $scope.activityLogEntry.id = $scope.entityable.id;
       $scope.submitEntityableForm = function() {
         if (entityableType === "post") {
-          return PostResource["delete"]($scope.activityLogEntry);
-        }
-      };
-      $scope.submitUserForm = function() {
-        if (entityableType === "post") {
-          return PostResource.ban($scope.activityLogEntry);
+          return PostResource.report($scope.activityLogEntry).$promise.then(function(data) {
+            if (data.status === 200) {
+              $scope.closeSheet();
+              return entityable.reported = true;
+            } else {
+              return $scope.closeSheet();
+            }
+          });
         }
       };
       return $scope.closeSheet = function() {

@@ -43,7 +43,11 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
   $scope.submitEntityableForm = () ->
     #this is the id for the entity being moderated, not the activity log entry id
     if entityableType is "post"
-      PostResource.delete($scope.activityLogEntry)
+      PostResource.delete($scope.activityLogEntry).$promise.then (data) ->
+        if data.status is 200
+          $scope.closeSheet()
+        else
+          $scope.closeSheet()
   
   
   $scope.submitUserForm = () ->
@@ -56,7 +60,7 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
 
 ]
 
-app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource) ->
+app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
   $scope.post             = entityable if entityableType is "post"
   $scope.comment          = entityable if entityableType is "comment"
   $scope.entityable       = entityable
@@ -65,17 +69,23 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
 
   CommunityResource.reportableRules({id: $scope.entityable.community_slug}).$promise.then (data) ->
     $scope.communityRules = _.filter data, (rule) -> (rule.sitewide || rule.posts)
+  
+  $scope.activityLogEntry = new ActivityLogEntry
+  #id here is assumed to be the id of the route we want to post to, i.e. /posts/12/remove
+  $scope.activityLogEntry.id = $scope.entityable.id
 
   $scope.submitEntityableForm = () ->
     #this is the id for the entity being moderated, not the activity log entry id
     if entityableType is "post"
-      PostResource.delete($scope.activityLogEntry)
-  
-  
-  $scope.submitUserForm = () ->
-    if entityableType is "post"
-      PostResource.ban($scope.activityLogEntry)  
+      PostResource.report($scope.activityLogEntry).$promise.then (data) ->
+        if data.status is 200
+          $scope.closeSheet()
+          entityable.reported = true
+        else
+          $scope.closeSheet()
 
+  
+  
   $scope.closeSheet = () ->
     $mdBottomSheet.hide()
 

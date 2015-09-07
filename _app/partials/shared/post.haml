@@ -36,8 +36,10 @@
         save
       %a{ng-if: "post.saved", ng-click: "post.toggleSave()"}
         unsave
-      %a{ng-click: "post.report()"}
+      %a{ng-if: "!post.reported", ng-click: "post.report()"}
         report
+      %a.disabled{ng-if: "post.reported"}
+        reported
       %a{ng-click: "post.moderate()", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
         mod
   .postcontent{layout: "column",layout-align: "center center", ng-click: "post.toggle($event)"}

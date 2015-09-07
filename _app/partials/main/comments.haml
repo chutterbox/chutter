@@ -18,7 +18,7 @@
     %span.comments{hide-sm: "true", ng-bind: "page.post.comments_count + ' comments'"}
     %md-button.md-icon-button{hide-sm: "true"}
       %i.icon.ion-ios-trash
-%md-content#comments{layou: "column", layout-fill: true, layout-wrap: true}
+%md-content#comments
 
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 

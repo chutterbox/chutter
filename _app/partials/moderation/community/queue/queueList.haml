@@ -1,0 +1,5 @@
+%md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+  .detailed-list-item{ng-repeat: "item in reportedItems", ng-switch: "item.entityable", layout: "row"}
+    %md-button{ui-sref: "home.notifications.{{item.entityable}}Notifications({id: item.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+      %p{ng-bind: "::(('Re: ' + item.title | limitTo: 30) + '...')"}
+      %span{ng-bind: "(item.report_count || 0) + ' reports' "}

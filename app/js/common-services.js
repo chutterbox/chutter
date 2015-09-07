@@ -241,6 +241,10 @@
         dismissModerationPositionRequest: {
           url: API.makeURL('/communities/:id/dismiss_moderation_position_request'),
           method: "POST"
+        },
+        reportedItems: {
+          url: API.makeURL('/communities/:id/reported_items'),
+          isArray: true
         }
       });
     }

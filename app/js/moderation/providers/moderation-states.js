@@ -63,7 +63,17 @@
         url: "/queue",
         views: {
           "right-rail@home": {
-            templateUrl: view_url + "/community/queue/queueList.html"
+            templateUrl: view_url + "/community/queue/queueList.html",
+            resolve: {
+              ReportedItems: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.reportedItems({
+                    id: $stateParams.id
+                  });
+                }
+              ]
+            },
+            controller: "queueListCtrl"
           }
         }
       };

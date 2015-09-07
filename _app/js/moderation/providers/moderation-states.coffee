@@ -50,6 +50,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       views: 
         "right-rail@home":
           templateUrl: "#{view_url}/community/queue/queueList.html"
+          resolve:
+            ReportedItems: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
+              CommunityResource.reportedItems({id: $stateParams.id})
+            ]
+          controller: "queueListCtrl"
     
     modwatch =
       name: "home.community.modwatch"

@@ -95,7 +95,7 @@
               } else {
                 newHeight = $scope.post.elements.postcontent.offsetHeight;
               }
-              xTranslation = (newHeight * ($scope.post.zoomValue / 10)) - originalHeight;
+              xTranslation = ((newHeight * ($scope.post.zoomValue / 10)) - originalHeight) + 35;
             }
             return window.requestAnimationFrame(function() {
               return $scope.wrapperDiv.style.cssText += "transform: translateY(" + xTranslation + "px);-webkit-transform: translateY(" + xTranslation + "px);-moz-transform: translateY(" + xTranslation + "px);";

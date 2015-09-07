@@ -88,7 +88,7 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
         else
           newHeight = $scope.post.elements.postcontent.offsetHeight
 
-        xTranslation = ((newHeight * ($scope.post.zoomValue/10)) - originalHeight)
+        xTranslation = ((newHeight * ($scope.post.zoomValue/10)) - originalHeight) + 35 #TODO: magic number 35 needs to be fixed here 
       
       window.requestAnimationFrame () ->
         $scope.wrapperDiv.style.cssText += 

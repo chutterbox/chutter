@@ -93,7 +93,18 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
               NetworkResource.list()
             ]
 
+    $scope.editNetworkCommunities = (network) ->
+      $mdDialog.show({
+        controller: "communityEditCtrl",
+        templateUrl: '../app/partials/main/communityEdit.html',
+        resolve: 
+          List: ["NetworkResource", (NetworkResource) ->
+            NetworkResource.communities({id: network.id})          
+          ]
 
+        parent: angular.element(document.body),
+        clickOutsideToClose:true
+      })
 
     $scope.$on 'auth:login-success', ->
       $scope.networks = $auth.user.networks

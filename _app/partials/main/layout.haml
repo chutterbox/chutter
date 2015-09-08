@@ -55,7 +55,7 @@
         .nav-list-item{ui-sref-active: "opened"}
           %md-button{aria-label: "network", ui-sref: "home.network.hot({network: network.slug})", layout: "row", layout-align: "center start"}
             %p{ng-bind: "::network.name"}
-          %md-button.secondary-action.md-icon-button{aria-controls: "{{::network.name}} edit", aria-label: "edit communities", layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
+          %md-button.secondary-action.md-icon-button{aria-controls: "{{::network.name}} edit", aria-label: "edit communities", layout: "row", layout-align: "center center", ng-click: "editNetworkCommunities(network)"}
             %span.ion-ios-settings 
         .subnav-list-item
           %md-button{aria-label: "community", ng-repeat: "community in network.communities", ng-bind: "community.name", ui-sref: "home.community.hot({community: community.slug})"}      

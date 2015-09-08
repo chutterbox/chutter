@@ -105,6 +105,23 @@
           });
         }
       };
+      $scope.editNetworkCommunities = function(network) {
+        return $mdDialog.show({
+          controller: "communityEditCtrl",
+          templateUrl: '../app/partials/main/communityEdit.html',
+          resolve: {
+            List: [
+              "NetworkResource", function(NetworkResource) {
+                return NetworkResource.communities({
+                  id: network.id
+                });
+              }
+            ]
+          },
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
+        });
+      };
       return $scope.$on('auth:login-success', function() {
         return $scope.networks = $auth.user.networks;
       });

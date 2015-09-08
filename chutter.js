@@ -27,6 +27,10 @@
     maxAge: oneYear
   }));
 
+  chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutter-seo.herokuapp.com/').set('afterRender', function(req, pres) {
+    return console.log("crawled");
+  }));
+
   chutter.use(favicon(__dirname + '/favicon.ico'));
 
   chutter.get("/moderation", function(req, res) {

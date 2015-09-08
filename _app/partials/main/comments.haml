@@ -22,7 +22,7 @@
 
   %comment{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 
-%md-button.md-fab.post-comment{aria-label: "Comment", ng-click: "reply()"}
+%md-button.md-fab.post-comment{ng-if: "user && user.id", aria-label: "Comment", ng-click: "reply()"}
   %i.icon.ion-ios-chatbubble
   %md-tooltip{md-direction: "left"}
     Comment

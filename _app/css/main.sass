@@ -1,0 +1,42 @@
+@import "chutter"
+
+// Progress bar
+.progress-bar
+  .icons-wrap
+    margin: 0 5%
+    .section
+      .icon
+        cursor: default
+        font-size: 2.3em
+        display: inline-block
+        color: #f2f2f2
+        transition: color 0.5s ease
+      .line
+        width: 100%
+        height: 2px
+        display: inline-block
+        transition: all 0.75s ease-out
+        background: #f2f2f2
+        background: linear-gradient(to left, #f2f2f2 50%, #00e676 50%) //Transition effect
+        background-position: right bottom
+        background-size: 200% 100%
+    .success
+      .icon
+        color: material-color("green", "a400")
+      .line
+        background-position: left bottom
+  .caption
+    overflow: visible
+    width: calc(10% + 21px) // first number is .icon-wrap left/right margin * 2, second is icon width /2
+    text-align: center
+// End Progress bar
+
+#create-community
+  background: #f2f2f2
+  md-tabs
+    md-tabs-wrapper
+      display: none // hide navigation bar
+      visibility: hidden // hide navigation bar
+    md-tabs-content-wrapper
+      md-content
+        background: #f2f2f2

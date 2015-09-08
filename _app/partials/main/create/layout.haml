@@ -1,171 +1,114 @@
-%md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
-  .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-    %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;"}
-    %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()"}
-      chutter
+%md-content{layout: "row", flex: true, layout-align: "end end"}
+  %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
+    .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100"}
+      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
+        .nav-list-item{hide-sm: "true"}
+          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+            %img{ng-src: "/img/logo.png"}
+        %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
+          %i.icon.ion-navicon
+      %span{hide-sm: "true", flex: true}
+      %div{hide-gt-sm: "true", flex: "true", layout: "row", layout-align: "center center"}
+        %md-button.md-icon-button
+          %md-icon{md-svg-src: "/img/character.svg", style: "height: 40px; width: 40px; fill: #000;"}
+      .toolbar-container{layout: "row", layout-align: "end end"}
+        %md-button{ng-click: "signIn()"}
+          Sign In
 
-    %md-button{ng-show: "$mdMedia('lt-md')", ng-click: "toggleLeft()"}
-      %i.fa.fa-list
-    %span{flex: true}
-    %md-button{ng-click: "signIn()"}
-      Sign In
-  
-  .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-    .toolbar-container 
-      %img{ng-src: "vendor/mr-chutter.png", style: "width: 35px;", hide-sm: true}
-      %md-button.md-icon-button{ng-click: "toggleLeft()", hide-gt-sm: true}
-        %i.fa.fa-align-justify.fa-fw
-      %a#brand{ui-sref: "home.all", flex: true, ng-click: "toggleLeft()", hide-sm: true}
-        chutter
-    %span{flex: true}
-    .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-      %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self"}
-        moderation
-      %md-button{ng-if: "user.manager", href: "/management", target: "_self"}
-        management
-      %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
-      %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-        %i.fa.fa-envelope-o.fa-fw
-        %md-tooltip
-          Messages
-      %md-button{ng-click: "logout()", hide-sm: true}
-        %i.fa.fa-sign-out.fa-fw
-        %md-tooltip
-          Log out
-  .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-    .toolbar-container{layout: "row", layout-align: "center center"}
-      %span
-        Create a community
+    .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
+      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
+        .nav-list-item
+          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+            %img{ng-src: "img/logo.png", hide-sm: "true"}
       %span{flex: true}
-    %span{flex: true}
-    .toolbar-container{layout: "row", layout-align: "center center"}
-      %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
-      %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
+      .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
+        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
+        %md-button{ng-if: "user.manager", href: "/management", target: "_self", ng-bind: "'management'"}
+        %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+        %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+          %i.icon.ion-android-mail
+          %md-tooltip
+            Messages
+        %md-button{ng-click: "logout()", hide-sm: true}
+          %i.icon.ion-log-out
+          %md-tooltip
+            Log out
+    .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
+      .toolbar-container{layout: "row", layout-align: "center center"}
+        %span
+          Create a community
+        %span{flex: true}
       %span{flex: true}
+      .toolbar-container{layout: "row", layout-align: "center center"}
+        %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
+        %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
+        %span{flex: true}
 
-%md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.offset-toolbar.nav-menu.gray#scrolly-left{flex: true, role: "navigation", layout-fill: true, layout: "row"}
-      %h4
-        some ettiquete rules
-  %md-content.md-whiteframe-z1#content{flex: true, layout: "row"}
-    %md-tabs{layout: "column", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep", md-dynamic-height: "false"}
-      %md-tab{label: "Network"}
-        %md-content.md-padding{layout: "column"}
-          .header-caption-wrapper
-            %h2.md-display-1
-              Select a network
-            %md-divider
-            %p.md-caption
-              A network is the organizing entity that groups related communities together. To ensure that your community is thriving and successful please select the most appropriate network for the content. For example: A community that makes jokes about programming should belong to a comdey network, not a programming network. You will have options to tag your community such that the most successful posts are syndicated to those ancilary networks as well. TL;DR - Select by genre, not the subject matter of the genre
-          %div
-            %md-radio-group{ng-model: "flowState.selectedNetwork"}
-              %md-radio-button.md-primary{ng-repeat: "network in page.networks", ng-value: "network"} {{network.name}}
+    %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+      .nav-list-wrapper
+        .nav-list-item
+          %p Some rules
 
-          %div{layout: "row"}
-            %span{flex: true}
-            %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "next()"}
-              Next: Community Details
-       
-      %md-tab{label: "Details"}
-        %md-content.md-padding{layout: "column"}
-          .header-caption-wrapper
-            %h2.md-display-1
-              Community Details
-            %md-divider
-            %p.md-caption
-              Reserve a name, type a description, add tags
-          %div
-            %md-input-container
-              %label Name
-              %input{ng-model: "newCommunity.name", type: "text"}
-              %div{ng-messages: "true", ng-hide: "available"}
-                %div{ng-message: "required", ng-bind: "newCommunity.name + ' is not available'"}
-            %md-subheader{ng-bind: "slug()", ng-disabled: "true"}
-          %div
-            %md-input-container{flex: true}
-              %label Description
-              %textarea{ng-model: "newCommunity.description", type: "text"}
-          
-          %div{layout: "row"}
-            %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
-              Back: Change Network
-            %span{flex: true}
-            %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
-              Next: Rules
-      %md-tab{label: "Rules"}
-        %md-content.md-padding{layout: "column"}
-          .header-caption-wrapper
-            %h2.md-display-1
-              Community Rules
-            %md-divider
-              %p.md-caption
-                Add community specific rules. These rules should be complimentary to the selected network's content policy. These rules should serve as guidelines for the community and should not simply be a duplication of site-wide or network-wide rules/policies (an example of a community rule could be "no punchlines in the title"). These rules will allow users to report posts for violating these rules, and also empower mods to cite one of these rules upon removal of any content.
-            %div{layout: "row"}
-              %span{flex: true}
-              %md-button.md-raised.md-primary#rule-target{ng-click: "createCommunityRule()"}
-                %i.fa.fa-plus.fa-fw
-                Create Rule
-            %div
-              %md-list
-                %md-list-item.md-3-line{ng-repeat: "rule in newCommunity.rules_attributes"}
-                  .md-list-item-text
-                    %h3{ng-bind: "rule.category"}
-                    %h4{ng-bind: "rule.detailed_explanation"}
-                    %p{ng-if: "rule.general"}
-                      Applies To: The General Community 
-                    %p{ng-if: "rule.posts"}
-                      Applies To: Posts 
-                    %p{ng-if: "rule.comments"}
-                      Applies To: Comments 
-                    %p{ng-if: "rule.discouraged"}
-                      Severity: Discouraged
-                    %p{ng-if: "rule.removal"}
-                      Severity: Removal
-                    %p{ng-if: "rule.ban"}
-                      Severity: Ban
-          %div{layout: "row"}
-            %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
-              Back: Details
-            %span{flex: true}
-            %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
-              Next: Customize
-      %md-tab{label: "Customize"}
-        %md-content.md-padding
-          %fieldset.standard
-            %legend
-              Permitted Post Types
-            %div{ng-repeat: "format in flowState.selectedNetwork.permitted_formats_list"}
-              %md-checkbox{ng-model: "newCommunity[format]", aria-label: "Checkbox 1"}
-                {{format}}
-          %fieldset.standard
-            %legend
-              Rating
-            %div
-              %md-checkbox
-                SFW
-              %md-checkbox
-                NSFW
-              %md-checkbox
-                NSFL
-          %div{layout: "row"}
-            %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
-              Back: Change Details
-            %span{flex: true}
-            %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "next()"}
-              Next: Review
+  #content.md-whiteframe-z1{flex: true, layout: "column", layout-fill: "true"}
+    %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
+      .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
 
-      %md-tab{label: "Review"}
-        %md-content.md-padding
-          %h1.md-display-2
-            Coming Soon
-          %div{layout: "row"}
-            %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "back()"}
-              Back: Change Customization
-            %span{flex: true}
-            %md-button.md-raised.md-primary{ng-disabled: "detailsValid()", ng-click: "submit()"}
-              Create
+        .progress-bar{layout: "column", flex: true}
+          .icons-wrap{layout: "row", layout-align: "space-between"}
+            .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+          .wrap{layout: "row", layout-align: "space-between"}
+            .caption
+              Network
+            .caption
+              Details
+            .caption
+              Rules
+            .caption
+              Customize
+            .caption
+              Review
+
+    #create-community{layout: "column", layout-fill: "true"}
+      %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
+        %md-tab{label: "network"}
+          %md-content
+            %create-community-network
+        %md-tab{label: "details"}
+          %md-content
+            %create-community-details
+        %md-tab{label: "rules"}
+          %md-content
+            %create-community-rules
+        %md-tab{label: "customize"}
+          %md-content
+            %create-community-customize
+        %md-tab{label: "review"}
+          %md-content
+            %create-community-review
+
+
   %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column"}
+    %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column", layout-fill: true}
       %md-content{ng-switch-when: "submit"}
-    
+      %span{flex:true}
+      %footer-sidebar
+

@@ -1,24 +1,23 @@
 .section-content
-  .sub-goal{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
+  .sub-goal{layout: "column"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        .icon-holder{flex: "10"}
+      .title{layout: "row", flex: 100, layout-align: "start center"}
+        .icon-holder
           .icon.ion-heart
-        %h5{flex: "90"}
+        %h5.md-title
           Subscription Goal
 
       .light.sub-header
         Help us make this site available for the world.
     %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
-    %div{layout: "row", layout-align: "center center", layout-fill: "true"}
-      %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
-        Help keep Chutter running
+    %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
+      Help keep Chutter running
   .about{layout: "column"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        .icon-holder{flex: "10", style: "height: 36px;"}
+      .title{layout: "row", flex: 100, layout-align: "start center"}
+        .icon-holder
           %img{src: "/img/small-logo.png", style: "max-height: 100%;"}
-        %h5{flex: "90"}
+        %h5.md-title
           Chutter.co
       .light.sub-header
         Is a new place to share best stuff on the web.
@@ -26,12 +25,11 @@
       Learn more
   .news
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "space-between center"}
-        .icon-holder{flex: "10"}
+      .title{layout: "row", flex: 100, layout-align: "start center"}
+        %md-button.md-icon-button
           .icon.ion-ios-pulse-strong
-        %h5{flex: "90"}
+        %h5.md-title
           News
-
       .light.sub-header
         Things happening with Chutter.
     %md-list.special-list

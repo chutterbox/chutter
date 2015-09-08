@@ -76,9 +76,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -299,7 +301,10 @@ post {
   padding: 15px; }
 
 #comments {
-  height: 100%; }
+  overflow: auto;
+  padding-top: 20px;
+  height: 100%;
+  min-height: auto; }
   #comments md-backdrop {
     display: none; }
   #comments #reply {
@@ -441,6 +446,10 @@ comment-embed {
     comment[collapsed="true"] .header,
     comment-embed[collapsed="true"] .header {
       height: 48px; }
+      comment[collapsed="true"] .header .md-button,
+      comment-embed[collapsed="true"] .header .md-button {
+        margin-left: 10px;
+        margin-right: 3px; }
     comment[collapsed="true"] .username,
     comment[collapsed="true"] .points,
     comment[collapsed="true"] .time,
@@ -448,6 +457,12 @@ comment-embed {
     comment-embed[collapsed="true"] .points,
     comment-embed[collapsed="true"] .time {
       line-height: 48px; }
+    comment[collapsed="true"] .time,
+    comment-embed[collapsed="true"] .time {
+      margin-right: 18px; }
+    comment[collapsed="true"] .username,
+    comment-embed[collapsed="true"] .username {
+      padding-left: 0; }
   comment .main,
   comment-embed .main {
     margin-left: 10px;
@@ -508,8 +523,6 @@ comment-embed {
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16); }
   #comments > comment > .main {
     border-top: none; }
-  #comments > comment:last-of-type {
-    margin-bottom: 40px; }
 
 .post-comment {
   position: absolute;

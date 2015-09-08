@@ -76,9 +76,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {

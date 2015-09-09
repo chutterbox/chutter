@@ -17,7 +17,8 @@
     "angular-chart.js": "0.7.2",
     "angular-marked": "0.0.21",
     "sass-material-colors": "0.0.5",
-    "angular-material-data-table": "0.8.10"
+    "angular-material-data-table": "0.8.10",
+    "angular-moment": "0.10.3"
   },
   "resolutions": {
     "angular": "1.4.3"

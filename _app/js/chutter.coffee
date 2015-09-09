@@ -16,12 +16,15 @@ app = angular.module('Chutter', [
   'videosharing-embed'
   'emguo.poller'
   'infinite-scroll'
-  'hc.marked'
+  'hc.marked',
+  'angularMoment'
 ]).constant('API',
   baseURL: 'https://api.chutter.co/api/v1'
   makeURL: (url) ->
     @baseURL + url
-).config([
+).constant('angularMomentConfig', {
+    preprocess: 'unix'
+}).config([
   '$locationProvider'
   '$authProvider'
   'API',

@@ -1,27 +1,18 @@
-%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
+%md-toolbar.md-primary.md-hue-2
   .md-toolbar-tools
     %md-tabs.md-primary.md-hue-2
-      %md-tab{label: "hot"}
-      %md-tab{label: "new"}
-      %md-tab
-        %md-tab-label
-          top
-%md-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %post.post{post: "page.post",  layout: "row"}
+%post.post{post: "page.post",  layout: "row"}
 
-  %md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
-    .md-toolbar-tools
-      %span{flex: "5"}
-      %span{ng-bind: "notifications.length + ' notifications'"}
-      %span{flex: true}
-      %md-button.md-hue-2{ng-click: "reply()"}
-        leave a comment
-      %md-button.md-warn.md-icon-button
-        %i.fa.fa-trash.fa-fw
-  %div{ng-repeat: "notification in notifications", ng-switch: "notification.entityable"}
-    %comment{ng-switch-when: "comment", parent: "", layout: "column",id: "c{{child.path}}", comment: "notification"}
-    .removal-notice{ng-switch-when: "removed", layout: "row"}
-      %md-button.md-fab.md-warn
-        %i.fa.fa-ban.fa-fw
-      %div
-        %h3{ng-bind: "::"}
+%md-toolbar.md-hue-2#comment-toolbar.md-whiteframe-z1{layout: "row"}
+  .md-toolbar-tools
+    %span{flex: "5"}
+    %span{ng-bind: "notifications.length + ' notifications'"}
+    %span{flex: true}
+    %md-button.md-hue-2{ng-click: "reply()"}
+      leave a comment
+    %md-button.md-warn.md-icon-button
+      %i.fa.fa-trash.fa-fw
+%md-content
+  #comment-wrapper{infinite-scroll: "fetchMoreComments()", infinite-scroll-container: "'#comments'", infinite-scroll-distance: "1"}
+    %div{ng-repeat: "notification in notifications", ng-switch: "notification.entityable"}
+      %comment{ng-switch-when: "comment", parent: "", layout: "column",id: "c{{child.path}}", comment: "notification"}

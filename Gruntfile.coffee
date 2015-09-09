@@ -44,6 +44,8 @@ module.exports = (grunt) ->
               'vendor/angular-poller/angular-poller.js',
               'vendor/ng-videosharing-embed/build/ng-videosharing-embed.min.js',
               'vendor/underscore/underscore.js',
+              'vendor/moment/moment.js',
+              'vendor/angular-moment/angular-moment.js',
               'vendor/jquery/dist/jquery.js',
               'vendor/angular-aria/angular-aria.js',
               'vendor/angular-animate/angular-animate.js',

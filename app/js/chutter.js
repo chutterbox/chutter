@@ -2,11 +2,13 @@
   'use strict';
   var app;
 
-  app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked']).constant('API', {
+  app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked', 'angularMoment']).constant('API', {
     baseURL: 'https://api.chutter.co/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;
     }
+  }).constant('angularMomentConfig', {
+    preprocess: 'unix'
   }).config([
     '$locationProvider', '$authProvider', 'API', '$rootScopeProvider', function($locationProvider, $authProvider, API, $rootScopeProvider) {
       $rootScopeProvider.digestTtl(30);

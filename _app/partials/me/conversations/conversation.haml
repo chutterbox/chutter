@@ -1,8 +1,9 @@
-%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
+%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
   .md-toolbar-tools
-    %p.chatting
-      Chatting with
-      %span.username{ng-bind: "::conversation.otherUser"}
+    .md-subhead.chatting
+      %h2
+        Conversation with
+        %span.username{ng-bind: "::conversation.otherUser"}
 
 #content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
   %md-content#conversation.primary-content
@@ -21,4 +22,4 @@
       %label Reply
       %textarea{ng-model: "replyText", type: "text"}
     %md-button.md-raised.md-primary{type: "submit"}
-      Send
+      .icon.ion-android-send

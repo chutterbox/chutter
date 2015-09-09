@@ -1,67 +1,59 @@
 %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
   .md-toolbar-tools
-    Stats for {{user.username}}
-%md-content.primary-content
-  %div{layout-margin: "true", layout: "row", flex: "100"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "submission_distribution"}
-      %div{layout: "row", layout-align: "center space-between"}
-        %div{flex: "90", layout-align: "start center", layout: "row"}
-          %h6
-            Post Distribution
-        %md-button.md-icon-button{flex: "10"}
-          %i.icon.ion-eye
-          %md-tooltip 
-            Make private
-      %md-divider
-      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "submission_distribution.data", labels: "submission_distribution.labels", legend: "true"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "comment_distribution"}
-      %div{layout: "row", layout-align: "center space-between"}
-        %div{flex: "90", layout-align: "start center", layout: "row"}
-          %h6
-            Comment Distribution
-        %md-button.md-icon-button{flex: "10"}
-          %i.icon.ion-eye
-          %md-tooltip 
-            Make private
-      %md-divider
-      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "comment_distribution.data", labels: "comment_distribution.labels", legend: "true"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "domain_distribution"}
-      %div{layout: "row", layout-align: "center space-between"}
-        %div{flex: "90", layout-align: "start center", layout: "row"}
-          %h6
-            Domain Distribution
-        %md-button.md-icon-button{flex: "10"}
-          %i.icon.ion-eye
-          %md-tooltip 
-            Make private
-      %md-divider
-      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
-  %div{layout-margin: "true", layout: "row", flex: "100"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true", ng-if: "point_distribution"}
-      %div{layout: "row", layout-align: "center space-between"}
-        %div{flex: "90", layout-align: "start center", layout: "row"}
-          %h6
-            Point Distribution
-        %md-button.md-icon-button{flex: "10"}
-          %i.icon.ion-eye
-          %md-tooltip 
-            Make private
-      %md-divider
-      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#bar.chart.chart-bar{data: "point_distribution.data", labels: "point_distribution.labels"}
-    .md-whiteframe-z1.md-padding{layout: "column", flex: "true"}
-      %div{layout: "row", layout-align: "center space-between"}
-        %div{flex: "90", layout-align: "start center", layout: "row"}
-          %h6
-            Submission Distribution
-        %md-button.md-icon-button{flex: "10"}
-          %i.icon.ion-eye
-          %md-tooltip 
-            Make private
-      %md-divider
-      .md-padding{layout: "row", layout-fill: "true", layout-align: "center center"}          
-        %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "data", labels: "labels"}
-   
+    .md-subhead
+      %h2
+        Statistics
+%md-content.primary-content.dashboard{layout: "row", layout-wrap: true, layout-fill: true, layout: "row"}
+
+  .item.md-padding{layout: "column", ng-if: "submission_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
+    .header{layout-align: "space-between center", layout: "row"}
+      .md-title
+        Post Distribution
+        .md-body-1
+          Most active communities
+      %md-button.md-icon-button
+        %i.icon.ion-eye
+        %md-tooltip
+          Make private
+    %md-divider
+    .content
+      %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "submission_distribution.data", labels: "submission_distribution.labels", legend: "true"}
+  .item.md-padding{layout: "column", ng-if: "comment_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
+    .header{layout-align: "space-between center", layout: "row"}
+      .md-title
+        Comment Distribution
+        .md-body-1
+          Where you chat the most
+      %md-button.md-icon-button
+        %i.icon.ion-eye
+        %md-tooltip
+          Make private
+    %md-divider
+    .content
+      %canvas#doughnut.chart.chart-doughnut{click: "onClick", data: "comment_distribution.data", labels: "comment_distribution.labels", legend: "true"}
+  .item.md-padding{layout: "column", ng-if: "domain_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
+    .header{layout-align: "space-between center", layout: "row"}
+      .md-title
+        Domain Distribution
+        .md-body-1
+          What things are you posting
+      %md-button.md-icon-button
+        %i.icon.ion-eye
+        %md-tooltip
+          Make private
+    %md-divider
+    .content
+      %canvas#doughnut.chart.chart-doughnut{options: "chartOptions", click: "onClick", data: "domain_distribution.data", labels: "domain_distribution.labels", legend: "true"}
+  .item.md-padding{layout: "column", ng-if: "point_distribution", layout-align: "center space-between", flex-gt-lg: "33", flex-lg: "50", flex-md: "50", flex-sm: "100"}
+    .header{layout-align: "space-between center", layout: "row"}
+      .md-title
+        Point Distribution
+        .md-body-1
+          Where you are praised the most
+      %md-button.md-icon-button
+        %i.icon.ion-eye
+        %md-tooltip
+          Make private
+    %md-divider
+    .content
+      %canvas#bar.chart.chart-bar{data: "point_distribution.data", labels: "point_distribution.labels"}

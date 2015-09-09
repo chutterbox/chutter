@@ -13,6 +13,17 @@
 
     Paginator.prototype.loading = false;
 
+    Paginator.prototype.start_fetch = function() {
+      return this.loading = true;
+    };
+
+    Paginator.prototype.finish_fetch = function(length) {
+      if (length < 25) {
+        this.ended = true;
+      }
+      return this.loading = true;
+    };
+
     Paginator.prototype.reset = function(current_sort) {
       if (current_sort == null) {
         current_sort = "hot";

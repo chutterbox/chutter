@@ -5,6 +5,12 @@ class Paginator
   ended: false
   current_sort:  "hot"
   loading: false
+  start_fetch: () ->
+    @loading = true
+  finish_fetch: (length) ->
+    if length < 25
+      @ended = true
+    @loading = true
   reset: (current_sort = "hot") ->
     @offset = 26
     @ended  = false

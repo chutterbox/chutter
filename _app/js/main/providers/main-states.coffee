@@ -30,7 +30,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       onEnter: ["Page", (Page) ->
         Page.scope = "all"
         Page.title = "All"
-        Page.url_prefix = "/"
       ]
     all_hot =
       name: "home.all.hot"
@@ -65,6 +64,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.all.top"
       url: "/top"
       onEnter: ["Page", (Page) ->
+        Page.paginator.reset("top")
       ]
       views:
         "posts":
@@ -80,6 +80,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.network"
       url: "/n/:network"
       abstract: true
+      onEnter: ["Page", (Page) ->
+        Page.scope = "network"
+      ]
       views:
         "": 
           templateUrl: "#{view_url}/networkPosts.html"
@@ -89,14 +92,13 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Network: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
           NetworkResource.show({id: $stateParams.network}).$promise
       ]
-      onEnter: ["Page", (Page) ->
-      ]
       controller: "networkCtrl"
     
     network_hot = 
       name: "home.network.hot"
       url: ""
       onEnter: ["Page", (Page) ->
+        Page.paginator.reset("hot")
       ]
       views:
         "posts":
@@ -110,7 +112,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.network.new"
       url: "/new"
       onEnter: ["Page", (Page) ->
-        Page.current_sort = "new"
+        Page.paginator.reset("new")
       ]
       views:
         "posts":
@@ -125,7 +127,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.network.top"
       url: "/top"
       onEnter: ["Page", (Page) ->
-        Page.current_sort = "top"
+        Page.paginator.reset("top")
       ]
       views:
         "posts":
@@ -169,6 +171,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     community_hot = 
       name: "home.community.hot"
       url: ""
+      onEnter: ["Page", (Page) ->
+        Page.paginator.reset("hot")
+      ]
       views:
         "posts":
           controller: "postsCtrl"
@@ -180,6 +185,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     community_new = 
       name: "home.community.new"
       url: "/new"
+      onEnter: ["Page", (Page) ->
+        Page.paginator.reset("new")
+      ]      
       views:
         "posts":
           controller: "postsCtrl"
@@ -192,6 +200,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     community_top = 
       name: "home.community.top"
       url: "/top"
+      onEnter: ["Page", (Page) ->
+        Page.paginator.reset("top")
+      ]
       views:
         "posts":
           controller: "postsCtrl"

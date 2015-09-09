@@ -132,21 +132,24 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
 
 ]
 
-app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", ($scope, Page, Posts, PostResource) ->
+app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) ->
   $scope.page = Page
   $scope.page.posts = Posts
   $scope.fetchMorePosts = () ->
-    $scope.page.paginator.loading = true
+    console.log Page.scope
+    $scope.page.paginator.start_fetch()
     if Page.scope is "all"
       PostResource.query({sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        if data and data.length > 0
-          Page.posts = Page.posts.concat(data)
-          Page.paginator.offset += 25
-          $scope.page.paginator.loading = false
-        else
-          $scope.page.paginator.ended = true
-
-
+        Page.posts = Page.posts.concat(data)
+        Page.paginator.finish_fetch(data.length)
+    else if Page.scope is "network"
+      NetworkResource.posts({id: $stateParams.network, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
+        Page.posts = Page.posts.concat(data)
+        Page.paginator.finish_fetch(data.length)
+    else if Page.scope is "community"
+      CommunityResource.posts({id: $stateParams.community, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
+        Page.posts = Page.posts.concat(data)
+        Page.paginator.finish_fetch(data.length)
 ]
 
 app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->

@@ -150,23 +150,37 @@
   ]);
 
   app.controller("postsCtrl", [
-    "$scope", "Page", "Posts", "PostResource", function($scope, Page, Posts, PostResource) {
+    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) {
       $scope.page = Page;
       $scope.page.posts = Posts;
       return $scope.fetchMorePosts = function() {
-        $scope.page.paginator.loading = true;
+        console.log(Page.scope);
+        $scope.page.paginator.start_fetch();
         if (Page.scope === "all") {
           return PostResource.query({
             sort: Page.paginator.current_sort,
             offset: Page.paginator.offset
           }).$promise.then(function(data) {
-            if (data && data.length > 0) {
-              Page.posts = Page.posts.concat(data);
-              Page.paginator.offset += 25;
-              return $scope.page.paginator.loading = false;
-            } else {
-              return $scope.page.paginator.ended = true;
-            }
+            Page.posts = Page.posts.concat(data);
+            return Page.paginator.finish_fetch(data.length);
+          });
+        } else if (Page.scope === "network") {
+          return NetworkResource.posts({
+            id: $stateParams.network,
+            sort: Page.paginator.current_sort,
+            offset: Page.paginator.offset
+          }).$promise.then(function(data) {
+            Page.posts = Page.posts.concat(data);
+            return Page.paginator.finish_fetch(data.length);
+          });
+        } else if (Page.scope === "community") {
+          return CommunityResource.posts({
+            id: $stateParams.community,
+            sort: Page.paginator.current_sort,
+            offset: Page.paginator.offset
+          }).$promise.then(function(data) {
+            Page.posts = Page.posts.concat(data);
+            return Page.paginator.finish_fetch(data.length);
           });
         }
       };

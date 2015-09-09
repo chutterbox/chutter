@@ -37,8 +37,7 @@
         onEnter: [
           "Page", function(Page) {
             Page.scope = "all";
-            Page.title = "All";
-            return Page.url_prefix = "/";
+            return Page.title = "All";
           }
         ]
       };
@@ -93,7 +92,11 @@
       all_top = {
         name: "home.all.top",
         url: "/top",
-        onEnter: ["Page", function(Page) {}],
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("top");
+          }
+        ],
         views: {
           "posts": {
             controller: "postsCtrl",
@@ -114,6 +117,11 @@
         name: "home.network",
         url: "/n/:network",
         abstract: true,
+        onEnter: [
+          "Page", function(Page) {
+            return Page.scope = "network";
+          }
+        ],
         views: {
           "": {
             templateUrl: view_url + "/networkPosts.html"
@@ -131,13 +139,16 @@
             }
           ]
         },
-        onEnter: ["Page", function(Page) {}],
         controller: "networkCtrl"
       };
       network_hot = {
         name: "home.network.hot",
         url: "",
-        onEnter: ["Page", function(Page) {}],
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("hot");
+          }
+        ],
         views: {
           "posts": {
             controller: "postsCtrl",
@@ -160,7 +171,7 @@
         url: "/new",
         onEnter: [
           "Page", function(Page) {
-            return Page.current_sort = "new";
+            return Page.paginator.reset("new");
           }
         ],
         views: {
@@ -185,7 +196,7 @@
         url: "/top",
         onEnter: [
           "Page", function(Page) {
-            return Page.current_sort = "top";
+            return Page.paginator.reset("top");
           }
         ],
         views: {
@@ -257,6 +268,11 @@
       community_hot = {
         name: "home.community.hot",
         url: "",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("hot");
+          }
+        ],
         views: {
           "posts": {
             controller: "postsCtrl",
@@ -277,6 +293,11 @@
       community_new = {
         name: "home.community.new",
         url: "/new",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("new");
+          }
+        ],
         views: {
           "posts": {
             controller: "postsCtrl",
@@ -297,6 +318,11 @@
       community_top = {
         name: "home.community.top",
         url: "/top",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("top");
+          }
+        ],
         views: {
           "posts": {
             controller: "postsCtrl",

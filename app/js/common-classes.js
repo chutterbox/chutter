@@ -1,6 +1,31 @@
 (function() {
   'use strict';
-  var MediaControls, Page, app;
+  var MediaControls, Page, Paginator, app;
+
+  Paginator = (function() {
+    function Paginator() {}
+
+    Paginator.prototype.offset = 26;
+
+    Paginator.prototype.ended = false;
+
+    Paginator.prototype.current_sort = "hot";
+
+    Paginator.prototype.loading = false;
+
+    Paginator.prototype.reset = function(current_sort) {
+      if (current_sort == null) {
+        current_sort = "hot";
+      }
+      this.offset = 26;
+      this.ended = false;
+      this.current_sort = current_sort;
+      return this.loading = false;
+    };
+
+    return Paginator;
+
+  })();
 
   Page = (function() {
     function Page() {}
@@ -19,6 +44,8 @@
 
     Page.prototype.posts = [];
 
+    Page.prototype.paginator = new Paginator;
+
     return Page;
 
   })();
@@ -35,7 +62,6 @@
     MediaControls.prototype.initialize = function(post) {
       this.post = post;
       this.media = post.media;
-      console.log(post.media);
       return this.currentMedia = this.media[0];
     };
 

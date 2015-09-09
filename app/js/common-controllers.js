@@ -154,12 +154,21 @@
       $scope.page = Page;
       $scope.page.posts = Posts;
       return $scope.fetchMorePosts = function() {
-        return PostResource.query({
-          sort: "hot",
-          offset: 26
-        }).$promise.then(function(data) {
-          return Page.posts = Page.posts.concat(data);
-        });
+        $scope.page.paginator.loading = true;
+        if (Page.scope === "all") {
+          return PostResource.query({
+            sort: Page.paginator.current_sort,
+            offset: Page.paginator.offset
+          }).$promise.then(function(data) {
+            if (data && data.length > 0) {
+              Page.posts = Page.posts.concat(data);
+              Page.paginator.offset += 25;
+              return $scope.page.paginator.loading = false;
+            } else {
+              return $scope.page.paginator.ended = true;
+            }
+          });
+        }
       };
     }
   ]);

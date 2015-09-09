@@ -136,8 +136,15 @@ app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", ($scope,
   $scope.page = Page
   $scope.page.posts = Posts
   $scope.fetchMorePosts = () ->
-    PostResource.query({sort: "hot", offset: 26}).$promise.then (data) ->
-      Page.posts = Page.posts.concat(data)
+    $scope.page.paginator.loading = true
+    if Page.scope is "all"
+      PostResource.query({sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
+        if data and data.length > 0
+          Page.posts = Page.posts.concat(data)
+          Page.paginator.offset += 25
+          $scope.page.paginator.loading = false
+        else
+          $scope.page.paginator.ended = true
 
 
 ]

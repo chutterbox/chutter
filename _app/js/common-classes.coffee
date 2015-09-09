@@ -1,5 +1,16 @@
 'use strict'
 
+class Paginator
+  offset: 26
+  ended: false
+  current_sort:  "hot"
+  loading: false
+  reset: (current_sort = "hot") ->
+    @offset = 26
+    @ended  = false
+    @current_sort   = current_sort
+    @loading = false
+
 class Page
   title: ""
   scope: ""
@@ -8,7 +19,10 @@ class Page
   network: 
     communities: []
   posts: []
+  paginator: new Paginator
+
   
+
 
 class MediaControls
   post: {}
@@ -17,7 +31,6 @@ class MediaControls
   initialize: (post) ->
     @post = post
     @media = post.media
-    console.log post.media
     @currentMedia = @media[0]
   show: () ->
     @element.className = ""

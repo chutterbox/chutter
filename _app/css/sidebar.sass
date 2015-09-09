@@ -1,7 +1,6 @@
 @import "chutter"
 //Variables
 $color-white: #fff
-$color-light: #F2F2F2
 $color-dark: #3f3f3f
 
 $font-size-60: 0.60vmax
@@ -17,8 +16,6 @@ $font-size-130: 1.3vmax
       overflow: hidden
   h5
     margin-top: 0
-  .light
-    color: material-color("grey", "600")
   .small
     font-size: $font-size-70
     @media(max-width: 960px) // Responsive font
@@ -41,7 +38,6 @@ $font-size-130: 1.3vmax
         margin: 0 -6px 0 6px
         .icon
           line-height: 36px
-          color: material-color("light-blue") // TODO: Should use theme PRIMARY color
           font-size: $font-size-130
           @media(max-width: 960px) // Responsive font
             font-size: $font-size-130 + 1
@@ -70,26 +66,22 @@ $font-size-130: 1.3vmax
           font-size: $font-size-65 + 1
         display: inline-block
         margin: 0 0.25vmax
-        color: material-color("grey", "600")
-        &:hover
-          color: $color-dark
 
   // List styling (news/moderators)
   $list-height: 2.5vmax
   .special-list
     md-list
       padding: 0
-      background: $color-light
     md-list-item
       min-height: 36px
       padding: 0
       .content
         height: $list-height
-        border-right: 1px solid #DDDDDD
-        border-bottom: 1px solid #DDDDDD
+        border-right: 1px solid #DDDDDD // ChutterDark overrides this to set it darker
+        border-bottom: 1px solid #DDDDDD // ChutterDark overrides this to set it darker
       &:first-child
         .content
-          border-top: 1px solid #DDDDDD
+          border-top: 1px solid #DDDDDD // ChutterDark overrides this to set it darker
       .type
         min-height: 36px
         height: $list-height
@@ -101,13 +93,10 @@ $font-size-130: 1.3vmax
         margin: 0
         border-radius: 0
         padding: 0 0.5vmax
+        background-color: transparent
       .title
-        color: material-color("grey", "600")
         overflow: hidden
         float: left
-        font-size: $font-size-75
-        @media(max-width: 960px) // Responsive font
-          font-size: $font-size-75 + 1
         line-height: $list-height
 
   //All [Chutter "front-page"]
@@ -119,11 +108,6 @@ $font-size-130: 1.3vmax
           color: material-color("red")!important
       .help
         margin-top: 16px
-    .about
-      .icon-holder
-        .icon,
-        .icon:hover
-          color: material-color("light-blue") // TODO: Should use theme PRIMARY color
     .news
       .special-list
         .time
@@ -143,8 +127,6 @@ $font-size-130: 1.3vmax
   //Network
   network-sidebar
     .welcome
-      .md-button
-        margin: 0
       .subscribers
         text-align: center
         line-height: 38px

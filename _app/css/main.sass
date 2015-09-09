@@ -1,5 +1,4 @@
 @import "chutter"
-
 // Progress bar
 .progress-bar
   .icons-wrap
@@ -35,3 +34,24 @@
   md-tabs
     md-tabs-wrapper
       display: none // hide navigation bar
+// Style tabs to mach site toolbar navigation   Add: .tabs-toolbar to md-tabs if you want this style
+md-tabs#submit.tabs-toolbar
+  border-radius: 0
+  md-tabs-wrapper
+    height: 64px //height of toolbar
+    padding: 0 16px
+    md-tabs-canvas
+      top: 8px
+  md-tabs-content-wrapper
+    top: 64px !important //height of toolbar
+.theme-list
+  .theme-chutter
+    color: material-color('blue')
+  .theme-chutter-dark
+    color: material-color('blue-grey')
+  .theme-chutter-teal
+    color: material-color('teal')
+  .theme-chutter-orange
+    color: material-color('orange')
+  .theme-chutter-pink
+    color: material-color('pink')

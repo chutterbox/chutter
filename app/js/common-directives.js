@@ -229,7 +229,7 @@
               case 14:
                 $scope.comment.depthColor = 3;
             }
-            $compile('<comment class="child" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>')($scope, function(cloned, scope) {
+            $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>')($scope, function(cloned, scope) {
               return $element.append(cloned);
             });
           }

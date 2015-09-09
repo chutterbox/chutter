@@ -222,6 +222,7 @@ module.exports = (grunt) ->
         src: [
           'vendor/angular-material/angular-material.css',
           'app/css/chutter.css',
+          'app/css/chutterThemes.css',
           'app/css/menu.css',
           'app/css/comments.css',
           'app/css/post.css',
@@ -246,6 +247,7 @@ module.exports = (grunt) ->
       dist:
         files:
           'app/css/chutter.css' : '_app/css/chutter.sass'
+          'app/css/chutterThemes.css' : '_app/css/chutterThemes.sass'
           'app/css/main.css' : '_app/css/main.sass'
           'app/css/menu.css' : '_app/css/menu.sass'
           'app/css/me.css' : '_app/css/me.sass'

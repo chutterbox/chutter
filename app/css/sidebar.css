@@ -9,7 +9,6 @@
  *                                          '200', 'a100')
  */
 a {
-  color: #03a9f4;
   text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, p, span, a {
@@ -27,22 +26,13 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-a.md-button#logo img {
-  margin-top: 6%;
+#logo img {
   max-width: 8vmax;
-  max-height: 100%; }
+  max-height: 100%;
+  vertical-align: middle; }
 
 body {
   overflow: hidden; }
-
-body,
-md-sidenav,
-md-content {
-  background-color: #f5f5f5; }
-  body.primary-content,
-  md-sidenav.primary-content,
-  md-content.primary-content {
-    background-color: #fff; }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -59,6 +49,17 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
+.button-link {
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  min-height: 0;
+  min-width: 0;
+  vertical-align: middle;
+  text-transform: none; }
+  .button-link:hover {
+    background-color: transparent !important; }
+
 md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
@@ -73,18 +74,12 @@ md-backdrop.md-sidenav-backdrop {
   md-sidenav,
   md-backdrop.md-sidenav-backdrop {
     z-index: 25; } }
-#dialog-content {
-  background-color: #fff; }
-
 i.active-up,
 .icon.active-up {
   color: #03a9f4; }
 i.active-down,
 .icon.active-down {
   color: #f44336; }
-
-#create md-content {
-  background: #fff; }
 
 #submit md-autocomplete {
   width: 100%;
@@ -127,33 +122,15 @@ md-toolbar#me-toolbar {
         margin: 0.5vw;
         position: absolute;
         right: 0; }
-  md-toolbar#main-toolbar .toolbar-container,
-  md-toolbar#moderation-toolbar .toolbar-container,
-  md-toolbar#management-toolbar .toolbar-container,
-  md-toolbar#me-toolbar .toolbar-container {
+  md-toolbar#main-toolbar #titles,
+  md-toolbar#moderation-toolbar #titles,
+  md-toolbar#management-toolbar #titles,
+  md-toolbar#me-toolbar #titles {
+    position: relative;
     width: 16vw;
     min-width: 16vw;
     max-width: 16vw;
     padding: 0 1.25vw; }
-    md-toolbar#main-toolbar .toolbar-container#titles,
-    md-toolbar#moderation-toolbar .toolbar-container#titles,
-    md-toolbar#management-toolbar .toolbar-container#titles,
-    md-toolbar#me-toolbar .toolbar-container#titles {
-      position: relative; }
-    md-toolbar#main-toolbar .toolbar-container a,
-    md-toolbar#main-toolbar .toolbar-container span,
-    md-toolbar#moderation-toolbar .toolbar-container a,
-    md-toolbar#moderation-toolbar .toolbar-container span,
-    md-toolbar#management-toolbar .toolbar-container a,
-    md-toolbar#management-toolbar .toolbar-container span,
-    md-toolbar#me-toolbar .toolbar-container a,
-    md-toolbar#me-toolbar .toolbar-container span {
-      font-size: 1.1em; }
-    md-toolbar#main-toolbar .toolbar-container.no-padding,
-    md-toolbar#moderation-toolbar .toolbar-container.no-padding,
-    md-toolbar#management-toolbar .toolbar-container.no-padding,
-    md-toolbar#me-toolbar .toolbar-container.no-padding {
-      padding: 0; }
   md-toolbar#main-toolbar #breadcrumb,
   md-toolbar#moderation-toolbar #breadcrumb,
   md-toolbar#management-toolbar #breadcrumb,
@@ -188,24 +165,21 @@ md-toolbar#me-toolbar {
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
 
+md-toolbar#main-toolbar,
+md-toolbar#moderation-toolbar,
+md-toolbar#management-toolbar,
+md-toolbar#me-toolbar,
+md-toolbar#content-toolbar {
+  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+
 #content {
   height: calc(100vh - 64px);
   overflow: hidden;
   position: relative;
-  z-index: 22;
-  background: #fff; }
+  z-index: 22; }
 @media(max-width: 960px) {
   #content {
     z-index: 22; } }
-  #content ui-view > md-content {
-    height: 100%; }
-
-post {
-  background: #fff; }
-
-#posts {
-  height: 100%; }
-
 .ng-cloak {
   display: none !important; }
 
@@ -305,8 +279,6 @@ post {
   overflow: hidden; }
 .md-sidenav-right h5 {
   margin-top: 0; }
-.md-sidenav-right .light {
-  color: #757575; }
 .md-sidenav-right .small {
   font-size: 0.7vmax; }
 @media(max-width: 960px) // Responsive font {
@@ -329,7 +301,6 @@ post {
     .md-sidenav-right .header .title .icon-holder .icon,
     .md-sidenav-right .header .title .md-button .icon {
       line-height: 36px;
-      color: #03a9f4;
       font-size: 1.3vmax; }
 @media(max-width: 960px) // Responsive font {
   .md-sidenav-right .header .title .icon-holder .icon,
@@ -360,16 +331,12 @@ post {
       cursor: pointer;
       font-size: 0.65vmax;
       display: inline-block;
-      margin: 0 0.25vmax;
-      color: #757575; }
+      margin: 0 0.25vmax; }
 @media(max-width: 960px) // Responsive font {
   .md-sidenav-right #footer .links a {
     font-size: 1.65vmax; } }
-      .md-sidenav-right #footer .links a:hover {
-        color: #3f3f3f; }
 .md-sidenav-right .special-list md-list {
-  padding: 0;
-  background: #F2F2F2; }
+  padding: 0; }
 .md-sidenav-right .special-list md-list-item {
   min-height: 36px;
   padding: 0; }
@@ -389,24 +356,17 @@ post {
   .md-sidenav-right .special-list md-list-item .md-button {
     margin: 0;
     border-radius: 0;
-    padding: 0 0.5vmax; }
+    padding: 0 0.5vmax;
+    background-color: transparent; }
   .md-sidenav-right .special-list md-list-item .title {
-    color: #757575;
     overflow: hidden;
     float: left;
-    font-size: 0.75vmax;
     line-height: 2.5vmax; }
-@media(max-width: 960px) // Responsive font {
-  .md-sidenav-right .special-list md-list-item .title {
-    font-size: 1.75vmax; } }
 .md-sidenav-right all-sidebar .sub-goal .icon-holder .icon,
 .md-sidenav-right all-sidebar .sub-goal .icon-holder .icon:hover {
   color: #f44336 !important; }
 .md-sidenav-right all-sidebar .sub-goal .help {
   margin-top: 16px; }
-.md-sidenav-right all-sidebar .about .icon-holder .icon,
-.md-sidenav-right all-sidebar .about .icon-holder .icon:hover {
-  color: #03a9f4; }
 .md-sidenav-right all-sidebar .news .special-list .time {
   float: right;
   font-size: 0.6vmax;
@@ -421,8 +381,6 @@ post {
   background: #03a9f4; }
 .md-sidenav-right all-sidebar .news .special-list .important {
   background: #f44336; }
-.md-sidenav-right network-sidebar .welcome .md-button {
-  margin: 0; }
 .md-sidenav-right network-sidebar .welcome .subscribers {
   text-align: center;
   line-height: 38px; }

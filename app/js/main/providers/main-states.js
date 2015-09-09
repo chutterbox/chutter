@@ -37,7 +37,9 @@
         onEnter: [
           "Page", function(Page) {
             Page.scope = "all";
-            return Page.title = "All";
+            Page.title = "All";
+            Page.mainToolbar = "";
+            return Page.secondaryToolbar = "md-hue-1";
           }
         ]
       };
@@ -119,7 +121,10 @@
         abstract: true,
         onEnter: [
           "Page", function(Page) {
-            return Page.scope = "network";
+            Page.scope = "network";
+            Page.scope = "network";
+            Page.mainToolbar = "md-hue-1";
+            return Page.secondaryToolbar = "md-hue-2";
           }
         ],
         views: {
@@ -230,7 +235,9 @@
         },
         onEnter: [
           "Page", function(Page) {
-            return Page.scope = "community";
+            Page.scope = "community";
+            Page.mainToolbar = "md-hue-2";
+            return Page.secondaryToolbar = "md-hue-3";
           }
         ],
         controller: "communityCtrl",
@@ -376,7 +383,9 @@
         url: "/:id",
         onEnter: [
           "Page", function(Page) {
-            return Page.scope = "comments";
+            Page.scope = "comments";
+            Page.mainToolbar = "md-hue-2";
+            return Page.secondaryToolbar = "md-hue-3";
           }
         ],
         resolve: {

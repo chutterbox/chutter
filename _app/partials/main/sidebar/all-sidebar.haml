@@ -18,7 +18,7 @@
         %h5.md-title
           Subscription Goal
 
-      .light.sub-header
+      .color-light.sub-header
         Help us make this site available for the world.
     %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
     %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
@@ -26,11 +26,11 @@
   .news
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button
+        %md-button.md-icon-button.md-primary
           .icon.ion-ios-pulse-strong
         %h5.md-title
           News
-      .light.sub-header
+      .color-light.sub-header
         Things happening with Chutter.
     %md-list.special-list
       %md-list-item{layout: "row"}
@@ -39,9 +39,9 @@
           %md-tooltip{md-direction: "left"}
             Update
         %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
+          .title.md-body-1.color-light{flex: 75}
             Version 2.0
-          %span.time.light{layout-align: "end"}
+          %span.time.color-light{layout-align: "end"}
             10. Jun
       %md-list-item{layout: "row"}
         .type.important{flex: 15, layout: "column", layout-align: "center center"}
@@ -49,9 +49,9 @@
           %md-tooltip{md-direction: "left"}
             Important
         %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
+          .title.md-body-1.color-light{flex: 75}
             Security breach
-          %span.time.light{layout-align: "end"}
+          %span.time.color-light{layout-align: "end"}
             10. Jun
       %md-list-item{layout: "row"}
         .type.community{flex: 15, layout: "column", layout-align: "center center"}
@@ -59,7 +59,7 @@
           %md-tooltip{md-direction: "left"}
             Community
         %md-button.content{layout: "row", flex: true}
-          .title{flex: 75}
+          .title.md-body-1.color-light{flex: 75}
             AMA Chutter Dev
-          %span.time.light{layout-align: "end"}
+          %span.time.color-light{layout-align: "end"}
             10. Jun

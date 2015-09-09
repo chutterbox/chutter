@@ -1,5 +1,5 @@
 !!! 5
-%html{lang: "en", ng-app: "MainApp", xmlns:ng: "http://angularjs.org"}
+%html{lang: "en", ng-app: "MainApp", xmlns:ng: "http://angularjs.org", ng-controller: "themeCtrl"}
   %head
     %base{href: "/"}
 
@@ -25,10 +25,10 @@
         ga('create', 'UA-67283779-1', 'auto');
         ga('send', 'pageview');
 
-  %body{layout: "row", layout-fill: true}
+  %body{layout: "row", layout-fill: true, md-theme: "{{theme}}"}
     %ui-view{layout: "column", layout-fill: true}
-        %div{layout: "column", layout-fill: "true", layout-align: "center center"}
-            %md-progress-circular{md-mode: "indeterminate"}
+      %div{layout: "column", layout-fill: "true", layout-align: "center center"}
+        %md-progress-circular{md-mode: "indeterminate"}
 
     %script{src: "/js/compiled/application.min.js"}
     %script{src: "/js/compiled/main.min.js"}

@@ -21,10 +21,6 @@ app.controller 'pageCtrl', ['$scope', '$state', '$stateParams', '$auth', 'Page',
       $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
         $scope.showNotifications(data.data)
 
-    $scope.myPagingFunction = () ->
-      # console.log "Here"
-
-
     $scope.showNotifications = (notifications) ->
       ephemeral_notifications = _.reject(notifications, (n) -> n.ephemeral_count is 0)
       if ephemeral_notifications.length > 0

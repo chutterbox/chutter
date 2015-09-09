@@ -1,1 +1,1 @@
-<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post>
+<div infinite-scroll="fetchMorePosts()" infinite-scroll-container="'#posts'" infinite-scroll-distance="2" id="post-list-wrapper"><post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></div>

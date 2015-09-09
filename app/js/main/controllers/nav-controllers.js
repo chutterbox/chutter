@@ -30,7 +30,6 @@
           return $scope.showNotifications(data.data);
         });
       });
-      $scope.myPagingFunction = function() {};
       $scope.showNotifications = function(notifications) {
         var cascade, ephemeral_notifications;
         ephemeral_notifications = _.reject(notifications, function(n) {

@@ -109,6 +109,9 @@
       $scope.page.post = Post;
       $scope.page.comments = Comments;
       $scope.resource = CommentResource;
+      $scope.fetchMoreComments = function() {
+        return console.log("hello");
+      };
       return $scope.reply = function() {
         return $mdBottomSheet.show({
           templateUrl: '/partials/shared/comments/replyPanel.html',
@@ -149,7 +152,8 @@
   app.controller("postsCtrl", [
     "$scope", "Page", "Posts", function($scope, Page, Posts) {
       $scope.page = Page;
-      return $scope.page.posts = Posts;
+      $scope.page.posts = Posts;
+      return $scope.fetchMorePosts = function() {};
     }
   ]);
 

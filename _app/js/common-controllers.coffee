@@ -97,7 +97,8 @@ app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottom
   $scope.page.comments = Comments
   $scope.resource = CommentResource
 
-
+  $scope.fetchMoreComments = () ->
+    console.log "hello"
   $scope.reply = () ->
     $mdBottomSheet.show({
       templateUrl: '/partials/shared/comments/replyPanel.html'
@@ -134,6 +135,7 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
 app.controller "postsCtrl", ["$scope", "Page", "Posts", ($scope, Page, Posts) ->
   $scope.page = Page
   $scope.page.posts = Posts
+  $scope.fetchMorePosts = () ->
 ]
 
 app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->

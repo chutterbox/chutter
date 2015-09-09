@@ -2,30 +2,30 @@
   .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
     .header{flex: 100, layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
+        %md-button.md-icon-button.md-primary{aria-label: "Subscribe", ng-click: "page.network.toggle(page.network)"}
           .icon{ng-class: "page.network.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.network.subscribed ? 'Unsubscribe': 'Subscribe'"}
         %h5.md-title
           Welcome
-      .light.sub-header
+      .color-light.sub-header
         Some description on how to use this network and why is it even here in first place.
-    %md-button{flex: 100}
-      .light.small
+    %md-button{flex: "true"}
+      .color-light.small
         20 Communities
-    .light.small.subscribers{flex: 100}
+    .color-light.small.subscribers{flex: 100}
       1425 Subscribers
   .trending-communities
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button
+        %md-button.md-icon-button.md-primary
           .icon.ion-stats-bars
           %md-tooltip{md-direction: "left"}
             %span
               More
         %h5.md-title
           Trending Communities
-      .light.sub-header
+      .color-light.sub-header
         Communities that shine the most
     %md-list{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
       %md-list-item{flex: 50}

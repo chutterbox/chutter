@@ -1,2 +1,2 @@
 #post-list-wrapper{infinite-scroll: "fetchMorePosts()", infinite-scroll-container: "'#posts'", infinite-scroll-distance: "2"}
-  %post.post{ng-repeat: "post in page.posts",  post: "post", post-index: "$index", layout: "row", layout-sm: "column", flex: true, id: "post-{{post.id}}"} 
+  %post.post.primary-content{ng-repeat: "post in page.posts",  post: "post", post-index: "$index", layout: "row", layout-sm: "column", flex: true, id: "post-{{post.id}}"}

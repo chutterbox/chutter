@@ -31,6 +31,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Page.scope = "all"
         Page.title = "All"
         Page.url_prefix = "/"
+        Page.mainToolbar = ""
+        Page.secondaryToolbar = "md-hue-1"
       ]
     all_hot =
       name: "home.all.hot"
@@ -83,6 +85,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       onEnter: ["Page", (Page) ->
         Page.scope = "network"
+        Page.mainToolbar = "md-hue-1"
+        Page.secondaryToolbar = "md-hue-2"
       ]
       controller: "networkCtrl"
     
@@ -130,6 +134,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         ]
       onEnter: ["Page", (Page) ->
         Page.scope = "community"
+        Page.mainToolbar = "md-hue-2"
+        Page.secondaryToolbar = "md-hue-3"
       ]
       controller: "communityCtrl"
       views:
@@ -215,6 +221,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       url: "/:id"
       onEnter: ["Page", (Page) ->
         Page.scope = "comments"
+        Page.mainToolbar = "md-hue-2"
+        Page.secondaryToolbar = "md-hue-3"
       ]
       resolve: 
         Post: ["PostResource", "$stateParams", (PostResource, $stateParams) ->

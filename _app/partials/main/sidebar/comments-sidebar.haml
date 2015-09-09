@@ -2,29 +2,29 @@
   .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
+        %md-button.md-icon-button.md-primary{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
           .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
           %md-tooltip{md-direction: "left"}
             %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
         %h5.md-title{ng-bind: "'/c/'+page.community.slug"}
-      .light.sub-header{ng-bind: "::page.community.description"}
-    .light.small
+      .color-light.sub-header{ng-bind: "::page.community.description"}
+    .color-light.small
       1425 Subscribers
   .rules
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button{aria-label: "More rules"}
+        %md-button.md-icon-button.md-primary{aria-label: "More rules"}
           .icon.ion-chatbox-working
           %md-tooltip{md-direction: "left"}
             %span
               Rules
         %h5.md-title
           Commenting Rules
-      .light.sub-header
+      .color-light.sub-header
         You could get punished if you wont read them!
     %md-list
       %md-list-item{ng-repeat: "rule in page.community.rules"}
         .header{layout: "row", layout-wrap: "layout-wrap"}
           .title{layout: "row", flex: 100, layout-align: "space-between center"}
             %h5.md-title{ng-bind: "::rule.category"}
-          .light.sub-header{ng-bind: "::rule.detailed_explanation"}
+          .color-light.sub-header{ng-bind: "::rule.detailed_explanation"}

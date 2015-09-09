@@ -150,10 +150,17 @@
   ]);
 
   app.controller("postsCtrl", [
-    "$scope", "Page", "Posts", function($scope, Page, Posts) {
+    "$scope", "Page", "Posts", "PostResource", function($scope, Page, Posts, PostResource) {
       $scope.page = Page;
       $scope.page.posts = Posts;
-      return $scope.fetchMorePosts = function() {};
+      return $scope.fetchMorePosts = function() {
+        return PostResource.query({
+          sort: "hot",
+          offset: 26
+        }).$promise.then(function(data) {
+          return Page.posts = Page.posts.concat(data);
+        });
+      };
     }
   ]);
 

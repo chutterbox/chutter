@@ -3,7 +3,7 @@
   var app;
 
   app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked']).constant('API', {
-    baseURL: 'https://api.chutter.co/api/v1',
+    baseURL: 'http://localhost:3000/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;
     }

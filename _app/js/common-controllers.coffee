@@ -132,10 +132,14 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
 
 ]
 
-app.controller "postsCtrl", ["$scope", "Page", "Posts", ($scope, Page, Posts) ->
+app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", ($scope, Page, Posts, PostResource) ->
   $scope.page = Page
   $scope.page.posts = Posts
   $scope.fetchMorePosts = () ->
+    PostResource.query({sort: "hot", offset: 26}).$promise.then (data) ->
+      Page.posts = Page.posts.concat(data)
+
+
 ]
 
 app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->

@@ -2,11 +2,7 @@
   'use strict';
   var app;
 
-<<<<<<< HEAD
   app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked', 'angularMoment', 'angularytics']).constant('API', {
-=======
-  app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'videosharing-embed', 'emguo.poller', 'infinite-scroll', 'hc.marked']).constant('API', {
->>>>>>> 5992daf... going to have to do radio buttons for now, the autocomplete was a little difficult to use and was matching incorrectly
     baseURL: 'https://api.chutter.co/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;

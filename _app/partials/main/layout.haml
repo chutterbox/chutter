@@ -2,34 +2,34 @@
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
     .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item{hide-sm: "true"}
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "/img/logo.png"}
-        %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
-          %i.icon.ion-navicon
+          .nav-list-item{hide-sm: "true"}
+            %md-button#logo{aria-label: "logo", style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+              %img{ng-src: "/img/logo.png"} 
+          %md-button.md-icon-button{aria-label: "toggle left", hide-gt-sm: "true", ng-click: "toggleLeft()"}
+            %i.icon.ion-navicon  
       %span{hide-sm: "true", flex: true}
       %div{hide-gt-sm: "true", flex: "true", layout: "row", layout-align: "center center"}
-        %md-button.md-icon-button
+        %md-button.md-icon-button{aria-label: "home"}
           %md-icon{md-svg-src: "/img/character.svg", style: "height: 40px; width: 40px; fill: #000;"}
       .toolbar-container{layout: "row", layout-align: "end end"}
-        %md-button{ng-click: "signIn()"}
+        %md-button{aria-label: "sign in", ng-click: "signIn()"}
           Sign In
     
     .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "img/logo.png", hide-sm: "true"}
+          .nav-list-item
+            %md-button#logo{aria-label: "logo", style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
+              %img{ng-src: "img/logo.png", hide-sm: "true"}
       %span{flex: true}
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
-        %md-button{ng-if: "user.manager", href: "/management", target: "_self", ng-bind: "'management'"}
-        %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
-        %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
+        %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
+        %md-button{aria-label: "management", ng-if: "user.manager", href: "/management", target: "_self", ng-bind: "'management'"}
+        %md-button{aria-label: "notifications", href: "/me/notifications", ng-bind: "user.username", target: "_self"}
+        %md-button{aria-label: "conversations", href: "/me/conversations", target: "_self", hide-sm: true}
           %i.icon.ion-android-mail
           %md-tooltip
             Messages
-        %md-button{ng-click: "logout()", hide-sm: true}
+        %md-button{aria-label: "sign out", ng-click: "logout()", hide-sm: true}
           %i.icon.ion-log-out
           %md-tooltip
             Log out
@@ -38,8 +38,8 @@
         .nav-list-item
           %md-button{ui-sref: "home.all.hot"}
             %p All
-          %md-button.secondary-action.md-icon-button
-            %span.icon.ion-ios-settings{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"}
+          %md-button.secondary-action.md-icon-button{aria-controls: "all", aria-label: "edit network", ng-click: "editNetworks()"}
+            %span.icon.ion-ios-settings 
       %span{flex: true}
       .toolbar-container#titles{layout: "row", layout-align: "center center"}
         %a#primary-title{ui-sref: "home.network.hot({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
@@ -53,16 +53,16 @@
     %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
       .nav-list-wrapper{ng-repeat: "network in page.networks | orderBy:'name'"}
         .nav-list-item{ui-sref-active: "opened"}
-          %md-button{ui-sref: "home.network.hot({network: network.slug})", layout: "row", layout-align: "center start"}
+          %md-button{aria-label: "network", ui-sref: "home.network.hot({network: network.slug})", layout: "row", layout-align: "center start"}
             %p{ng-bind: "::network.name"}
-          %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ng-click: "editCommunity()"}
-            %span.ion-ios-settings{aria-controls: "{{network.name}}", aria-label: "edit communities"} 
+          %md-button.secondary-action.md-icon-button{aria-controls: "{{::network.name}} edit", aria-label: "edit communities", layout: "row", layout-align: "center center", ng-click: "editNetworkCommunities(network)"}
+            %span.ion-ios-settings 
         .subnav-list-item
-          %md-button{ng-repeat: "community in network.communities", ng-bind: "community.name", ui-sref: "home.community.hot({community: community.slug})"}      
+          %md-button{aria-label: "community", ng-repeat: "community in network.communities", ng-bind: "community.name", ui-sref: "home.community.hot({community: community.slug})"}      
   #content.md-whiteframe-z1{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 
   %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
-      %span{flex:true}
-      %footer-sidebar
+    %span{flex:true}
+    %footer-sidebar

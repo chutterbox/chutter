@@ -9498,17 +9498,6 @@ post {
 
 /*# sourceMappingURL=sidebar.css.map */
 
-<<<<<<< HEAD
-md-tabs#submit.tabs-toolbar {
-  border-radius: 0; }
-  md-tabs#submit.tabs-toolbar md-tabs-wrapper {
-    height: 64px;
-    padding: 0 16px; }
-    md-tabs#submit.tabs-toolbar md-tabs-wrapper md-tabs-canvas {
-      top: 8px; }
-  md-tabs#submit.tabs-toolbar md-tabs-content-wrapper {
-    top: 64px !important; }
-=======
 /**
  * Retrieves a color value from the $material-colors Sass map
  * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
@@ -9563,7 +9552,7 @@ md-tabs md-content {
     background-color: #f2f2f2; }
 
 md-bottom-sheet {
-  padding: 0;
+  padding: 0 0 80px 0;
   border-top: 0;
   width: 90vw;
   margin: auto; }
@@ -9587,9 +9576,11 @@ md-backdrop.md-sidenav-backdrop {
 #dialog-content {
   background-color: #fff; }
 
-i.active-up {
+i.active-up,
+.icon.active-up {
   color: #03a9f4; }
-i.active-down {
+i.active-down,
+.icon.active-down {
   color: #f44336; }
 
 #create md-content {
@@ -9696,11 +9687,6 @@ md-toolbar#me-toolbar {
       transform: translateY(-26px) scale(0.6);
       -webkit-transform: translateY(-26px) scale(0.6);
       -moz-transform: translateY(-26px) scale(0.6); }
-
-table th {
-  padding: 8px 0; }
-table th {
-  text-align: left; }
 
 #content {
   height: calc(100vh - 64px);
@@ -9841,8 +9827,6 @@ post {
   text-align: center; }
 
 #create-community md-tabs md-tabs-wrapper {
-  display: none;
-  visibility: hidden; }
->>>>>>> 070fa97... white background
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

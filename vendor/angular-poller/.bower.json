@@ -37,7 +37,6 @@
     "commit": "ebe316f84e20073dc89b893852e7dba2bc2ef608"
   },
   "_source": "git://github.com/emmaguo/angular-poller.git",
-  "_target": "~0.3.3",
-  "_originalSource": "angular-poller",
-  "_direct": true
+  "_target": "0.3.3",
+  "_originalSource": "angular-poller"
 }

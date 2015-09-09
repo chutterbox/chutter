@@ -1,0 +1,28 @@
+{
+  "name": "angularytics",
+  "version": "0.4.0",
+  "main": "./dist/angularytics.min.js",
+  "description": "The solution to tracking page views and events in a SPA with AngularJS",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mgonto/angularytics.git"
+  },
+  "dependencies": {
+    "angular": "*"
+  },
+  "ignore": [
+    "node_modules",
+    "components",
+    "lib"
+  ],
+  "homepage": "https://github.com/mgonto/angularytics",
+  "_release": "0.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.0",
+    "commit": "af9df61a183c4f6dfad2fcbbeaf89f18da677ee2"
+  },
+  "_source": "git://github.com/mgonto/angularytics.git",
+  "_target": "0.4.0",
+  "_originalSource": "angularytics"
+}

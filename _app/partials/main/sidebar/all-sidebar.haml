@@ -1,4 +1,15 @@
 .section-content
+  .about{layout: "column"}
+    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
+      .title{layout: "row", flex: 100, layout-align: "start center"}
+        .icon-holder
+          %md-icon{md-svg-src: "/img/character.svg", style: "height: 30px; width: 30px; fill: #000;"}
+        %h5.md-title
+          Chutter.co
+      .light.sub-header
+        Chutter is a new place to share the best links on the web.
+    %md-button.md-primary{ui-sref: "create"}
+      Create a community
   .sub-goal{layout: "column"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
@@ -12,17 +23,6 @@
     %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
     %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
       Help keep Chutter running
-  .about{layout: "column"}
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "start center"}
-        .icon-holder
-          %img{src: "/img/small-logo.png", style: "max-height: 100%;"}
-        %h5.md-title
-          Chutter.co
-      .light.sub-header
-        Is a new place to share best stuff on the web.
-    %md-button.md-primary
-      Learn more
   .news
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}

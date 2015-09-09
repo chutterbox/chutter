@@ -9482,6 +9482,14 @@ post {
 
 /*# sourceMappingURL=sidebar.css.map */
 
-
+md-tabs#submit.tabs-toolbar {
+  border-radius: 0; }
+  md-tabs#submit.tabs-toolbar md-tabs-wrapper {
+    height: 64px;
+    padding: 0 16px; }
+    md-tabs#submit.tabs-toolbar md-tabs-wrapper md-tabs-canvas {
+      top: 8px; }
+  md-tabs#submit.tabs-toolbar md-tabs-content-wrapper {
+    top: 64px !important; }
 
 /*# sourceMappingURL=main.css.map */

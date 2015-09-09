@@ -1,5 +1,7 @@
 @import '../../vendor/sass-material-colors/sass/sass-material-colors'
-//variables/mixins
+//------------------------------
+// Variables & Mixins
+//------------------------------
 @mixin min-and-max-width($width) 
   width: $width
   min-width: $width
@@ -8,7 +10,6 @@
   height: $height
   min-height: $height
   max-height: $height
-
 
 $sidenav-width: 16vw
 $sidenav-padding: 0 1.25vw
@@ -34,12 +35,11 @@ $span-small-size: 0.9em
 $h6-size: 1em
 $h5-size: 1em
 
-$color-link: rgb(3,169,244)
-
+//------------------------------
+// Global / Overrides
+//------------------------------
 a
-  color: $color-link
   text-decoration: none
-
 h1,h2,h3,h4,h5,h6,p,span, a
   text-rendering: optimizeLegibility
 h6
@@ -52,30 +52,21 @@ h5
 .md-mini
   .icon
     font-size: 17px
-
-//global / overrides
-a.md-button#logo
+#logo
   img
-    margin-top: 6%
     max-width: 8vmax
     max-height: 100%
-
+    vertical-align: middle
 body
   overflow: hidden
-body,
-md-sidenav,
-md-content
-  background-color: material-color('grey', '100')
-  &.primary-content
-    background-color: #fff
-//md-content inside dialogs/tabs should be white
+
 md-tabs
   md-tab-item
     max-width: none !important
   md-content
-    background-color: #fff
+    background-color: #fff //todo: set .primary-content as alternative
     &.detailed-list
-      background-color: #f2f2f2
+      background-color: #f2f2f2 //todo: set .primary-content as alternative
 
 md-bottom-sheet
   padding: 0 0 80px 0
@@ -85,8 +76,22 @@ md-bottom-sheet
   @media(max-width: 960px)
     width: 100vw
 
+.button-link
+  // This can be used to create md-button with theme color(md-primary/md-accent) but make it look like link
+  // You also need to add [md-no-ink="true"] attribute to md-button
+  padding: 0
+  margin: 0
+  line-height: inherit
+  min-height: 0
+  min-width: 0
+  vertical-align: middle
+  text-transform: none
+  &:hover
+    background-color: transparent !important
 
-// custom sidenav overrides using vw/vh units
+//------------------------------
+// Custom sidenav overrides using vw/vh units
+//------------------------------
 md-sidenav.md-locked-open
   @include min-and-max-width($sidenav-width)
   height: calc(100vh - 128px)
@@ -98,39 +103,36 @@ md-backdrop.md-sidenav-backdrop
   @media(max-width: 960px) 
     z-index: $sidenav-z-index-sm
 
-
-#dialog-content
-  background-color: #fff
-
-//vote icons
+//------------------------------
+// Vote icons
+//------------------------------
 i,
 .icon
   &.active-up
     color: rgb(3,169,244)
   &.active-down
     color: rgb(244,67,54)
-#create
-  md-content
-    background: #fff
+
 #submit
   md-autocomplete 
     width: 100%
     min-width: 100%
 
-
-
-
 .inline-link
-  color: rgb(3,169,244)
+  // Not sure this is used anymore, can it be removed? Alternative is .button-link on line of 79 this file
+  color: rgb(3,169,244) // Should be getting it from md-primary
   cursor: hand
   margin-right: 4px
 
+//------------------------------
 // toolbar css. this is all the css relating to the toolbars
 // section specific toolbar css will be located in <appname>.sass
+//------------------------------
 md-toolbar.extra-width
   width: calc(100% + 1px)
-//set base font size
+
 .md-toolbar-tools
+  //set base font size
   font-size: 14px
 
 md-toolbar#main-toolbar,
@@ -150,17 +152,10 @@ md-toolbar#me-toolbar
       margin: 0
       min-width: auto
       text-transform: none
-  .toolbar-container
-    &#titles
-      position: relative
-    a,
-    span
-      font-size: 1.1em
+  #titles
+    position: relative
     @include min-and-max-width($sidenav-width)
     padding: $sidenav-padding
-    &.no-padding
-      padding: 0
-
 
   #breadcrumb 
     padding-top: 4px
@@ -182,27 +177,27 @@ md-toolbar#me-toolbar
       -webkit-transform: translateY(-26px) scale(0.6)
       -moz-transform: translateY(-26px) scale(0.6)
 
+md-toolbar#main-toolbar,
+md-toolbar#moderation-toolbar,
+md-toolbar#management-toolbar,
+md-toolbar#me-toolbar,
+md-toolbar#content-toolbar
+  // Transitions of md-toolbars for depth color switching
+  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1)
 
 
-
+//------------------------------
 // main content area
 // this is all the css relating to the center md-content section
-
-// overlay tall toolbar with the main content 
+//------------------------------
 #content
+  // overlay tall toolbar with the main content
   height: calc(100vh - 64px)
   overflow: hidden
   position: relative
   z-index: $content-z-index-lg
   @media(max-width: 960px) 
     z-index: $content-z-index-sm
-  background: #fff
-
-post
-  background: #fff
-
-#posts
-  height: 100%
 
 .ng-cloak
   display: none !important
@@ -217,7 +212,9 @@ post
   -webkit-transform-style: preserve-3d
   -webkit-transform: translate3d(0,0,0)
 
-// edit subscriptions card 
+//------------------------------
+// Edit subscriptions card
+//------------------------------
 .subscription-card
   margin: 10px 0
   .subscription-info
@@ -237,10 +234,10 @@ post
     width: 40px
     i
       font-size: 40px
-    
 
-
-
+//------------------------------
+// Conversation / Messages
+//------------------------------
 #conversation
   width: 95%
   height: 100%
@@ -304,6 +301,8 @@ post
     &:after
       border: none
 
+//------------------------------
 // Fixes
+//------------------------------
 [layout-fill]
   height: inherit // Chrome layout-fill fix @/angular/material/issues/2058

@@ -2,18 +2,18 @@
   .rules
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button{aria-label: "More rules"}
+        %md-button.md-icon-button.md-primary{aria-label: "More rules"}
           .icon.ion-clipboard
           %md-tooltip{md-direction: "left"}
             %span
               Rules
         %h5.md-title
           Submission Rules
-      .light.sub-header
+      .color-light.sub-header
         You could get punished if you wont read them!
     %md-list
       %md-list-item{ng-repeat: "rule in page.community.rules"}
         .header{layout: "row", layout-wrap: "layout-wrap"}
           .title{layout: "row", flex: 100, layout-align: "start center"}
             %h5{ng-bind: "::rule.category"}
-          .light.sub-header{ng-bind: "::rule.detailed_explanation"}
+          .color-light.sub-header{ng-bind: "::rule.detailed_explanation"}

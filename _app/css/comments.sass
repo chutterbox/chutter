@@ -31,8 +31,6 @@ comment-embed
   -webkit-transform: scale(1)
   -moz-transform: scale(1)
   transform: scale(1)
-  .main
-    background: #fff
   .collapsed
     display: none
     &.active
@@ -137,8 +135,7 @@ comment-embed
     .header
       height: 48px
       .md-button
-        margin-left: 10px
-        margin-right: 3px
+        margin-left: 5px
     .username,
     .points,
     .time
@@ -161,16 +158,10 @@ comment-embed
   -moz-transition: transform 250ms ease-in-out
   transition: transform 250ms ease-in-out
 
-  background: #767676
-  background-color: #f6f6f6
-  
   -webkit-transform: scale(0,1)
   -moz-transform: scale(0,1)
   transform: scale(0,1)
   
-  .header
-    background: #f6f6f6
-    background-color: #f6f6f6
   &.active
     transform:  scale(1,1)
     -webkit-transform: scale(1,1)
@@ -212,7 +203,6 @@ comment-embed
 #comments > comment
   margin: 10px 16px
   border-radius: 2px
-  background-color: #FFF
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16)
   >.main
     border-top: none

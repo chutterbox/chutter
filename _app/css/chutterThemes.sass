@@ -1,0 +1,84 @@
+@import "chutter"
+//------------------------------
+// Chutter Themes
+//
+// Current supported themes:
+//    - Chutter
+//    - Chutter Dark
+//
+//------------------------------
+
+//------------------------------
+// NORMAL theme overrides
+//
+// - has to be compatible with future color themes
+//------------------------------
+body:not([md-theme="chutterDark"])
+
+  //------------------------------
+  // Content
+  //------------------------------
+  .primary-content
+    // This is used to enforce md-content background or used where md-content isn't possible
+    background-color: #fff
+  .secondary-content
+    // Darker secondary content. Primary use in sidebars
+    background-color: material-color('grey', '100')
+
+  //------------------------------
+  // Text Colors
+  //------------------------------
+  .color-light
+    color: material-color("grey", "600")
+
+//------------------------------
+// DARK theme overrides
+//
+// - base color is "blue-grey"
+//------------------------------
+[md-theme="chutterDark"]
+
+  //------------------------------
+  // MD-Elements
+  //------------------------------
+  md-bottom-sheet
+    md-content
+      background-color: transparent !important
+  .md-button.md-primary
+    // Buttons with md-primary, should have same color md-accent(blue).
+    // Other themes would leave this same as md-primary, but in ChutterDark, md-primary is grey
+    // and we want it to be md-accent(blue)
+    color: material-color("blue", "400") !important
+  md-tab-content
+    md-content
+      background-color: transparent !important
+
+  //------------------------------
+  // Content
+  //------------------------------
+  .primary-content
+    // This is used to enforce md-content background or used where md-content isn't possible
+    background-color: material-color("blue-grey", "800")
+  .secondary-content
+    // Darker secondary content. Primary use in sidebars
+    background-color: material-color("blue-grey", "900")
+
+  //------------------------------
+  // Text Colors
+  //------------------------------
+  .color-light
+    color: material-color("grey", "400")
+
+  //------------------------------
+  // Specific overrides
+  //
+  // - use this as little as possible
+  //------------------------------
+  .md-sidenav-right
+    .special-list
+      md-list-item
+        .content
+          border-color: material-color("blue-grey", "800") !important
+  comment .main,
+  comment-embed .main
+    border-color: material-color("blue-grey", "700") !important

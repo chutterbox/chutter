@@ -3,13 +3,13 @@
     .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
         .title{layout: "row", flex: 100, layout-align: "start center"}
-          %md-button.md-icon-button{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
+          %md-button.md-icon-button.md-primary{aria-label: "Subscribe", ng-click: "page.community.toggle(page.community)"}
             .icon{ng-class: "page.community.subscribed ? 'ion-minus-round': 'ion-plus-round'"}
             %md-tooltip{md-direction: "left"}
               %span{ng-bind: "page.community.subscribed ? 'Unsubscribe': 'Subscribe'"}
           %h5.md-title{ng-bind: "'/c/'+page.community.slug"}
-        .light.sub-header{ng-bind: "::page.community.description"}
-      .light.small
+        .color-light.sub-header{ng-bind: "::page.community.description"}
+      .color-light.small
         1425 Subscribers
     .rules
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
@@ -28,18 +28,18 @@
           .header{layout: "row", layout-wrap: "layout-wrap"}
             .title{layout: "row", flex: 100, layout-align: "space-between center"}
               %h5{ng-bind: "::rule.category"}
-            .light.sub-header{ng-bind: "::rule.detailed_explanation"}
+            .color-light.sub-header{ng-bind: "::rule.detailed_explanation"}
     .moderators
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
         .title{layout: "row", flex: 100, layout-align: "start center"}
-          %md-button.md-icon-button{aria-label: "Contact Moderators"}
+          %md-button.md-icon-button.md-primary{aria-label: "Contact Moderators"}
             .icon.ion-android-mail
             %md-tooltip{md-direction: "left"}
               %span
                 Message Moderators
           %h5.md-title
             Moderators
-        .light.sub-header
+        .color-light.sub-header
           The force is strong with this ones.
       %md-list.special-list
         %md-list-item{layout: "row", ng-repeat: "moderator in moderators"}

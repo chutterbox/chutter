@@ -17,11 +17,11 @@
     .top{ng-switch: "post.media.length"}
       %div{ng-switch-when: 0}
         .title
-          %a.title-text{ng-bind: "::post.title", ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})"}
+          %a.color-light.md-title{ng-bind: "::post.title", ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})"}
 
       %div{ng-switch-default: true}
         .title
-          %a.title-text{ng-bind: "::post.title", href: "{{::post.media[0].link}}"}
+          %a.color-light.md-title{ng-bind: "::post.title", href: "{{::post.media[0].link}}"}
           %span.attribution{ng-bind: "'('+post.media[0].attribution+')'"}
     .tagline
       %span.votes{ng-bind: "(post.points || 0) + ' points'"} 

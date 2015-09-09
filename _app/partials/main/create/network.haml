@@ -2,15 +2,11 @@
   %h2.md-display-1
     Select a network
   %p.md-body-1
-    A network is the organizing entity that groups related communities together. To ensure that your community is thriving and successful please select the most appropriate network for the content. For example: A community that makes jokes about programming should belong to a comdey network, not a programming network. You will have options to tag your community such that the most successful posts are syndicated to those ancilary networks as well.
-  %p.md-caption
-    TL;DR - Select by genre, not the subject matter of the genre
-  %div{layout: "row", style: "margin-top: 10px;"}
-    .search{flex: 40}
-      %md-autocomplete{md-autofocus: "true", required: "true", md-selected-item: "flowState.selectedNetwork", md-items: "network in page.networks | filter:searchText", md-item-text: "network.name", md-search-text: "searchText", placeholder: "Select a network"}
-        %md-item-template
-          %span{md-highlight-text: "searchText",  md-highlight-flags: "i" }
-            {{network.name}}
-    %span{flex: true}
+    Your community needs to belong to a network. For example, a football community would belong to the "Sports" network. Lastly, you'll want to make sure you're subscribed to the network you're making a community in.
+  %div{layout: "column", style: "margin-top: 10px;"}
+    %div
+      %md-radio-group{ng-model: "flowState.selectedNetwork"}
+        %md-radio-button.md-primary{ng-repeat: "network in page.networks", ng-value: "network"} {{network.name}}
+
     %md-button.md-raised.md-primary{ng-disabled: "!newCommunity.network_id", ng-click: "next()"}
       Next: Community Details

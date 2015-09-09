@@ -8863,6 +8863,11 @@ md-list#posts {
   .post .postcontent {
     position: absolute;
     height: 46.5vw;
+    background-image: url("/img/character.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: #f5f5f5;
     top: 0; }
 @media(max-width: 960px) {
   .post .postcontent {

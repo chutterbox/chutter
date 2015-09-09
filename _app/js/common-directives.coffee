@@ -25,9 +25,10 @@ app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "Wrappe
     $scope.post.elements.middle      = $scope.post.elements.main.children[0] 
       
     if $scope.post.currentMedia
-      $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
-      $scope.post.elements.postcontent.style.backgroundSize = "cover"
-      $scope.post.elements.postcontent.style.backgroundPosition = "50%"
+      if $scope.post.currentMedia.thumbnail_link
+        $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
+        $scope.post.elements.postcontent.style.backgroundSize = "cover"
+        $scope.post.elements.postcontent.style.backgroundPosition = "50%"
       if $scope.post.currentMedia.format is "music"
         $scope.post.currentMedia.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 

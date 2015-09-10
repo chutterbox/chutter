@@ -65,7 +65,7 @@
       .toolbar-container#titles{layout: "row", layout-align: "space-between center"}
         %a#primary-title{ui-sref: "home.network.hot({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community.hot({community: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
-        %md-button.md-fab.md-mini{md-direction: "down", ui-sref: "home.submit"}
+        %md-button.md-fab.md-mini{ng-if: "user && user.id", md-direction: "down", ui-sref: "home.submit"}
           %i.icon.ion-android-share
           %md-tooltip
             Submit

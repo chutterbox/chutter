@@ -7453,7 +7453,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -7731,7 +7731,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -8034,7 +8034,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -8424,7 +8424,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -8930,7 +8930,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -9415,7 +9415,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);
@@ -9814,7 +9814,7 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
-  transition: all 1s cubic-bezier(0.35, 0, 0.25, 1); }
+  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 #content {
   height: calc(100vh - 64px);

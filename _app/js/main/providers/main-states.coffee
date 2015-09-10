@@ -222,10 +222,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 
 
     submit =
-      name: "home.community.submit"
+      name: "home.submit"
       url: "/submit"
       onEnter: ["Page", (Page) ->
         Page.scope = "submit"
+        Page.mainToolbar = "md-hue-2"
+        Page.secondaryToolbar = "md-hue-3"
       ]
       views:
         "@home": 

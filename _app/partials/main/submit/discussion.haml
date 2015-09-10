@@ -17,6 +17,3 @@
         %span{flex: true}
         %md-button.md-raised.md-priary{type: "submit"}
           Submit        
-    %div{flex: true, ng-if: "preview && newPost.title.length > 0"}
-      %md-list#posts
-        %post.post{post: "preview", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"}

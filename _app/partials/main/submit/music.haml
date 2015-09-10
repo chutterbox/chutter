@@ -8,7 +8,7 @@
             %md-icon{"md-svg-icon" => "img/icons/octicon-repo.svg"}
             %span{ng-bind: "item.title"}
         %md-not-found
-          Item not found
+          Song not found
       %div{layout: "row", ng-if: "selectedItem"}
         %md-input-container{flex: true}
           %label Title
@@ -17,6 +17,6 @@
         %span{flex: true}
         %md-button.md-raised.md-priary{ng-click: "submit()"}
           Submit       
-    %div{flex: true, ng-if: "preview && selectedItem"}
+    %div{flex: true, ng-if: "preview && preview.currentMedia.thumbnail_link && selectedItem"}
       %md-list#posts
         %post.post{post: "preview", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

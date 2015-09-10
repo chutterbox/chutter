@@ -4,7 +4,18 @@
   app = angular.module("MainApp");
 
   app.controller("submitCtrl", [
-    "$scope", "Community", "MediaResource", "Page", function($scope, Community, MediaResource, Page) {
+    "$scope", "CommunityResource", "Page", function($scope, CommunityResource, Page) {
+      $scope.communitySearch = function(query) {
+        console.log(query);
+        if (query && query.length > 0) {
+          return CommunityResource.search({
+            q: query
+          }).$promise;
+        }
+      };
+      $scope.selectedCommunityChange = function() {
+        return Page.community = $scope.selectedCommunity;
+      };
       $scope.permitted = function(type) {
         if ($scope.page.community && $scope.page.community.permitted_formats_list.indexOf(type) > -1) {
           return true;
@@ -128,7 +139,8 @@
         if (data) {
           $scope.data = true;
           $scope.newPost.media_attributes[0] = data;
-          return $scope.preview.media[0] = data;
+          $scope.preview.media[0] = data;
+          return $scope.preview.currentMedia = data;
         }
       };
     }
@@ -156,6 +168,7 @@
             link: newVal,
             format: $scope.newPost.media_attributes[0].format
           }).$promise.then(function(data) {
+            data = angular.fromJson(data);
             return $scope.updatePreview(data);
           });
         }
@@ -179,7 +192,8 @@
         if (data) {
           $scope.data = true;
           $scope.newPost.media_attributes[0] = data;
-          return $scope.preview.media[0] = data;
+          $scope.preview.media[0] = data;
+          return $scope.preview.currentMedia = data;
         }
       };
     }
@@ -264,7 +278,8 @@
         if (data) {
           $scope.data = true;
           $scope.newPost.media_attributes[0] = data;
-          return $scope.preview.media[0] = data;
+          $scope.preview.media[0] = data;
+          return $scope.preview.currentMedia = data;
         }
       };
     }

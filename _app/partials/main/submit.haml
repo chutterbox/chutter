@@ -1,4 +1,18 @@
-%md-tabs#submit.md-primary.md-hue-2.tabs-toolbar{, ng-class: "page.secondaryToolbar", flex: true, layout-fill: true, md-border-bottom: true, md-dynamic-height: "false", md-no-disconnect: "true"}
+%md-toolbar.md-primary{md-scroll-shrink: "true", layout-align: "center", layout: "column", ng-class: "page.secondaryToolbar"}
+  .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
+    %p
+      Submit a post
+
+%md-content#posts.primary-content{ui-view: "posts"}
+
+ %md-autocomplete{ng-model-options: "{ debounce: 500 }", md-search-text: "query", md-items: "item in communitySearch(query)", md-min-length: "2",  md-item-text: "selectedCommunity.name", md-selected-item-change: "selectedCommunityChange()", md-selected-item: "selectedCommunity",placeholder: "Type a community"}
+      %md-item-template{flex: "100", layout: "row", layout-align: "space-between center"}
+        %div{layout: "row", layout-fill: "true"}
+          %div{style: "font-weight: bold;", ng-bind: "::item.name"}
+          %div{style: "margin-left: 20px;", ng-bind: "item.description"}
+      %md-not-found
+        Item not found
+%md-tabs#submit{ng-if: "selectedCommunity && selectedCommunity.id", ng-class: "page.secondaryToolbar", flex: true, layout-fill: true, md-border-bottom: true, md-dynamic-height: "false", md-no-disconnect: "true"}
   %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
     %webpage-submit-form
   %md-tab{ng-if: "permitted('image')", label: "Image/GIF", md-on-select: "newPost.media_attributes[0].format = 'image'"}

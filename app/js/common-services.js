@@ -245,6 +245,11 @@
         reportedItems: {
           url: API.makeURL('/communities/:id/reported_items'),
           isArray: true
+        },
+        search: {
+          url: API.makeURL('/communities/search'),
+          method: "POST",
+          isArray: true
         }
       });
     }

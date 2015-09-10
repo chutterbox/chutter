@@ -348,11 +348,13 @@
         }
       };
       submit = {
-        name: "home.community.submit",
+        name: "home.submit",
         url: "/submit",
         onEnter: [
           "Page", function(Page) {
-            return Page.scope = "submit";
+            Page.scope = "submit";
+            Page.mainToolbar = "md-hue-2";
+            return Page.secondaryToolbar = "md-hue-3";
           }
         ],
         views: {

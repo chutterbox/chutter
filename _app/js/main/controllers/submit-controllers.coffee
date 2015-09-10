@@ -1,6 +1,15 @@
 app = angular.module("MainApp")
 
-app.controller "submitCtrl", ["$scope", "Community", "MediaResource", "Page", ($scope, Community, MediaResource, Page) ->
+app.controller "submitCtrl", ["$scope", "CommunityResource", "Page", ($scope, CommunityResource, Page) ->
+
+  $scope.communitySearch = (query) ->
+    console.log query
+    if query and query.length > 0 
+      CommunityResource.search({q: query}).$promise
+
+
+  $scope.selectedCommunityChange = ->
+    Page.community = $scope.selectedCommunity
 
 
   $scope.permitted = (type) ->
@@ -85,6 +94,7 @@ app.controller "imageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResou
       $scope.data = true
       $scope.newPost.media_attributes[0] = data
       $scope.preview.media[0] = data
+      $scope.preview.currentMedia = data
 
 ]
 
@@ -101,6 +111,7 @@ app.controller "webpageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostRes
     if newVal != oldVal
       $scope.scraping = true
       MediaResource.resolve({link: newVal, format: $scope.newPost.media_attributes[0].format}).$promise.then (data) ->
+        data = angular.fromJson(data)
         $scope.updatePreview(data)
   )
   $scope.$watch("newPost.title", (newVal) ->
@@ -118,6 +129,7 @@ app.controller "webpageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostRes
       $scope.data = true
       $scope.newPost.media_attributes[0] = data
       $scope.preview.media[0] = data
+      $scope.preview.currentMedia = data
 
 ]
 
@@ -176,5 +188,6 @@ app.controller "videoSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResou
       $scope.data = true
       $scope.newPost.media_attributes[0] = data
       $scope.preview.media[0] = data
+      $scope.preview.currentMedia = data
 
 ]

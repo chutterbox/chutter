@@ -19,6 +19,7 @@
         .nav-list-item
           %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
             %img{ng-src: "img/logo.png", hide-sm: "true"}
+
       .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
         %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
           Moderation
@@ -64,8 +65,10 @@
       .toolbar-container#titles{layout: "row", layout-align: "space-between center"}
         %a#primary-title{ui-sref: "home.network.hot({network: page.title.slug})", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
         %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community.hot({community: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
-        %md-button.md-fab.md-mini{md-direction: "down", ng-if: "page.scope == 'community'", ui-sref: "home.community.submit({community: page.community.slug})"}
+        %md-button.md-fab.md-mini{md-direction: "down", ui-sref: "home.submit"}
           %i.icon.ion-android-share
+          %md-tooltip
+            Submit
 
 
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}

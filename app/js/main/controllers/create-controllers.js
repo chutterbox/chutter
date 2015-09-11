@@ -61,7 +61,7 @@
         return CommunityResource.save({
           community: $scope.newCommunity
         }).$promise.then(function(data) {
-          return $state.transitionTo("home.community", {
+          return $state.transitionTo("home.community.hot", {
             community: data.community.slug
           });
         });

@@ -56,7 +56,7 @@ app.controller "createCtrl", ["$scope", "CommunityResource",  "$state", "$filter
 
   $scope.submit = () ->
     CommunityResource.save({community: $scope.newCommunity}).$promise.then (data) ->
-        $state.transitionTo("home.community", {community: data.community.slug})
+        $state.transitionTo("home.community.hot", {community: data.community.slug})
 
 
 ]

@@ -56,6 +56,12 @@ body:not([md-theme="chutterDark"])
   md-input-container
     label
       text-shadow: none !important
+  md-tabs .md-tab.md-active,
+  md-tabs .md-tab.md-focused
+    // Make tabs active and focused blue. Otherwise they are same as background
+    color: material-color("blue", "400") !important
+  .md-button.md-raised:not(.md-chutter-theme)
+    color: material-color("grey", "800") !important
 
   //------------------------------
   // Content

@@ -232,7 +232,7 @@ app.directive 'comment', ["$compile", ($compile) ->
           $scope.comment.elements.main.className = "main"
           $scope.comment.elements.collapsed.className = "collapsed"
           _.each $scope.comment.childIds, (id) ->
-            document.getElementById(id).className = "ng-scope ng-isolate-scope"
+            document.getElementById(id).className = "ng-scope ng-isolate-scope primary-content"
 
   controller: ["$scope", "CommentResource", "$mdBottomSheet", "$rootScope", ($scope, CommentResource, $mdBottomSheet, $rootScope) ->
     $scope.user = $rootScope.user

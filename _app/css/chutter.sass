@@ -41,6 +41,7 @@ $h5-size: 1em
 a
   cursor: pointer
   text-decoration: none
+  color: #999
 h1,h2,h3,h4,h5,h6,p,span, a
   text-rendering: optimizeLegibility
 h6
@@ -79,13 +80,13 @@ md-bottom-sheet
 
 .button-link
   // This can be used to create md-button with theme color(md-primary/md-accent) but make it look like link
-  // You also need to add [md-no-ink="true"] attribute to md-button
+  // You also need to add [md-no-ink="true"] attribute to md-button (if you dont want the button effect)
   padding: 0
   margin: 0
   line-height: inherit
   min-height: 0
   min-width: 0
-  vertical-align: middle
+  vertical-align: text-bottom
   text-transform: none
   &:hover
     background-color: transparent !important
@@ -118,12 +119,6 @@ i,
   md-autocomplete 
     width: 100%
     min-width: 100%
-
-.inline-link
-  // Not sure this is used anymore, can it be removed? Better to use .button-link on line of 79 this file (theme compatibility)
-  color: rgb(3,169,244) // Should be getting it from md-primary
-  cursor: hand
-  margin-right: 4px
 
 //------------------------------
 // toolbar css. this is all the css relating to the toolbars
@@ -205,6 +200,10 @@ md-toolbar:not(#main-toolbar)
   z-index: $content-z-index-lg
   @media(max-width: 960px) 
     z-index: $content-z-index-sm
+
+  md-content:first-of-type
+    height: 100%
+
 .ng-cloak
   display: none !important
 

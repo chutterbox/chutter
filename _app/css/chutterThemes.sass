@@ -44,14 +44,18 @@ body:not([md-theme="chutterDark"])
   md-bottom-sheet
     md-content
       background-color: transparent !important
-  .md-button.md-primary
+  .md-button.md-primary:not(.md-chutter-theme)
     // Buttons with md-primary, should have same color md-accent(blue).
     // Other themes would leave this same as md-primary, but in ChutterDark, md-primary is grey
     // and we want it to be md-accent(blue)
+    // not(.md-chutter-theme) is a fix to present dialogs with default color. As long as dialogs don't inherit theme
     color: material-color("blue", "400") !important
   md-tab-content
     md-content
       background-color: transparent !important
+  md-input-container
+    label
+      text-shadow: none !important
 
   //------------------------------
   // Content

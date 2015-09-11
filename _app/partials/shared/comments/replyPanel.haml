@@ -1,10 +1,9 @@
 %md-bottom-sheet#reply
   %md-toolbar
-    .md-toolbar-tools
-      %h3{ng-bind: "'reply to ' + comment.user.username"}
-      %span{flex: true}
-      %md-button.md-icon-button.large-icon
-        %i.ion.ion-android-close
+    .md-toolbar-tools{layout: "row", layout-align: "space-between center"}
+      %h3{ng-bind: "comment.username != null ? 'Reply to ' + comment.username : 'Reply to post'"}
+      %md-button.md-icon-button.large-icon{ng-click: "closeReply()"}
+        .icon.ion-android-close
   %md-content.primary-content{layout-padding: true, layout-margin: true, layout: "column"}
     %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}", comment: "page.commentSelectedForReply"}
     %md-divider
@@ -16,5 +15,5 @@
       %span{flex: true}
       %md-button.md-raised{ng-click: "create(newComment, comment)"}
         Reply
-      %md-button.md-raised
+      %md-button.md-raised{ng-click: "closeReply()"}
         Cancel

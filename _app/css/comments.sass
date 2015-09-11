@@ -1,6 +1,5 @@
 @import "chutter"
-.comment-page
-  padding: 15px
+
 #comments
   overflow: auto
   padding-top: 20px
@@ -9,17 +8,17 @@
   md-backdrop
     display: none
 
+  // FIX: For weird disappearing comments bug
+  #comment-wrapper
+    padding-bottom: 50px
+
   #reply
     height: 90%
     max-height: 550px
 
 #comment-toolbar
-
   md-tabs .md-tab
     color: #f3f3f3
-  .comments
-    margin-right: calc(2.5% - 16px)
-
 
 comment,
 comment-embed
@@ -200,7 +199,7 @@ comment-embed
   .footer
 
 //Style first comment different (card style)
-#comments > comment
+#comment-wrapper > comment
   margin: 10px 16px
   border-radius: 2px
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16)
@@ -215,3 +214,10 @@ comment-embed
   .post-comment
     margin-right: 0px
     right: 20px
+
+// Overrides for embedded comments
+comment-embed
+  margin: 0
+  .main
+    border: none
+    margin: 0

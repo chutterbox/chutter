@@ -8,6 +8,9 @@
   -moz-transition: -moz-transform 500ms ease-in-out
   -webkit-transition: -webkit-transform 250ms ease-in-out
 
+#posts
+  height: 100%
+
 md-list#posts 
   padding-top: 0
 #under-active-post-wrapper
@@ -151,16 +154,12 @@ md-list#posts
       font-size: $span-small-size
       padding-top: 0.5vmax
       padding-left: 1vmax
-      span,
-      a
+      span
         color: #999
         &.votes
           margin-right: 6px
           color: #999
-        &.submitted-by-text,
-        &.time-ago
-          margin-right: 4px
-      .user-link
+      .inline-text
         margin-right: 4px
 
     .footer

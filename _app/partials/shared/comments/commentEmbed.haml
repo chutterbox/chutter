@@ -1,11 +1,14 @@
-.main{layout: "row"} 
-  .vote{layout: "column", layout-fill: true, hide-md: true, hide-sm: true}
-    %md-button{flex: true, aria-label: "Upvote"}
-      %i.fa.fa-caret-up
-    %md-button{flex: true, aria-label: "Downvote"}
-      %i.fa.fa-caret-down
-  .content{flex: "75", layout: "column"}
-    .header
-      %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
-    .body{ng-bind: "comment.body"}
-  .options{flex: "5"}
+.main{layout: "row"}
+  .vote{layout: "column", layout-fill: true}
+    %md-button.md-icon-button{flex: "30", aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
+      .icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
+    %md-button.md-icon-button{flex: "30", aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
+      .icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
+  .content{layout: "column", layout-fill: true}
+    .header{layout: "row"}
+      .wrap
+        %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+        %span.points{ng-bind: "comment.points + ' points'"}
+      %span{flex: true}
+      %span.time{layout-align: "end", am-time-ago: "comment.created_at"}
+    .body{marked: "comment.body"}

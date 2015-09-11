@@ -70,7 +70,7 @@ app.config ["$httpProvider", "$mdThemingProvider", ($httpProvider, $mdThemingPro
     'hue-2': '700'
     'hue-3': '800'
   }
-  .accentPalette 'deep-orange'
+  .accentPalette 'blue'
   # Chutter Pink
   $mdThemingProvider.theme('chutterPink')
   .primaryPalette 'chutterPink', {

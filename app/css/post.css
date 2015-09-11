@@ -291,6 +291,8 @@ md-list#posts {
   z-index: 21;
   width: 100%;
   height: auto; }
+  .post .md-title {
+    font-size: 18px; }
 @media(max-width: 960px) {
   .post {
     margin-top: 2vw; } }

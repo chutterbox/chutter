@@ -152,6 +152,7 @@
       $scope.page = Page;
       $scope.page.posts = Posts;
       return $scope.fetchMorePosts = function() {
+        console.log("here");
         $scope.page.paginator.start_fetch();
         if (Page.scope === "all") {
           return PostResource.query({

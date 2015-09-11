@@ -10,7 +10,8 @@ class Paginator
   finish_fetch: (length) ->
     if length < 25
       @ended = true
-    @loading = true
+    @offset += 25
+    @loading = false
   reset: (current_sort = "hot") ->
     @offset = 26
     @ended  = false

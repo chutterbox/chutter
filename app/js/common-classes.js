@@ -21,7 +21,8 @@
       if (length < 25) {
         this.ended = true;
       }
-      return this.loading = true;
+      this.offset += 25;
+      return this.loading = false;
     };
 
     Paginator.prototype.reset = function(current_sort) {

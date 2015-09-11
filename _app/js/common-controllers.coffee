@@ -135,7 +135,6 @@ app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateP
   $scope.page = Page
   $scope.page.posts = Posts
   $scope.fetchMorePosts = () ->
-    console.log "here"
     $scope.page.paginator.start_fetch()
     if Page.scope is "all"
       PostResource.query({sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->

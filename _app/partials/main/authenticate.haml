@@ -1,9 +1,11 @@
-%md-dialog#authenticate{aria-label="Sign In"}
+%md-dialog#authenticate{aria-label: "Sign In"}
   %md-tabs{md-dynamic-height: true,md-stretch-tabs: "always", md-swipe-content: true}
     %md-tab{label: "sign in", layout-fill: true}
       %md-dialog-actions
         %md-content.md-padding
-          %form{name: "signIn", ng-submit: "submitLogin(user)"}
+          #errors
+            %p{ng-repeat: "error in errors", ng-bind: "error"}     
+          %form.md-padding{name: "signIn", ng-submit: "submitLogin(user)"}
             %md-input-container
               %label
                 Username
@@ -19,8 +21,11 @@
                 Login
 
     %md-tab{label: "sign up"}
-      %md-content.md-padding
-        %form{name: "signUp", ng-submit: "submitRegistration(user)"}
+      %md-content.md-padding{md-layout: "column"}
+        #errors
+          %p{ng-repeat: "error in errors", ng-bind: "error"}
+
+        %form.md-padding{name: "signUp", ng-submit: "submitRegistration(user)"}
           %md-input-container
             %label
               Username

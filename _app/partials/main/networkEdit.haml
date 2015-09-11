@@ -14,8 +14,8 @@
       %md-list-item.subscription-card{ng-repeat: "network in networks | filter: networkFilter", layout: "row"}
         .subscription-info{layout: "column", flex: 90}
           %h4{ng-bind:"network.name"}
-          %span{ng-bind:"network.description || 'some description here'"}
-          .stats
+          %span{ng-if: "false", ng-bind:"network.description || 'some description here'"}
+          .stats{ng-if: "false"}
             %span
               %i.fa.fa-user.fa-fw
               2,349

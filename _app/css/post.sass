@@ -34,6 +34,7 @@ md-list#posts
       span
         color: #fff
   .postcontent
+    cursor: pointer
     .body
       width: 100%
       height: 100%
@@ -153,16 +154,12 @@ md-list#posts
       font-size: $span-small-size
       padding-top: 0.5vmax
       padding-left: 1vmax
-      span,
-      a
+      span
         color: #999
         &.votes
           margin-right: 6px
           color: #999
-        &.submitted-by-text,
-        &.time-ago
-          margin-right: 4px
-      .user-link
+      .inline-text
         margin-right: 4px
 
     .footer

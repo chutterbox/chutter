@@ -1,4 +1,4 @@
-.controls{style: "position: absolute; top: 5.5vw; width: 4vw;", layout: "column", layout-align: "start center", layout-fill: "true", ng-if: "post.toggled"}
+.controls.primary-content{style: "position: absolute; top: 5.5vw; width: 4vw;", layout: "column", layout-align: "start center", layout-fill: "true", ng-if: "post.toggled"}
   %md-button.md-icon-button{aria-label: "close", ng-click: "post.toggle()"}
     %i.icon.ion-close
   %md-button.md-icon-button{aria-label: "close", ng-click: "post.currentMedia.audio.toggle()", ng-if: "post.currentMedia.audio", ng-switch: "post.currentMedia.audio.audioElement.paused"}
@@ -25,11 +25,14 @@
           %span.attribution{ng-if: "post.media[0] && post.media[0].attribution", ng-bind: "'('+post.media[0].attribution+')'"}
     .tagline
       %span.votes{ng-bind: "(post.points || 0) + ' points'"} 
-      %span.submitted-by-text
+      %span.inline-text
         submitted by
-      %a.user-link{ng-bind: "::post.username", ui-sref: "user.overview({username: post.username})"}
-      %span.time-ago{am-time-ago: "post.created_at"}
-        
+      %md-button.button-link.md-primary.inline-text{aria-label: "Author", ng-bind: "::post.username", ui-sref: "user.overview({username: post.username})"}
+      %span.inline-text
+        to
+      %md-button.button-link.md-primary.inline-text{aria-label: "Community", ng-bind: "::post.community", ui-sref: "home.community.hot({community: post.community_slug})"}
+      %span.inline-text{am-time-ago: "post.created_at"}
+
     .footer{layout: "row"}
       %a{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
       %a{ng-if: "!post.saved", ng-click: "post.toggleSave()"}

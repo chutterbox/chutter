@@ -39,7 +39,9 @@ $h5-size: 1em
 // Global / Overrides
 //------------------------------
 a
+  cursor: pointer
   text-decoration: none
+  color: #999
 h1,h2,h3,h4,h5,h6,p,span, a
   text-rendering: optimizeLegibility
 h6
@@ -54,7 +56,7 @@ h5
     font-size: 17px
 #logo
   img
-    max-width: 8vmax
+    max-width: 100%
     max-height: 100%
     vertical-align: middle
 body
@@ -83,13 +85,13 @@ md-bottom-sheet
       color: material-color("red", "500")
 .button-link
   // This can be used to create md-button with theme color(md-primary/md-accent) but make it look like link
-  // You also need to add [md-no-ink="true"] attribute to md-button
+  // You also need to add [md-no-ink="true"] attribute to md-button (if you dont want the button effect)
   padding: 0
   margin: 0
   line-height: inherit
   min-height: 0
   min-width: 0
-  vertical-align: middle
+  vertical-align: text-bottom
   text-transform: none
   &:hover
     background-color: transparent !important
@@ -122,12 +124,6 @@ i,
   md-autocomplete 
     width: 100%
     min-width: 100%
-
-.inline-link
-  // Not sure this is used anymore, can it be removed? Alternative is .button-link on line of 79 this file
-  color: rgb(3,169,244) // Should be getting it from md-primary
-  cursor: hand
-  margin-right: 4px
 
 //------------------------------
 // toolbar css. this is all the css relating to the toolbars
@@ -168,6 +164,7 @@ md-toolbar#me-toolbar
 
   #secondary-title,
   #primary-title
+    font-size: 1.1em
     position: absolute
     left: 1.5vw
     -webkit-transition: transform 150ms ease-in-out
@@ -178,9 +175,9 @@ md-toolbar#me-toolbar
       -webkit-transform-origin: top left
       -moz-transform-origin: top left
 
-      transform: translateY(-26px) scale(0.6)
-      -webkit-transform: translateY(-26px) scale(0.6)
-      -moz-transform: translateY(-26px) scale(0.6)
+      transform: translateY(-26px) scale(0.7)
+      -webkit-transform: translateY(-26px) scale(0.7)
+      -moz-transform: translateY(-26px) scale(0.7)
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
@@ -190,6 +187,11 @@ md-toolbar#content-toolbar
   // Transitions of md-toolbars for depth color switching
   transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1)
 
+md-toolbar:not(#main-toolbar)
+  // Hide theme-menu if not in main app as themes aren't supported in other apps yet
+  .theme-menu
+    visibility: hidden
+    display: none
 
 //------------------------------
 // main content area
@@ -203,6 +205,10 @@ md-toolbar#content-toolbar
   z-index: $content-z-index-lg
   @media(max-width: 960px) 
     z-index: $content-z-index-sm
+
+  md-content:first-of-type
+    height: 100%
+
 .ng-cloak
   display: none !important
 

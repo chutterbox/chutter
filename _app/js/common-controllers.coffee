@@ -109,7 +109,6 @@ app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottom
       parent: angular.element(document.body)
       clickOutsideToClose: true
     })
-
 ]
 
 app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomSheet", ($scope, Page, CommentResource, $mdBottomSheet) ->
@@ -128,6 +127,9 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
       else
         $scope.page.comments.unshift(newCreatedComment)
 
+
+  $scope.closeReply = () ->
+    $mdBottomSheet.hide()
 
 ]
 

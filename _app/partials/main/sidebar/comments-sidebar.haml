@@ -13,11 +13,10 @@
   .rules
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button.md-primary{aria-label: "More rules"}
+        .icon-holder.color-light
           .icon.ion-chatbox-working
           %md-tooltip{md-direction: "left"}
-            %span
-              Rules
+            Rules that apply to comments. Rules listed in red could result in banning if they are broken.
         %h5.md-title
           Commenting Rules
       .color-light.sub-header

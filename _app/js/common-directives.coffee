@@ -4,7 +4,7 @@ app = angular.module("Chutter")
 
 app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "WrapperDiv", (MediaControls, PostResource, Page, audio, WrapperDiv) ->
   restrict: "E"
-  scope: 
+  scope:
     post: "="
     postIndex: "="
 
@@ -232,7 +232,7 @@ app.directive 'comment', ["$compile", ($compile) ->
           $scope.comment.elements.main.className = "main"
           $scope.comment.elements.collapsed.className = "collapsed"
           _.each $scope.comment.childIds, (id) ->
-            document.getElementById(id).className = "ng-scope ng-isolate-scope"
+            document.getElementById(id).className = "ng-scope ng-isolate-scope primary-content"
 
   controller: ["$scope", "CommentResource", "$mdBottomSheet", "$rootScope", ($scope, CommentResource, $mdBottomSheet, $rootScope) ->
     $scope.user = $rootScope.user
@@ -268,9 +268,7 @@ app.directive 'comment', ["$compile", ($compile) ->
           controller: "modSheetCtrl"
         })
   ]
-]  
- 
-
+]
 
 app.directive "mediaControls", ["MediaControls", (MediaControls) ->
   restrict: "E"
@@ -283,3 +281,9 @@ app.directive "mediaControls", ["MediaControls", (MediaControls) ->
 
   ]
 ]
+
+
+app.directive "mainToolbar", ->
+  restrict: "E"
+  templateUrl: "../app/partials/shared/mainToolbar.html"
+

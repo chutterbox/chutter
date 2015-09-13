@@ -124,6 +124,7 @@ module.exports = (grunt) ->
         files:
 
           #shared partials
+          "app/partials/shared/mainToolbar.html" : "_app/partials/shared/mainToolbar.haml"
           "app/partials/shared/reportSheet.html" : "_app/partials/shared/reportSheet.haml"
           "app/partials/shared/modSheet.html" : "_app/partials/shared/modSheet.haml"
           "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"

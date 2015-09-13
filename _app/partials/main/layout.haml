@@ -1,60 +1,8 @@
 %md-content{layout: "row", flex: true, layout-align: "end end"}
   %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar{ng-class: "page.mainToolbar"}
-    .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100", layout-align: "space-between center"}
-      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item{hide-sm: "true"}
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "/img/logo.png"}
-        %md-button.md-icon-button{aria-label: "toggle left", hide-gt-sm: "true", ng-click: "toggleLeft()"}
-          %i.icon.ion-navicon
-      %div{hide-gt-sm: "true", flex: "true", layout: "row", layout-align: "center center"}
-        %md-button.md-icon-button{aria-label: "home"}
-          %md-icon{md-svg-src: "/img/character.svg", style: "height: 40px; width: 40px; fill: #000;"}
-      .toolbar-container{layout: "row", layout-align: "end end"}
-        %md-button{aria-label: "sign in", ng-click: "signIn()"}
-          Sign In
 
-    .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100", layout-align: "space-between center"}
-      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "img/logo.png", hide-sm: "true"}
+    %main-toolbar
 
-      .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
-        %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
-          Moderation
-        %md-button{aria-label: "management", ng-if: "user.manager", href: "/management", target: "_self"}
-          Management
-        %md-menu
-          %md-button.md-icon-button{aria-label: "change theme", ng-click: "$mdOpenMenu($event)"}
-            .icon.ion-android-color-palette
-          %md-menu-content.theme-list
-            %md-button{aria-label: "change theme", ng-click: "switchTheme('chutter')"}
-              .theme-chutter
-                Chutter
-            %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterDark')"}
-              .theme-chutter-dark
-                Chutter Dark
-            %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterTeal')"}
-              .theme-chutter-teal
-                Chutter Teal
-            %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterOrange')"}
-              .theme-chutter-orange
-                Chutter Orange
-            %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterPink')"}
-              .theme-chutter-pink
-                Chutter Pink
-
-        %md-button{aria-label: "notifications", href: "/me/notifications", target: "_self"}
-          {{::user.username}}
-        %md-button.md-icon-button{aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true}
-          %i.icon.ion-android-mail
-          %md-tooltip
-            Messages
-        %md-button.md-icon-button{aria-label: "logout", ng-click: "logout()", hide-sm: true}
-          %i.icon.ion-log-out
-          %md-tooltip
-            Log out
     .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row", layout-align: "space-between"}
       .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
         .nav-list-item
@@ -84,7 +32,6 @@
   #content.md-whiteframe-z1{flex: true, layout: "row"}
     %ui-view{layout: "column", layout-fill: "true"}
 
-  %md-sidenav.md-sidenav-right{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.secondary-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
-    %span{flex:true}
+  %md-sidenav.md-sidenav-right.secondary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')", layout: "column", layout-align: "space-between"}
+    %md-content.secondary-content{ui-view: "right-rail", layout: "column"}
     %footer-sidebar.secondary-content

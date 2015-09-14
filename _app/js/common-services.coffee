@@ -5,7 +5,7 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
       isArray: false
       url: API.makeURL('/posts/:id')
     query:
-      isArray: true
+      isArray: false
     comments:
       transformRequest: []
       url: API.makeURL('/posts/:id/comments')
@@ -65,7 +65,6 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
         Page.secondary_title = undefined
     posts:
       method: 'GET'
-      isArray: true
       url: API.makeURL('/networks/:id/posts')
     list:
       method: 'GET'
@@ -111,7 +110,6 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
             slug: Page.community.slug
       posts:
         method: 'GET'
-        isArray: true
         url: API.makeURL('/communities/:id/posts')
       subscribe:
         url: API.makeURL('/communities/:id/subscribe')

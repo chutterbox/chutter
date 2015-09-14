@@ -18,6 +18,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           NetworkResource.query().$promise
         ]
 
+    # $scope.$on 'auth:login-success', ->
+    #   $scope.networks = $auth.user.networks
 
     all =
       name: "home.all"
@@ -31,6 +33,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Page.scope = "all"
         Page.title = "All"
         Page.mainToolbar = ""
+        Page.network = {}
         Page.secondaryToolbar = "md-hue-1"
       ]
     all_hot =
@@ -39,14 +42,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       onEnter: ["Page", (Page) ->
         Page.paginator.reset("hot")
       ]
+      resolve:
+        Posts: ["PostResource", (PostResource) ->
+          PostResource.query({sort: "hot"}).$promise
+        ]
       views:
         "posts":
-          controller: "postsCtrl"
+          controller: "postsCtrl as ctrl"
           templateUrl: "../app/partials/shared/postListItem.html"
-          resolve:
-            Posts: ["PostResource", (PostResource) ->
-              PostResource.query({sort: "hot"}).$promise
-            ]
+  
 
     all_new = 
       name: "home.all.new"
@@ -107,7 +111,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
+          controller: "postsCtrl as ctrl"
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
@@ -183,7 +187,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
+          controller: "postsCtrl as ctrl"
           templateUrl: "../app/partials/shared/postListItem.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->

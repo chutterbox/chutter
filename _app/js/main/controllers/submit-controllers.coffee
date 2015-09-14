@@ -64,41 +64,8 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
 
 ]
 
-app.controller "imageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResource", "$state", ($scope, MediaResource, Page, PostResource, $state) ->
-  $scope.page = Page
-  #how rails wants it
-  $scope.newPost = 
-    title: ""
-    media_attributes: [{format: "image"}]
-  $scope.preview = 
-    title: ""
-    media: [{}]
-  $scope.$watch('newPost.media_attributes[0].link', (newVal, oldVal) ->
-    if newVal != oldVal
-      $scope.scraping = true
-      MediaResource.resolve({link: newVal, format: $scope.newPost.media_attributes[0].format}).$promise.then (data) ->
-        $scope.updatePreview(data)
-  )
-  $scope.$watch("newPost.title", (newVal) ->
-    $scope.preview.title = newVal
-  )
 
-  $scope.submit = () ->
-    $scope.newPost.community_id = $scope.page.community.id
-    PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
-
-  $scope.updatePreview = (data) ->
-    $scope.scraping = false
-    if data 
-      $scope.data = true
-      $scope.newPost.media_attributes[0] = data
-      $scope.preview.media[0] = data
-      $scope.preview.currentMedia = data
-
-]
-
-app.controller "webpageSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResource", "$state", ($scope, MediaResource, Page, PostResource, $state) ->
+app.controller "linkSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResource", "$state", ($scope, MediaResource, Page, PostResource, $state) ->
   $scope.page = Page
   #how rails wants it
   $scope.newPost = 
@@ -158,36 +125,4 @@ app.controller "discussionSubmitCtrl", ["$scope", "Page", "PostResource", "$stat
       $scope.preview.media[0] = data
 
 ]
-app.controller "videoSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResource", "$state", ($scope, MediaResource, Page, PostResource, $state) ->
-  $scope.page = Page
-  #how rails wants it
-  $scope.newPost = 
-    title: ""
-    media_attributes: [{format: "video"}]
-  $scope.preview = 
-    title: ""
-    media: [{}]
-  $scope.$watch('newPost.media_attributes[0].link', (newVal, oldVal) ->
-    if newVal != oldVal
-      $scope.scraping = true
-      MediaResource.resolve({link: newVal, format: $scope.newPost.media_attributes[0].format}).$promise.then (data) ->
-        $scope.updatePreview(data)
-  )
-  $scope.$watch("newPost.title", (newVal) ->
-    $scope.preview.title = newVal
-  )
 
-  $scope.submit = () ->
-    $scope.newPost.community_id = $scope.page.community.id
-    PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
-
-  $scope.updatePreview = (data) ->
-    $scope.scraping = false
-    if data 
-      $scope.data = true
-      $scope.newPost.media_attributes[0] = data
-      $scope.preview.media[0] = data
-      $scope.preview.currentMedia = data
-
-]

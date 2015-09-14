@@ -94,59 +94,7 @@
     }
   ]);
 
-  app.controller("imageSubmitCtrl", [
-    "$scope", "MediaResource", "Page", "PostResource", "$state", function($scope, MediaResource, Page, PostResource, $state) {
-      $scope.page = Page;
-      $scope.newPost = {
-        title: "",
-        media_attributes: [
-          {
-            format: "image"
-          }
-        ]
-      };
-      $scope.preview = {
-        title: "",
-        media: [{}]
-      };
-      $scope.$watch('newPost.media_attributes[0].link', function(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          $scope.scraping = true;
-          return MediaResource.resolve({
-            link: newVal,
-            format: $scope.newPost.media_attributes[0].format
-          }).$promise.then(function(data) {
-            return $scope.updatePreview(data);
-          });
-        }
-      });
-      $scope.$watch("newPost.title", function(newVal) {
-        return $scope.preview.title = newVal;
-      });
-      $scope.submit = function() {
-        $scope.newPost.community_id = $scope.page.community.id;
-        return PostResource.save({
-          post: $scope.newPost
-        }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.comments", {
-            id: data.slug,
-            community: $scope.page.community.slug
-          });
-        });
-      };
-      return $scope.updatePreview = function(data) {
-        $scope.scraping = false;
-        if (data) {
-          $scope.data = true;
-          $scope.newPost.media_attributes[0] = data;
-          $scope.preview.media[0] = data;
-          return $scope.preview.currentMedia = data;
-        }
-      };
-    }
-  ]);
-
-  app.controller("webpageSubmitCtrl", [
+  app.controller("linkSubmitCtrl", [
     "$scope", "MediaResource", "Page", "PostResource", "$state", function($scope, MediaResource, Page, PostResource, $state) {
       $scope.page = Page;
       $scope.newPost = {
@@ -228,58 +176,6 @@
           $scope.data = true;
           $scope.newPost.media_attributes[0] = data;
           return $scope.preview.media[0] = data;
-        }
-      };
-    }
-  ]);
-
-  app.controller("videoSubmitCtrl", [
-    "$scope", "MediaResource", "Page", "PostResource", "$state", function($scope, MediaResource, Page, PostResource, $state) {
-      $scope.page = Page;
-      $scope.newPost = {
-        title: "",
-        media_attributes: [
-          {
-            format: "video"
-          }
-        ]
-      };
-      $scope.preview = {
-        title: "",
-        media: [{}]
-      };
-      $scope.$watch('newPost.media_attributes[0].link', function(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          $scope.scraping = true;
-          return MediaResource.resolve({
-            link: newVal,
-            format: $scope.newPost.media_attributes[0].format
-          }).$promise.then(function(data) {
-            return $scope.updatePreview(data);
-          });
-        }
-      });
-      $scope.$watch("newPost.title", function(newVal) {
-        return $scope.preview.title = newVal;
-      });
-      $scope.submit = function() {
-        $scope.newPost.community_id = $scope.page.community.id;
-        return PostResource.save({
-          post: $scope.newPost
-        }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.comments", {
-            id: data.slug,
-            community: $scope.page.community.slug
-          });
-        });
-      };
-      return $scope.updatePreview = function(data) {
-        $scope.scraping = false;
-        if (data) {
-          $scope.data = true;
-          $scope.newPost.media_attributes[0] = data;
-          $scope.preview.media[0] = data;
-          return $scope.preview.currentMedia = data;
         }
       };
     }

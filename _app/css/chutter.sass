@@ -17,6 +17,7 @@ $sidenav-padding: 0 1.25vw
 $four-three-width:  100vw - ($sidenav-width * 2) - 6vw
 $four-three-height:  ($four-three-width * .75)
 $four-three-height-scaled: $four-three-height * 0.1
+$four-three-width-scaled: $four-three-width * 0.1
 
 $four-three-width-mobile:  100vw
 $four-three-height-mobile:  ($four-three-width-mobile * .75)
@@ -52,11 +53,7 @@ h5
 .md-mini
   .icon
     font-size: 17px
-#logo
-  img
-    max-width: 8vmax
-    max-height: 100%
-    vertical-align: middle
+
 body
   overflow: hidden
 
@@ -99,12 +96,14 @@ md-bottom-sheet
 //------------------------------
 md-sidenav.md-locked-open
   @include min-and-max-width($sidenav-width)
-  height: calc(100vh - 128px)
+  height: auto
   z-index: $sidenav-z-index-lg
   
 md-sidenav,
 md-backdrop.md-sidenav-backdrop
+  background: material-color('grey', '100')
   z-index: $sidenav-z-index-lg
+  overflow: auto
   @media(max-width: 960px) 
     z-index: $sidenav-z-index-sm
 
@@ -140,13 +139,13 @@ md-toolbar.extra-width
   //set base font size
   font-size: 14px
 
+
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar
   z-index: $toolbar-z-index
-  position: absolute
-  top: 0
+  @include min-and-max-height(48px)
   .md-toolbar-tools
     padding: 0
     .md-button
@@ -157,30 +156,32 @@ md-toolbar#me-toolbar
       margin: 0
       min-width: auto
       text-transform: none
-  #titles
-    position: relative
-    @include min-and-max-width($sidenav-width)
-    padding: $sidenav-padding
+  #logo
+    width: 90px
+    margin-left: 1.5vw
+    padding: 0
+    img
+      padding-top: 8px
+      max-width: 90px
+      max-height: 100%
+      vertical-align: middle
 
-  #breadcrumb 
-    padding-top: 4px
-    margin: 0 8px 0 12px
+  #network-menu-bar
+    padding: 6px 0 0 8px
+    md-menu
+      background-color: transparent
+      button.md-button 
+        md-icon
+          height: 35px
+          width: 15px
+        &:focus
+          background-color: transparent
+      md-menu-item 
+        .md-button,
+        a
+          font-weight: 500
+          color: material-color("grey", "900")
 
-  #secondary-title,
-  #primary-title
-    position: absolute
-    left: 1.5vw
-    -webkit-transition: transform 150ms ease-in-out
-    -moz-transition: transform 150ms ease-in-out
-    -webkit-transition: transform 150ms ease-in-out
-    &.active
-      transform-origin: top left
-      -webkit-transform-origin: top left
-      -moz-transform-origin: top left
-
-      transform: translateY(-26px) scale(0.6)
-      -webkit-transform: translateY(-26px) scale(0.6)
-      -moz-transform: translateY(-26px) scale(0.6)
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
@@ -191,13 +192,36 @@ md-toolbar#content-toolbar
   transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1)
 
 
+md-toolbar#networks-bar
+  @include min-and-max-height(32px)
+  .md-toolbar-tools
+    @include min-and-max-height(32px)
+  md-tabs
+    z-index: 175
+    md-tabs-wrapper
+      md-tabs-canvas
+        height: 32px
+        md-pagination-wrapper
+          height: 32px
+
+      md-tab-item
+        padding: 16px
+        height: 32px
+        span
+          font-weight: 500
+          font-size: 0.8em
+        line-height: 32px
+        padding-top: 0
+        padding-bottom: 0
+
+
 //------------------------------
 // main content area
 // this is all the css relating to the center md-content section
 //------------------------------
 #content
   // overlay tall toolbar with the main content
-  height: calc(100vh - 64px)
+  height: calc(100vh - 32px)
   overflow: hidden
   position: relative
   z-index: $content-z-index-lg

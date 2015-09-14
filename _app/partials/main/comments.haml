@@ -1,25 +1,7 @@
 %div{style: "z-index: 120;"}
   %post.post.primary-content{post: "page.post",  layout: "row"}
-%md-toolbar#comment-toolbar{md-scroll-shrink: true, layout-align: "center", layout: "column", ng-class: "page.secondaryToolbar"}
-  .md-toolbar-tools{layout: "row", layout-fill: "true"}
-    %md-tabs.md-hue-2{md-no-pagination: "true", flex: "true"}
-      %md-tab
-        %md-tab-label
-          %h3
-            best
-      %md-tab
-        %md-tab-label
-          %h3
-            top
-      %md-tab
-        %md-tab-label
-          %h3
-            live
-    %span.comments{hide-sm: "true", ng-bind: "page.post.comments_count + ' comments'"}
-    %md-button.md-icon-button{hide-sm: "true"}
-      %i.icon.ion-ios-trash
 %md-content#comments.secondary-content
-  #comment-wrapper{infinite-scroll: "fetchMoreComments()", infinite-scroll-container: "'#comments'", infinite-scroll-distance: "1"}
+  #comment-wrapper
     %comment.primary-content{parent: "", layout: "column", ng-repeat: "child in page.comments",id: "c{{child.path}}", comment: "child"}
 
 %md-button.md-fab.post-comment{ng-if: "user && user.id", aria-label: "Comment", ng-click: "reply()"}

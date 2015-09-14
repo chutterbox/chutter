@@ -9,6 +9,13 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       abstract: true
       templateUrl: "#{view_url}/layout.html"
       controller: "homeCtrl"
+      onEnter: ["$auth", "$location", ($auth, $location) ->
+        $auth.validateUser().catch( () ->
+          console.log "here"
+          # $location.path('/someNewPath')
+          # $location.replace()
+        )
+      ]
     
     dashboard =
       name: "home.dashboard"
@@ -118,13 +125,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.saved_posts.all"
       url: "^/saved/posts"
       views:
-        "posts":
-          controller: "savedCtrl"
-          template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>'
+        "@home":
           resolve:
             Posts: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
               PostResource.saved({format: $stateParams.format}).$promise
             ]
+          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postsCtrl as ctrl"
+          
     preferences =
       name: "home.preferences"
       url: "/preferences"
@@ -140,8 +148,10 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         ]
       views:
         "@home":
-          templateUrl: "#{view_url}/submissions.html"
-          controller: "submissionsCtrl" 
+          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postsCtrl as ctrl"
+  
+
 
     
     stats =

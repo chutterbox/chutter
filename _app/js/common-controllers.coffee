@@ -57,7 +57,6 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
   $scope.closeModSheet = () ->
     $mdBottomSheet.hide()
 
-
 ]
 
 app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
@@ -79,16 +78,15 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
     if entityableType is "post"
       PostResource.report($scope.activityLogEntry).$promise.then (data) ->
         if data.status is 200
-          $scope.closeSheet()
+          $scope.closeSheet(true)
           entityable.reported = true
         else
-          $scope.closeSheet()
+          $scope.closeSheet(false)
 
   
   
-  $scope.closeSheet = () ->
-    $mdBottomSheet.hide()
-
+  $scope.closeSheet = (reported) ->
+    $mdBottomSheet.hide(reported)
 
 ]
 app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", ($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) ->
@@ -131,23 +129,138 @@ app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomShee
 
 ]
 
-app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) ->
-  $scope.page = Page
-  $scope.page.posts = Posts
-  $scope.fetchMorePosts = () ->
+app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "$mdBottomSheet", "$mdToast", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, $mdBottomSheet, $mdToast) ->
+
+  $scope.page.posts = Posts.posts
+  $scope.mediaPlayer = MediaPlayer
+  # toolbar = document.getElementsByTagName("chutter-toolbar")[0]
+  # content = document.getElementById("content")
+  # i = 0
+  # $(".md-virtual-repeat-scroller").scroll () ->
+  #   i-=1
+  #   if i >= -48
+  #     toolbar.style.transform = "translateY(#{i}px)"
+  #     content.style.transform = "translateY(#{i}px)"
+
+  DynamicItems = ->
+
+    ###*
+    # @type {!Object<?Array>} Data pages, keyed by page number (0-index).
+    ###
+
+    @loadedPages = {}
+    @loadedPages[0] = Posts.posts
+
+    ###* @type {number} Total number of items. ###
+
+    @numItems = Posts.count
+
+    ###* @const {number} Number of items to fetch per request. ###
+
+    @PAGE_SIZE = 50
+    return
+
+  # Required.
+
+  DynamicItems::getItemAtIndex = (index) ->
+    pageNumber = Math.floor(index / @PAGE_SIZE)
+    page = @loadedPages[pageNumber]
+    if page
+      return page[index % @PAGE_SIZE]
+    else if page != null
+      @fetchPage_ pageNumber
+    return
+
+  # Required.
+
+  DynamicItems::getLength = ->
+    @numItems
+
+  DynamicItems::fetchPage_ = (pageNumber) ->
+    pageOffset = pageNumber * @PAGE_SIZE
+    # Set the page to null so we know it is already being fetched.
+    @loadedPages[pageNumber] = null
+    # For demo purposes, we simulate loading more items with a timed
+    # promise. In real code, this function would likely contain an
+    # $http request.
     $scope.page.paginator.start_fetch()
     if Page.scope is "all"
-      PostResource.query({sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
+      PostResource.query({sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+        @loadedPages[pageNumber] = []
+        @numItems = data.count
+        i = pageOffset
+        for item in data.posts
+          @loadedPages[pageNumber].push item
+        return
+      )
+        # Page.paginator.finish_fetch(data.length)
     else if Page.scope is "network"
-      NetworkResource.posts({id: $stateParams.network, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
+      NetworkResource.posts({id: $stateParams.network, sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+        @loadedPages[pageNumber] = []
+        @numItems = data.count
+        i = pageOffset
+        for item in data.posts
+          @loadedPages[pageNumber].push item
+        return
+      )
     else if Page.scope is "community"
-      CommunityResource.posts({id: $stateParams.community, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
+      CommunityResource.posts({id: $stateParams.community, sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+        @loadedPages[pageNumber] = []
+        @numItems = data.count
+        i = pageOffset
+        for item in data.posts
+          @loadedPages[pageNumber].push item
+        return
+      )
+    return
+
+  @dynamicItems = new DynamicItems
+  
+  @updateVote = (post, vote) ->
+    if post.vote == vote 
+      vote = 0
+    post.vote = vote
+    PostResource.vote({id: post.id, vote: vote}) 
+    
+  @moderate = (post) ->
+    if $scope.user.moderator
+      $mdBottomSheet.show({
+        templateUrl: '../app/partials/shared/modSheet.html'
+        parent: angular.element(document.body)
+        disableParentScroll: true
+        locals:
+          entityable: post
+          entityableType: "post"
+        controller: "modSheetCtrl"
+      })
+
+  @report = (post) ->
+    $mdBottomSheet.show({
+      templateUrl: '../app/partials/shared/reportSheet.html'
+      #has to have leading digit on id
+      parent: angular.element(document.body)
+      disableParentScroll: true
+      locals:
+        entityable: post
+        entityableType: "post"
+      controller: "reportSheetCtrl"
+    }).then (reported) ->
+      if reported
+        $mdToast.show($mdToast.simple().content('Post Reported.'))
+
+
+
+  @getBackgroundImage = (post) ->
+    if post.media && post.media.length > 0 
+      if post.media[0].thumbnail_link && post.media[0].thumbnail_link.length > 0
+        "url(#{post.media[0].thumbnail_link})"
+      else
+        "url('/img/character.svg')"
+    else
+      "none"
+  return @
+  
+  # $scope.postObj = new postObj
 ]
 
 app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->

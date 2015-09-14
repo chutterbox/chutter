@@ -39,6 +39,7 @@
             Page.scope = "all";
             Page.title = "All";
             Page.mainToolbar = "";
+            Page.network = {};
             return Page.secondaryToolbar = "md-hue-1";
           }
         ]
@@ -51,19 +52,19 @@
             return Page.paginator.reset("hot");
           }
         ],
+        resolve: {
+          Posts: [
+            "PostResource", function(PostResource) {
+              return PostResource.query({
+                sort: "hot"
+              }).$promise;
+            }
+          ]
+        },
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
-            resolve: {
-              Posts: [
-                "PostResource", function(PostResource) {
-                  return PostResource.query({
-                    sort: "hot"
-                  }).$promise;
-                }
-              ]
-            }
+            controller: "postsCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postListItem.html"
           }
         }
       };
@@ -156,7 +157,7 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
+            controller: "postsCtrl as ctrl",
             templateUrl: "../app/partials/shared/postListItem.html",
             resolve: {
               Posts: [
@@ -282,7 +283,7 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
+            controller: "postsCtrl as ctrl",
             templateUrl: "../app/partials/shared/postListItem.html",
             resolve: {
               Posts: [

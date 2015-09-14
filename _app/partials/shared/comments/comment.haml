@@ -1,8 +1,8 @@
-.border{ng-click: "toggle()"}
+.border{ng-click: "comment.toggle()"}
   .line
 .collapsed{layout-fill: true, layout: "column"}
   .header.secondary-content{layout: "row"}
-    %md-button.md-icon-button{aria-label: "toggle comment", ng-click: "toggle()"}
+    %md-button.md-icon-button{aria-label: "toggle comment", ng-click: "comment.toggle()"}
       .icon.ion-ios-plus-outline
     %span
       %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}

@@ -10,7 +10,6 @@
       }, {
         submissions: {
           url: API.makeURL('/users/submissions'),
-          isArray: true,
           interceptor: {
             'response': function(response) {
               return Page.posts = response.data;

@@ -26,11 +26,6 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-#logo img {
-  max-width: 8vmax;
-  max-height: 100%;
-  vertical-align: middle; }
-
 body {
   overflow: hidden; }
 
@@ -70,12 +65,14 @@ md-sidenav.md-locked-open {
   width: 16vw;
   min-width: 16vw;
   max-width: 16vw;
-  height: calc(100vh - 128px);
+  height: auto;
   z-index: 18; }
 
 md-sidenav,
 md-backdrop.md-sidenav-backdrop {
-  z-index: 18; }
+  background: #f5f5f5;
+  z-index: 18;
+  overflow: auto; }
 @media(max-width: 960px) {
   md-sidenav,
   md-backdrop.md-sidenav-backdrop {
@@ -107,8 +104,9 @@ md-toolbar#moderation-toolbar,
 md-toolbar#management-toolbar,
 md-toolbar#me-toolbar {
   z-index: 19;
-  position: absolute;
-  top: 0; }
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px; }
   md-toolbar#main-toolbar .md-toolbar-tools,
   md-toolbar#moderation-toolbar .md-toolbar-tools,
   md-toolbar#management-toolbar .md-toolbar-tools,
@@ -128,48 +126,52 @@ md-toolbar#me-toolbar {
         margin: 0.5vw;
         position: absolute;
         right: 0; }
-  md-toolbar#main-toolbar #titles,
-  md-toolbar#moderation-toolbar #titles,
-  md-toolbar#management-toolbar #titles,
-  md-toolbar#me-toolbar #titles {
-    position: relative;
-    width: 16vw;
-    min-width: 16vw;
-    max-width: 16vw;
-    padding: 0 1.25vw; }
-  md-toolbar#main-toolbar #breadcrumb,
-  md-toolbar#moderation-toolbar #breadcrumb,
-  md-toolbar#management-toolbar #breadcrumb,
-  md-toolbar#me-toolbar #breadcrumb {
-    padding-top: 4px;
-    margin: 0 8px 0 12px; }
-  md-toolbar#main-toolbar #secondary-title,
-  md-toolbar#main-toolbar #primary-title,
-  md-toolbar#moderation-toolbar #secondary-title,
-  md-toolbar#moderation-toolbar #primary-title,
-  md-toolbar#management-toolbar #secondary-title,
-  md-toolbar#management-toolbar #primary-title,
-  md-toolbar#me-toolbar #secondary-title,
-  md-toolbar#me-toolbar #primary-title {
-    position: absolute;
-    left: 1.5vw;
-    -webkit-transition: transform 150ms ease-in-out;
-    -moz-transition: transform 150ms ease-in-out;
-    -webkit-transition: transform 150ms ease-in-out; }
-    md-toolbar#main-toolbar #secondary-title.active,
-    md-toolbar#main-toolbar #primary-title.active,
-    md-toolbar#moderation-toolbar #secondary-title.active,
-    md-toolbar#moderation-toolbar #primary-title.active,
-    md-toolbar#management-toolbar #secondary-title.active,
-    md-toolbar#management-toolbar #primary-title.active,
-    md-toolbar#me-toolbar #secondary-title.active,
-    md-toolbar#me-toolbar #primary-title.active {
-      transform-origin: top left;
-      -webkit-transform-origin: top left;
-      -moz-transform-origin: top left;
-      transform: translateY(-26px) scale(0.6);
-      -webkit-transform: translateY(-26px) scale(0.6);
-      -moz-transform: translateY(-26px) scale(0.6); }
+  md-toolbar#main-toolbar #logo,
+  md-toolbar#moderation-toolbar #logo,
+  md-toolbar#management-toolbar #logo,
+  md-toolbar#me-toolbar #logo {
+    width: 90px;
+    margin-left: 1.5vw;
+    padding: 0; }
+    md-toolbar#main-toolbar #logo img,
+    md-toolbar#moderation-toolbar #logo img,
+    md-toolbar#management-toolbar #logo img,
+    md-toolbar#me-toolbar #logo img {
+      padding-top: 8px;
+      max-width: 90px;
+      max-height: 100%;
+      vertical-align: middle; }
+  md-toolbar#main-toolbar #network-menu-bar,
+  md-toolbar#moderation-toolbar #network-menu-bar,
+  md-toolbar#management-toolbar #network-menu-bar,
+  md-toolbar#me-toolbar #network-menu-bar {
+    padding: 6px 0 0 8px; }
+    md-toolbar#main-toolbar #network-menu-bar md-menu,
+    md-toolbar#moderation-toolbar #network-menu-bar md-menu,
+    md-toolbar#management-toolbar #network-menu-bar md-menu,
+    md-toolbar#me-toolbar #network-menu-bar md-menu {
+      background-color: transparent; }
+      md-toolbar#main-toolbar #network-menu-bar md-menu button.md-button md-icon,
+      md-toolbar#moderation-toolbar #network-menu-bar md-menu button.md-button md-icon,
+      md-toolbar#management-toolbar #network-menu-bar md-menu button.md-button md-icon,
+      md-toolbar#me-toolbar #network-menu-bar md-menu button.md-button md-icon {
+        height: 35px;
+        width: 15px; }
+      md-toolbar#main-toolbar #network-menu-bar md-menu button.md-button:focus,
+      md-toolbar#moderation-toolbar #network-menu-bar md-menu button.md-button:focus,
+      md-toolbar#management-toolbar #network-menu-bar md-menu button.md-button:focus,
+      md-toolbar#me-toolbar #network-menu-bar md-menu button.md-button:focus {
+        background-color: transparent; }
+      md-toolbar#main-toolbar #network-menu-bar md-menu md-menu-item .md-button,
+      md-toolbar#main-toolbar #network-menu-bar md-menu md-menu-item a,
+      md-toolbar#moderation-toolbar #network-menu-bar md-menu md-menu-item .md-button,
+      md-toolbar#moderation-toolbar #network-menu-bar md-menu md-menu-item a,
+      md-toolbar#management-toolbar #network-menu-bar md-menu md-menu-item .md-button,
+      md-toolbar#management-toolbar #network-menu-bar md-menu md-menu-item a,
+      md-toolbar#me-toolbar #network-menu-bar md-menu md-menu-item .md-button,
+      md-toolbar#me-toolbar #network-menu-bar md-menu md-menu-item a {
+        font-weight: 500;
+        color: #212121; }
 
 md-toolbar#main-toolbar,
 md-toolbar#moderation-toolbar,
@@ -178,8 +180,32 @@ md-toolbar#me-toolbar,
 md-toolbar#content-toolbar {
   transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
+md-toolbar#networks-bar {
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px; }
+  md-toolbar#networks-bar .md-toolbar-tools {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px; }
+  md-toolbar#networks-bar md-tabs {
+    z-index: 175; }
+    md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas {
+      height: 32px; }
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper {
+        height: 32px; }
+    md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item {
+      padding: 16px;
+      height: 32px;
+      line-height: 32px;
+      padding-top: 0;
+      padding-bottom: 0; }
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span {
+        font-weight: 500;
+        font-size: 0.8em; }
+
 #content {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 32px);
   overflow: hidden;
   position: relative;
   z-index: 22; }
@@ -281,13 +307,17 @@ md-toolbar#content-toolbar {
   height: inherit; }
 
 .md-sidenav-left .nav-list-item,
+.md-sidenav-right .nav-list-item,
 .toolbar-container .nav-list-item {
   position: relative; }
   .md-sidenav-left .nav-list-item.opened ~ .subnav-list-item,
+  .md-sidenav-right .nav-list-item.opened ~ .subnav-list-item,
   .toolbar-container .nav-list-item.opened ~ .subnav-list-item {
     height: 100%; }
 .md-sidenav-left .nav-list-item .md-button,
 .md-sidenav-left .subnav-list-item .md-button,
+.md-sidenav-right .nav-list-item .md-button,
+.md-sidenav-right .subnav-list-item .md-button,
 .toolbar-container .nav-list-item .md-button,
 .toolbar-container .subnav-list-item .md-button {
   font-weight: normal;
@@ -302,6 +332,10 @@ md-toolbar#content-toolbar {
   .md-sidenav-left .nav-list-item .md-button span,
   .md-sidenav-left .subnav-list-item .md-button p,
   .md-sidenav-left .subnav-list-item .md-button span,
+  .md-sidenav-right .nav-list-item .md-button p,
+  .md-sidenav-right .nav-list-item .md-button span,
+  .md-sidenav-right .subnav-list-item .md-button p,
+  .md-sidenav-right .subnav-list-item .md-button span,
   .toolbar-container .nav-list-item .md-button p,
   .toolbar-container .nav-list-item .md-button span,
   .toolbar-container .subnav-list-item .md-button p,
@@ -310,11 +344,15 @@ md-toolbar#content-toolbar {
     padding: 0; }
   .md-sidenav-left .nav-list-item .md-button span:focus,
   .md-sidenav-left .subnav-list-item .md-button span:focus,
+  .md-sidenav-right .nav-list-item .md-button span:focus,
+  .md-sidenav-right .subnav-list-item .md-button span:focus,
   .toolbar-container .nav-list-item .md-button span:focus,
   .toolbar-container .subnav-list-item .md-button span:focus {
     outline: none; }
   .md-sidenav-left .nav-list-item .md-button.secondary-action,
   .md-sidenav-left .subnav-list-item .md-button.secondary-action,
+  .md-sidenav-right .nav-list-item .md-button.secondary-action,
+  .md-sidenav-right .subnav-list-item .md-button.secondary-action,
   .toolbar-container .nav-list-item .md-button.secondary-action,
   .toolbar-container .subnav-list-item .md-button.secondary-action {
     padding: 0;
@@ -325,6 +363,7 @@ md-toolbar#content-toolbar {
     min-width: 3vw;
     max-width: 3vw; }
 .md-sidenav-left .subnav-list-item,
+.md-sidenav-right .subnav-list-item,
 .toolbar-container .subnav-list-item {
   height: 0;
   -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
@@ -335,30 +374,32 @@ md-toolbar#content-toolbar {
   transition-property: height;
   overflow: hidden; }
   .md-sidenav-left .subnav-list-item .md-button,
+  .md-sidenav-right .subnav-list-item .md-button,
   .toolbar-container .subnav-list-item .md-button {
     padding: 0 1.75vw;
     font-size: 0.8em; }
 
-.md-sidenav-left .nav-list-item {
+.md-sidenav-left .nav-list-item,
+.md-sidenav-right .nav-list-item {
   display: block;
   min-height: 48px;
   height: 48px; }
-  .md-sidenav-left .nav-list-item .secondary-action.md-icon-button {
-    display: none; }
-  .md-sidenav-left .nav-list-item.opened .secondary-action.md-icon-button {
-    display: inline-block; }
-  .md-sidenav-left .nav-list-item .md-button {
+  .md-sidenav-left .nav-list-item#header .md-button p,
+  .md-sidenav-right .nav-list-item#header .md-button p {
+    font-weight: 500; }
+  .md-sidenav-left .nav-list-item .md-button,
+  .md-sidenav-right .nav-list-item .md-button {
     min-height: 48px;
     height: 48px;
     line-height: 48px; }
 
 .toolbar-container .nav-list-item {
-  height: 64px;
-  line-height: 64px; }
+  height: 48px;
+  line-height: 48px; }
   .toolbar-container .nav-list-item .md-button {
     min-height: 48px;
-    height: 64px;
-    line-height: 64px; }
+    height: 48px;
+    line-height: 48px; }
 
 .md-sidenav-right .detailed-list-item {
   position: relative; }

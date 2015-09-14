@@ -1,18 +1,1 @@
-%md-toolbar.md-primary{md-scroll-shrink: "true", layout-align: "center", layout: "column", ng-class: "page.secondaryToolbar"}
-  .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
-    %md-tabs.md-primary{md-no-pagination: "true", flex: "true", ng-class: "page.secondaryToolbar"}
-      %md-tab{ui-sref: "home.all.hot"}
-        %md-tab-label
-          %h3
-            hot
-      %md-tab{ui-sref: "home.all.new"}
-        %md-tab-label
-          %h3
-            new
-
-      %md-tab{ui-sref: "home.all.top"}
-        %md-tab-label
-          %h3
-            top
-
-%md-content#posts.primary-content{ui-view: "posts"}
+.primary-content{ui-view: "posts", style: "height: calc(100vh - 80px);"}

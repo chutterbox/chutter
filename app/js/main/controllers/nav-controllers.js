@@ -6,124 +6,25 @@
   app.controller('toastCtrl', function() {});
 
   app.controller('pageCtrl', [
-    '$scope', '$state', '$stateParams', '$auth', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', '$mdToast', 'poller', 'API', function($scope, $state, $stateParams, $auth, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, $mdToast, poller, API) {
-      var isOpen, toggleOpen;
-      isOpen = void 0;
-      toggleOpen = void 0;
+    '$scope', '$stateParams', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', 'API', "$rootScope", function($scope, $stateParams, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, API, $rootScope) {
+      $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
+        return Page.cachedScrollTops[window.location] = $(".md-virtual-repeat-scroller").scrollTop();
+      });
+      $rootScope.$on("$viewContentLoaded", function(e, toState, toParams, fromState, fromParams) {
+        return _.defer(function() {
+          var cachedScrollTop, elm;
+          elm = $(".md-virtual-repeat-scroller");
+          cachedScrollTop = Page.cachedScrollTops[window.location];
+          console.log(Page.cachedScrollTops[window.location]);
+          if (elm) {
+            return elm.scrollTop(cachedScrollTop);
+          }
+        });
+      });
       $scope.page = Page;
-      if ($scope.user && $scope.user.id) {
-        $scope.poller = poller;
-        $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
-        });
-      }
-      $scope.$on("auth:logout-success", function() {
-        return $scope.poller.stopAll();
-      });
-      $scope.$on("auth:login-success", function() {
-        $scope.poller = poller;
-        return $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
-        });
-      });
-      $scope.showNotifications = function(notifications) {
-        var cascade, ephemeral_notifications;
-        ephemeral_notifications = _.reject(notifications, function(n) {
-          return n.ephemeral_count === 0;
-        });
-        if (ephemeral_notifications.length > 0) {
-          if (ephemeral_notifications.length > 1) {
-            cascade = true;
-          }
-          return _.each(ephemeral_notifications, function(notification) {
-            console.log(notification);
-            if (cascade) {
-              return setTimeout(function() {
-                return $scope.showNotification(notification);
-              }, 5000);
-            } else {
-              return $scope.showNotification(notification);
-            }
-          });
-        }
-      };
-      $scope.showNotification = function(notification) {
-        var body, title;
-        if (notification.entityable === "comment") {
-          body = notification.body.substring(0, 50);
-          if (body.length > 49) {
-            body += "...";
-          }
-          return $mdToast.show($mdToast.simple().content("Re: " + body).position("bottom right").action(notification.ephemeral_count + " new").hideDelay(5000));
-        } else if (notification.entityable === "post") {
-          title = notification.title.substring(0, 50);
-          if (title.length > 49) {
-            title += "...";
-          }
-          return $mdToast.show($mdToast.simple().content("Re: " + title).position("bottom right").action(notification.ephemeral_count + " new").hideDelay(5000));
-        }
-      };
-      $scope.$on("auth:show-signin", function() {
-        return $scope.signIn;
-      });
-      $scope.logout = function() {
-        return $auth.signOut();
-      };
-      $scope.toggleLeft = function() {
+      return $scope.toggleLeft = function() {
         return $mdSidenav('left').toggle();
       };
-      $scope.signIn = function() {
-        return $mdDialog.show({
-          controller: 'authCtrl',
-          templateUrl: '/partials/main/authenticate.html',
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
-      };
-      $scope.editNetworks = function(ev) {
-        if (!($scope.user && $scope.user.id)) {
-          return $scope.signIn();
-        } else {
-          return $mdDialog.show({
-            controller: 'networkEditCtrl',
-            templateUrl: '../app/partials/main/networkEdit.html',
-            clickOutsideToClose: true,
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            resolve: {
-              List: [
-                'NetworkResource', function(NetworkResource) {
-                  return NetworkResource.list();
-                }
-              ]
-            }
-          });
-        }
-      };
-      $scope.editNetworkCommunities = function(network) {
-        return $mdDialog.show({
-          controller: "communityEditCtrl",
-          templateUrl: '../app/partials/main/communityEdit.html',
-          resolve: {
-            List: [
-              "NetworkResource", function(NetworkResource) {
-                return NetworkResource.communities({
-                  id: network.id
-                });
-              }
-            ]
-          },
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
-      };
-      return $scope.$on('auth:login-success', function() {
-        return $scope.networks = $auth.user.networks;
-      });
     }
   ]);
 

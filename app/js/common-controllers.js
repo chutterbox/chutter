@@ -89,16 +89,16 @@
         if (entityableType === "post") {
           return PostResource.report($scope.activityLogEntry).$promise.then(function(data) {
             if (data.status === 200) {
-              $scope.closeSheet();
+              $scope.closeSheet(true);
               return entityable.reported = true;
             } else {
-              return $scope.closeSheet();
+              return $scope.closeSheet(false);
             }
           });
         }
       };
-      return $scope.closeSheet = function() {
-        return $mdBottomSheet.hide();
+      return $scope.closeSheet = function(reported) {
+        return $mdBottomSheet.hide(reported);
       };
     }
   ]);
@@ -148,39 +148,144 @@
   ]);
 
   app.controller("postsCtrl", [
-    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) {
-      $scope.page = Page;
-      $scope.page.posts = Posts;
-      return $scope.fetchMorePosts = function() {
+    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "$mdBottomSheet", "$mdToast", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, $mdBottomSheet, $mdToast) {
+      var DynamicItems;
+      $scope.page.posts = Posts.posts;
+      $scope.mediaPlayer = MediaPlayer;
+      DynamicItems = function() {
+
+        /**
+         * @type {!Object<?Array>} Data pages, keyed by page number (0-index).
+         */
+        this.loadedPages = {};
+        this.loadedPages[0] = Posts.posts;
+
+        /** @type {number} Total number of items. */
+        this.numItems = Posts.count;
+
+        /** @const {number} Number of items to fetch per request. */
+        this.PAGE_SIZE = 50;
+      };
+      DynamicItems.prototype.getItemAtIndex = function(index) {
+        var page, pageNumber;
+        pageNumber = Math.floor(index / this.PAGE_SIZE);
+        page = this.loadedPages[pageNumber];
+        if (page) {
+          return page[index % this.PAGE_SIZE];
+        } else if (page !== null) {
+          this.fetchPage_(pageNumber);
+        }
+      };
+      DynamicItems.prototype.getLength = function() {
+        return this.numItems;
+      };
+      DynamicItems.prototype.fetchPage_ = function(pageNumber) {
+        var pageOffset;
+        pageOffset = pageNumber * this.PAGE_SIZE;
+        this.loadedPages[pageNumber] = null;
         $scope.page.paginator.start_fetch();
         if (Page.scope === "all") {
-          return PostResource.query({
+          PostResource.query({
             sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
-          });
+            offset: pageOffset
+          }).$promise.then(angular.bind(this, function(data) {
+            var i, item, j, len, ref;
+            this.loadedPages[pageNumber] = [];
+            this.numItems = data.count;
+            i = pageOffset;
+            ref = data.posts;
+            for (j = 0, len = ref.length; j < len; j++) {
+              item = ref[j];
+              this.loadedPages[pageNumber].push(item);
+            }
+          }));
         } else if (Page.scope === "network") {
-          return NetworkResource.posts({
+          NetworkResource.posts({
             id: $stateParams.network,
             sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
-          });
+            offset: pageOffset
+          }).$promise.then(angular.bind(this, function(data) {
+            var i, item, j, len, ref;
+            this.loadedPages[pageNumber] = [];
+            this.numItems = data.count;
+            i = pageOffset;
+            ref = data.posts;
+            for (j = 0, len = ref.length; j < len; j++) {
+              item = ref[j];
+              this.loadedPages[pageNumber].push(item);
+            }
+          }));
         } else if (Page.scope === "community") {
-          return CommunityResource.posts({
+          CommunityResource.posts({
             id: $stateParams.community,
             sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
+            offset: pageOffset
+          }).$promise.then(angular.bind(this, function(data) {
+            var i, item, j, len, ref;
+            this.loadedPages[pageNumber] = [];
+            this.numItems = data.count;
+            i = pageOffset;
+            ref = data.posts;
+            for (j = 0, len = ref.length; j < len; j++) {
+              item = ref[j];
+              this.loadedPages[pageNumber].push(item);
+            }
+          }));
+        }
+      };
+      this.dynamicItems = new DynamicItems;
+      this.updateVote = function(post, vote) {
+        if (post.vote === vote) {
+          vote = 0;
+        }
+        post.vote = vote;
+        return PostResource.vote({
+          id: post.id,
+          vote: vote
+        });
+      };
+      this.moderate = function(post) {
+        if ($scope.user.moderator) {
+          return $mdBottomSheet.show({
+            templateUrl: '../app/partials/shared/modSheet.html',
+            parent: angular.element(document.body),
+            disableParentScroll: true,
+            locals: {
+              entityable: post,
+              entityableType: "post"
+            },
+            controller: "modSheetCtrl"
           });
         }
       };
+      this.report = function(post) {
+        return $mdBottomSheet.show({
+          templateUrl: '../app/partials/shared/reportSheet.html',
+          parent: angular.element(document.body),
+          disableParentScroll: true,
+          locals: {
+            entityable: post,
+            entityableType: "post"
+          },
+          controller: "reportSheetCtrl"
+        }).then(function(reported) {
+          if (reported) {
+            return $mdToast.show($mdToast.simple().content('Post Reported.'));
+          }
+        });
+      };
+      this.getBackgroundImage = function(post) {
+        if (post.media && post.media.length > 0) {
+          if (post.media[0].thumbnail_link && post.media[0].thumbnail_link.length > 0) {
+            return "url(" + post.media[0].thumbnail_link + ")";
+          } else {
+            return "url('/img/character.svg')";
+          }
+        } else {
+          return "none";
+        }
+      };
+      return this;
     }
   ]);
 

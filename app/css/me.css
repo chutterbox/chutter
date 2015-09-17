@@ -130,9 +130,10 @@ md-toolbar#me-toolbar {
   md-toolbar#moderation-toolbar #logo,
   md-toolbar#management-toolbar #logo,
   md-toolbar#me-toolbar #logo {
-    width: 90px;
-    margin-left: 1.5vw;
-    padding: 0; }
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
+    width: auto; }
     md-toolbar#main-toolbar #logo img,
     md-toolbar#moderation-toolbar #logo img,
     md-toolbar#management-toolbar #logo img,
@@ -141,50 +142,13 @@ md-toolbar#me-toolbar {
       max-width: 90px;
       max-height: 100%;
       vertical-align: middle; }
-  md-toolbar#main-toolbar #network-menu-bar,
-  md-toolbar#moderation-toolbar #network-menu-bar,
-  md-toolbar#management-toolbar #network-menu-bar,
-  md-toolbar#me-toolbar #network-menu-bar {
-    padding: 6px 0 0 8px; }
-    md-toolbar#main-toolbar #network-menu-bar md-menu,
-    md-toolbar#moderation-toolbar #network-menu-bar md-menu,
-    md-toolbar#management-toolbar #network-menu-bar md-menu,
-    md-toolbar#me-toolbar #network-menu-bar md-menu {
-      background-color: transparent; }
-      md-toolbar#main-toolbar #network-menu-bar md-menu button.md-button md-icon,
-      md-toolbar#moderation-toolbar #network-menu-bar md-menu button.md-button md-icon,
-      md-toolbar#management-toolbar #network-menu-bar md-menu button.md-button md-icon,
-      md-toolbar#me-toolbar #network-menu-bar md-menu button.md-button md-icon {
-        height: 35px;
-        width: 15px; }
-      md-toolbar#main-toolbar #network-menu-bar md-menu button.md-button:focus,
-      md-toolbar#moderation-toolbar #network-menu-bar md-menu button.md-button:focus,
-      md-toolbar#management-toolbar #network-menu-bar md-menu button.md-button:focus,
-      md-toolbar#me-toolbar #network-menu-bar md-menu button.md-button:focus {
-        background-color: transparent; }
-      md-toolbar#main-toolbar #network-menu-bar md-menu md-menu-item .md-button,
-      md-toolbar#main-toolbar #network-menu-bar md-menu md-menu-item a,
-      md-toolbar#moderation-toolbar #network-menu-bar md-menu md-menu-item .md-button,
-      md-toolbar#moderation-toolbar #network-menu-bar md-menu md-menu-item a,
-      md-toolbar#management-toolbar #network-menu-bar md-menu md-menu-item .md-button,
-      md-toolbar#management-toolbar #network-menu-bar md-menu md-menu-item a,
-      md-toolbar#me-toolbar #network-menu-bar md-menu md-menu-item .md-button,
-      md-toolbar#me-toolbar #network-menu-bar md-menu md-menu-item a {
-        font-weight: 500;
-        color: #212121; }
-
-md-toolbar#main-toolbar,
-md-toolbar#moderation-toolbar,
-md-toolbar#management-toolbar,
-md-toolbar#me-toolbar,
-md-toolbar#content-toolbar {
-  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1); }
 
 md-toolbar#networks-bar {
   height: 32px;
   min-height: 32px;
   max-height: 32px; }
   md-toolbar#networks-bar .md-toolbar-tools {
+    padding: 0;
     height: 32px;
     min-height: 32px;
     max-height: 32px; }
@@ -203,6 +167,31 @@ md-toolbar#networks-bar {
       md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span {
         font-weight: 500;
         font-size: 0.8em; }
+  md-toolbar#networks-bar md-menu-bar#network-menu-bar {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0;
+    margin: 0 0 0 8px; }
+    md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu {
+      height: 32px;
+      min-height: 32px;
+      max-height: 32px;
+      background-color: transparent; }
+      md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button {
+        margin: 0;
+        font-size: 0.8em;
+        height: 32px;
+        min-height: 32px;
+        max-height: 32px; }
+        md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button md-icon {
+          height: 35px;
+          width: 15px; }
+        md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button:focus {
+          background-color: transparent; }
+      md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu md-menu-item .md-button,
+      md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu md-menu-item a {
+        color: #212121; }
 
 #content {
   height: calc(100vh - 32px);

@@ -157,30 +157,15 @@ md-toolbar#me-toolbar
       min-width: auto
       text-transform: none
   #logo
-    width: 90px
-    margin-left: 1.5vw
-    padding: 0
+    @include min-and-max-height(48px)
+    width: auto
     img
       padding-top: 8px
       max-width: 90px
       max-height: 100%
       vertical-align: middle
 
-  #network-menu-bar
-    padding: 6px 0 0 8px
-    md-menu
-      background-color: transparent
-      button.md-button 
-        md-icon
-          height: 35px
-          width: 15px
-        &:focus
-          background-color: transparent
-      md-menu-item 
-        .md-button,
-        a
-          font-weight: 500
-          color: material-color("grey", "900")
+  
 
 
 md-toolbar#main-toolbar,
@@ -189,12 +174,13 @@ md-toolbar#management-toolbar,
 md-toolbar#me-toolbar,
 md-toolbar#content-toolbar
   // Transitions of md-toolbars for depth color switching
-  transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1)
+  // transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1)
 
 
 md-toolbar#networks-bar
   @include min-and-max-height(32px)
   .md-toolbar-tools
+    padding: 0
     @include min-and-max-height(32px)
   md-tabs
     z-index: 175
@@ -203,7 +189,6 @@ md-toolbar#networks-bar
         height: 32px
         md-pagination-wrapper
           height: 32px
-
       md-tab-item
         padding: 16px
         height: 32px
@@ -213,7 +198,26 @@ md-toolbar#networks-bar
         line-height: 32px
         padding-top: 0
         padding-bottom: 0
-
+  md-menu-bar#network-menu-bar
+    @include min-and-max-height(32px)
+    padding: 0
+    margin: 0 0 0 8px
+    md-menu
+      @include min-and-max-height(32px)
+      background-color: transparent
+      button.md-button
+        margin: 0
+        font-size: 0.8em 
+        @include min-and-max-height(32px)
+        md-icon
+          height: 35px
+          width: 15px
+        &:focus
+          background-color: transparent
+      md-menu-item 
+        .md-button,
+        a
+          color: material-color("grey", "900")
 
 //------------------------------
 // main content area

@@ -410,7 +410,7 @@
         views: {
           "@home": {
             templateUrl: view_url + "/comments.html",
-            controller: "commentsCtrl"
+            controller: "commentsPageCtrl as ctrl"
           },
           "right-rail@home": {
             template: "<comments-sidebar page='page'></comments-sidebar>"

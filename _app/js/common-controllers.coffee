@@ -89,26 +89,6 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
     $mdBottomSheet.hide(reported)
 
 ]
-app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", ($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) ->
-  $scope.page = Page
-  $scope.page.post = Post
-  $scope.page.comments = Comments
-  $scope.resource = CommentResource
-
-  $scope.fetchMoreComments = () ->
-  $scope.reply = () ->
-    $mdBottomSheet.show({
-      templateUrl: '/partials/shared/comments/replyPanel.html'
-      #has to have leading digit on id
-      controller: "replyCtrl"
-      disableParentScroll: true
-      #important, do not remove since we're passing in scope reference
-      preserveScope: true
-      parent: angular.element(document.body)
-      clickOutsideToClose: true
-    })
-
-]
 
 app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomSheet", ($scope, Page, CommentResource, $mdBottomSheet) ->
   $scope.page = Page

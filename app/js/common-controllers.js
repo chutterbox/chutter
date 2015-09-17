@@ -103,26 +103,6 @@
     }
   ]);
 
-  app.controller("commentsCtrl", [
-    "$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", function($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) {
-      $scope.page = Page;
-      $scope.page.post = Post;
-      $scope.page.comments = Comments;
-      $scope.resource = CommentResource;
-      $scope.fetchMoreComments = function() {};
-      return $scope.reply = function() {
-        return $mdBottomSheet.show({
-          templateUrl: '/partials/shared/comments/replyPanel.html',
-          controller: "replyCtrl",
-          disableParentScroll: true,
-          preserveScope: true,
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
-      };
-    }
-  ]);
-
   app.controller("replyCtrl", [
     "$scope", "Page", "CommentResource", "$mdBottomSheet", function($scope, Page, CommentResource, $mdBottomSheet) {
       $scope.page = Page;

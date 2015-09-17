@@ -14,7 +14,7 @@
           url: API.makeURL('/posts/:id')
         },
         query: {
-          isArray: true
+          isArray: false
         },
         comments: {
           transformRequest: [],
@@ -108,7 +108,6 @@
         },
         posts: {
           method: 'GET',
-          isArray: true,
           url: API.makeURL('/networks/:id/posts')
         },
         list: {
@@ -179,7 +178,6 @@
         },
         posts: {
           method: 'GET',
-          isArray: true,
           url: API.makeURL('/communities/:id/posts')
         },
         subscribe: {

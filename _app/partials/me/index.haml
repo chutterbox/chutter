@@ -29,8 +29,11 @@
         ga('send', 'pageview');
     
 
-  %body{layout: "row", layout-fill: true}
-    %ui-view{layout: "column", layout-fill: true}
+
+    %body{layout: "row", layout-fill: true, md-theme: "{{theme}}"}
+      %ui-view{layout: "column", layout-fill: true, flex: "100"}
+        %div{layout: "column", layout-fill: "true", layout-align: "center center"}
+          %md-progress-circular{md-mode: "indeterminate"}
 
 
     %script{src: "/js/compiled/application.min.js"}

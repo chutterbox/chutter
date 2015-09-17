@@ -39,6 +39,7 @@
             Page.scope = "all";
             Page.title = "All";
             Page.mainToolbar = "";
+            Page.network = {};
             return Page.secondaryToolbar = "md-hue-1";
           }
         ]
@@ -51,19 +52,19 @@
             return Page.paginator.reset("hot");
           }
         ],
+        resolve: {
+          Posts: [
+            "PostResource", function(PostResource) {
+              return PostResource.query({
+                sort: "hot"
+              }).$promise;
+            }
+          ]
+        },
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
-            resolve: {
-              Posts: [
-                "PostResource", function(PostResource) {
-                  return PostResource.query({
-                    sort: "hot"
-                  }).$promise;
-                }
-              ]
-            }
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html"
           }
         }
       };
@@ -77,8 +78,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "PostResource", function(PostResource) {
@@ -101,8 +102,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "PostResource", function(PostResource) {
@@ -156,8 +157,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
@@ -181,8 +182,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
@@ -206,8 +207,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "NetworkResource", "$stateParams", function(NetworkResource, $stateParams) {
@@ -282,8 +283,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
@@ -307,8 +308,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
@@ -332,8 +333,8 @@
         ],
         views: {
           "posts": {
-            controller: "postsCtrl",
-            templateUrl: "../app/partials/shared/postListItem.html",
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
                 "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
@@ -409,7 +410,7 @@
         views: {
           "@home": {
             templateUrl: view_url + "/comments.html",
-            controller: "commentsCtrl"
+            controller: "commentsPageCtrl as ctrl"
           },
           "right-rail@home": {
             template: "<comments-sidebar page='page'></comments-sidebar>"

@@ -1,14 +1,1 @@
-%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
-  .md-toolbar-tools
-    %md-tabs.md-primary.md-hue-2{flex: true}
-      %md-tab
-        %md-tab-label
-          %h3 hot
-      %md-tab
-        %md-tab-label
-          %h3 new
-      %md-tab
-        %md-tab-label
-          %h3 top
-%md-content.primary-content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %post.post{ng-repeat: "post in page.posts track by post.id", post: "post", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 
+.primary-content{ui-view: "posts", style: "height: calc(100vh - 80px);"}

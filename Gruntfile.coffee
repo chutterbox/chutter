@@ -42,7 +42,6 @@ module.exports = (grunt) ->
               'vendor/angular/angular.js',
               'vendor/angular-resource/angular-resource.js',
               'vendor/angular-poller/angular-poller.js',
-              'vendor/ng-videosharing-embed/build/ng-videosharing-embed.min.js',
               'vendor/underscore/underscore.js',
               'vendor/moment/moment.js',
               'vendor/angular-moment/angular-moment.js',
@@ -56,7 +55,6 @@ module.exports = (grunt) ->
               'vendor/angular-marked/angular-marked.js',
               'vendor/ng-token-auth/dist/ng-token-auth.js',
               'vendor/ui-router/release/angular-ui-router.js',
-              'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js',
               'vendor/angularytics/dist/angularytics.js',
               'app/js/templates-shared.js',
               'app/js/chutter.js',
@@ -64,6 +62,9 @@ module.exports = (grunt) ->
               'app/js/common-controllers.js',
               'app/js/common-directives.js',
               'app/js/common-services.js',
+              'app/js/shared/controllers/*.js',
+              'app/js/shared/directives/*.js',
+              'app/js/shared/providers/*.js'
 
             ]
           'app/js/compiled/main.min.js': 
@@ -90,7 +91,6 @@ module.exports = (grunt) ->
               'app/js/me/services/*.js',
               'vendor/Chart.js/Chart.js',
               'vendor/angular-chart.js/dist/angular-chart.js'
-
             ]
           'app/js/compiled/moderation.min.js': [
               #moderation
@@ -129,11 +129,14 @@ module.exports = (grunt) ->
           "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"
           "app/partials/shared/createCommunityRule.html" : "_app/partials/shared/createCommunityRule.haml"
           "app/partials/shared/post.html" : "_app/partials/shared/post.haml"
-          "app/partials/shared/postListItem.html" : "_app/partials/shared/postListItem.haml"
+          "app/partials/shared/postList.html" : "_app/partials/shared/postList.haml"
           "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
           "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
           "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
           "app/partials/shared/subscriptionDialog.html" : "_app/partials/shared/subscriptionDialog.haml"
+          "app/partials/shared/mediaPlayerSheet.html" : "_app/partials/shared/mediaPlayerSheet.haml"
+          "app/partials/shared/mediaPlayerContent.html" : "_app/partials/shared/mediaPlayerContent.haml"
+          "app/partials/shared/toolbar.html" : "_app/partials/shared/toolbar.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
@@ -160,12 +163,9 @@ module.exports = (grunt) ->
           "app/partials/main/networks.html" : "_app/partials/main/networks.haml"
           "app/partials/main/communityEdit.html" : "_app/partials/main/communityEdit.haml"
           "app/partials/main/networkEdit.html" : "_app/partials/main/networkEdit.haml"
-          "app/partials/main/mediaPlayer.html" : "_app/partials/main/mediaPlayer.haml"
           "app/partials/main/submit/music.html" : "_app/partials/main/submit/music.haml"
-          "app/partials/main/submit/video.html" : "_app/partials/main/submit/video.haml"
           "app/partials/main/submit/discussion.html" : "_app/partials/main/submit/discussion.haml"
-          "app/partials/main/submit/image.html" : "_app/partials/main/submit/image.haml"
-          "app/partials/main/submit/webpage.html" : "_app/partials/main/submit/webpage.haml"
+          "app/partials/main/submit/link.html" : "_app/partials/main/submit/link.haml"
           "app/partials/main/comments.html" : "_app/partials/main/comments.haml"
           "app/partials/main/sidebar/all-sidebar.html" : "_app/partials/main/sidebar/all-sidebar.haml"
           "app/partials/main/sidebar/comment-sidebar.html" : "_app/partials/main/sidebar/comment-sidebar.haml"
@@ -228,7 +228,8 @@ module.exports = (grunt) ->
           'app/css/post.css',
           'app/css/notifications.css',
           'app/css/sidebar.css',
-          'app/css/main.css'
+          'app/css/main.css',
+          'app/css/mediaPlayer.css'
         ],
         dest: 'app/css/compiled/application.css'
     cssmin: 
@@ -272,6 +273,24 @@ module.exports = (grunt) ->
           cwd: './_app/js/main/',
           src: ['*.coffee'],
           dest: 'app/js/main/',
+          ext: '.js'
+        , 
+          expand: true,
+          cwd: './_app/js/shared/controllers/',
+          src: ['*.coffee'],
+          dest: 'app/js/shared/controllers/',
+          ext: '.js'
+        , 
+          expand: true,
+          cwd: './_app/js/shared/directives/',
+          src: ['*.coffee'],
+          dest: 'app/js/shared/directives/',
+          ext: '.js'
+        , 
+          expand: true,
+          cwd: './_app/js/shared/providers/',
+          src: ['*.coffee'],
+          dest: 'app/js/shared/providers/',
           ext: '.js'
         , 
           expand: true,

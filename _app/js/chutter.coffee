@@ -13,14 +13,12 @@ app = angular.module('Chutter', [
   'templates-shared'
   'ng-token-auth'
   'ngResource'
-  'videosharing-embed'
   'emguo.poller'
-  'infinite-scroll'
   'hc.marked'
   'angularMoment'
   'angularytics'
 ]).constant('API',
-  baseURL: 'https://api.chutter.co/api/v1'
+  baseURL: 'http://localhost:3000/api/v1'
   makeURL: (url) ->
     @baseURL + url
 ).constant('angularMomentConfig', {

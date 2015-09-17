@@ -1,3 +1,6 @@
+if typeof module != 'undefined' and typeof exports != 'undefined' and module.exports == exports
+  module.exports = 'ng-token-auth'
+
 angular.module('ng-token-auth', ['ipCookie'])
   .provider('$auth', ->
     configs =
@@ -16,7 +19,7 @@ angular.module('ng-token-auth', ['ipCookie'])
         proxyIf:                 -> false
         proxyUrl:                '/proxy'
         validateOnPageLoad:      true
-        forceHardRedirect:       false
+        omniauthWindowType:      'sameWindow'
         storage:                 'cookies'
 
         tokenFormat:
@@ -45,6 +48,7 @@ angular.module('ng-token-auth', ['ipCookie'])
 
     return {
       configure: (params) ->
+
         # user is using multiple concurrent configs (>1 user types).
         if params instanceof Array and params.length
           # extend each item in array from default settings
@@ -64,12 +68,14 @@ angular.module('ng-token-auth', ['ipCookie'])
             fullConfig[label] = angular.extend(defaults, conf[label])
             angular.extend(configs, fullConfig)
 
+
           # remove existng default config
           delete configs["default"] unless defaultConfigName == "default"
 
         # user is extending the single default config
         else if params instanceof Object
           angular.extend(configs["default"], params)
+
 
         # user is doing something wrong
         else
@@ -97,8 +103,8 @@ angular.module('ng-token-auth', ['ipCookie'])
           # called once at startup
           initialize: ->
             @initializeListeners()
+            @cancelOmniauthInAppBrowserListeners = (->)
             @addScopeMethods()
-
 
           initializeListeners: ->
             #@listener = @handlePostMessage.bind(@)
@@ -110,15 +116,18 @@ angular.module('ng-token-auth', ['ipCookie'])
 
           cancel: (reason) ->
             # cancel any pending timers
-            if @t?
-              $timeout.cancel(@t)
+            if @requestCredentialsPollingTimer?
+              $timeout.cancel(@requestCredentialsPollingTimer)
+
+            # cancel inAppBrowser listeners if set
+            @cancelOmniauthInAppBrowserListeners()
 
             # reject any pending promises
             if @dfd?
               @rejectDfd(reason)
 
             # nullify timer after reflow
-            return $timeout((=> @t = null), 0)
+            return $timeout((=> @requestCredentialsPollingTimer = null), 0)
 
 
           # cancel any pending processes, clean up garbage
@@ -133,9 +142,14 @@ angular.module('ng-token-auth', ['ipCookie'])
           handlePostMessage: (ev) ->
             if ev.data.message == 'deliverCredentials'
               delete ev.data.message
+
+              # check if a new user was registered
+              oauthRegistration = ev.data.oauth_registration
+              delete ev.data.oauth_registration
               @handleValidAuth(ev.data, true)
               $rootScope.$broadcast('auth:login-success', ev.data)
-
+              if oauthRegistration
+                $rootScope.$broadcast('auth:oauth-registration', ev.data)
             if ev.data.message == 'authFailure'
               error = {
                 reason: 'unauthorized'
@@ -296,12 +310,18 @@ angular.module('ng-token-auth', ['ipCookie'])
 
           # open external window to authentication provider
           openAuthWindow: (provider, opts) ->
-            authUrl = @buildAuthUrl(provider, opts)
 
-            if @useExternalWindow()
-              @requestCredentials(@createPopup(authUrl))
-            else
+            omniauthWindowType = @getConfig(opts.config).omniauthWindowType
+            authUrl = @buildAuthUrl(omniauthWindowType, provider, opts)
+
+            if omniauthWindowType is 'newWindow'
+              @requestCredentialsViaPostMessage(@createPopup(authUrl))
+            else if omniauthWindowType is 'inAppBrowser'
+              @requestCredentialsViaExecuteScript(@createPopup(authUrl))
+            else if omniauthWindowType is 'sameWindow'
               @visitUrl(authUrl)
+            else
+              throw 'Unsupported omniauthWindowType "#{omniauthWindowType}"'
 
 
           # testing actual redirects is difficult. stub this for testing
@@ -309,17 +329,20 @@ angular.module('ng-token-auth', ['ipCookie'])
             $window.location.replace(url)
 
 
-          buildAuthUrl: (provider, opts={}) ->
+          buildAuthUrl: (omniauthWindowType, provider, opts={}) ->
             authUrl  = @getConfig(opts.config).apiUrl
             authUrl += @getConfig(opts.config).authProviderPaths[provider]
             authUrl += '?auth_origin_url=' + encodeURIComponent($window.location.href)
 
-            if opts.params?
-              for key, val of opts.params
-                authUrl += '&'
-                authUrl += encodeURIComponent(key)
-                authUrl += '='
-                authUrl += encodeURIComponent(val)
+            params = angular.extend({}, opts.params || {}, {
+              omniauth_window_type: omniauthWindowType
+            })
+
+            for key, val of params
+              authUrl += '&'
+              authUrl += encodeURIComponent(key)
+              authUrl += '='
+              authUrl += encodeURIComponent(val)
 
             return authUrl
 
@@ -328,25 +351,63 @@ angular.module('ng-token-auth', ['ipCookie'])
           # 1. user completes authentication
           # 2. user fails authentication
           # 3. auth window is closed
-          requestCredentials: (authWindow) ->
+          requestCredentialsViaPostMessage: (authWindow) ->
             # user has closed the external provider's auth window without
             # completing login.
             if authWindow.closed
-              @cancel({
-                reason: 'unauthorized'
-                errors: ['User canceled login']
-              })
-              $rootScope.$broadcast('auth:window-closed')
+              @handleAuthWindowClose(authWindow)
 
             # still awaiting user input
             else
               authWindow.postMessage("requestCredentials", "*")
-              @t = $timeout((=>@requestCredentials(authWindow)), 500)
+              @requestCredentialsPollingTimer = $timeout((=>@requestCredentialsViaPostMessage(authWindow)), 500)
+
+
+          # handle inAppBrowser's executeScript flow
+          # flow will complete if:
+          # 1. user completes authentication
+          # 2. user fails authentication
+          # 3. inAppBrowser auth window is closed
+          requestCredentialsViaExecuteScript: (authWindow) ->
+            @cancelOmniauthInAppBrowserListeners()
+            handleAuthWindowClose = @handleAuthWindowClose.bind(this, authWindow)
+            handleLoadStop = @handleLoadStop.bind(this, authWindow)
+
+            authWindow.addEventListener('loadstop', handleLoadStop)
+            authWindow.addEventListener('exit', handleAuthWindowClose)
+
+            this.cancelOmniauthInAppBrowserListeners = () ->
+              authWindow.removeEventListener('loadstop', handleLoadStop)
+              authWindow.removeEventListener('exit', handleAuthWindowClose)
+
+
+          # responds to inAppBrowser window loads
+          handleLoadStop: (authWindow) ->
+            _this = this
+            authWindow.executeScript({code: 'requestCredentials()'}, (response) ->
+              data = response[0]
+              if data
+                ev = new Event('message')
+                ev.data = data
+                _this.cancelOmniauthInAppBrowserListeners()
+                $window.dispatchEvent(ev)
+                _this.initDfd();
+                authWindow.close()
+            )
+
+          # responds to inAppBrowser window closes
+          handleAuthWindowClose: (authWindow) ->
+            @cancel({
+              reason: 'unauthorized'
+              errors: ['User canceled login']
+            })
+            @cancelOmniauthInAppBrowserListeners
+            $rootScope.$broadcast('auth:window-closed')
 
 
           # popups are difficult to test. mock this method in testing.
           createPopup: (url) ->
-            $window.open(url)
+            $window.open(url, '_blank')
 
 
           # this needs to happen after a reflow so that the promise
@@ -357,6 +418,32 @@ angular.module('ng-token-auth', ['ipCookie'])
               @dfd = null
               $rootScope.$digest() unless $rootScope.$$phase
             ), 0)
+
+
+          # generates query string based on simple or complex object graphs
+          buildQueryString: (param, prefix) ->
+            str = []
+            for k,v of param
+              k = if prefix then prefix + "[" + k + "]" else k
+              encoded = if angular.isObject(v) then @buildQueryString(v, k) else (k) + "=" + encodeURIComponent(v)
+              str.push encoded
+            str.join "&"
+
+
+          # parses raw URL for querystring parameters to account for issues
+          # with querystring / fragment ordering in angular < 1.4.x
+          parseLocation: (location) ->
+            pairs = location.substring(1).split('&')
+            obj = {}
+            pair = undefined
+            i = undefined
+            for i of pairs
+              `i = i`
+              if pairs[i] == ''
+                continue
+              pair = pairs[i].split('=')
+              obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1])
+            obj
 
 
           # this is something that can be returned from 'resolve' methods
@@ -376,22 +463,34 @@ angular.module('ng-token-auth', ['ipCookie'])
               else
                 # token querystring is present. user most likely just came from
                 # registration email link.
-                if $location.search().token != undefined
-                  token      = $location.search().token
-                  clientId   = $location.search().client_id
-                  uid        = $location.search().uid
-                  expiry     = $location.search().expiry
-                  configName = $location.search().config
+                search = $location.search()
+
+                # determine querystring params accounting for possible angular parsing issues
+                location_parse = @parseLocation(window.location.search)
+                params = if Object.keys(search).length==0 then location_parse else search
+                
+                # auth_token matches what is sent with postMessage, but supporting token for
+                # backwards compatability
+                token = params.auth_token || params.token
+
+                if token != undefined
+                  clientId   = params.client_id
+                  uid        = params.uid
+                  expiry     = params.expiry
+                  configName = params.config
 
                   # use the configuration that was used in creating
                   # the confirmation link
                   @setConfigName(configName)
 
                   # check if redirected from password reset link
-                  @mustResetPassword = $location.search().reset_password
+                  @mustResetPassword = params.reset_password
 
                   # check if redirected from email confirmation link
-                  @firstTimeLogin = $location.search().account_confirmation_success
+                  @firstTimeLogin = params.account_confirmation_success
+
+                  # check if redirected from auth registration
+                  @oauthRegistration = params.oauth_registration
 
                   # persist these values
                   @setAuthHeaders(@buildAuthHeaders({
@@ -401,9 +500,20 @@ angular.module('ng-token-auth', ['ipCookie'])
                     expiry:   expiry
                   }))
 
-                  # strip qs from url to prevent re-use of these params
+                  # build url base
+                  url = ($location.path() || '/')
+
+                  # strip token-related qs from url to prevent re-use of these params
                   # on page refresh
-                  $location.url(($location.path() || '/'))
+                  ['token', 'client_id', 'uid', 'expiry', 'config', 'reset_password', 'account_confirmation_success', 'oauth_registration'].forEach (prop) ->
+                    delete params[prop];
+
+                  # append any remaining params, if any
+                  if Object.keys(params).length > 0
+                    url += '?' + @buildQueryString(params);
+
+                  # redirect to target url
+                  $location.url(url)
 
                 # token cookie is present. user is returning to the site, or
                 # has refreshed the page.
@@ -447,6 +557,9 @@ angular.module('ng-token-auth', ['ipCookie'])
                   # broadcast event for first time login
                   if @firstTimeLogin
                     $rootScope.$broadcast('auth:email-confirmation-success', @user)
+
+                  if @oauthRegistration
+                    $rootScope.$broadcast('auth:oauth-registration', @user)
 
                   if @mustResetPassword
                     $rootScope.$broadcast('auth:password-reset-confirm-success', @user)
@@ -501,6 +614,8 @@ angular.module('ng-token-auth', ['ipCookie'])
             # remove any assumptions about current configuration
             @deleteData('currentConfigName')
 
+            $timeout.cancel @timer if @timer?
+
             # kill cookies, otherwise session will resume on page reload
             # setting this value to null will force the validateToken method
             # to re-validate credentials with api server when validate is called
@@ -523,7 +638,10 @@ angular.module('ng-token-auth', ['ipCookie'])
           # handle successful authentication
           handleValidAuth: (user, setHeader=false) ->
             # cancel any pending postMessage checks
-            $timeout.cancel(@t) if @t?
+            $timeout.cancel(@requestCredentialsPollingTimer) if @requestCredentialsPollingTimer?
+
+            # cancel any inAppBrowser listeners
+            @cancelOmniauthInAppBrowserListeners()
 
             # must extend existing object for scoping reasons
             angular.extend @user, user
@@ -557,39 +675,52 @@ angular.module('ng-token-auth', ['ipCookie'])
 
           # abstract persistent data store
           persistData: (key, val, configName) ->
-            switch @getConfig(configName).storage
-              when 'localStorage'
-                $window.localStorage.setItem(key, JSON.stringify(val))
-              else
-                ipCookie(key, val, {path: '/'})
-
+            if @getConfig(configName).storage instanceof Object
+              @getConfig(configName).storage.persistData(key, val, @getConfig(configName))
+            else
+              switch @getConfig(configName).storage
+                when 'localStorage'
+                  $window.localStorage.setItem(key, JSON.stringify(val))
+                else
+                  ipCookie(key, val, {path: '/', expires: 9999, expirationUnit: 'days'})
 
           # abstract persistent data retrieval
           retrieveData: (key) ->
-            switch @getConfig().storage
-              when 'localStorage'
-                JSON.parse($window.localStorage.getItem(key))
-              else ipCookie(key)
-
+            if @getConfig().storage instanceof Object
+              @getConfig().storage.retrieveData(key)
+            else
+              switch @getConfig().storage
+                when 'localStorage'
+                  JSON.parse($window.localStorage.getItem(key))
+                else ipCookie(key)
 
           # abstract persistent data removal
           deleteData: (key) ->
+            if @getConfig().storage instanceof Object
+              @getConfig().storage.deleteData(key);
             switch @getConfig().storage
               when 'localStorage'
                 $window.localStorage.removeItem(key)
               else
                 ipCookie.remove(key, {path: '/'})
 
-
           # persist authentication token, client id, uid
           setAuthHeaders: (h) ->
             newHeaders = angular.extend((@retrieveData('auth_headers') || {}), h)
-            @persistData('auth_headers', newHeaders)
+            result = @persistData('auth_headers', newHeaders)
 
+            expiry = @getExpiry()
+            now    = new Date().getTime()
 
-          # ie8 + ie9 cannot use xdomain postMessage
-          useExternalWindow: ->
-            not (@getConfig().forceHardRedirect || $window.isIE())
+            if expiry > now
+              $timeout.cancel @timer if @timer?
+
+              @timer = $timeout (=>
+                @validateUser {config: @getSavedConfig()}
+              ), parseInt (expiry - now)
+
+            result
+
 
 
           initDfd: ->
@@ -649,7 +780,14 @@ angular.module('ng-token-auth', ['ipCookie'])
             c   = undefined
             key = 'currentConfigName'
 
-            if $window.localStorage
+            # accessing $window.localStorage will
+            # throw an error if localStorage is disabled
+            hasLocalStorage = false
+            try
+              hasLocalStorage = !!$window.localStorage
+            catch error
+
+            if hasLocalStorage
               c ?= JSON.parse($window.localStorage.getItem(key))
 
             c ?= ipCookie(key)
@@ -723,7 +861,7 @@ angular.module('ng-token-auth', ['ipCookie'])
     # disable IE ajax request caching for each of the necessary http methods
     angular.forEach(httpMethods, (method) ->
       $httpProvider.defaults.headers[method] ?= {}
-      $httpProvider.defaults.headers[method]['If-Modified-Since'] = '0'
+      $httpProvider.defaults.headers[method]['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT'
     )
   ])
 

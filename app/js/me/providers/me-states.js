@@ -12,7 +12,14 @@
         name: "home",
         abstract: true,
         templateUrl: view_url + "/layout.html",
-        controller: "homeCtrl"
+        controller: "homeCtrl",
+        onEnter: [
+          "$auth", "$location", function($auth, $location) {
+            return $auth.validateUser()["catch"](function() {
+              return console.log("here");
+            });
+          }
+        ]
       };
       dashboard = {
         name: "home.dashboard",
@@ -163,9 +170,7 @@
         name: "home.saved_posts.all",
         url: "^/saved/posts",
         views: {
-          "posts": {
-            controller: "savedCtrl",
-            template: '<post ng-repeat="post in page.posts track by post.id" post="post" post-index="$index" layout="row" layout-sm="column" flex="flex" id="post-{{post.id}}" class="post"></post></md-content>',
+          "@home": {
             resolve: {
               Posts: [
                 "PostResource", "$stateParams", function(PostResource, $stateParams) {
@@ -174,7 +179,9 @@
                   }).$promise;
                 }
               ]
-            }
+            },
+            templateUrl: "../app/partials/shared/postList.html",
+            controller: "postListCtrl as ctrl"
           }
         }
       };
@@ -196,8 +203,8 @@
         },
         views: {
           "@home": {
-            templateUrl: view_url + "/submissions.html",
-            controller: "submissionsCtrl"
+            templateUrl: "../app/partials/shared/postList.html",
+            controller: "postListCtrl as ctrl"
           }
         }
       };

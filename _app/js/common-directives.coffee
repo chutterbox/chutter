@@ -1,198 +1,22 @@
 #common directives used by all 3 apps
 
 app = angular.module("Chutter")
+#         $scope.post.currentMedia.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
 
-app.directive 'post', ["MediaControls", "PostResource", "Page", "audio", "WrapperDiv", (MediaControls, PostResource, Page, audio, WrapperDiv) ->
+app.directive "commentList", () ->
   restrict: "E"
-  scope: 
-    post: "="
-    postIndex: "="
-
-  templateUrl: "../app/partials/shared/post.html"
-
-  link: ($scope, element, attrs) ->
-    $scope.post.elements = {}
-    $scope.post.elements["post"] = element[0]
-    $scope.post.toggled = false
-    _.each element[0].children, (child) ->
-      $scope.post.elements[child.className] = child
-    if $scope.post.media.length > 0
-      $scope.post.currentMedia = $scope.post.media[0]
-    else
-      $scope.post.currentMedia = {format: "body", body: $scope.post.body}
-    
-    $scope.post.elements.postcontent = $scope.post.elements.main.children[1]
-    $scope.post.elements.middle      = $scope.post.elements.main.children[0] 
-      
-    if $scope.post.currentMedia
-      if $scope.post.currentMedia.thumbnail_link
-        $scope.post.elements.postcontent.style.backgroundImage = "url("+$scope.post.currentMedia.thumbnail_link+")"
-        $scope.post.elements.postcontent.style.backgroundSize = "cover"
-        $scope.post.elements.postcontent.style.backgroundPosition = "50%"
-      if $scope.post.currentMedia.format is "music"
-        $scope.post.currentMedia.audio = new audio("#{$scope.post.currentMedia.stream_link}?client_id=d26dfbcb4ff9b9c8e712bcbcc37db120")
-
-    $scope.$watch "post.zoomValue", (newVal, oldVal) ->
-      if newVal and newVal != oldVal
-        if newVal is 0
-          newVal = 1
-        val = newVal/10
-        #if the post is being zoomed up, beyond 2, wrap its ancestors in a div
-        if $scope.post.toggled and oldVal != newVal
-          $scope.wrapperDiv = new WrapperDiv
-          elms = _.rest(Page.posts, $scope.postIndex + 1).map (post) ->
-            $scope.wrapperDiv.appendChild(post.elements.post)
-          $scope.post.elements.post.parentNode.insertBefore($scope.wrapperDiv, $scope.post.elements.post.nextSibling)
-
-        window.requestAnimationFrame () -> 
-          #rotate firefox hack: 
-          #http://alexmatchneer.com/blog/2012/08/07/speeding-up-ff-css3-transform-transitions-with-rotate/
-          $scope.post.elements.postcontent.style.cssText +=  
-            "transform: scale(#{val});-webkit-transform: scale(#{val}); -moz-transform: scale(#{val}) rotate(0.01deg);"
-          $scope.post.elements.middle.style.cssText += 
-            "transform: scale(#{1-val});-webkit-transform: scale(#{1-val}); -moz-transform: scale(#{1-val}) rotate(0.01deg);"
-        
-        $scope.setXTranslations()
-        if $scope.post.currentMedia.format != "video" and (newVal > 1 and (!oldVal or oldVal <= 1))
-          #children[0] is always the image tag since we use ng-if to toggle between media types
-          #this is needed in order to translate the ancestor divs by an additional amount since the
-          #image will take up an unpredictable amount of vertical space.
-          $scope.post.elements.postcontent.children[0].onload = () ->
-            setTimeout () ->
-              $scope.$apply () -> 
-                $scope.setXTranslations()
-            , 350  
-    
-    $scope.$watch "post.toggled", (newVal) ->
-        if newVal is true
-          #todo if mobile
-          if $scope.post.currentMedia.audio
-            $scope.post.currentMedia.audio.play()
-        else if newVal is false and $scope.post.currentMedia.audio
-          $scope.post.currentMedia.audio.pause()
-
-    $scope.post.toggleExpand = () ->
-      if $scope.post.zoomValue is 10
-        $scope.post.zoomValue = 5
-      else
-        $scope.post.zoomValue = 10
-
-
-    $scope.setXTranslations = () ->
-      originalScaleValue = 1
-      #because it's already offset by the height of a post
-      originalHeight = 100
-      
-      if originalScaleValue is $scope.post.zoomValue
-        xTranslation = 0
-      else
-        currentMediaHeight = $scope.post.elements.postcontent.children[0].offsetHeight
-        if currentMediaHeight > 0
-          newHeight = currentMediaHeight
-        else
-          newHeight = $scope.post.elements.postcontent.offsetHeight
-
-        xTranslation = ((newHeight * ($scope.post.zoomValue/10)) - originalHeight) + 35 #TODO: magic number 35 needs to be fixed here 
-      
-      window.requestAnimationFrame () ->
-        $scope.wrapperDiv.style.cssText += 
-          "transform: translateY(#{xTranslation}px);-webkit-transform: translateY(#{xTranslation}px);-moz-transform: translateY(#{xTranslation}px) rotate(0.01deg);"
-  
-
-
-    $scope.post.updateVote = (vote) ->
-      if $scope.post.vote == vote 
-        vote = 0
-      $scope.post.vote = vote
-      PostResource.vote({id: $scope.post.id, vote: vote}) 
-
-    $scope.post.toggleSave = () ->
-      if $scope.user and $scope.user.id
-        if $scope.post.saved
-          $scope.post.saved = false
-          PostResource.unsave_post({id: $scope.post.id})
-        else
-          $scope.post.saved = true
-          PostResource.save_post({id: $scope.post.id})
-      else
-        $scope.$emit ('auth:show-signin')
- 
-    $scope.post.toggle = (post) ->
-      preferredScaleValue = if $scope.post.currentMedia.format is "music" then 4 else 5
-      #unzoom the zoomed post
-      if Page.selectedPost is $scope.post
-        if Page.selectedPost.zoomValue != 1
-          Page.selectedPost.zoomValue = 1
-          Page.selectedPost.toggled = false
-
-        else
-          Page.selectedPost.zoomValue = preferredScaleValue
-          Page.selectedPost.toggled = true
-      else 
-        #otherwise unzoom other post
-        if Page.selectedPost
-          #wrap new post contents
-          if Page.selectedPost.wrapperDiv
-            range = document.createRange()
-            range.selectNodeContents(Page.selectedPost.wrapperDiv)
-            frag = range.extractContents()
-            Page.selectedPost.wrapperDiv.parentNode.replaceChild(frag, Page.selectedPost.wrapperDiv)
-
-          Page.selectedPost.toggled = false
-          Page.selectedPost.zoomValue = 1
-          $scope.post.zoomValue = preferredScaleValue
-          Page.selectedPost = $scope.post
-          Page.selectedPost.toggled = true
-
-
-        else
-          Page.selectedPost = $scope.post
-          Page.selectedPost.zoomValue = preferredScaleValue
-          Page.selectedPost.toggled = true
-
-
-  
- 
-
-  controller: ["$scope", "$rootScope", "$mdBottomSheet", ($scope, $rootScope, $mdBottomSheet) ->
-      $scope.user = $rootScope.user
-
-      $scope.post.moderate = () ->
-        if $scope.user.moderator
-          $mdBottomSheet.show({
-            templateUrl: '../app/partials/shared/modSheet.html'
-            #has to have leading digit on id
-            parent: angular.element(document.body)
-            disableParentScroll: true
-            locals:
-              entityable: $scope.post
-              entityableType: "post"
-            controller: "modSheetCtrl"
-          })
-      $scope.post.report = () ->
-        $mdBottomSheet.show({
-          templateUrl: '../app/partials/shared/reportSheet.html'
-          #has to have leading digit on id
-          parent: angular.element(document.body)
-          disableParentScroll: true
-          locals:
-            entityable: $scope.post
-            entityableType: "post"
-          controller: "reportSheetCtrl"
-        })
-
-  
-  ]
-]
-
+  controller: "commentListCtrl as commentListCtrl"
 
 app.directive 'comment', ["$compile", ($compile) ->
   restrict: "E"
   scope: 
     comment: "="
     parent: "="
+    post: "="
+  require: "^commentList"
   templateUrl: "../app/partials/shared/comments/comment.html"
-  link: ($scope, $element) ->
+  link: ($scope, $element, attrs, commentListCtrl) ->
+    $scope.commentListCtrl = commentListCtrl
     #apparently stack overflow thinks this is the best way to tell if the object property is an array or object literal
     #redis cjson.encode returns nested tables (from lua) as json object literals, when they should be arrays. depending
     #on the severity of this, we may need to move this into a more general approach
@@ -204,7 +28,7 @@ app.directive 'comment', ["$compile", ($compile) ->
         when 2,6,12 then $scope.comment.depthColor = 1
         when 3,7,13 then $scope.comment.depthColor = 2
         when 4,8,14 then $scope.comment.depthColor = 3
-      $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="comment" comment="child"></comment>') $scope, (cloned, scope) ->
+      $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->
          $element.append(cloned) 
     $scope.comment.elements = {}
     $scope.comment.element = $element[0]
@@ -215,12 +39,13 @@ app.directive 'comment', ["$compile", ($compile) ->
     $scope.comment.childIds = _.map $scope.comment.children, (child) ->
       return "c#{child.path}"
 
-    $scope.toggle = ->
+
+    $scope.comment.toggle = ->
       if $scope.comment.open
         $scope.comment.open = false
         window.requestAnimationFrame () ->
-          $scope.comment.elements.main.className = "main active"
-          $scope.comment.elements.collapsed.className = "collapsed active"
+          $scope.comment.elements["main layout layout-row"].className = "main layout layout-row active"
+          $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill active"
           _.each $scope.comment.childIds, (id) ->
             document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk"
           $scope.comment.element.setAttribute("collapsed", true)
@@ -229,57 +54,12 @@ app.directive 'comment', ["$compile", ($compile) ->
         $scope.comment.open = true
         window.requestAnimationFrame () ->
           $scope.comment.element.setAttribute("collapsed", false)
-          $scope.comment.elements.main.className = "main"
-          $scope.comment.elements.collapsed.className = "collapsed"
+          $scope.comment.elements["main layout layout-row"].className = "main layout layout-row"
+          $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill"
           _.each $scope.comment.childIds, (id) ->
             document.getElementById(id).className = "ng-scope ng-isolate-scope"
 
-  controller: ["$scope", "CommentResource", "$mdBottomSheet", "$rootScope", ($scope, CommentResource, $mdBottomSheet, $rootScope) ->
-    $scope.user = $rootScope.user
-    $scope.comment.updateVote = (vote) -> 
-      if $scope.comment.vote == vote 
-        vote = 0
-      $scope.comment.vote = vote
-      CommentResource.vote({id: $scope.comment.id, vote: vote}) 
-    
-    $scope.comment.reply = () ->
-      $mdBottomSheet.show({
-        templateUrl: '../app/partials/shared/comments/replyPanel.html'
-        clickOutsideToClose: true
-        preserveScope: true
-        disableParentScroll: true
-        parent: angular.element(document.body)
-        controller: "replyCtrl"
-        scope: $scope
-      })
-    $scope.comment.moderate = () ->
-      #validations aren't super important here, because ng-if contols mod button display
-      #and if they actually do get to the mod panel the server side validations would ensure
-      #they're a moderator
-      if $scope.user
-        $mdBottomSheet.show({
-          templateUrl: '../app/partials/shared/modSheet.html'
-          #has to have leading digit on id
-          parent: angular.element(document.body)
-          disableParentScroll: true
-          locals:
-            entityable: $scope.comment
-            entityableType: "comment"
-          controller: "modSheetCtrl"
-        })
-  ]
-]  
- 
-
-
-app.directive "mediaControls", ["MediaControls", (MediaControls) ->
-  restrict: "E"
-  templateUrl: "../app/partials/main/mediaPlayer.html"
-  link: (scope, element, attrs) ->
-    MediaControls.element = element[0]
-  controller: ["$scope", "MediaControls", ($scope, MediaControls) ->
-    $scope.mediaControls = MediaControls
-
-
-  ]
-]
+    $scope.comment.appendFirstChild = ->
+      $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->
+        $element.append(cloned) 
+] 

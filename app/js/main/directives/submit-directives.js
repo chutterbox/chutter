@@ -3,27 +3,11 @@
 
   app = angular.module("MainApp");
 
-  app.directive("imageSubmitForm", function() {
-    return {
-      restrict: "E",
-      templateUrl: "/partials/main/submit/image.html",
-      controller: "imageSubmitCtrl"
-    };
-  });
-
   app.directive("musicSubmitForm", function() {
     return {
       restrict: "E",
       templateUrl: "/partials/main/submit/music.html",
       controller: "musicSubmitCtrl"
-    };
-  });
-
-  app.directive("videoSubmitForm", function() {
-    return {
-      restrict: "E",
-      templateUrl: "/partials/main/submit/video.html",
-      controller: "videoSubmitCtrl"
     };
   });
 
@@ -35,11 +19,11 @@
     };
   });
 
-  app.directive("webpageSubmitForm", function() {
+  app.directive("linkSubmitForm", function() {
     return {
       restrict: "E",
-      templateUrl: "/partials/main/submit/webpage.html",
-      controller: "webpageSubmitCtrl"
+      templateUrl: "/partials/main/submit/link.html",
+      controller: "linkSubmitCtrl"
     };
   });
 

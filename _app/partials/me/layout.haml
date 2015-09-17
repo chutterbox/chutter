@@ -1,52 +1,5 @@
-%md-content{layout: "row", flex: true, layout-align: "end end"}
-  %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
-    .md-toolbar-tools{ng-hide: "user && user.id", layout: "row"}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-        .nav-list-item
-          %md-button#logo{aria-label: "Home", style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
-            %img{ng-src: "/img/logo.png", hide-sm: "true"}
-      %span{flex: true}
-      .toolbar-container{layout: "row", layout-align: "end end"}
-        %md-button{ng-click: "signIn()"}
-          Sign In
-    
-    .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item
-          %md-button#logo{aria-label: "Home", style: "background-color: transparent;", href: "/", layout: "column", layout-align: "center center"}
-            %img{ng-src: "/img/logo.png", hide-sm: "true"}
-      %span{flex: true}
-      .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-        %md-button{aria-label: "Moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
-          moderation
-        %md-button{aria-label: "Management", ng-if: "user.manager", href: "/management", target: "_self"}
-          management
-        %md-button{aria-label: "Me", href: "/me/notifications", ng-bind: "user.username", target: "_self"}
-        %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-          %i.fa.fa-envelope-o.fa-fw
-          %md-tooltip
-            Messages
-        %md-button{ng-click: "logout()", hide-sm: true}
-          %i.fa.fa-sign-out.fa-fw
-          %md-tooltip
-            Log out
-    .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-        %span{ng-bind: "::user.username", flex: true}
-        %span{flex: true}
-      %span{flex: true}
-      .toolbar-container{layout: "row", layout-align: "center center", ng-if: "$state.current.name.indexOf('conversations') > -1"}
-        .nav-list-item{layout: "row"}
-          %md-button{layout: "row", layout-align: "center start", ui-sref: "home.conversations"}
-            %p Conversations
-          %md-button.secondary-action.md-icon-button{layout: "row", layout-align: "center center", ui-sref: "home.conversations.compose"}
-            %span.ion-ios-compose{aria-controls: "compose", aria-label: "compose message"} 
-      .toolbar-container{layout: "row", layout-align: "center center", ng-if: "$state.current.name.indexOf('notifications') > -1"}
-        .nav-list-item{layout: "row"}
-          %md-button{layout: "row", layout-align: "center start"}
-            %p
-              Notifications
-
+%chutter-toolbar
+%md-content{layout: "row", flex: true}
   %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
     %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
       .nav-list-item

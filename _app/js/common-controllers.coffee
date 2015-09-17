@@ -57,7 +57,6 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
   $scope.closeModSheet = () ->
     $mdBottomSheet.hide()
 
-
 ]
 
 app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entityableType", "CommunityResource", "PostResource", "ActivityLogEntry", ($mdBottomSheet, $scope, entityable, entityableType, CommunityResource, PostResource, ActivityLogEntry) ->
@@ -79,76 +78,37 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
     if entityableType is "post"
       PostResource.report($scope.activityLogEntry).$promise.then (data) ->
         if data.status is 200
-          $scope.closeSheet()
+          $scope.closeSheet(true)
           entityable.reported = true
         else
-          $scope.closeSheet()
+          $scope.closeSheet(false)
 
   
   
-  $scope.closeSheet = () ->
-    $mdBottomSheet.hide()
-
-
-]
-app.controller "commentsCtrl", ["$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", ($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) ->
-  $scope.page = Page
-  $scope.page.post = Post
-  $scope.page.comments = Comments
-  $scope.resource = CommentResource
-
-  $scope.fetchMoreComments = () ->
-  $scope.reply = () ->
-    $mdBottomSheet.show({
-      templateUrl: '/partials/shared/comments/replyPanel.html'
-      #has to have leading digit on id
-      controller: "replyCtrl"
-      disableParentScroll: true
-      #important, do not remove since we're passing in scope reference
-      preserveScope: true
-      parent: angular.element(document.body)
-      clickOutsideToClose: true
-    })
+  $scope.closeSheet = (reported) ->
+    $mdBottomSheet.hide(reported)
 
 ]
 
-app.controller "replyCtrl", ["$scope", "Page", "CommentResource", "$mdBottomSheet", ($scope, Page, CommentResource, $mdBottomSheet) ->
-  $scope.page = Page
+app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", ($scope, CommentResource, $mdBottomSheet, parentComment, post) ->
+  console.log parentComment
   $scope.newComment = 
-    post_id: $scope.page.post.id
-    parent_id: $scope.comment.id if $scope.comment && $scope.comment.id
+    post_id: post.id
+    parent_id: parentComment.id if parentComment && parentComment.id
     body: ""
   
   $scope.create = () -> 
     CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
       $mdBottomSheet.hide()
       newCreatedComment.username = newCreatedComment.user.username
-      if $scope.comment && $scope.comment.id       
-        $scope.comment.children.unshift(newCreatedComment)     
+      if parentComment && parentComment.id       
+        parentComment.children.unshift(newCreatedComment)     
       else
-        $scope.page.comments.unshift(newCreatedComment)
-
+        post.comments.unshift(newCreatedComment)
 
 ]
 
-app.controller "postsCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) ->
-  $scope.page = Page
-  $scope.page.posts = Posts
-  $scope.fetchMorePosts = () ->
-    $scope.page.paginator.start_fetch()
-    if Page.scope is "all"
-      PostResource.query({sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
-    else if Page.scope is "network"
-      NetworkResource.posts({id: $stateParams.network, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
-    else if Page.scope is "community"
-      CommunityResource.posts({id: $stateParams.community, sort: Page.paginator.current_sort, offset: Page.paginator.offset}).$promise.then (data) ->
-        Page.posts = Page.posts.concat(data)
-        Page.paginator.finish_fetch(data.length)
-]
+
 
 app.controller "subscriptionDialogCtrl", ["$scope", ($scope) ->
 

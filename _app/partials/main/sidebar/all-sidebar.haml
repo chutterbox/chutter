@@ -7,8 +7,10 @@
         %h5.md-title
           Chutter.co
       .light.sub-header
-        Chutter is a new place to share the best links on the web.
-    %md-button.md-primary{ui-sref: "create"}
+        Chutter is a new place to share the best links on the web. 
+    %md-button.md-primary.md-raised.md-hue-1{ui-sref: "home.submit", flex: "100"}
+      Submit a link
+    %md-button.md-primary.md-raised.md-hue-2{ui-sref: "create", flex: "100"}
       Create a community
   .sub-goal{layout: "column"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
@@ -23,22 +25,6 @@
     %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
     %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
       Help keep Chutter running
-  .howtouse
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button.md-primary
-          .icon.ion-ios-pulse-strong
-        %h5.md-title
-          How to use 
-      .color-light.sub-header
-        %md-list
-          %md-list-item 
-            \- click the post images to see the content
-          %md-list-item
-            \-  A network is a collection of communities e.g. /n/videos
-          %md-list-item
-            \- Click the pink-ish arrow at the top of this sidebar to submit (while signed in)
-
   .news{ng-if: "false"}
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}

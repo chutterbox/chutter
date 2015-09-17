@@ -18,6 +18,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           NetworkResource.query().$promise
         ]
 
+    # $scope.$on 'auth:login-success', ->
+    #   $scope.networks = $auth.user.networks
 
     all =
       name: "home.all"
@@ -31,6 +33,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Page.scope = "all"
         Page.title = "All"
         Page.mainToolbar = ""
+        Page.network = {}
         Page.secondaryToolbar = "md-hue-1"
       ]
     all_hot =
@@ -39,14 +42,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       onEnter: ["Page", (Page) ->
         Page.paginator.reset("hot")
       ]
+      resolve:
+        Posts: ["PostResource", (PostResource) ->
+          PostResource.query({sort: "hot"}).$promise
+        ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
-          resolve:
-            Posts: ["PostResource", (PostResource) ->
-              PostResource.query({sort: "hot"}).$promise
-            ]
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
+  
 
     all_new = 
       name: "home.all.new"
@@ -56,8 +60,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["PostResource", (PostResource) ->
               PostResource.query({sort: "new"}).$promise
@@ -70,8 +74,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["PostResource", (PostResource) ->
               PostResource.query({sort: "top"}).$promise
@@ -107,8 +111,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
@@ -121,8 +125,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
@@ -136,8 +140,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "top"}).$promise
@@ -183,8 +187,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
@@ -197,8 +201,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]      
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "new"}).$promise
@@ -212,8 +216,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "top"}).$promise
@@ -245,6 +249,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
           NetworkResource.query()
         ]
+    
     comments = 
       name: "home.community.comments"
       url: "/:id"
@@ -263,7 +268,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       views:
         "@home": 
           templateUrl: "#{view_url}/comments.html"
-          controller: "commentsCtrl"
+          controller: "commentsPageCtrl as ctrl"
         "right-rail@home": 
           template: "<comments-sidebar page='page'></comments-sidebar>"
     

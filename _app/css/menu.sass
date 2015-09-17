@@ -8,6 +8,7 @@
   transition-property: height
 
 .md-sidenav-left,
+.md-sidenav-right,
 .toolbar-container
 
   .nav-list-item
@@ -45,16 +46,16 @@
       padding: 0 1.75vw
       font-size: 0.8em
 
-.md-sidenav-left
+.md-sidenav-left,
+.md-sidenav-right
   .nav-list-item
+    &#header
+      .md-button
+        p
+          font-weight: 500
     display: block
     min-height: 48px
     height: 48px
-    .secondary-action.md-icon-button
-      display: none
-    &.opened
-      .secondary-action.md-icon-button
-        display: inline-block
     .md-button
       min-height: 48px
       height: 48px
@@ -62,12 +63,12 @@
 
 .toolbar-container
   .nav-list-item
-    height: 64px
-    line-height: 64px
+    height: 48px
+    line-height: 48px
     .md-button
       min-height: 48px
-      height: 64px
-      line-height: 64px
+      height: 48px
+      line-height: 48px
 
 .md-sidenav-right
   .detailed-list-item

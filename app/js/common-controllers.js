@@ -89,46 +89,26 @@
         if (entityableType === "post") {
           return PostResource.report($scope.activityLogEntry).$promise.then(function(data) {
             if (data.status === 200) {
-              $scope.closeSheet();
+              $scope.closeSheet(true);
               return entityable.reported = true;
             } else {
-              return $scope.closeSheet();
+              return $scope.closeSheet(false);
             }
           });
         }
       };
-      return $scope.closeSheet = function() {
-        return $mdBottomSheet.hide();
-      };
-    }
-  ]);
-
-  app.controller("commentsCtrl", [
-    "$scope", "Comments", "Post", "Page", "$mdBottomSheet", "CommentResource", function($scope, Comments, Post, Page, $mdBottomSheet, CommentResource) {
-      $scope.page = Page;
-      $scope.page.post = Post;
-      $scope.page.comments = Comments;
-      $scope.resource = CommentResource;
-      $scope.fetchMoreComments = function() {};
-      return $scope.reply = function() {
-        return $mdBottomSheet.show({
-          templateUrl: '/partials/shared/comments/replyPanel.html',
-          controller: "replyCtrl",
-          disableParentScroll: true,
-          preserveScope: true,
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
+      return $scope.closeSheet = function(reported) {
+        return $mdBottomSheet.hide(reported);
       };
     }
   ]);
 
   app.controller("replyCtrl", [
-    "$scope", "Page", "CommentResource", "$mdBottomSheet", function($scope, Page, CommentResource, $mdBottomSheet) {
-      $scope.page = Page;
+    "$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", function($scope, CommentResource, $mdBottomSheet, parentComment, post) {
+      console.log(parentComment);
       $scope.newComment = {
-        post_id: $scope.page.post.id,
-        parent_id: $scope.comment && $scope.comment.id ? $scope.comment.id : void 0,
+        post_id: post.id,
+        parent_id: parentComment && parentComment.id ? parentComment.id : void 0,
         body: ""
       };
       return $scope.create = function() {
@@ -137,49 +117,12 @@
         }).$promise.then(function(newCreatedComment) {
           $mdBottomSheet.hide();
           newCreatedComment.username = newCreatedComment.user.username;
-          if ($scope.comment && $scope.comment.id) {
-            return $scope.comment.children.unshift(newCreatedComment);
+          if (parentComment && parentComment.id) {
+            return parentComment.children.unshift(newCreatedComment);
           } else {
-            return $scope.page.comments.unshift(newCreatedComment);
+            return post.comments.unshift(newCreatedComment);
           }
         });
-      };
-    }
-  ]);
-
-  app.controller("postsCtrl", [
-    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource) {
-      $scope.page = Page;
-      $scope.page.posts = Posts;
-      return $scope.fetchMorePosts = function() {
-        $scope.page.paginator.start_fetch();
-        if (Page.scope === "all") {
-          return PostResource.query({
-            sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
-          });
-        } else if (Page.scope === "network") {
-          return NetworkResource.posts({
-            id: $stateParams.network,
-            sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
-          });
-        } else if (Page.scope === "community") {
-          return CommunityResource.posts({
-            id: $stateParams.community,
-            sort: Page.paginator.current_sort,
-            offset: Page.paginator.offset
-          }).$promise.then(function(data) {
-            Page.posts = Page.posts.concat(data);
-            return Page.paginator.finish_fetch(data.length);
-          });
-        }
       };
     }
   ]);

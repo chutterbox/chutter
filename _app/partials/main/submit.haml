@@ -1,8 +1,3 @@
-%md-toolbar.md-primary{md-scroll-shrink: "true", layout-align: "center", layout: "column", ng-class: "page.secondaryToolbar"}
-  .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
-    %p
-      Submit a post
-
 %md-content#posts.primary-content{layout: "column"}
   %div{style: "width: 80%; margin: 40px auto;"}
     %md-autocomplete{flex: "true", ng-model-options: "{ debounce: 500 }", md-search-text: "query", md-items: "community in communitySearch(query)", md-min-length: "2",  md-item-text: "community.name", md-selected-item-change: "selectedCommunityChange()", md-selected-item: "selectedCommunity", placeholder: "Type a community to submit to"}
@@ -13,12 +8,8 @@
           Item not found
   %md-tabs#submit{ng-if: "selectedCommunity && selectedCommunity.id", ng-class: "page.secondaryToolbar", flex: true, layout-fill: true, md-border-bottom: true, md-dynamic-height: "false", md-no-disconnect: "true"}
     %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
-      %webpage-submit-form
-    %md-tab{ng-if: "permitted('image')", label: "Image/GIF", md-on-select: "newPost.media_attributes[0].format = 'image'"}
-      %image-submit-form
+      %link-submit-form
     %md-tab{ng-if: "permitted('discussion')", label: "Text"}
       %discussion-submit-form
     %md-tab{ng-if: "permitted('music')",label: "Music", md-on-select: "newPost.media_attributes[0].format = 'music'"}
       %music-submit-form
-    %md-tab{ng-if: "permitted('video')",label: "Video", md-on-select: "newPost.media_attributes[0].format = 'video'"}
-      %video-submit-form

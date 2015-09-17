@@ -104,11 +104,10 @@
   ]);
 
   app.controller("replyCtrl", [
-    "$scope", "Page", "CommentResource", "$mdBottomSheet", function($scope, Page, CommentResource, $mdBottomSheet) {
-      $scope.page = Page;
+    "$scope", "CommentResource", "$mdBottomSheet", "parent", "post", function($scope, CommentResource, $mdBottomSheet, parent, post) {
       $scope.newComment = {
-        post_id: $scope.page.post.id,
-        parent_id: $scope.comment && $scope.comment.id ? $scope.comment.id : void 0,
+        post_id: post.id,
+        parent_id: parent && parent.id ? parent.id : void 0,
         body: ""
       };
       return $scope.create = function() {
@@ -117,10 +116,10 @@
         }).$promise.then(function(newCreatedComment) {
           $mdBottomSheet.hide();
           newCreatedComment.username = newCreatedComment.user.username;
-          if ($scope.comment && $scope.comment.id) {
-            return $scope.comment.children.unshift(newCreatedComment);
+          if (parent && parent.id) {
+            return parent.children.unshift(newCreatedComment);
           } else {
-            return $scope.page.comments.unshift(newCreatedComment);
+            return post.comments.unshift(newCreatedComment);
           }
         });
       };

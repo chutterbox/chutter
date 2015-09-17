@@ -1,10 +1,10 @@
 %md-virtual-repeat-container{style: "height: calc(100vh - 80px)"}
   .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", layout-align: "start center", md-item-size: "75"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
-      %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
+      %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
       %h6{ng-bind: "post.points"}
-      %md-button.md-icon-button.down{flex: true, aria-label: "Downvote", ng-click: "ctrl.postService.updateVote(post, -1)"}
+      %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "ctrl.postService.updateVote(post, -1)"}
         %i.icon.ion-chevron-down{ng-class: "{'active-down' : (post.vote == -1)}"}
     .postcontent.md-whiteframe-z1{ng-click: "ctrl.mediaPlayer.toggle(post, $event)", ng-style: "{'background-image': ctrl.postService.getBackgroundImage(post)}", id: "{{$index}}"}
       %i.icon.ion-ios-paper{ng-hide: "post.media.length > 0"}

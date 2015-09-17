@@ -1,8 +1,8 @@
 %div{style: "z-index: 120;", ng-include: "'../app/partials/shared/post.html'"}
 
 %md-content#comments.secondary-content
-  #comment-wrapper
-    %comment.primary-content{parent: "", layout: "column", ng-repeat: "child in ctrl.comments",id: "c{{child.path}}", comment: "child"}
+  %comment-list#comment-wrapper
+    %comment.primary-content{parent: "", layout: "column", ng-repeat: "child in commentListCtrl.comments",id: "c{{child.path}}", comment: "child", post: "post"}
 
 %md-button.md-fab.post-comment{ng-if: "user && user.id", aria-label: "Comment", ng-click: "ctrl.reply()"}
   %i.icon.ion-ios-chatbubble

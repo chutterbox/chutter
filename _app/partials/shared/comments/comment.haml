@@ -12,12 +12,12 @@
 
 .main{layout: "row"}
   .vote{layout: "column", layout-fill: true}
-    %md-button.md-icon-button{flex: "30", aria-label: "Upvote",  ng-click: "comment.updateVote(1)"}
+    %md-button.md-icon-button{flex: "30", aria-label: "Upvote",  ng-click: "ctrl.updateVote(1)"}
       .icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
-    %md-button.md-icon-button{flex: "30", aria-label: "Downvote", ng-click: "comment.updateVote(-1)"}
+    %md-button.md-icon-button{flex: "30", aria-label: "Downvote", ng-click: "ctrl.updateVote(-1)"}
       .icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
     %span{flex: true}
-    %md-button.md-icon-button{ng-click: "toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
+    %md-button.md-icon-button{ng-click: "comment.toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
       .icon.ion-ios-minus-outline
   .content{layout: "column", layout-fill: true}
     .header{layout: "row"}
@@ -28,13 +28,18 @@
       %span.time{layout-align: "end", am-time-ago: "comment.created_at"}
     .body{marked: "comment.body"}
     .footer
-      %a{ng-click: "comment.reply()"}
-        reply
+      %a
+        permalink
+      %a{ng-click: "comment.moderate()", ng-if: "comment.moderates && !comment.restricted_from_removing_comments"}
+        mod
       %a
         save
       %a
         report
+      %a{ng-if: "::(user && user.id && (user.id == comment.user_id))"}
+        edit
       %a{ng-click: "resource.delete({id: post.id})"}
         delete
-      %a{ng-click: "comment.moderate()", ng-if: "comment.moderates && !comment.restricted_from_removing_comments"}
-        mod
+
+      %a{ng-click: "commentListCtrl.reply(comment)"}
+        reply

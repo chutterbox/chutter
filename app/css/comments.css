@@ -321,8 +321,8 @@ md-toolbar#networks-bar {
 
 comment,
 comment-embed {
+  margin-left: 0;
   background-color: #fff;
-  margin-left: 1.5%;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -332,6 +332,9 @@ comment-embed {
   transform-origin: top left;
   -webkit-transform-origin: top left;
   -moz-transform-origin: top left; }
+  comment.child,
+  comment-embed.child {
+    margin-left: 1.5%; }
   comment .collapsed,
   comment-embed .collapsed {
     display: none; }

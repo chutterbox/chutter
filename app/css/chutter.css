@@ -126,6 +126,11 @@ md-toolbar#me-toolbar {
         margin: 0.5vw;
         position: absolute;
         right: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #secondary-header,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #secondary-header,
+    md-toolbar#management-toolbar .md-toolbar-tools #secondary-header,
+    md-toolbar#me-toolbar .md-toolbar-tools #secondary-header {
+      padding-top: 18px; }
   md-toolbar#main-toolbar #logo,
   md-toolbar#moderation-toolbar #logo,
   md-toolbar#management-toolbar #logo,

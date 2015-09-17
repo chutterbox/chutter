@@ -59,7 +59,6 @@
             return "c" + child.path;
           });
           $scope.comment.toggle = function() {
-            console.log($scope.comment.elements);
             if ($scope.comment.open) {
               $scope.comment.open = false;
               return window.requestAnimationFrame(function() {

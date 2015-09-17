@@ -41,7 +41,6 @@ app.directive 'comment', ["$compile", ($compile) ->
 
 
     $scope.comment.toggle = ->
-      console.log $scope.comment.elements
       if $scope.comment.open
         $scope.comment.open = false
         window.requestAnimationFrame () ->

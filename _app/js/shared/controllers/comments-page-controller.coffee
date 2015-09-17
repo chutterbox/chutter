@@ -20,15 +20,16 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
   @user = $rootScope.user
   @resource = CommentResource
   @mediaPlayer = MediaPlayer
-  @reply = (parent) ->
+  @reply = (parentComment) ->
+    console.log parent
     $mdBottomSheet.show({
       templateUrl: '/partials/shared/comments/replyPanel.html'
       #has to have leading digit on id
       controller: "replyCtrl"
       disableParentScroll: true
       locals:
-        parent: parent
         post: @post
+        parentComment: parentComment
       #important, do not remove since we're passing in scope reference
       preserveScope: true
       parent: angular.element(document.body)

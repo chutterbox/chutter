@@ -90,18 +90,19 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
 
 ]
 
-app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "parent", "post", ($scope, CommentResource, $mdBottomSheet, parent, post) ->
+app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", ($scope, CommentResource, $mdBottomSheet, parentComment, post) ->
+  console.log parentComment
   $scope.newComment = 
     post_id: post.id
-    parent_id: parent.id if parent && parent.id
+    parent_id: parentComment.id if parentComment && parentComment.id
     body: ""
   
   $scope.create = () -> 
     CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
       $mdBottomSheet.hide()
       newCreatedComment.username = newCreatedComment.user.username
-      if parent && parent.id       
-        parent.children.unshift(newCreatedComment)     
+      if parentComment && parentComment.id       
+        parentComment.children.unshift(newCreatedComment)     
       else
         post.comments.unshift(newCreatedComment)
 

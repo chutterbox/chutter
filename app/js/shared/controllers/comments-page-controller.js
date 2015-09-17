@@ -24,14 +24,15 @@
       this.user = $rootScope.user;
       this.resource = CommentResource;
       this.mediaPlayer = MediaPlayer;
-      this.reply = function(parent) {
+      this.reply = function(parentComment) {
+        console.log(parent);
         return $mdBottomSheet.show({
           templateUrl: '/partials/shared/comments/replyPanel.html',
           controller: "replyCtrl",
           disableParentScroll: true,
           locals: {
-            parent: parent,
-            post: this.post
+            post: this.post,
+            parentComment: parentComment
           },
           preserveScope: true,
           parent: angular.element(document.body),

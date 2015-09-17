@@ -35,6 +35,18 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
       parent: angular.element(document.body)
       clickOutsideToClose: true
     })
+  @edit = (comment) ->
+    $mdBottomSheet.show({
+      templateUrl: '/partials/shared/comments/editPanel.html'
+      #has to have leading digit on id
+      disableParentScroll: true
+      locals:
+        comment: comment
+      #important, do not remove since we're passing in scope reference
+      preserveScope: true
+      parent: angular.element(document.body)
+      clickOutsideToClose: true
+    })
   @updateVote = (comment, vote) -> 
     if comment.vote == vote 
       vote = 0

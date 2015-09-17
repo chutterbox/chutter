@@ -34,7 +34,8 @@
               Chutter Pink
 
       %md-button{aria-label: "notifications", href: "/me/notifications", target: "_self"}
-        {{::user.username}}
+        {{user.username}} ({{user.points}})
+        
       %md-button.md-icon-button{aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true}
         %i.icon.ion-android-mail
         %md-tooltip

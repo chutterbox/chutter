@@ -4,7 +4,7 @@
       .title{layout: "row", flex: 100, layout-align: "space-between center"}
         %h5.md-title{ng-bind: "'/n/'+page.network.slug"}
       .light.sub-header{ng-bind: "'The ' + page.network.name + ' network'"}
-    %md-button.md-primary.md-hue-1.md-raised{flex: "100"}
+    %md-button.md-primary.md-hue-1.md-raised{flex: "100", ui-sref: "home.submit"}
       Submit a link
     %md-button.md-primary.md-hue-2.md-raised{flex: "100"}
       Create a community

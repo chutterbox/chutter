@@ -36,7 +36,7 @@
         save
       %a
         report
-      %a{ng-if: "::(user && user.id && (user.id == comment.user_id))"}
+      %a{ng-if: "::(commentListCtrl.user && commentListCtrl.user.id && (commentListCtrl.user.id == comment.user_id))", ng-click: "commentListCtrl.edit(comment)"}
         edit
       %a{ng-click: "resource.delete({id: post.id})"}
         delete

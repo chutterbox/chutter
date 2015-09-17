@@ -131,6 +131,7 @@ module.exports = (grunt) ->
           "app/partials/shared/post.html" : "_app/partials/shared/post.haml"
           "app/partials/shared/postList.html" : "_app/partials/shared/postList.haml"
           "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
+          "app/partials/shared/comments/editPanel.html" : "_app/partials/shared/comments/editPanel.haml"
           "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
           "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
           "app/partials/shared/subscriptionDialog.html" : "_app/partials/shared/subscriptionDialog.haml"

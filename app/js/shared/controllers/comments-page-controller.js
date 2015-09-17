@@ -39,6 +39,18 @@
           clickOutsideToClose: true
         });
       };
+      this.edit = function(comment) {
+        return $mdBottomSheet.show({
+          templateUrl: '/partials/shared/comments/editPanel.html',
+          disableParentScroll: true,
+          locals: {
+            comment: comment
+          },
+          preserveScope: true,
+          parent: angular.element(document.body),
+          clickOutsideToClose: true
+        });
+      };
       this.updateVote = function(comment, vote) {
         if (comment.vote === vote) {
           vote = 0;

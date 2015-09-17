@@ -6586,9 +6586,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -6654,6 +6656,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -6890,9 +6897,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -6958,6 +6967,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -7219,9 +7233,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -7287,6 +7303,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -7650,9 +7671,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -7718,6 +7741,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -8186,9 +8214,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -8254,6 +8284,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -8590,9 +8625,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -8658,6 +8695,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -9021,9 +9063,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -9089,6 +9133,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,
@@ -9375,9 +9424,11 @@ md-bottom-sheet {
 @media(max-width: 960px) {
   md-bottom-sheet {
     width: 100vw; } }
-#authenticate {
+#authenticate,
+#register {
   width: 30%; }
-  #authenticate #errors p {
+  #authenticate #errors p,
+  #register #errors p {
     font-size: 0.8em;
     color: #f44336; }
 
@@ -9443,6 +9494,11 @@ md-toolbar#me-toolbar {
   md-toolbar#management-toolbar .md-toolbar-tools,
   md-toolbar#me-toolbar .md-toolbar-tools {
     padding: 0; }
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#moderation-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#management-toolbar .md-toolbar-tools #auth-container,
+    md-toolbar#me-toolbar .md-toolbar-tools #auth-container {
+      padding: 0 16px; }
     md-toolbar#main-toolbar .md-toolbar-tools .md-button,
     md-toolbar#moderation-toolbar .md-toolbar-tools .md-button,
     md-toolbar#management-toolbar .md-toolbar-tools .md-button,

@@ -5,9 +5,11 @@
         %img{ng-src: "/img/logo.png"}
       %a#secondary-header{ng-if: "page.network && page.network.name", ng-bind: "page.network.name"}      
               
-    .toolbar-container{ng-hide: "user && user.id", layout: "row", layout-align: "end end"}
-      %md-button{aria-label: "sign in", ng-click: "signIn()"}
-        Sign In
+    .toolbar-container#auth-container{ng-hide: "user && user.id", layout: "row", layout-align: "end end"}
+      %md-button{aria-label: "sign in", ng-click: "logIn()"}
+        log in
+      %md-button{aria-label: "sign in", ui-sref: "register.welcome"}
+        sign up
     .toolbar-container{ng-show: "user && user.id", hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
       %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
         Moderation
@@ -72,6 +74,6 @@
       %md-tab{ng-repeat: "community in page.network.community_subscriptions", ui-sref: "home.community.hot({community: community.slug})"}
         %md-tab-label{layout: "row", layout-align: "space-between center"}
           %span{ng-bind: "community.name"}
-    %md-button.md-icon-button{ng-if: "page.scope != 'all'", ng-click: "editNetworkCommunities(page.network)"}
+    %md-button.md-icon-button{ng-if: "page.scope != 'all' && user && user.id", ng-click: "editNetworkCommunities(page.network)"}
       %i.icon.ion-plus-round
 

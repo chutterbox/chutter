@@ -38,4 +38,12 @@
     }
   ]);
 
+  app.controller("registrationCtrl", [
+    "$rootScope", "$scope", "$state", "$stateParams", "$auth", "$mdDialog", function($rootScope, $scope, $state, $stateParams, $auth, $mdDialog) {
+      return $scope.submitRegistration = function(user) {
+        return $auth.submitRegistration(user);
+      };
+    }
+  ]);
+
 }).call(this);

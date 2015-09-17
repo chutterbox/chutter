@@ -4,10 +4,10 @@
   app = angular.module("Chutter");
 
   app.controller("toolbarCtrl", [
-    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Page", function($auth, $scope, $mdDialog, poller, $mdToast, API, Page) {
+    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Page", "$location", function($auth, $scope, $mdDialog, poller, $mdToast, API, Page, $location) {
       $scope.page = Page;
       $scope.$on("auth:show-signin", function() {
-        return $scope.signIn;
+        return $scope.logIn;
       });
       $scope.dropdownText = function() {
         if ($scope.page.scope === "all") {
@@ -16,16 +16,18 @@
           return $scope.page.network.name;
         }
       };
-      $scope.signIn = function() {
+      $scope.logIn = function() {
         return $mdDialog.show({
           controller: 'authCtrl',
-          templateUrl: '/partials/main/authenticate.html',
+          templateUrl: '../app/partials/main/authenticate.html',
           parent: angular.element(document.body),
           clickOutsideToClose: true
         });
       };
       $scope.logout = function() {
-        return $auth.signOut();
+        return $auth.signOut().then(function() {
+          return $location.url("/");
+        });
       };
       if ($scope.user && $scope.user.id) {
         $scope.poller = poller;
@@ -85,7 +87,7 @@
       };
       $scope.editNetworks = function(ev) {
         if (!($scope.user && $scope.user.id)) {
-          return $scope.signIn();
+          return $scope.logIn();
         } else {
           return $mdDialog.show({
             controller: 'networkEditCtrl',

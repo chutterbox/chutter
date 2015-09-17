@@ -271,7 +271,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           controller: "commentsPageCtrl as ctrl"
         "right-rail@home": 
           template: "<comments-sidebar page='page'></comments-sidebar>"
-    
+    register = 
+      name: "register"
+      url: "/register"
+      templateUrl: "#{view_url}/registration/register.html"
+    welcome = 
+      name: "register.welcome"
+      url: "/welcome"
+      templateUrl: "#{view_url}/registration/welcome.html"
     # user = 
     #   name: "user"
     #   url: "/u/"
@@ -309,6 +316,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(submit)
     $stateProvider.state(create)
     $stateProvider.state(comments)
+    $stateProvider.state(register)
+    $stateProvider.state(welcome)
     # $stateProvider.state(user)
     # $stateProvider.state(user_overview)
     # $stateProvider.state(user_voted)

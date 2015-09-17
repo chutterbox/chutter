@@ -19,7 +19,7 @@ module.exports = (grunt) ->
           removeStyleLinkTypeAttributes: true
 
       main:
-        src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html', 'app/partials/main/sidebar/*.html'],
+        src: ['app/partials/main/*.html','app/partials/main/create/*.html','app/partials/main/menu/*.html','app/partials/main/submit/*.html', 'app/partials/main/sidebar/*.html', 'app/partials/main/registration/*.html'],
         dest: 'app/js/templates-main.js'
       moderation:
         src: ['app/partials/moderation/*.html', 'app/partials/moderation/community/*.html','app/partials/moderation/community/moderators*.html'],
@@ -154,6 +154,8 @@ module.exports = (grunt) ->
           "app/partials/main/menu/link.html" : "_app/partials/main/menu/link.haml"
           "app/partials/main/menu/toggle.html" : "_app/partials/main/menu/toggle.haml"
           "app/partials/main/authenticate.html" : "_app/partials/main/authenticate.haml"
+          "app/partials/main/registration/welcome.html" : "_app/partials/main/registration/welcome.haml"
+          "app/partials/main/registration/register.html" : "_app/partials/main/registration/register.haml"
           "app/partials/main/posts.html" : "_app/partials/main/posts.haml"
           "app/partials/main/networkPosts.html" : "_app/partials/main/networkPosts.haml"
           "app/partials/main/communityPosts.html" : "_app/partials/main/communityPosts.haml"

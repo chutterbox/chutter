@@ -33,3 +33,8 @@ app.controller "authCtrl", ["$rootScope", "$scope", "$state", "$stateParams", "$
     $auth.validateUser()
 
 ]
+
+app.controller "registrationCtrl", ["$rootScope", "$scope", "$state", "$stateParams", "$auth", "$mdDialog", ($rootScope, $scope, $state, $stateParams, $auth, $mdDialog) ->
+  $scope.submitRegistration = (user) -> 
+    $auth.submitRegistration(user)
+]

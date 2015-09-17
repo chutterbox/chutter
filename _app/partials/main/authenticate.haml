@@ -1,45 +1,22 @@
-%md-dialog#authenticate{aria-label: "Sign In"}
-  %md-tabs{md-dynamic-height: true,md-stretch-tabs: "always", md-swipe-content: true}
-    %md-tab{label: "sign in", layout-fill: true}
-      %md-dialog-actions
-        %md-content.md-padding
-          #errors
-            %p{ng-repeat: "error in errors", ng-bind: "error"}     
-          %form.md-padding{name: "signIn", ng-submit: "submitLogin(user)"}
-            %md-input-container
-              %label
-                Username
-              %input{ng-model: "user.username", required: true}
-            %md-input-container
-              %label
-                Password
-              %input{ng-model: "user.password", type: "password", required: true}
-            .buttons{layout: "row", layout-align: "center"}
-              %md-button{ng-click: "hideDialog()"}
-                Cancel
-              %md-button.md-primary{type: "submit"}
-                Login
+%md-dialog#authenticate{aria-label: "Log In"}
+  %form{name: "logIn", ng-submit: "submitLogin(user)"}
+    %md-dialog-content{style: "width: auto;"}
+      %h2.md-title
+        welcome back
+      #errors
+        %p{ng-repeat: "error in errors", ng-bind: "error"}     
+        %md-input-container
+          %label
+            Username
+          %input{ng-model: "user.username", required: true}
+        %md-input-container
+          %label
+            Password
+          %input{ng-model: "user.password", type: "password", required: true}
+    .md-actions{layout: "row"}
+      %md-button{ng-click: "hideDialog()"}
+        Cancel
+      %md-button.md-primary{type: "submit"}
+        Login
 
-    %md-tab{label: "sign up"}
-      %md-content.md-padding{md-layout: "column"}
-        #errors
-          %p{ng-repeat: "error in errors", ng-bind: "error"}
-
-        %form.md-padding{name: "signUp", ng-submit: "submitRegistration(user)"}
-          %md-input-container
-            %label
-              Username
-            %input{ng-model: "user.username", required: true}
-          %md-input-container
-            %label
-              Email
-            %input{ng-model: "user.email"}
-          %md-input-container
-            %label
-              Password
-            %input{ng-model: "user.password", type: "password", required: true}
-          .buttons{layout: "row", layout-align: "center"}
-            %md-button{ng-click: "hideDialog()"}
-              Cancel
-            %md-button.md-primary{type: "submit"}
-              Sign Up
+ 

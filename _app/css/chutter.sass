@@ -72,7 +72,8 @@ md-bottom-sheet
   margin: auto
   @media(max-width: 960px)
     width: 100vw
-#authenticate
+#authenticate,
+#register
   width: 30%
   #errors
     p
@@ -148,6 +149,8 @@ md-toolbar#me-toolbar
   @include min-and-max-height(48px)
   .md-toolbar-tools
     padding: 0
+    #auth-container
+      padding: 0 16px
     .md-button
       &.md-fab
         margin: 0.5vw

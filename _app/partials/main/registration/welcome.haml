@@ -1,0 +1,23 @@
+%md-content{layout: "column", layout-align: "center center"}
+  %h4.md-title 
+    Welcome to chutter
+  %h6.md-subheader
+    First things first, lets get you a sweet username.
+  #errors
+    %p{ng-repeat: "error in errors", ng-bind: "error"}
+  %form.md-padding{layout: "column", name: "signUp", ng-submit: "submitRegistration(user)"}
+    %md-input-container
+      %label
+        Username
+      %input{ng-model: "user.username", required: true}
+    %md-input-container
+      %label
+        Email (optional - for password recovery)
+      %input{ng-model: "user.email"}
+    %md-input-container
+      %label
+        Password
+      %input{ng-model: "user.password", type: "password", required: true}
+    .buttons{layout: "row", layout-align: "center"}
+      %md-button.md-primary{type: "submit"}
+        Next

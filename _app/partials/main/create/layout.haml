@@ -1,114 +1,63 @@
-%md-content{layout: "row", flex: true, layout-align: "end end"}
-  %md-toolbar.md-whiteframe-z1.md-tall#main-toolbar
-    .md-toolbar-tools{ng-hide: "user && user.id", layout: "row", flex: "100"}
-      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item{hide-sm: "true"}
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "/img/logo.png"}
-        %md-button.md-icon-button{hide-gt-sm: "true", ng-click: "toggleLeft()"}
-          %i.icon.ion-navicon
-      %span{hide-sm: "true", flex: true}
-      %div{hide-gt-sm: "true", flex: "true", layout: "row", layout-align: "center center"}
-        %md-button.md-icon-button
-          %md-icon{md-svg-src: "/img/character.svg", style: "height: 40px; width: 40px; fill: #000;"}
-      .toolbar-container{layout: "row", layout-align: "end end"}
-        %md-button{ng-click: "signIn()"}
-          Sign In
+%chutter-toolbar
+%md-content.md-whiteframe-z1#content{layout: "row", layout-fill: "true"}
+  %md-content.primary-content
+    %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
+      .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
+        .progress-bar{layout: "column", flex: true}
+          .icons-wrap{layout: "row", layout-align: "space-between"}
+            .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+                .line
+            .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
+              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
+                .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
+          .wrap{layout: "row", layout-align: "space-between"}
+            .caption
+              Network
+            .caption
+              Details
+            .caption
+              Rules
+            .caption
+              Customize
+            .caption
+              Review
 
-    .md-toolbar-tools{ng-show: "user && user.id", layout: "row", flex: "100"}
-      .toolbar-container.no-padding{layout: "row", layout-align: "center center"}
-        .nav-list-item
-          %md-button#logo{style: "background-color: transparent;", ui-sref: "home.all.hot", layout: "column", layout-align: "center center"}
-            %img{ng-src: "img/logo.png", hide-sm: "true"}
-      %span{flex: true}
-      .toolbar-container{hide-sm: true, hide-md: true, layout: "row", layout-align: "end end"}
-        %md-button{ng-if: "user.moderator", href: "/moderation", target: "_self", ng-bind: "'moderation'"}
-        %md-button{ng-if: "user.manager", href: "/management", target: "_self", ng-bind: "'management'"}
-        %md-button{href: "/me/notifications", ng-bind: "user.username", target: "_self"}
-        %md-button{href: "/me/conversations", target: "_self", hide-sm: true}
-          %i.icon.ion-android-mail
-          %md-tooltip
-            Messages
-        %md-button{ng-click: "logout()", hide-sm: true}
-          %i.icon.ion-log-out
-          %md-tooltip
-            Log out
-    .md-toolbar-tools.md-toolbar-tools-bottom{layout: "row"}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-        %span
-          Create a community
-        %span{flex: true}
-      %span{flex: true}
-      .toolbar-container{layout: "row", layout-align: "center center"}
-        %a#primary-title{href: "#", ng-bind: "page.title.text", ng-class: "{'active': page.secondary_title}"}
-        %a#secondary-title{ng-if: "page.secondary_title", ui-sref: "home.community({id: page.secondary_title.slug})", ng-bind: "page.secondary_title.text"}
-        %span{flex: true}
-
-  %md-sidenav.md-sidenav-left{md-component-id: "left", md-is-locked-open: "$mdMedia('gt-md')"}
-    %md-content.nav-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-      .nav-list-wrapper
-        .nav-list-item
-          %p Some rules
-
-  #content.md-whiteframe-z1{flex: true, layout: "column", layout-fill: "true"}
-    %md-content.primary-content
-      %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
-        .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
-          .progress-bar{layout: "column", flex: true}
-            .icons-wrap{layout: "row", layout-align: "space-between"}
-              .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
-                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                  .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                  .line
-              .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
-                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                  .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                  .line
-              .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                  .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                  .line
-              .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                  .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                  .line
-              .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-                .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                  .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-            .wrap{layout: "row", layout-align: "space-between"}
-              .caption
-                Network
-              .caption
-                Details
-              .caption
-                Rules
-              .caption
-                Customize
-              .caption
-                Review
-
-      #create-community{layout: "column", layout-fill: "true"}
-        %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
-          %md-tab{label: "network"}
-            %md-content.primary-content
-              %create-community-network
-          %md-tab{label: "details"}
-            %md-content.primary-content
-              %create-community-details
-          %md-tab{label: "rules"}
-            %md-content.primary-content
-              %create-community-rules
-          %md-tab{label: "customize"}
-            %md-content.primary-content
-              %create-community-customize
-          %md-tab{label: "review"}
-            %md-content.primary-content
-              %create-community-review
+    #create-community{layout: "column", layout-fill: "true"}
+      %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
+        %md-tab{label: "network"}
+          %md-content.primary-content
+            %create-community-network
+        %md-tab{label: "details"}
+          %md-content.primary-content
+            %create-community-details
+        %md-tab{label: "rules"}
+          %md-content.primary-content
+            %create-community-rules
+        %md-tab{label: "customize"}
+          %md-content.primary-content
+            %create-community-customize
+        %md-tab{label: "review"}
+          %md-content.primary-content
+            %create-community-review
 
 
-  %md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-    %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column", layout-fill: true}
-      %md-content{ng-switch-when: "submit"}
-      %span{flex:true}
-      %footer-sidebar
+%md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+  %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column", layout-fill: true}
+    %md-content{ng-switch-when: "submit"}
+    %span{flex:true}
+    %footer-sidebar
 

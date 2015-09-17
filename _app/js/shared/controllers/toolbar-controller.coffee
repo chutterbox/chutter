@@ -1,10 +1,10 @@
 app = angular.module("Chutter")
 
-app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Page", ($auth, $scope, $mdDialog, poller, $mdToast, API, Page) ->
+app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Page", "$location", ($auth, $scope, $mdDialog, poller, $mdToast, API, Page, $location) ->
     $scope.page = Page
     
     $scope.$on("auth:show-signin", () ->
-      $scope.signIn
+      $scope.logIn
     )
 
     $scope.dropdownText = () ->
@@ -15,16 +15,17 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
 
     
     #showing authentication related dialogs
-    $scope.signIn = ->
+    $scope.logIn = ->
       $mdDialog.show
        controller: 'authCtrl'
-       templateUrl: '/partials/main/authenticate.html'
+       templateUrl: '../app/partials/main/authenticate.html'
        parent: angular.element(document.body)
        clickOutsideToClose: true
 
-    $scope.logout = ->
-      $auth.signOut()
 
+    $scope.logout = ->
+      $auth.signOut().then () ->
+        $location.url("/")
     #notification related logic
 
     if $scope.user and $scope.user.id
@@ -81,7 +82,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     #subscription editing
     $scope.editNetworks = (ev) ->
       unless $scope.user && $scope.user.id
-        $scope.signIn()
+        $scope.logIn()
       else
         $mdDialog.show
           controller: 'networkEditCtrl'

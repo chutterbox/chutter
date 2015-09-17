@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, network, network_hot, network_new, network_top, submit, view_url;
+      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, network, network_hot, network_new, network_top, register, submit, view_url, welcome;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
@@ -417,6 +417,16 @@
           }
         }
       };
+      register = {
+        name: "register",
+        url: "/register",
+        templateUrl: view_url + "/registration/register.html"
+      };
+      welcome = {
+        name: "register.welcome",
+        url: "/welcome",
+        templateUrl: view_url + "/registration/welcome.html"
+      };
       $stateProvider.state(home);
       $stateProvider.state(all);
       $stateProvider.state(all_hot);
@@ -432,7 +442,9 @@
       $stateProvider.state(community_new);
       $stateProvider.state(submit);
       $stateProvider.state(create);
-      return $stateProvider.state(comments);
+      $stateProvider.state(comments);
+      $stateProvider.state(register);
+      return $stateProvider.state(welcome);
     }
   ]);
 

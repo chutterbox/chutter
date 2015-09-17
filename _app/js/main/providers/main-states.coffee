@@ -48,8 +48,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         ]
       views:
         "posts":
-          controller: "postsCtrl as ctrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
   
 
     all_new = 
@@ -60,8 +60,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["PostResource", (PostResource) ->
               PostResource.query({sort: "new"}).$promise
@@ -74,8 +74,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["PostResource", (PostResource) ->
               PostResource.query({sort: "top"}).$promise
@@ -111,8 +111,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl as ctrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
@@ -125,8 +125,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
@@ -140,8 +140,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "top"}).$promise
@@ -187,8 +187,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl as ctrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
@@ -201,8 +201,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]      
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "new"}).$promise
@@ -216,8 +216,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "posts":
-          controller: "postsCtrl"
-          templateUrl: "../app/partials/shared/postListItem.html"
+          controller: "postListCtrl"
+          templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "top"}).$promise

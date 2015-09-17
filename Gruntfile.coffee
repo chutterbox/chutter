@@ -63,7 +63,8 @@ module.exports = (grunt) ->
               'app/js/common-directives.js',
               'app/js/common-services.js',
               'app/js/shared/controllers/*.js',
-              'app/js/shared/directives/*.js'
+              'app/js/shared/directives/*.js',
+              'app/js/shared/providers/*.js'
 
             ]
           'app/js/compiled/main.min.js': 
@@ -128,7 +129,7 @@ module.exports = (grunt) ->
           "app/partials/shared/postEmbed.html" : "_app/partials/shared/postEmbed.haml"
           "app/partials/shared/createCommunityRule.html" : "_app/partials/shared/createCommunityRule.haml"
           "app/partials/shared/post.html" : "_app/partials/shared/post.haml"
-          "app/partials/shared/postListItem.html" : "_app/partials/shared/postListItem.haml"
+          "app/partials/shared/postList.html" : "_app/partials/shared/postList.haml"
           "app/partials/shared/comments/comment.html" : "_app/partials/shared/comments/comment.haml"
           "app/partials/shared/comments/replyPanel.html" : "_app/partials/shared/comments/replyPanel.haml"
           "app/partials/shared/comments/commentEmbed.html" : "_app/partials/shared/comments/commentEmbed.haml"
@@ -284,6 +285,12 @@ module.exports = (grunt) ->
           cwd: './_app/js/shared/directives/',
           src: ['*.coffee'],
           dest: 'app/js/shared/directives/',
+          ext: '.js'
+        , 
+          expand: true,
+          cwd: './_app/js/shared/providers/',
+          src: ['*.coffee'],
+          dest: 'app/js/shared/providers/',
           ext: '.js'
         , 
           expand: true,

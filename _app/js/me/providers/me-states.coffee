@@ -130,8 +130,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Posts: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
               PostResource.saved({format: $stateParams.format}).$promise
             ]
-          templateUrl: "../app/partials/shared/postListItem.html"
-          controller: "postsCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
+          controller: "postListCtrl as ctrl"
           
     preferences =
       name: "home.preferences"
@@ -148,8 +148,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         ]
       views:
         "@home":
-          templateUrl: "../app/partials/shared/postListItem.html"
-          controller: "postsCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
+          controller: "postListCtrl as ctrl"
   
 
 

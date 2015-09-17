@@ -1,12 +1,12 @@
 %md-virtual-repeat-container{style: "height: calc(100vh - 80px)"}
   .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", layout-align: "start center", md-item-size: "75"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
-      %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.updateVote(post, 1)"}
+      %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
       %h6{ng-bind: "post.points"}
-      %md-button.md-icon-button.down{flex: true, aria-label: "Downvote", ng-click: "ctrl.updateVote(post, -1)"}
+      %md-button.md-icon-button.down{flex: true, aria-label: "Downvote", ng-click: "ctrl.postService.updateVote(post, -1)"}
         %i.icon.ion-chevron-down{ng-class: "{'active-down' : (post.vote == -1)}"}
-    .postcontent.md-whiteframe-z1{ng-click: "mediaPlayer.toggle(post, $event)", ng-style: "{'background-image': ctrl.getBackgroundImage(post)}", id: "{{$index}}"}
+    .postcontent.md-whiteframe-z1{ng-click: "ctrl.mediaPlayer.toggle(post, $event)", ng-style: "{'background-image': ctrl.postService.getBackgroundImage(post)}", id: "{{$index}}"}
       %i.icon.ion-ios-paper{ng-hide: "post.media.length > 0"}
       %span{ng-switch: "post.media[0].format"}
         %i.icon.ion-ios-search-strong{ng-switch-when: "image"}
@@ -31,14 +31,14 @@
             
         .footer{layout: "row"}
           %a{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
-          %a{ng-if: "!post.saved", ng-click: "post.toggleSave()"}
+          %a{ng-if: "!post.saved", ng-click: "ctrl.postService.toggleSave(post)"}
             save
-          %a{ng-if: "post.saved", ng-click: "post.toggleSave()"}
+          %a{ng-if: "post.saved", ng-click: "ctrl.postService.toggleSave(post)"}
             unsave
-          %a{ng-if: "!post.reported", ng-click: "ctrl.report(post)"}
+          %a{ng-if: "!post.reported", ng-click: "ctrl.postService.report(post)"}
             report
           %a.disabled{ng-if: "post.reported"}
             reported
-          %a{ng-click: "ctrl.moderate(post)", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
+          %a{ng-click: "ctrl.postService.moderate(post)", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
             mod
        

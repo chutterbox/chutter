@@ -180,8 +180,8 @@
                 }
               ]
             },
-            templateUrl: "../app/partials/shared/postListItem.html",
-            controller: "postsCtrl as ctrl"
+            templateUrl: "../app/partials/shared/postList.html",
+            controller: "postListCtrl as ctrl"
           }
         }
       };
@@ -203,8 +203,8 @@
         },
         views: {
           "@home": {
-            templateUrl: "../app/partials/shared/postListItem.html",
-            controller: "postsCtrl as ctrl"
+            templateUrl: "../app/partials/shared/postList.html",
+            controller: "postListCtrl as ctrl"
           }
         }
       };

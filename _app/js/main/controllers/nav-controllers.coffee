@@ -7,6 +7,7 @@ app.controller 'pageCtrl', ['$scope', '$stateParams', 'Page', 'Networks', '$mdBo
     
     $rootScope.$on "$stateChangeStart", (e, toState, toParams, fromState, fromParams) ->
       Page.cachedScrollTops[window.location] = $(".md-virtual-repeat-scroller").scrollTop()
+    
     $rootScope.$on "$viewContentLoaded", (e, toState, toParams, fromState, fromParams) ->
       _.defer () ->
         elm = $(".md-virtual-repeat-scroller")

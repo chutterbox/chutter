@@ -71,7 +71,7 @@
         };
 
         PostService.prototype.getBackgroundImage = function(post) {
-          if (post.media && post.media.length > 0) {
+          if (post && post.media && post.media.length > 0) {
             if (post.media[0].thumbnail_link && post.media[0].thumbnail_link.length > 0) {
               return "url(" + post.media[0].thumbnail_link + ")";
             } else {

@@ -373,7 +373,7 @@ comment-embed {
     margin-top: 5px;
     min-height: 85px;
     max-height: 100%;
-    max-width: 3%; }
+    max-width: 30px; }
     comment .vote .md-button,
     comment-embed .vote .md-button {
       line-height: 30px;

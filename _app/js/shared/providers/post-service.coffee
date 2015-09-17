@@ -45,7 +45,7 @@ app.factory "PostService", ["PostResource", "$stateParams", "MediaPlayer", "$mdB
       else
         $rootScope.$broadcast ('auth:show-signin')
     getBackgroundImage: (post) ->
-      if post.media && post.media.length > 0 
+      if post && post.media && post.media.length > 0 
         if post.media[0].thumbnail_link && post.media[0].thumbnail_link.length > 0
           "url(#{post.media[0].thumbnail_link})"
         else

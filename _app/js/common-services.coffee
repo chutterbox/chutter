@@ -164,6 +164,29 @@ app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, 
         method: "POST"
         isArray: true
 ]
+
+app.factory 'UserResource', ['$resource', 'API', "Page", ($resource, API, Page) ->
+  $resource API.makeURL('/users/:id'), { id: '@id' },
+    submissions:
+      url: API.makeURL('/users/submissions')
+      interceptor: 'response': (response) ->
+        Page.posts = response.data
+    notificationSubscriptions:
+      url: API.makeURL('/users/notification_subscriptions')
+      isArray: true
+      interceptor: 'response': (response) ->
+        Page.notificationSubscriptions = response.data
+        console.log Page
+    notifications:
+      url: API.makeURL('/users/notifications/:id')
+      isArray: true
+    stats:
+      url: API.makeURL('/users/stats')
+      isArray: true
+    user_exists:
+      url: API.makeURL('/users/user_exists')
+]
+
 class AudioInterface
   constructor: (src, $document) ->
     @audioElement  = $document[0].createElement('audio')

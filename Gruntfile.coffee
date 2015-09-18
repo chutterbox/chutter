@@ -157,6 +157,7 @@ module.exports = (grunt) ->
           "app/partials/main/menu/toggle.html" : "_app/partials/main/menu/toggle.haml"
           "app/partials/main/authenticate.html" : "_app/partials/main/authenticate.haml"
           "app/partials/main/registration/welcome.html" : "_app/partials/main/registration/welcome.haml"
+          "app/partials/main/registration/interests.html" : "_app/partials/main/registration/interests.haml"
           "app/partials/main/registration/register.html" : "_app/partials/main/registration/register.haml"
           "app/partials/main/posts.html" : "_app/partials/main/posts.haml"
           "app/partials/main/networkPosts.html" : "_app/partials/main/networkPosts.haml"

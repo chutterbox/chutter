@@ -3,18 +3,6 @@ app = angular.module('MainApp')
 app.factory 'NetworkSubscriptionResource', ['$resource','Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/network_subscriptions/:id'), { id: '@id' }
 ]
-# app.factory 'CommunitySubscriptionResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-#     $resource API.makeURL('/community_subscriptions/:id'), { id: '@id' },
-#       'delete':
-#         method: 'DELETE'
-#         isArray: true
-#       save:
-#         method: 'POST'
-#         isArray: true
-# ]
-app.factory 'UserResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
-    $resource API.makeURL('/users/:id'), id: '@id'
-]
 
 app.factory 'ExternalServicesResource', ['$resource', 'Page', 'API'
   ($resource, Page, API) ->
@@ -29,9 +17,6 @@ app.factory 'MediaResource', ['$resource', 'Page', 'API', ($resource, Page, API)
       method: 'POST'
       isArray: false
 ]
-
-
-
 app.factory 'preview', [
   '$document'
   ($document) ->

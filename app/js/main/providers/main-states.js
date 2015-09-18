@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, network, network_hot, network_new, network_top, register, submit, view_url, welcome;
+      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, interests, network, network_hot, network_new, network_top, register, submit, view_url, welcome;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
@@ -425,7 +425,28 @@
       welcome = {
         name: "register.welcome",
         url: "/welcome",
-        templateUrl: view_url + "/registration/welcome.html"
+        templateUrl: view_url + "/registration/welcome.html",
+        controller: "welcomeCtrl"
+      };
+      interests = {
+        name: "register.interests",
+        url: "/interests",
+        onEnter: [
+          "$auth", "$state", function($auth, $state) {
+            return $auth.validateUser()["catch"](function() {
+              return $state.transitionTo("register.welcome");
+            });
+          }
+        ],
+        resolve: {
+          NetworkList: [
+            'NetworkResource', function(NetworkResource) {
+              return NetworkResource.list();
+            }
+          ]
+        },
+        templateUrl: view_url + "/registration/interests.html",
+        controller: "interestsCtrl"
       };
       $stateProvider.state(home);
       $stateProvider.state(all);
@@ -444,7 +465,8 @@
       $stateProvider.state(create);
       $stateProvider.state(comments);
       $stateProvider.state(register);
-      return $stateProvider.state(welcome);
+      $stateProvider.state(welcome);
+      return $stateProvider.state(interests);
     }
   ]);
 

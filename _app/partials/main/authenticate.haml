@@ -4,7 +4,7 @@
       %h2.md-title
         welcome back
       #errors
-        %p{ng-repeat: "error in errors", ng-bind: "error"}     
+        %p{ng-repeat: "error in errors.full_messages", ng-bind: "error"}     
         %md-input-container
           %label
             Username

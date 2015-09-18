@@ -279,6 +279,20 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "register.welcome"
       url: "/welcome"
       templateUrl: "#{view_url}/registration/welcome.html"
+      controller: "welcomeCtrl"
+    interests = 
+      name: "register.interests"
+      url: "/interests"
+      onEnter: ["$auth", "$state", ($auth, $state) ->
+        $auth.validateUser().catch () ->
+          $state.transitionTo("register.welcome")
+      ]
+      resolve: 
+        NetworkList: ['NetworkResource', (NetworkResource) ->
+          NetworkResource.list()
+        ]
+      templateUrl: "#{view_url}/registration/interests.html"
+      controller: "interestsCtrl"
     # user = 
     #   name: "user"
     #   url: "/u/"
@@ -318,6 +332,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(comments)
     $stateProvider.state(register)
     $stateProvider.state(welcome)
+    $stateProvider.state(interests)
     # $stateProvider.state(user)
     # $stateProvider.state(user_overview)
     # $stateProvider.state(user_voted)

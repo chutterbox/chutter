@@ -12,14 +12,6 @@
     }
   ]);
 
-  app.factory('UserResource', [
-    '$resource', 'Page', 'API', function($resource, Page, API) {
-      return $resource(API.makeURL('/users/:id'), {
-        id: '@id'
-      });
-    }
-  ]);
-
   app.factory('ExternalServicesResource', [
     '$resource', 'Page', 'API', function($resource, Page, API) {
       return $resource(API.makeURL('/external_services/:id'), {

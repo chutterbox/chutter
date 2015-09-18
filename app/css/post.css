@@ -150,7 +150,6 @@ md-toolbar#me-toolbar {
     md-toolbar#moderation-toolbar #logo img,
     md-toolbar#management-toolbar #logo img,
     md-toolbar#me-toolbar #logo img {
-      padding-top: 8px;
       max-width: 90px;
       max-height: 100%;
       vertical-align: middle; }
@@ -304,8 +303,11 @@ md-toolbar#networks-bar {
     #conversation .item.you + .item.you:after {
       border: none; }
 
+#interests-list-content {
+  width: 60%; }
+
 #registration-welcome form {
-  width: 30%; }
+  width: 50%; }
 
 [layout-fill] {
   height: inherit; }

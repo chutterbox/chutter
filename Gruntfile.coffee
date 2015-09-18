@@ -56,6 +56,8 @@ module.exports = (grunt) ->
               'vendor/ng-token-auth/dist/ng-token-auth.js',
               'vendor/ui-router/release/angular-ui-router.js',
               'vendor/angularytics/dist/angularytics.js',
+              'vendor/angular-messages/angular-messages.js',
+
               'app/js/templates-shared.js',
               'app/js/chutter.js',
               'app/js/common-classes.js',

@@ -17,6 +17,7 @@ app = angular.module('Chutter', [
   'hc.marked'
   'angularMoment'
   'angularytics'
+  'ngMessages'
 ]).constant('API',
   baseURL: 'http://localhost:3000/api/v1'
   makeURL: (url) ->

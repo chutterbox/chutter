@@ -6846,6 +6846,9 @@ md-toolbar#networks-bar {
     #conversation .item.you + .item.you:after {
       border: none; }
 
+#registration-welcome form {
+  width: 30%; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -7156,6 +7159,9 @@ md-toolbar#networks-bar {
     margin-top: -10px; }
     #conversation .item.you + .item.you:after {
       border: none; }
+
+#registration-welcome form {
+  width: 30%; }
 
 [layout-fill] {
   height: inherit; }
@@ -7492,6 +7498,9 @@ md-toolbar#networks-bar {
     margin-top: -10px; }
     #conversation .item.you + .item.you:after {
       border: none; }
+
+#registration-welcome form {
+  width: 30%; }
 
 [layout-fill] {
   height: inherit; }
@@ -7930,6 +7939,9 @@ md-toolbar#networks-bar {
     margin-top: -10px; }
     #conversation .item.you + .item.you:after {
       border: none; }
+
+#registration-welcome form {
+  width: 30%; }
 
 [layout-fill] {
   height: inherit; }
@@ -8474,6 +8486,9 @@ md-toolbar#networks-bar {
     #conversation .item.you + .item.you:after {
       border: none; }
 
+#registration-welcome form {
+  width: 30%; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -8884,6 +8899,9 @@ md-toolbar#networks-bar {
     margin-top: -10px; }
     #conversation .item.you + .item.you:after {
       border: none; }
+
+#registration-welcome form {
+  width: 30%; }
 
 [layout-fill] {
   height: inherit; }
@@ -9323,6 +9341,9 @@ md-toolbar#networks-bar {
     #conversation .item.you + .item.you:after {
       border: none; }
 
+#registration-welcome form {
+  width: 30%; }
+
 [layout-fill] {
   height: inherit; }
 
@@ -9683,6 +9704,9 @@ md-toolbar#networks-bar {
     margin-top: -10px; }
     #conversation .item.you + .item.you:after {
       border: none; }
+
+#registration-welcome form {
+  width: 30%; }
 
 [layout-fill] {
   height: inherit; }

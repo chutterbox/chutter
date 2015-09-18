@@ -19,7 +19,8 @@
     "angular-moment": "0.10.3",
     "angularytics": "0.4.0",
     "angular-slugify": "1.0.1",
-    "angular-poller": "0.3.3"
+    "angular-poller": "0.3.3",
+    "angular-messages": "1.4.6"
   },
   "resolutions": {
     "angular": "1.4.3"

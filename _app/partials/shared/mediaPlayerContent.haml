@@ -1,4 +1,4 @@
-#wrapper{ng-switch: "currentMedia.format", layout: "column", layout-align: "center center"}
+#media-player-wrapper{ng-switch: "currentMedia.format", layout: "column", layout-align: "center center"}
   %md-toolbar.md-primary.md-hue-2
     .md-toolbar-tools
       %md-button.md-icon-button#close-button
@@ -7,6 +7,7 @@
       %md-button.md-icon-button#fill-button
         %i.icon.ion-android-expand
   %iframe{ng-switch-when: "video", ng-src: "{{currentMedia.trusted_stream_link}}", autoplay: "1", width: "100%", height: "100%"}
+  %img#image-view{ng-switch-when: "image", ng-src: "{{currentMedia.image_link}}"}
   %md-content#discussion-view{ng-switch-default: "true", layout: "column", layout-fill: "true"}
     %div.md-padding{marked: "body"}
   #progress-place-holder

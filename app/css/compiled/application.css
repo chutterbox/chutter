@@ -9759,24 +9759,27 @@ md-toolbar#networks-bar {
     transform-origin: top right;
     -webkit-transform-origin: top right;
     -moz-transform-origin: top right; }
-  #desktopMediaPlayer #wrapper {
-    height: 100%;
-    width: 100%; }
-    #desktopMediaPlayer #wrapper md-toolbar,
-    #desktopMediaPlayer #wrapper .md-toolbar-tools {
-      height: 32px;
-      min-height: 32px;
-      max-height: 32px; }
-    #desktopMediaPlayer #wrapper #progress-place-holder {
-      display: none;
-      width: 60%;
-      position: absolute;
-      top: 40%;
-      left: 40%; }
-    #desktopMediaPlayer #wrapper #discussion-view {
-      height: calc(457.5px - 32px); }
-    #desktopMediaPlayer #wrapper iframe {
-      border: none; }
+
+#media-player-wrapper {
+  height: 100%;
+  width: 100%; }
+  #media-player-wrapper md-toolbar,
+  #media-player-wrapper .md-toolbar-tools {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px; }
+  #media-player-wrapper #progress-place-holder {
+    display: none;
+    width: 60%;
+    position: absolute;
+    top: 40%;
+    left: 40%; }
+  #media-player-wrapper #image-view {
+    height: calc(100% - 32px); }
+  #media-player-wrapper #discussion-view {
+    height: calc(100% - 32px); }
+  #media-player-wrapper iframe {
+    border: none; }
 
 #mobileMediaPlayer {
   height: 100vh;

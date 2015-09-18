@@ -6,7 +6,7 @@
   app.controller('toastCtrl', function() {});
 
   app.controller('pageCtrl', [
-    '$scope', '$stateParams', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', 'API', "$rootScope", function($scope, $stateParams, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, API, $rootScope) {
+    '$scope', '$stateParams', 'Page', 'Networks', "Communities", '$mdBottomSheet', '$mdDialog', '$mdSidenav', 'API', "$rootScope", function($scope, $stateParams, Page, Networks, Communities, $mdBottomSheet, $mdDialog, $mdSidenav, API, $rootScope) {
       $rootScope.$on("$stateChangeStart", function(e, toState, toParams, fromState, fromParams) {
         return Page.cachedScrollTops[window.location] = $(".md-virtual-repeat-scroller").scrollTop();
       });
@@ -22,6 +22,8 @@
         });
       });
       $scope.page = Page;
+      $scope.page.networks = Networks;
+      $scope.page.communities = Communities;
       return $scope.toggleLeft = function() {
         return $mdSidenav('left').toggle();
       };

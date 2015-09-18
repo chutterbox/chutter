@@ -17,8 +17,13 @@
         controller: "pageCtrl",
         resolve: {
           Networks: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+            "NetworkResource", function(NetworkResource) {
               return NetworkResource.query().$promise;
+            }
+          ],
+          Communities: [
+            "CommunityResource", function(CommunityResource) {
+              return CommunityResource.query().$promise;
             }
           ]
         }

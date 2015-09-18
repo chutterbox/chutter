@@ -14,8 +14,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       templateUrl: "#{view_url}/layout.html"
       controller: "pageCtrl"
       resolve:
-        Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
+        Networks: ["NetworkResource", (NetworkResource) ->
           NetworkResource.query().$promise
+        ]
+        Communities: ["CommunityResource", (CommunityResource) ->
+          CommunityResource.query().$promise
         ]
 
     # $scope.$on 'auth:login-success', ->

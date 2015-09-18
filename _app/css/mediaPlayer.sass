@@ -34,23 +34,26 @@
     transform-origin: top right
     -webkit-transform-origin: top right
     -moz-transform-origin: top right
-  #wrapper
-    md-toolbar,
-    .md-toolbar-tools
-      @include min-and-max-height(32px)
-    #progress-place-holder
-      display: none
-      width: 60%
-      position: absolute
-      top: 40%
-      left: 40%
-    #discussion-view
-      //height minus the toolbar
-      height: calc(457.5px - 32px) 
-    height: 100%
-    width: 100%
-    iframe
-      border: none
+#media-player-wrapper
+  md-toolbar,
+  .md-toolbar-tools
+    @include min-and-max-height(32px)
+  #progress-place-holder
+    display: none
+    width: 60%
+    position: absolute
+    top: 40%
+    left: 40%
+  #image-view
+    height: calc(100% - 32px) 
+    
+  #discussion-view
+    //height minus the toolbar
+    height: calc(100% - 32px) 
+  height: 100%
+  width: 100%
+  iframe
+    border: none
 
 #mobileMediaPlayer
   height: 100vh

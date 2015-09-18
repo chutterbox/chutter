@@ -2,8 +2,8 @@ app = angular.module('MainApp')
 
 app.controller 'toastCtrl', ->
 
-app.controller 'pageCtrl', ['$scope', '$stateParams', 'Page', 'Networks', '$mdBottomSheet', '$mdDialog', '$mdSidenav', 'API', "$rootScope",
-  ($scope, $stateParams, Page, Networks, $mdBottomSheet, $mdDialog, $mdSidenav, API, $rootScope) ->
+app.controller 'pageCtrl', ['$scope', '$stateParams', 'Page', 'Networks', "Communities", '$mdBottomSheet', '$mdDialog', '$mdSidenav', 'API', "$rootScope",
+  ($scope, $stateParams, Page, Networks, Communities, $mdBottomSheet, $mdDialog, $mdSidenav, API, $rootScope) ->
     
     $rootScope.$on "$stateChangeStart", (e, toState, toParams, fromState, fromParams) ->
       Page.cachedScrollTops[window.location] = $(".md-virtual-repeat-scroller").scrollTop()
@@ -17,6 +17,8 @@ app.controller 'pageCtrl', ['$scope', '$stateParams', 'Page', 'Networks', '$mdBo
           elm.scrollTop(cachedScrollTop)
       
     $scope.page = Page
+    $scope.page.networks = Networks
+    $scope.page.communities = Communities
     $scope.toggleLeft = ->
       $mdSidenav('left').toggle()
   

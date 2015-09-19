@@ -25,7 +25,7 @@
     %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
     %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
       Help keep Chutter running
-  .news{ng-if: "false"}
+  .news
     .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
       .title{layout: "row", flex: 100, layout-align: "start center"}
         %md-button.md-icon-button.md-primary
@@ -35,33 +35,32 @@
       .color-light.sub-header
         Things happening with Chutter.
     %md-list.special-list
-      %md-list-item{layout: "row"}
-        .type.update{flex: 15, layout: "column", layout-align: "center center"}
-          .ion-pull-request
-          %md-tooltip{md-direction: "left"}
-            Update
-        %md-button.content{layout: "row", flex: true}
-          .title.md-body-1.color-light{flex: 75}
-            Version 2.0
-          %span.time.color-light{layout-align: "end"}
-            10. Jun
-      %md-list-item{layout: "row"}
-        .type.important{flex: 15, layout: "column", layout-align: "center center"}
-          .ion-alert-circled
-          %md-tooltip{md-direction: "left"}
-            Important
-        %md-button.content{layout: "row", flex: true}
-          .title.md-body-1.color-light{flex: 75}
-            Security breach
-          %span.time.color-light{layout-align: "end"}
-            10. Jun
-      %md-list-item{layout: "row"}
-        .type.community{flex: 15, layout: "column", layout-align: "center center"}
-          .ion-ios-people
-          %md-tooltip{md-direction: "left"}
-            Community
-        %md-button.content{layout: "row", flex: true}
-          .title.md-body-1.color-light{flex: 75}
-            AMA Chutter Dev
-          %span.time.color-light{layout-align: "end"}
-            10. Jun
+      %div{ng-repeat: "post in news.posts", ng-switch: "post.community_slug"}
+        %md-list-item{layout: "row", ng-switch-when: "ideasforchutter"}
+          .type.update{flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-ios-lightbulb-outline
+            %md-tooltip{md-direction: "left"}
+              Idea
+          %md-button.content{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})",layout: "row", flex: true}
+            .title.md-body-1.color-light{flex: 100, ng-bind: "post.title", style: "text-overflow: ellipsis;"}
+        %md-list-item{layout: "row", ng-switch-when: "asktheadmins"}
+          .type.update{flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-ios-people
+            %md-tooltip{md-direction: "left"}
+              Question
+          %md-button.content{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})",layout: "row", flex: true}
+            .title.md-body-1.color-light{flex: 100, ng-bind: "post.title", style: "text-overflow: ellipsis;"}
+        %md-list-item{layout: "row", ng-switch-when: "announcements"}
+          .type.update{flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-flag
+            %md-tooltip{md-direction: "left"}
+              Announcement
+          %md-button.content{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})",layout: "row", flex: true}
+            .title.md-body-1.color-light{flex: 100, ng-bind: "post.title", style: "text-overflow: ellipsis;"}
+        %md-list-item{layout: "row", ng-switch-when: "updates"}
+          .type.update{flex: 15, layout: "column", layout-align: "center center"}
+            .icon.ion-pull-request
+            %md-tooltip{md-direction: "left"}
+              Update
+          %md-button.content{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})",layout: "row", flex: true}
+            .title.md-body-1.color-light{flex: 100, ng-bind: "post.title", style: "text-overflow: ellipsis;"}

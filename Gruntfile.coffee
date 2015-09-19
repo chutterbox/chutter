@@ -235,7 +235,9 @@ module.exports = (grunt) ->
           'app/css/notifications.css',
           'app/css/sidebar.css',
           'app/css/main.css',
-          'app/css/mediaPlayer.css'
+          'app/css/mediaPlayer.css',
+          'app/css/toolbar.css'
+
         ],
         dest: 'app/css/compiled/application.css'
     cssmin: 
@@ -259,6 +261,7 @@ module.exports = (grunt) ->
           'app/css/menu.css' : '_app/css/menu.sass'
           'app/css/me.css' : '_app/css/me.sass'
           'app/css/sidebar.css' : '_app/css/sidebar.sass'
+          'app/css/toolbar.css' : '_app/css/toolbar.sass'
           'app/css/comments.css' : '_app/css/comments.sass'
           'app/css/post.css' : '_app/css/post.sass'
           'app/css/mediaPlayer.css' : '_app/css/mediaPlayer.sass'

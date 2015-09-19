@@ -4,7 +4,7 @@
       %md-button{href: "/"}
         %img{src: "/img/logo.png"}
 .md-padding{layout: "row"}
-  %md-content#registration-welcome{layout: "column", flex: "80", layout-align: "center center"}
+  %md-content#registration-welcome{layout: "column", flex: "80", layout-align: "start center"}
     %h4.md-title 
       Welcome to Chutter
     %h6.md-subheader
@@ -45,3 +45,8 @@
           %h3
             Privacy
           %p
+
+      %md-list-item{ng-repeat: "(key, value) in privacyItems"}
+        .md-list-item-text
+          %h3{ng-bind: "::key"}
+          %p{marked: "::value"}

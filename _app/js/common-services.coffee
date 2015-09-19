@@ -66,6 +66,8 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
     posts:
       method: 'GET'
       url: API.makeURL('/networks/:id/posts')
+    news:
+      url: API.makeURL("/networks/news")
     list:
       method: 'GET'
       url: API.makeURL('/networks/list')

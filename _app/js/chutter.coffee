@@ -19,7 +19,7 @@ app = angular.module('Chutter', [
   'angularytics'
   'ngMessages'
 ]).constant('API',
-  baseURL: 'http://localhost:3000/api/v1'
+  baseURL: '/api/v1'
   makeURL: (url) ->
     @baseURL + url
 ).constant('angularMomentConfig', {

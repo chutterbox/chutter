@@ -6,14 +6,16 @@ app.directive "allSidebar", ->
   scope: 
     page: "="
 
-  controller: ["$scope", "$mdDialog", ($scope, $mdDialog) ->
+  controller: ["$scope", "$mdDialog", "NetworkResource", ($scope, $mdDialog, NetworkResource) ->
     $scope.openSubscriptionDialog = () ->
       $mdDialog.show
        controller: 'subscriptionDialogCtrl'
        templateUrl: '../app/partials/shared/subscriptionDialog.html'
        parent: angular.element(document.body)
        clickOutsideToClose: true
-
+    $scope.news = []
+    NetworkResource.news().$promise.then (data) ->
+      $scope.news = data
 
 
   ]

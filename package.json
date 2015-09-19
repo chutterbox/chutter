@@ -10,7 +10,8 @@
     "prerender-node": "latest",
     "node-env-file": "latest",
     "compression": "latest",
-    "supervisor": "latest"
+    "supervisor": "latest",
+    "request": "latest"
   },
   "engines": {
     "node": "0.10.21"

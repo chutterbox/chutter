@@ -129,99 +129,16 @@ i,
   cursor: hand
   margin-right: 4px
 
-//------------------------------
-// toolbar css. this is all the css relating to the toolbars
-// section specific toolbar css will be located in <appname>.sass
-//------------------------------
-md-toolbar.extra-width
-  width: calc(100% + 1px)
-
 .md-toolbar-tools
   //set base font size
   font-size: 14px
 
 
-md-toolbar#main-toolbar,
-md-toolbar#moderation-toolbar,
-md-toolbar#management-toolbar,
-md-toolbar#me-toolbar
-  z-index: $toolbar-z-index
-  @include min-and-max-height(48px)
-  .md-toolbar-tools
-    padding: 0
-    #auth-container
-      padding: 0 16px
-    .md-button
-      &.md-fab
-        margin: 0.5vw
-        position: absolute
-        right: 0
-      margin: 0
-      min-width: auto
-      text-transform: none
-    #secondary-header
-      padding-top: 18px
-  #logo
-    @include min-and-max-height(48px)
-    width: auto
-    img
-      max-width: 90px
-      max-height: 100%
-      vertical-align: middle
-
-  
 
 
-md-toolbar#main-toolbar,
-md-toolbar#moderation-toolbar,
-md-toolbar#management-toolbar,
-md-toolbar#me-toolbar,
-md-toolbar#content-toolbar
-  // Transitions of md-toolbars for depth color switching
-  // transition: background-color 1s cubic-bezier(0.35, 0, 0.25, 1)
 
 
-md-toolbar#networks-bar
-  @include min-and-max-height(32px)
-  .md-toolbar-tools
-    padding: 0
-    @include min-and-max-height(32px)
-  md-tabs
-    z-index: 175
-    md-tabs-wrapper
-      md-tabs-canvas
-        height: 32px
-        md-pagination-wrapper
-          height: 32px
-      md-tab-item
-        padding: 16px
-        height: 32px
-        span
-          font-weight: 500
-          font-size: 0.8em
-        line-height: 32px
-        padding-top: 0
-        padding-bottom: 0
-  md-menu-bar#network-menu-bar
-    @include min-and-max-height(32px)
-    padding: 0
-    margin: 0 0 0 8px
-    md-menu
-      @include min-and-max-height(32px)
-      background-color: transparent
-      button.md-button
-        margin: 0
-        font-size: 0.8em 
-        @include min-and-max-height(32px)
-        md-icon
-          height: 35px
-          width: 15px
-        &:focus
-          background-color: transparent
-      md-menu-item 
-        .md-button,
-        a
-          color: material-color("grey", "900")
+
 
 //------------------------------
 // main content area

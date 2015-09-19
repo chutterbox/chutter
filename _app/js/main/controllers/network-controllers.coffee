@@ -5,6 +5,7 @@ app.controller "networkCtrl", ["$scope", "$state", "$rootScope", "$stateParams",
 ]
 
 app.controller "networkEditCtrl", ["$scope", "$mdDialog", "List", "NetworkResource", "Page", ($scope, $mdDialog, List, NetworkResource, Page) ->
+  
   $scope.page = Page
   $scope.networks = List
   $scope.hideDialog = () ->

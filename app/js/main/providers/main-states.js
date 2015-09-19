@@ -6,10 +6,11 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, interests, network, network_hot, network_new, network_top, register, submit, view_url, welcome;
+      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, interests, network, network_community, network_community_hot, network_community_new, network_community_top, network_hot, network_new, network_top, register, submit, view_url, welcome;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
+      $urlRouterProvider.otherwise('/');
       home = {
         name: "home",
         abstract: true,
@@ -19,11 +20,6 @@
           Networks: [
             "NetworkResource", function(NetworkResource) {
               return NetworkResource.query().$promise;
-            }
-          ],
-          Communities: [
-            "CommunityResource", function(CommunityResource) {
-              return CommunityResource.query().$promise;
             }
           ]
         }
@@ -42,9 +38,8 @@
         onEnter: [
           "Page", function(Page) {
             Page.scope = "all";
-            Page.title = "All";
             Page.mainToolbar = "";
-            Page.network = {};
+            Page.communityFilter = "";
             return Page.secondaryToolbar = "md-hue-1";
           }
         ]
@@ -128,7 +123,6 @@
         onEnter: [
           "Page", function(Page) {
             Page.scope = "network";
-            Page.scope = "network";
             Page.mainToolbar = "md-hue-1";
             return Page.secondaryToolbar = "md-hue-2";
           }
@@ -143,7 +137,8 @@
         },
         resolve: {
           Network: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
+            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", "Page", function(NetworkResource, $stateParams, $state, $rootScope, $auth, Page) {
+              Page.communityFilter = $stateParams.network;
               return NetworkResource.show({
                 id: $stateParams.network
               }).$promise;
@@ -227,8 +222,8 @@
           }
         }
       };
-      community = {
-        name: "home.community",
+      network_community = {
+        name: "home.network.community",
         url: "/c/:community",
         resolve: {
           Community: [
@@ -244,6 +239,132 @@
             Page.scope = "community";
             Page.mainToolbar = "md-hue-2";
             return Page.secondaryToolbar = "md-hue-3";
+          }
+        ],
+        controller: "communityCtrl",
+        views: {
+          "": {
+            templateUrl: view_url + "/communityPosts.html"
+          },
+          "right-rail": {
+            templateUrl: "../app/partials/main/sidebar/community-sidebar.html",
+            resolve: {
+              Moderators: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.moderators({
+                    id: $stateParams.community
+                  }).$promise;
+                }
+              ]
+            },
+            controller: [
+              "$scope", "Page", "Moderators", "CommunityResource", function($scope, Page, Moderators, CommunityResource) {
+                $scope.page = Page;
+                $scope.moderators = Moderators;
+                return $scope.requestModerationPosition = function() {
+                  $scope.page.community.moderation_position_requested = true;
+                  return CommunityResource.requestModerationPosition({
+                    id: $scope.page.community.id
+                  });
+                };
+              }
+            ]
+          }
+        },
+        abstract: true
+      };
+      network_community_hot = {
+        name: "home.network.community.hot",
+        url: "",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("hot");
+          }
+        ],
+        views: {
+          "posts": {
+            controller: "postListCtrl as ctrl",
+            templateUrl: "../app/partials/shared/postList.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "hot"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      network_community_new = {
+        name: "home.network.community.new",
+        url: "/new",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("new");
+          }
+        ],
+        views: {
+          "posts": {
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "new"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      network_community_top = {
+        name: "home.network.community.top",
+        url: "/top",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.paginator.reset("top");
+          }
+        ],
+        views: {
+          "posts": {
+            controller: "postListCtrl",
+            templateUrl: "../app/partials/shared/postList.html",
+            resolve: {
+              Posts: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.posts({
+                    id: $stateParams.community,
+                    sort: "top"
+                  }).$promise;
+                }
+              ]
+            }
+          }
+        }
+      };
+      community = {
+        name: "home.community",
+        url: "/c/:community",
+        resolve: {
+          Community: [
+            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+              return CommunityResource.show({
+                id: $stateParams.community
+              }).$promise;
+            }
+          ]
+        },
+        onEnter: [
+          "Page", function(Page) {
+            Page.scope = "community";
+            Page.mainToolbar = "";
+            return Page.secondaryToolbar = "md-hue-1";
           }
         ],
         controller: "communityCtrl",
@@ -444,14 +565,14 @@
           }
         ],
         resolve: {
-          NetworkList: [
+          List: [
             'NetworkResource', function(NetworkResource) {
               return NetworkResource.list();
             }
           ]
         },
         templateUrl: view_url + "/registration/interests.html",
-        controller: "interestsCtrl"
+        controller: "networkEditCtrl"
       };
       $stateProvider.state(home);
       $stateProvider.state(all);
@@ -462,6 +583,9 @@
       $stateProvider.state(network_new);
       $stateProvider.state(network_top);
       $stateProvider.state(network_hot);
+      $stateProvider.state(network_community);
+      $stateProvider.state(network_community_hot);
+      $stateProvider.state(network_community_top);
       $stateProvider.state(community);
       $stateProvider.state(community_hot);
       $stateProvider.state(community_top);

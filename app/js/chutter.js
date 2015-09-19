@@ -3,7 +3,7 @@
   var app;
 
   app = angular.module('Chutter', ['ui.router', 'ngMaterial', 'templates-shared', 'ng-token-auth', 'ngResource', 'emguo.poller', 'hc.marked', 'angularMoment', 'angularytics', 'ngMessages']).constant('API', {
-    baseURL: 'http://localhost:3000/api/v1',
+    baseURL: '/api/v1',
     makeURL: function(url) {
       return this.baseURL + url;
     }

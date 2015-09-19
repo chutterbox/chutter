@@ -73,9 +73,11 @@
       %md-tab{ui-sref: "home.all.hot"}
         %md-tab-label
           %span All
-      %md-tab{ng-repeat: "community in page.communities", ui-sref: "home.community.hot({community: community.slug})"}
+      %md-tab{ng-repeat: "community in page.communities | filter: page.communityFilter", ui-sref: "home.community.hot({community: community.slug})"}
         %md-tab-label{layout: "row", layout-align: "space-between center"}
           %span{ng-bind: "community.name"}
-    %md-button.md-icon-button{ng-if: "page.scope != 'all' && user && user.id", ng-click: "editNetworkCommunities(page.network)"}
-      %i.icon.ion-plus-round
+    %md-button.md-icon-button{ng-if: "page.scope != 'all' && user && user.id", ng-click: "editNetworkCommunities(page.network)"}  
+      %i.icon.ion-plus-round  
+    %md-button.md-icon-button
+      %i.icon.ion-android-funnel
 

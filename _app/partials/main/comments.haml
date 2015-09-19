@@ -4,7 +4,7 @@
   %comment-list#comment-wrapper
     %comment.primary-content{parent: "", layout: "column", ng-repeat: "child in commentListCtrl.comments",id: "c{{child.path}}", comment: "child", post: "post"}
 
-%md-button.md-fab.post-comment{ng-if: "user && user.id", aria-label: "Comment", ng-click: "ctrl.reply()"}
+%md-button.md-fab.post-comment{ng-if: "user && user.id", aria-label: "Comment", ng-click: "commentListCtrl.reply()"}
   %i.icon.ion-ios-chatbubble
   %md-tooltip{md-direction: "left"}
     Comment

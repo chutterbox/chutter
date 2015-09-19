@@ -3,6 +3,13 @@ app = angular.module("Chutter")
 app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Page", "$location", ($auth, $scope, $mdDialog, poller, $mdToast, API, Page, $location) ->
     $scope.page = Page
     
+    
+    
+    # $(".md-virtual-repeat-scroller").scroll () ->
+    #   console.log "here"
+
+
+
     $scope.$on("auth:show-signin", () ->
       $scope.logIn
     )

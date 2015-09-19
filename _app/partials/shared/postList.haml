@@ -28,6 +28,8 @@
             submitted by
           %a.user-link{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
           %span.time-ago{am-time-ago: "post.created_at"}
+          %span to
+          %a.user-link{ng-bind: "::post.community_slug", ui-sref: "home.community.hot({community: post.community_slug})"}
             
         .footer{layout: "row"}
           %a{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}

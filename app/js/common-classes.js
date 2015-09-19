@@ -48,14 +48,14 @@
 
     Page.prototype.scope = "";
 
+    Page.prototype.communities = [];
+
+    Page.prototype.networks = [];
+
     Page.prototype.cachedScrollTops = [];
 
     Page.prototype.community = {
       permitted_formats_list: []
-    };
-
-    Page.prototype.network = {
-      communities: []
     };
 
     Page.prototype.posts = [];
@@ -185,7 +185,7 @@
             if (computedHeight > viewportHeight) {
               actualTop = viewportHeight - this.DESKTOP_MEDIA_PLAYER_HEIGHT;
             }
-            this.desktopMediaPlayerElement.style.top = (actualTop + 70) + "px";
+            this.desktopMediaPlayerElement.style.top = actualTop + "px";
             this.desktopMediaPlayerElement.style.left = "146px";
             return this.desktopMediaPlayerElement.className += " opened";
           } else {

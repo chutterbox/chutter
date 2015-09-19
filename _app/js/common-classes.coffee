@@ -22,11 +22,11 @@ class Paginator
 class Page
   title: ""
   scope: ""
+  communities: []
+  networks: []
   cachedScrollTops: []
   community: 
     permitted_formats_list: []
-  network: 
-    communities: []
   posts: []
   paginator: new Paginator
 
@@ -121,7 +121,7 @@ app.factory "MediaPlayer", ["$document", "$mdMedia", "$mdBottomSheet", "$rootSco
         #simply ensure that the element is in the viewport
         if computedHeight > viewportHeight
           actualTop = viewportHeight - @DESKTOP_MEDIA_PLAYER_HEIGHT
-        @desktopMediaPlayerElement.style.top = "#{actualTop + 70}px"
+        @desktopMediaPlayerElement.style.top = "#{actualTop}px"
         @desktopMediaPlayerElement.style.left = "146px"
         @desktopMediaPlayerElement.className += " opened"
 

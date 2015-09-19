@@ -13,8 +13,8 @@
         page: "="
       },
       controller: [
-        "$scope", "$mdDialog", function($scope, $mdDialog) {
-          return $scope.openSubscriptionDialog = function() {
+        "$scope", "$mdDialog", "NetworkResource", function($scope, $mdDialog, NetworkResource) {
+          $scope.openSubscriptionDialog = function() {
             return $mdDialog.show({
               controller: 'subscriptionDialogCtrl',
               templateUrl: '../app/partials/shared/subscriptionDialog.html',
@@ -22,6 +22,10 @@
               clickOutsideToClose: true
             });
           };
+          $scope.news = [];
+          return NetworkResource.news().$promise.then(function(data) {
+            return $scope.news = data;
+          });
         }
       ]
     };

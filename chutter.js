@@ -1,5 +1,5 @@
 (function() {
-  var chutter, cluster, compress, express, favicon, i, oneYear, port;
+  var chutter, cluster, compress, express, favicon, i, oneYear, port, request;
 
   express = require("express");
 
@@ -30,6 +30,14 @@
   chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutter-seo.herokuapp.com/').set('afterRender', function(req, pres) {
     return console.log("crawled");
   }));
+
+  request = require('request');
+
+  chutter.use('/api/v1', function(req, res) {
+    var url;
+    url = (process.env.API_HOST || 'http://localhost:3000') + ("/api/v1" + req.url);
+    return req.pipe(request(url)).pipe(res);
+  });
 
   chutter.use(favicon(__dirname + '/favicon.ico'));
 

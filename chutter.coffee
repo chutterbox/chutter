@@ -24,6 +24,11 @@ chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutte
   console.log "crawled"
 ))
 
+request = require('request')
+chutter.use '/api/v1', (req, res) -> 
+  url = (process.env.API_HOST || 'http://localhost:3000') + "/api/v1#{req.url}"
+  req.pipe(request(url)).pipe(res)
+
 chutter.use(favicon(__dirname + '/favicon.ico'));
 
 chutter.get "/moderation", (req, res) ->

@@ -23,15 +23,10 @@
     }
   ]);
 
-  app.controller("communityCtrl", [
-    "$scope", "Page", function($scope, Page) {
-      return $scope.page = Page;
-    }
-  ]);
+  app.controller("communityCtrl", ["$scope", "Page", function($scope, Page) {}]);
 
   app.controller("communityPanelCtrl", [
     "$scope", "$mdBottomSheet", "Page", function($scope, $mdBottomSheet, Page) {
-      $scope.page = Page;
       return $scope.close = function() {
         return $mdBottomSheet.hide();
       };

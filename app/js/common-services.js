@@ -47,7 +47,6 @@
           isArray: true,
           interceptor: {
             'response': function(response) {
-              console.log("here");
               return Page.posts = response.data;
             }
           }
@@ -85,24 +84,14 @@
         id: '@id'
       }, {
         query: {
-          isArray: true,
-          interceptor: {
-            'response': function(response) {
-              return Page.networks = response.data;
-            }
-          }
+          isArray: true
         },
         show: {
           method: 'GET',
           url: API.makeURL('/networks/:id'),
           interceptor: {
             'response': function(response) {
-              Page.network = response.data;
-              Page.title = {
-                text: Page.network.name,
-                slug: Page.network.slug
-              };
-              return Page.secondary_title = void 0;
+              return Page.network = response.data;
             }
           }
         },
@@ -129,19 +118,8 @@
           }
         },
         communities: {
-          method: 'get',
           url: API.makeURL('/networks/:id/communities'),
-          isArray: true,
-          transformResponse: function(response) {
-            var data;
-            data = void 0;
-            data = angular.fromJson(response);
-            return _.each(data, function(item) {
-              if (item.community_subscription_id) {
-                return item.subscribed = true;
-              }
-            });
-          }
+          isArray: true
         },
         subscribe: {
           url: API.makeURL('/networks/:id/subscribe'),
@@ -162,6 +140,9 @@
       return $resource(API.makeURL('/communities/:id'), {
         id: '@id'
       }, {
+        query: {
+          isArray: true
+        },
         show: {
           method: 'GET',
           url: API.makeURL('/communities/:id'),

@@ -31,7 +31,6 @@ app.factory 'PostResource', ['$resource', 'Page', 'API', ($resource, Page, API) 
       url: API.makeURL('/posts/saved')
       isArray: true
       interceptor: 'response': (response) ->
-        console.log "here"
         Page.posts = response.data
 ]
 
@@ -52,17 +51,11 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
   $resource API.makeURL('/networks/:id'), { id: '@id' },
     query:
       isArray: true
-      interceptor: 'response': (response) ->
-        Page.networks = response.data
     show:
       method: 'GET'
       url: API.makeURL('/networks/:id')
       interceptor: 'response': (response) ->
         Page.network = response.data
-        Page.title   = 
-          text: Page.network.name
-          slug: Page.network.slug
-        Page.secondary_title = undefined
     posts:
       method: 'GET'
       url: API.makeURL('/networks/:id/posts')
@@ -79,15 +72,8 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
           if item.network_subscription_id
             item.subscribed = true
     communities:
-      method: 'get'
       url: API.makeURL('/networks/:id/communities')
       isArray: true
-      transformResponse: (response) ->
-        data = undefined
-        data = angular.fromJson(response)
-        _.each data, (item) ->
-          if item.community_subscription_id
-            item.subscribed = true
     subscribe:
       url: API.makeURL('/networks/:id/subscribe')
       method: 'PUT'
@@ -99,6 +85,8 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
 ]
 app.factory 'CommunityResource', ['$resource', 'Page', 'API', ($resource, Page, API) ->
     $resource API.makeURL('/communities/:id'), { id: '@id' },
+      query:
+        isArray: true
       show:
         method: 'GET'
         url: API.makeURL('/communities/:id')

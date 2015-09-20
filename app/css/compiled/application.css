@@ -9181,75 +9181,75 @@ md-toolbar {
   min-height: 48px;
   max-height: 48px; }
 
-chutter-toolbar md-toolbar {
+md-toolbar#main-toolbar {
   z-index: 19; }
-  chutter-toolbar md-toolbar .md-toolbar-tools {
+  md-toolbar#main-toolbar .md-toolbar-tools {
     padding: 0; }
-    chutter-toolbar md-toolbar .md-toolbar-tools #auth-container {
+    md-toolbar#main-toolbar .md-toolbar-tools #auth-container {
       padding: 0 16px; }
-    chutter-toolbar md-toolbar .md-toolbar-tools .md-button {
+    md-toolbar#main-toolbar .md-toolbar-tools .md-button {
       margin: 0;
       min-width: auto;
       text-transform: none; }
-      chutter-toolbar md-toolbar .md-toolbar-tools .md-button.md-fab {
+      md-toolbar#main-toolbar .md-toolbar-tools .md-button.md-fab {
         margin: 0.5vw;
         position: absolute;
         right: 0; }
-    chutter-toolbar md-toolbar .md-toolbar-tools #secondary-header {
+    md-toolbar#main-toolbar .md-toolbar-tools #secondary-header {
       padding-top: 10px;
       font-size: 1.2em;
       font-weight: 200; }
-  chutter-toolbar md-toolbar#networks-bar {
+md-toolbar#networks-bar {
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px; }
+  md-toolbar#networks-bar .md-toolbar-tools {
+    padding: 0;
     height: 32px;
     min-height: 32px;
     max-height: 32px; }
-    chutter-toolbar md-toolbar#networks-bar .md-toolbar-tools {
-      padding: 0;
-      height: 32px;
-      min-height: 32px;
-      max-height: 32px; }
-    chutter-toolbar md-toolbar#networks-bar md-tabs {
-      z-index: 175; }
-      chutter-toolbar md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas {
+  md-toolbar#networks-bar md-tabs {
+    z-index: 175; }
+    md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas {
+      height: 32px; }
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper {
         height: 32px; }
-        chutter-toolbar md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tabs-canvas md-pagination-wrapper {
-          height: 32px; }
-      chutter-toolbar md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item {
-        padding: 16px;
-        height: 32px;
-        line-height: 32px;
-        padding-top: 0;
-        padding-bottom: 0; }
-        chutter-toolbar md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span {
-          font-weight: 500;
-          font-size: 0.8em; }
-    chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar {
+    md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item {
+      padding: 16px;
+      height: 32px;
+      line-height: 32px;
+      padding-top: 0;
+      padding-bottom: 0; }
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span {
+        font-weight: 500;
+        font-size: 0.8em; }
+  md-toolbar#networks-bar md-menu-bar#network-menu-bar {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0;
+    margin: 0 0 0 8px; }
+    md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu {
       height: 32px;
       min-height: 32px;
       max-height: 32px;
-      padding: 0;
-      margin: 0 0 0 8px; }
-      chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu {
+      background-color: transparent; }
+      md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu .md-open-menu-container {
+        max-height: 70vh;
+        overflow: auto; }
+      md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button {
+        margin: 0;
+        font-size: 0.8em;
         height: 32px;
         min-height: 32px;
-        max-height: 32px;
-        background-color: transparent; }
-        chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu .md-open-menu-container {
-          max-height: 70vh;
-          overflow: auto; }
-        chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button {
-          margin: 0;
-          font-size: 0.8em;
-          height: 32px;
-          min-height: 32px;
-          max-height: 32px; }
-          chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button md-icon {
-            height: 35px;
-            width: 15px; }
-          chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button:focus {
-            background-color: transparent; }
-      chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item .md-button,
-      chutter-toolbar md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item a {
-        color: #212121; }
+        max-height: 32px; }
+        md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button md-icon {
+          height: 35px;
+          width: 15px; }
+        md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu button.md-button:focus {
+          background-color: transparent; }
+    md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item .md-button,
+    md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item a {
+      color: #212121; }
 
 /*# sourceMappingURL=toolbar.css.map */

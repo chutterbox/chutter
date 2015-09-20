@@ -30,8 +30,6 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
   $scope.post             = entityable if entityableType is "post"
   $scope.comment          = entityable if entityableType is "comment"
   $scope.entityable       = entityable
-  
-
   $scope.activityLogEntry = new ActivityLogEntry
 
   CommunityResource.reportableRules({id: $scope.entityable.community_slug}).$promise.then (data) ->

@@ -3,7 +3,7 @@
     .toolbar-continer{layout: "row"}
       %md-button#logo{style: "background-color: transparent;", href: "/", layout: "row", layout-align: "center center"}
         %img{ng-src: "/img/logo.png"}
-      %a#secondary-header{ng-if: "page.network && page.network.name", ng-bind: "page.network.name"}      
+      %a#secondary-header{ng-bind: "secondaryTitle"}      
               
     .toolbar-container#auth-container{ng-hide: "user && user.id", layout: "row", layout-align: "end end"}
       %md-button{aria-label: "sign in", ng-click: "logIn()"}
@@ -48,7 +48,7 @@
         %i.icon.ion-log-out
         %md-tooltip
           Log out
-%md-toolbar.md-whiteframe-z1#networks-bar{ng-class: "page.mainToolbar"}
+%md-toolbar#networks-bar{ng-class: "page.mainToolbar"}
   .md-toolbar-tools
     %md-menu-bar#network-menu-bar
       %md-menu
@@ -61,8 +61,8 @@
           %md-menu-item
             %md-button{aria-label: "view all networks", ui-sref: "home.all.hot"} 
               Front Page
-          %md-menu-item{ng-repeat: "network in page.networks"}
-            %md-button{aria-label: "view network", ui-sref: "home.network.hot({network: network.slug})"} 
+          %md-menu-item{ng-repeat: "network in networks"}
+            %md-button{aria-label: "view network", ui-sref: "network.all.hot({network: network.slug})"} 
               {{network.name}}
           %md-menu-divider
           %md-menu-item{ng-click: "editNetworks()"}
@@ -70,10 +70,10 @@
               Find new networks
 
     %md-tabs.md-primary{flex: "true", ng-class: "page.mainToolbar"}
-      %md-tab{ui-sref: "home.all.hot"}
+      %md-tab{ui-sref: "{{applicationSectionNamespace}}.hot"}
         %md-tab-label
           %span All
-      %md-tab{ng-repeat: "community in page.communities | filter: page.communityFilter", ui-sref: "home.community.hot({community: community.slug})"}
+      %md-tab{ng-repeat: "community in communities", ui-sref: "{{applicationSectionNamespace}}.community.hot({community: community.slug})"}
         %md-tab-label{layout: "row", layout-align: "space-between center"}
           %span{ng-bind: "community.name"}
     %md-button.md-icon-button{ng-if: "page.scope != 'all' && user && user.id", ng-click: "editNetworkCommunities(page.network)"}  

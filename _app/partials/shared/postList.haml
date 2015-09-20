@@ -17,7 +17,7 @@
       .middle{layout: "column"}
         .top{ng-switch: "post.media.length"}
           .title{ng-switch-when: 0}
-            %a.color-light.md-title{ng-bind: "post.title", ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})"}
+            %a.color-light.md-title{ng-bind: "post.title", ui-sref: "home.all.community.comments({id: post.slug, community: post.community_slug})"}
 
           .title{ng-switch-default: true}
             %a.color-light.md-title{ng-bind: "post.title", href: "{{post.media[0].link}}"}
@@ -32,7 +32,7 @@
           %a.user-link{ng-bind: "post.community_slug", ui-sref: "home.community.hot({community: post.community_slug})"}
             
         .footer{layout: "row"}
-          %a{ui-sref: "home.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
+          %a{ui-sref: "home.all.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
           %a{ng-if: "!post.saved", ng-click: "ctrl.postService.toggleSave(post)"}
             save
           %a{ng-if: "post.saved", ng-click: "ctrl.postService.toggleSave(post)"}

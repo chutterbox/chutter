@@ -3,8 +3,6 @@
   padding: 15px
 #comments
   overflow: auto
-  padding-top: 20px
-  height: 100%
   min-height: auto
   md-backdrop
     display: none
@@ -61,21 +59,34 @@ comment-embed
     min-height: 20px
 
   .content
-    padding: 8px
-    
-  .vote
-    margin-top: 5px
-    min-height: 85px
-    max-height: 100%
-    max-width: 30px
-    .md-button
+    padding-top: 8px
+  .left-controls
+    > .md-button
+      @include min-and-max-height(30px)
+      @include min-and-max-width(30px)
       line-height: 30px
-      padding: 0 !important
-      margin: 0 !important
-      max-height: 30px
-      min-height: 30px
-      height: 30px
-      min-width: 15px
+    .vote
+      .ion-chevron-up,
+      .ion-chevron-down
+        &.active-up
+          color: material-color("blue", "600")
+        &.active-down
+          color: material-color("red", "600")
+      position: relative
+      height: 70px
+      width: 3vw
+      h6
+        margin: 0
+        color: material-color("grey", "300")
+
+      .md-button
+        min-height: 5px
+        width: 20px
+        height: 20px
+        line-height: normal
+        margin: 0
+        i
+          color: material-color("grey", "500")
 
   //Colored borders showing hierarchy
   .border
@@ -148,8 +159,8 @@ comment-embed
     .username
       padding-left: 0
   .main
-    margin-left: 10px
-    margin-bottom: 15px
+    padding-left: 8px
+    padding-bottom: 16px
     float: left
     border-top: 1px solid #F3F3F3
 
@@ -204,7 +215,6 @@ comment-embed
 
 //Style first comment different (card style)
 #comments > comment
-  margin: 10px 16px
   border-radius: 2px
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16)
   >.main

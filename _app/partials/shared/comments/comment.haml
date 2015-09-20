@@ -10,13 +10,14 @@
     %span{flex: true}
     %span.time{layout-align: "end"} 42 minutes ago
 
-.main{layout: "row"}
-  .vote{layout: "column", layout-fill: true}
-    %md-button.md-icon-button{flex: "30", aria-label: "Upvote",  ng-click: "ctrl.updateVote(1)"}
-      .icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
-    %md-button.md-icon-button{flex: "30", aria-label: "Downvote", ng-click: "ctrl.updateVote(-1)"}
-      .icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
-    %span{flex: true}
+.main{layout: "row", flex: "true"}
+  .left-controls{layout: "column"}
+    .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
+      %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.updateVote(post, 1)"}
+        %i.icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
+      %h6{ng-bind: "comment.points"}
+      %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "ctrl.updateVote(post, -1)"}
+        %i.icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
     %md-button.md-icon-button{ng-click: "comment.toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
       .icon.ion-ios-minus-outline
   .content{layout: "column", layout-fill: true}

@@ -32,7 +32,8 @@
           disableParentScroll: true,
           locals: {
             post: this.post,
-            parentComment: parentComment
+            parentComment: parentComment,
+            comments: this.comments
           },
           preserveScope: true,
           parent: angular.element(document.body),

@@ -104,7 +104,7 @@
   ]);
 
   app.controller("replyCtrl", [
-    "$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", function($scope, CommentResource, $mdBottomSheet, parentComment, post) {
+    "$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", "comments", function($scope, CommentResource, $mdBottomSheet, parentComment, post, comments) {
       console.log(parentComment);
       $scope.newComment = {
         post_id: post.id,
@@ -118,9 +118,12 @@
           $mdBottomSheet.hide();
           newCreatedComment.username = newCreatedComment.user.username;
           if (parentComment && parentComment.id) {
-            return parentComment.children.unshift(newCreatedComment);
+            parentComment.children.unshift(newCreatedComment);
+            if (!(parentComment.children.length > 1)) {
+              return parentComment.compileElementForFirstChild();
+            }
           } else {
-            return post.comments.unshift(newCreatedComment);
+            return comments.unshift(newCreatedComment);
           }
         });
       };

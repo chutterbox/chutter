@@ -5,7 +5,7 @@
     %md-button.md-icon-button{aria-label: "toggle comment", ng-click: "comment.toggle()"}
       .icon.ion-ios-plus-outline
     %span
-      %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+      %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})", aria-label: "username"}
       %span.points{ng-bind: "comment.points + ' points'"}
     %span{flex: true}
     %span.time{layout-align: "end"} 42 minutes ago
@@ -23,7 +23,7 @@
   .content{layout: "column", layout-fill: true}
     .header{layout: "row"}
       .wrap
-        %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+        %md-button.md-primary.button-link.username{aria-label: "username", md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
         %span.points{ng-bind: "comment.points + ' points'"}
       %span{flex: true}
       %span.time{layout-align: "end", am-time-ago: "comment.created_at"}

@@ -58,6 +58,11 @@
           $scope.comment.childIds = _.map($scope.comment.children, function(child) {
             return "c" + child.path;
           });
+          $scope.comment.compileElementForFirstChild = function() {
+            return $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>')($scope, function(cloned, scope) {
+              return $element.append(cloned);
+            });
+          };
           $scope.comment.toggle = function() {
             if ($scope.comment.open) {
               $scope.comment.open = false;

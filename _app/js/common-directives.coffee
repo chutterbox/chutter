@@ -38,8 +38,10 @@ app.directive 'comment', ["$compile", ($compile) ->
     $scope.offsetLeft = $scope.comment.element.offsetLeft
     $scope.comment.childIds = _.map $scope.comment.children, (child) ->
       return "c#{child.path}"
-
-
+    $scope.comment.compileElementForFirstChild = () ->
+      #in the event that a new child comment needs to be created (and other children dont exists)
+      $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->
+         $element.append(cloned)
     $scope.comment.toggle = ->
       if $scope.comment.open
         $scope.comment.open = false

@@ -30,6 +30,7 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
       locals:
         post: @post
         parentComment: parentComment
+        comments: @comments
       #important, do not remove since we're passing in scope reference
       preserveScope: true
       parent: angular.element(document.body)

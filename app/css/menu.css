@@ -63,22 +63,6 @@ md-bottom-sheet {
   .button-link:hover {
     background-color: transparent !important; }
 
-md-sidenav.md-locked-open {
-  width: 16vw;
-  min-width: 16vw;
-  max-width: 16vw;
-  height: auto;
-  z-index: 18; }
-
-md-sidenav,
-md-backdrop.md-sidenav-backdrop {
-  background: #f5f5f5;
-  z-index: 18;
-  overflow: auto; }
-@media(max-width: 960px) {
-  md-sidenav,
-  md-backdrop.md-sidenav-backdrop {
-    z-index: 25; } }
 i.active-up,
 .icon.active-up {
   color: #03a9f4; }
@@ -99,7 +83,6 @@ i.active-down,
   font-size: 14px; }
 
 #content {
-  height: calc(100vh - 32px);
   overflow: hidden;
   position: relative;
   z-index: 22; }
@@ -223,11 +206,11 @@ i.active-down,
   font-weight: normal;
   text-transform: none;
   text-align: left;
-  padding: 0 1.25vw;
+  padding: 16px;
   margin: 0;
-  width: 16vw;
-  min-width: 16vw;
-  max-width: 16vw; }
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%; }
   .md-sidenav-left .nav-list-item .md-button p,
   .md-sidenav-left .nav-list-item .md-button span,
   .md-sidenav-left .subnav-list-item .md-button p,
@@ -310,9 +293,9 @@ i.active-down,
     text-align: left;
     padding: 1.25vw;
     margin: 0;
-    width: 16vw;
-    min-width: 16vw;
-    max-width: 16vw; }
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%; }
     .md-sidenav-right .detailed-list-item .md-button p,
     .md-sidenav-right .detailed-list-item .md-button span {
       margin: 0;

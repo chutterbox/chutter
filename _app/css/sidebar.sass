@@ -3,17 +3,19 @@
 $color-white: #fff
 $color-dark: #3f3f3f
 
-$font-size-60: 0.60vmax
-$font-size-65: 0.65vmax
-$font-size-70: 0.7vmax
-$font-size-75: 0.75vmax
-$font-size-130: 1.3vmax
+$font-size-60: 0.60em
+$font-size-65: 0.65em
+$font-size-70: 0.7em
+$font-size-75: 0.75em
+$font-size-130: 1.3em
 
 .md-sidenav-right
   .section-content
     >div
       padding: 1.25vw
       overflow: hidden
+      .additional-content
+        width: 100%
   h5
     margin-top: 0
   .small
@@ -24,8 +26,11 @@ $font-size-130: 1.3vmax
     text-transform: none
   //Header
   .header
-    margin-bottom: 0.8vmax
+    .sub-header
+      padding: 8px 0
     .title
+      .icon-holder
+        text-align: center
       h5
         font-size: 1em
         margin: 0
@@ -34,8 +39,6 @@ $font-size-130: 1.3vmax
         height: $h5-size
         width: 36px
         height: 36px
-        left: -10px
-        margin: 0 -6px 0 6px
         .icon
           line-height: 36px
           font-size: $font-size-130
@@ -49,7 +52,6 @@ $font-size-130: 1.3vmax
           .ion-plus-round
             color: material-color("green")
     .sub-header
-      margin-top: 0.5vmax
       font-size: $font-size-70
       @media(max-width: 960px) // Responsive font
         font-size: $font-size-70 +1

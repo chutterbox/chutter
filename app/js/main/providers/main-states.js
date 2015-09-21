@@ -6,16 +6,30 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var all, all_hot, all_new, all_top, comments, community, community_hot, community_new, community_top, create, home, interests, network, network_all, network_all_hot, network_all_new, network_all_top, network_community, network_community_hot, network_community_new, network_community_top, register, submit, view_url, welcome;
+      var comments, create, frontpage, frontpage_community, frontpage_community_hot, frontpage_community_new, frontpage_community_top, frontpage_hot, frontpage_new, frontpage_top, interests, network, network_all, network_all_hot, network_all_new, network_all_top, network_community, network_community_hot, network_community_new, network_community_top, register, submit, view_url, welcome;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
-      $urlRouterProvider.otherwise('/');
-      home = {
-        name: "home",
+      frontpage = {
+        name: "frontpage",
         abstract: true,
-        templateUrl: view_url + "/layout.html",
-        controller: "pageCtrl",
+        onEnter: [
+          "Page", function(Page) {
+            return Page.selectedCommunityTab = 0;
+          }
+        ],
+        views: {
+          "toolbar": {
+            templateUrl: "../app/partials/shared/toolbar.html",
+            controller: "toolbarCtrl"
+          },
+          "": {
+            templateUrl: view_url + "/posts.html"
+          },
+          "right-rail": {
+            template: "<all-sidebar></all-sidebar>"
+          }
+        },
         resolve: {
           Networks: [
             "NetworkResource", function(NetworkResource) {
@@ -29,33 +43,9 @@
           ]
         }
       };
-      all = {
-        name: "home.all",
-        abstract: true,
-        data: {
-          context: "all"
-        },
-        views: {
-          "toolbar": {
-            templateUrl: "../app/partials/shared/toolbar.html",
-            controller: "toolbarCtrl"
-          },
-          "": {
-            templateUrl: view_url + "/posts.html"
-          },
-          "right-rail": {
-            template: "<all-sidebar></all-sidebar>"
-          }
-        }
-      };
-      all_hot = {
-        name: "home.all.hot",
+      frontpage_hot = {
+        name: "frontpage.hot",
         url: "/",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("hot");
-          }
-        ],
         resolve: {
           Posts: [
             "PostResource", function(PostResource) {
@@ -72,14 +62,9 @@
           }
         }
       };
-      all_new = {
-        name: "home.all.new",
+      frontpage_new = {
+        name: "frontpage.new",
         url: "/new",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("new");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -96,14 +81,9 @@
           }
         }
       };
-      all_top = {
-        name: "home.all.top",
+      frontpage_top = {
+        name: "frontpage.top",
         url: "/top",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("top");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -120,12 +100,16 @@
           }
         }
       };
-      community = {
-        name: "home.all.community",
+      frontpage_community = {
+        name: "frontpage.community",
         url: "/c/:community",
-        data: {
-          context: "all.community"
-        },
+        onEnter: [
+          "Page", "Communities", "$stateParams", function(Page, Communities, $stateParams) {
+            return Page.selectedCommunityTab = _.findIndex(Communities, {
+              slug: $stateParams.community
+            }) + 1;
+          }
+        ],
         abstract: true,
         resolve: {
           Community: [
@@ -136,19 +120,11 @@
             }
           ]
         },
-        onEnter: [
-          "Page", function(Page) {
-            Page.scope = "community";
-            Page.mainToolbar = "";
-            return Page.secondaryToolbar = "md-hue-1";
-          }
-        ],
-        controller: "communityCtrl",
         views: {
-          "@home": {
+          "@frontpage": {
             templateUrl: view_url + "/communityPosts.html"
           },
-          "right-rail@home": {
+          "right-rail@": {
             templateUrl: "../app/partials/main/sidebar/community-sidebar.html",
             resolve: {
               Moderators: [
@@ -172,19 +148,13 @@
               }
             ]
           }
-        },
-        abstract: true
+        }
       };
-      community_hot = {
-        name: "home.all.community.hot",
+      frontpage_community_hot = {
+        name: "frontpage.community.hot",
         url: "",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("hot");
-          }
-        ],
         views: {
-          "posts": {
+          "posts@frontpage": {
             controller: "postListCtrl as ctrl",
             templateUrl: "../app/partials/shared/postList.html",
             resolve: {
@@ -200,17 +170,12 @@
           }
         }
       };
-      community_new = {
-        name: "home.all.community.new",
+      frontpage_community_new = {
+        name: "frontpage.community.new",
         url: "/new",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("new");
-          }
-        ],
         views: {
-          "posts": {
-            controller: "postListCtrl",
+          "posts@": {
+            controller: "postListCtrl as ctrl",
             templateUrl: "../app/partials/shared/postList.html",
             resolve: {
               Posts: [
@@ -225,14 +190,9 @@
           }
         }
       };
-      community_top = {
-        name: "home.all.community.top",
+      frontpage_community_top = {
+        name: "frontpage.community.top",
         url: "/top",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("top");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl",
@@ -416,11 +376,6 @@
       network_community_hot = {
         name: "network.all.community.hot",
         url: "",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("hot");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -441,11 +396,6 @@
       network_community_new = {
         name: "network.all.community.new",
         url: "/new",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("new");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl",
@@ -466,11 +416,6 @@
       network_community_top = {
         name: "network.all.community.top",
         url: "/top",
-        onEnter: [
-          "Page", function(Page) {
-            return Page.paginator.reset("top");
-          }
-        ],
         views: {
           "posts": {
             controller: "postListCtrl",
@@ -588,29 +533,14 @@
         templateUrl: view_url + "/registration/interests.html",
         controller: "networkEditCtrl"
       };
-      $stateProvider.state(home);
-      $stateProvider.state(all);
-      $stateProvider.state(all_hot);
-      $stateProvider.state(all_new);
-      $stateProvider.state(all_top);
-      $stateProvider.state(network);
-      $stateProvider.state(network_all);
-      $stateProvider.state(network_all_new);
-      $stateProvider.state(network_all_top);
-      $stateProvider.state(network_all_hot);
-      $stateProvider.state(network_community);
-      $stateProvider.state(network_community_hot);
-      $stateProvider.state(network_community_top);
-      $stateProvider.state(community);
-      $stateProvider.state(community_hot);
-      $stateProvider.state(community_top);
-      $stateProvider.state(community_new);
-      $stateProvider.state(submit);
-      $stateProvider.state(create);
-      $stateProvider.state(comments);
-      $stateProvider.state(register);
-      $stateProvider.state(welcome);
-      return $stateProvider.state(interests);
+      $stateProvider.state(frontpage);
+      $stateProvider.state(frontpage_hot);
+      $stateProvider.state(frontpage_new);
+      $stateProvider.state(frontpage_top);
+      $stateProvider.state(frontpage_community);
+      $stateProvider.state(frontpage_community_hot);
+      $stateProvider.state(frontpage_community_new);
+      return $stateProvider.state(frontpage_community_top);
     }
   ]);
 

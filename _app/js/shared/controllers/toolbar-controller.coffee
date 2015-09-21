@@ -1,9 +1,15 @@
 app = angular.module("Chutter")
 
-app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location) ->
+app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", "Page", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location, Page) ->
     console.log Communities
     $scope.communities = Communities 
     $scope.networks = Networks
+    $scope.page = Page
+    # if $stateParams.community
+    #   console.log "here"
+    #   console.log $stateParams.community
+    #   $scope.selected = _.findIndex(Communities, {slug: $stateParams.community})
+    #   console.log $scope.selected
 
     $scope.$on("$stateChangeStart", () ->
       $scope.loading = true
@@ -11,7 +17,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     $scope.$on("$stateChangeSuccess", () ->
       $scope.loading = false
     )
-    $scope.applicationSectionNamespace = "home.all"
+    $scope.applicationSectionNamespace = "frontpage"
     
     # $(".md-virtual-repeat-scroller").scroll () ->
     #   console.log "here"

@@ -11,20 +11,9 @@
   min-height: $height
   max-height: $height
 
-$sidenav-width: 16vw
-$sidenav-padding: 0 1.25vw
-
-$four-three-width:  100vw - ($sidenav-width * 2) - 6vw
-$four-three-height:  ($four-three-width * .75)
-$four-three-height-scaled: $four-three-height * 0.1
-$four-three-width-scaled: $four-three-width * 0.1
-
 $four-three-width-mobile:  100vw
 $four-three-height-mobile:  ($four-three-width-mobile * .75)
 $four-three-height-scaled-mobile: $four-three-height-mobile * 0.2
-
-$sidenav-z-index-sm: 25
-$sidenav-z-index-lg: 18
 
 $content-z-index-sm: 22
 $content-z-index-lg: 22
@@ -92,21 +81,6 @@ md-bottom-sheet
   &:hover
     background-color: transparent !important
 
-//------------------------------
-// Custom sidenav overrides using vw/vh units
-//------------------------------
-md-sidenav.md-locked-open
-  @include min-and-max-width($sidenav-width)
-  height: auto
-  z-index: $sidenav-z-index-lg
-  
-md-sidenav,
-md-backdrop.md-sidenav-backdrop
-  background: material-color('grey', '100')
-  z-index: $sidenav-z-index-lg
-  overflow: auto
-  @media(max-width: 960px) 
-    z-index: $sidenav-z-index-sm
 
 //------------------------------
 // Vote icons
@@ -146,7 +120,6 @@ i,
 //------------------------------
 #content
   // overlay tall toolbar with the main content
-  height: calc(100vh - 32px)
   overflow: hidden
   position: relative
   z-index: $content-z-index-lg

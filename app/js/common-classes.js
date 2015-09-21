@@ -1,66 +1,11 @@
 (function() {
   'use strict';
-  var Page, Paginator, app;
-
-  Paginator = (function() {
-    function Paginator() {}
-
-    Paginator.prototype.offset = 26;
-
-    Paginator.prototype.itemsLoaded = 25;
-
-    Paginator.prototype.ended = false;
-
-    Paginator.prototype.current_sort = "hot";
-
-    Paginator.prototype.loading = false;
-
-    Paginator.prototype.start_fetch = function() {
-      return this.loading = true;
-    };
-
-    Paginator.prototype.finish_fetch = function(length) {
-      if (length < 25) {
-        this.ended = true;
-      }
-      this.offset += 25;
-      return this.loading = false;
-    };
-
-    Paginator.prototype.reset = function(current_sort) {
-      if (current_sort == null) {
-        current_sort = "hot";
-      }
-      this.offset = 26;
-      this.ended = false;
-      this.current_sort = current_sort;
-      return this.loading = false;
-    };
-
-    return Paginator;
-
-  })();
+  var Page, app;
 
   Page = (function() {
     function Page() {}
 
-    Page.prototype.title = "";
-
-    Page.prototype.scope = "";
-
-    Page.prototype.communities = [];
-
-    Page.prototype.networks = [];
-
-    Page.prototype.cachedScrollTops = [];
-
-    Page.prototype.community = {
-      permitted_formats_list: []
-    };
-
-    Page.prototype.posts = [];
-
-    Page.prototype.paginator = new Paginator;
+    Page.prototype.selectedCommunityTab = 0;
 
     return Page;
 

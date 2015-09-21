@@ -145,7 +145,6 @@ module.exports = (grunt) ->
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
           "app/partials/main/reset.html" : "_app/partials/main/reset.haml"
           "app/partials/main/hype.html" : "_app/partials/main/hype.haml"
-          "app/partials/main/layout.html" : "_app/partials/main/layout.haml"
           "app/partials/main/create/layout.html" : "_app/partials/main/create/layout.haml"
           "app/partials/main/create/landing.html" : "_app/partials/main/create/landing.haml"
           "app/partials/main/create/customize.html" : "_app/partials/main/create/customize.haml"

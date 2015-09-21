@@ -1,20 +1,21 @@
 .section-content
-  .about{layout: "column"}
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "start center"}
+  .about
+    .header{layout: "column"}
+      .title{layout: "row", layout-align: "start center"}
         .icon-holder
           %md-icon{md-svg-src: "/img/character.svg", style: "height: 30px; width: 30px; fill: #000;"}
         %h5.md-title
           Chutter.co
-      .light.sub-header
+      .color-light.sub-header
         Chutter is a new place to share the best links on the web. 
-    %md-button.md-primary.md-raised.md-hue-1{ui-sref: "home.submit", flex: "100"}
-      Submit a link
-    %md-button.md-primary.md-raised.md-hue-2{ui-sref: "create", flex: "100"}
-      Create a community
-  .sub-goal{layout: "column"}
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "start center"}
+    .additional-content{layout: "column"}
+      %md-button.md-primary.md-raised.md-hue-1{ui-sref: "home.submit"}
+        Submit a link
+      %md-button.md-primary.md-raised.md-hue-2{ui-sref: "create"}
+        Create a community
+  .sub-goal
+    .header{layout: "column"}
+      .title{layout: "row", layout-align: "start center"}
         .icon-holder
           .icon.ion-heart
         %h5.md-title
@@ -22,13 +23,14 @@
 
       .color-light.sub-header
         Help us make this site available for the world.
-    %md-progress-linear.md-warn{md-mode: "determinate", value: "33"}
-    %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
-      Help keep Chutter running
+    .additional-content{layout: "column"}
+      %md-progress-linear.md-warn{md-mode: "determinate", value: "20"}
+      %md-button.md-primary.help{aria-label: "Help Chutter", ng-click: "openSubscriptionDialog()"}
+        Help keep Chutter running
   .news
-    .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
-      .title{layout: "row", flex: 100, layout-align: "start center"}
-        %md-button.md-icon-button.md-primary
+    .header{layout: "column"}
+      .title{layout: "row", layout-align: "start center"}
+        .icon-holder
           .icon.ion-ios-pulse-strong
         %h5.md-title
           News

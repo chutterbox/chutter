@@ -1,34 +1,7 @@
 'use strict'
 
-class Paginator
-  offset: 26
-  itemsLoaded: 25
-  ended: false
-  current_sort:  "hot"
-  loading: false
-  start_fetch: () ->
-    @loading = true
-  finish_fetch: (length) ->
-    if length < 25
-      @ended = true
-    @offset += 25
-    @loading = false
-  reset: (current_sort = "hot") ->
-    @offset = 26
-    @ended  = false
-    @current_sort   = current_sort
-    @loading = false
-
 class Page
-  title: ""
-  scope: ""
-  communities: []
-  networks: []
-  cachedScrollTops: []
-  community: 
-    permitted_formats_list: []
-  posts: []
-  paginator: new Paginator
+  selectedCommunityTab: 0
 
 app = angular.module("Chutter")
 app.factory "Page", [ ->

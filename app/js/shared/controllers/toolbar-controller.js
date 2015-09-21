@@ -4,17 +4,18 @@
   app = angular.module("Chutter");
 
   app.controller("toolbarCtrl", [
-    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location) {
+    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", "Page", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location, Page) {
       console.log(Communities);
       $scope.communities = Communities;
       $scope.networks = Networks;
+      $scope.page = Page;
       $scope.$on("$stateChangeStart", function() {
         return $scope.loading = true;
       });
       $scope.$on("$stateChangeSuccess", function() {
         return $scope.loading = false;
       });
-      $scope.applicationSectionNamespace = "home.all";
+      $scope.applicationSectionNamespace = "frontpage";
       $scope.$on("auth:show-signin", function() {
         return $scope.logIn;
       });

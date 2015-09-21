@@ -63,22 +63,6 @@ md-bottom-sheet {
   .button-link:hover {
     background-color: transparent !important; }
 
-md-sidenav.md-locked-open {
-  width: 16vw;
-  min-width: 16vw;
-  max-width: 16vw;
-  height: auto;
-  z-index: 18; }
-
-md-sidenav,
-md-backdrop.md-sidenav-backdrop {
-  background: #f5f5f5;
-  z-index: 18;
-  overflow: auto; }
-@media(max-width: 960px) {
-  md-sidenav,
-  md-backdrop.md-sidenav-backdrop {
-    z-index: 25; } }
 i.active-up,
 .icon.active-up {
   color: #03a9f4; }
@@ -99,7 +83,6 @@ i.active-down,
   font-size: 14px; }
 
 #content {
-  height: calc(100vh - 32px);
   overflow: hidden;
   position: relative;
   z-index: 22; }

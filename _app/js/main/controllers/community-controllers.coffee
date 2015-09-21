@@ -16,9 +16,6 @@ app.controller "communityEditCtrl", ["$scope", "$mdDialog", "List", "Page", "Com
 
 ]
 
-app.controller "communityCtrl", ["$scope", "Page", ( $scope, Page) ->
-]
-
 app.controller "communityPanelCtrl", ["$scope", "$mdBottomSheet", "Page", ($scope, $mdBottomSheet, Page) ->
   $scope.close = () ->
     $mdBottomSheet.hide();

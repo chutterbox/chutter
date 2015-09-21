@@ -1,5 +1,16 @@
 %md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions", ng-switch: "subscription.entityable", layout: "row"}
-    %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
-      %p{ng-bind: "::(('Re: ' + subscription.title | limitTo: 30) + '...')"}
-      %span{ng-bind: "(subscription.unread_count || 0) + ' unread notifications' "}
+  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions | orderBy: '-unread_count'", ng-switch: "subscription.entityable", layout: "row"}
+    .post-item{ng-switch-when: "post", flex: "100"}
+      %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+        %p{ng-bind: "::(('Re: ' + subscription.title | limitTo: 80) + '...')"}
+        %span
+          {{subscription.notification_count}} replies
+        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+          ({{subscription.unread_count}} new)
+    .comment-item{ng-switch-when: "comment", flex: "100"}
+      %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+        %p{ng-bind: "::(('Re: ' + subscription.body | limitTo: 80) + '...')"}
+        %span
+          {{subscription.notification_count}} replies
+        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+          ({{subscription.unread_count}} new)

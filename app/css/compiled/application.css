@@ -7277,6 +7277,10 @@ i.active-down,
       width: 3vw;
       min-width: 3vw;
       max-width: 3vw; }
+    .md-sidenav-right .detailed-list-item .md-button .red-cta {
+      margin-left: 8px;
+      font-weight: 500;
+      color: #f44336; }
 
 /*# sourceMappingURL=menu.css.map */
 

@@ -6,7 +6,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     # redirects
     $urlRouterProvider.when('', '/')
     $urlRouterProvider.when('/u/:username', '/u/:username/overview')
-    # $urlRouterProvider.otherwise('/')
+    $urlRouterProvider.otherwise('/')
 
     frontpage =
       name: "frontpage"

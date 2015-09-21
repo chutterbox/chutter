@@ -10,6 +10,7 @@
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
+      $urlRouterProvider.otherwise('/');
       frontpage = {
         name: "frontpage",
         abstract: true,

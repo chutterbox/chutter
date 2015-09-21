@@ -8,6 +8,7 @@
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
       var commentNotifications, conversationCompose, conversationContent, conversations, home, notificationSubscriptions, postNotifications, preferences, saved_posts, saved_posts_all, saved_posts_filtered, stats, submissions, view_url;
       view_url = "../app/partials/me";
+      $urlRouterProvider.otherwise('/');
       home = {
         name: "home",
         abstract: true,
@@ -46,9 +47,9 @@
       };
       postNotifications = {
         name: "home.notifications.postNotifications",
-        url: "/notifications/post/:id",
+        url: "notifications/post/:id",
         views: {
-          "@home": {
+          "@": {
             templateUrl: view_url + "/notifications/postNotifications.html",
             controller: "notificationsCtrl",
             resolve: {
@@ -72,9 +73,9 @@
       };
       commentNotifications = {
         name: "home.notifications.commentNotifications",
-        url: "/notifications/comment/:id",
+        url: "notifications/comment/:id",
         views: {
-          "@home": {
+          "@": {
             templateUrl: view_url + "/notifications/commentNotifications.html",
             controller: "notificationsCtrl",
             resolve: {
@@ -211,15 +212,19 @@
       stats = {
         name: "home.stats",
         url: "/stats",
-        templateUrl: view_url + "/stats.html",
-        resolve: {
-          Stats: [
-            "UserResource", function(UserResource) {
-              return UserResource.stats().$promise;
-            }
-          ]
-        },
-        controller: "statsCtrl"
+        views: {
+          "@": {
+            templateUrl: view_url + "/stats.html",
+            resolve: {
+              Stats: [
+                "UserResource", function(UserResource) {
+                  return UserResource.stats().$promise;
+                }
+              ]
+            },
+            controller: "statsCtrl"
+          }
+        }
       };
       $stateProvider.state(home);
       $stateProvider.state(notificationSubscriptions);

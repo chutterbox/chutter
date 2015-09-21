@@ -3,6 +3,8 @@ app = angular.module("MeApp")
 
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
     view_url = "../app/partials/me" 
+    $urlRouterProvider.otherwise('/')
+    
     home =
       name: "home"
       abstract: true
@@ -35,9 +37,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     
     postNotifications =
       name: "home.notifications.postNotifications"
-      url: "/notifications/post/:id"
+      url: "notifications/post/:id"
       views: 
-        "@home":
+        "@":
           templateUrl: "#{view_url}/notifications/postNotifications.html"
           controller: "notificationsCtrl"
           resolve:
@@ -50,9 +52,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
 
     commentNotifications =
       name: "home.notifications.commentNotifications"
-      url: "/notifications/comment/:id"
+      url: "notifications/comment/:id"
       views: 
-        "@home":
+        "@":
           templateUrl: "#{view_url}/notifications/commentNotifications.html"
           controller: "notificationsCtrl"
           resolve:
@@ -97,11 +99,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
               ConversationResource.messages({id: $stateParams.id})
             ]
 
-    
-
-
-
-          
     saved_posts =
       name: "home.saved_posts"
       url: "/saved/posts/"
@@ -157,12 +154,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     stats =
       name: "home.stats"
       url: "/stats"
-      templateUrl: "#{view_url}/stats.html"
-      resolve: 
-        Stats: ["UserResource", (UserResource) -> 
-          UserResource.stats().$promise
-        ]
-      controller: "statsCtrl"      
+      views:
+        "@":
+          templateUrl: "#{view_url}/stats.html"
+          resolve: 
+            Stats: ["UserResource", (UserResource) -> 
+              UserResource.stats().$promise
+            ]
+          controller: "statsCtrl"      
     
     $stateProvider.state(home)
     $stateProvider.state(notificationSubscriptions)

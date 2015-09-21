@@ -1,0 +1,77 @@
+%md-toolbar#main-toolbar{ng-class: "page.mainToolbar", md-scroll-shrink: "true"}
+  .md-toolbar-tools{layout: "row", flex: "100", layout-align: "space-between center"}
+    .toolbar-continer{layout: "row"}
+      %md-button#logo{style: "background-color: transparent;", href: "/", layout: "row", layout-align: "center center"}
+        %img{ng-src: "/img/logo.png"}
+      %a#secondary-header{ng-bind: "secondaryTitle"}      
+              
+    .toolbar-container#auth-container{ng-hide: "user && user.id", layout: "row", layout-align: "end end"}
+      %md-button{aria-label: "sign in", ng-click: "logIn()"}
+        log in
+      %md-button{aria-label: "sign in", ui-sref: "register.welcome"}
+        sign up
+    .toolbar-container{ng-show: "user && user.id", hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
+      %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
+        Moderation
+      %md-button{aria-label: "management", ng-if: "user.manager", href: "/management", target: "_self"}
+        Management
+      %md-menu
+        %md-button.md-icon-button{aria-label: "change theme", ng-click: "$mdOpenMenu($event)"}
+          .icon.ion-android-color-palette
+        %md-menu-content.theme-list
+          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutter')"}
+            .theme-chutter
+              Chutter
+          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterDark')"}
+            .theme-chutter-dark
+              Chutter Dark
+          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterTeal')"}
+            .theme-chutter-teal
+              Chutter Teal
+          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterOrange')"}
+            .theme-chutter-orange
+              Chutter Orange
+          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterPink')"}
+            .theme-chutter-pink
+              Chutter Pink
+
+      %md-button{aria-label: "notifications", href: "/me/notifications", target: "_self"}
+        {{user.username}} 
+      %span
+        ({{user.post_points}} · {{user.comment_points}})
+        
+      %md-button.md-icon-button{aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true}
+        %i.icon.ion-android-mail
+        %md-tooltip
+          Messages
+      %md-button.md-icon-button{aria-label: "logout", ng-click: "logout()", hide-sm: true}
+        %i.icon.ion-log-out
+        %md-tooltip
+          Log out
+%md-toolbar#networks-bar{ng-class: "page.mainToolbar"}
+  .md-toolbar-tools
+    %md-tabs.md-primary{flex: "true", ng-class: "page.mainToolbar"}
+      %md-tab{ui-sref: "home.notifications"}
+        %md-tab-label
+          %span Notifications
+      %md-tab{ui-sref: "home.conversations"}
+        %md-tab-label
+          %span
+            Inbox
+      %md-tab{ui-sref: "home.submissions"}
+        %md-tab-label
+          %span
+            Submissions
+      %md-tab{ui-sref: "home.saved_posts"}
+        %md-tab-label
+          %span
+            Saved Posts
+      %md-tab{ui-sref: "home.preferences"}
+        %md-tab-label
+          %span
+            Preferences
+      %md-tab{ui-sref: "home.stats"}
+        %md-tab-label
+          %span
+            Stats
+%md-progress-linear.md-hue-2#loading{md-mode: "indeterminate", ng-if: "loading"}

@@ -139,7 +139,6 @@ module.exports = (grunt) ->
           "app/partials/shared/subscriptionDialog.html" : "_app/partials/shared/subscriptionDialog.haml"
           "app/partials/shared/mediaPlayerSheet.html" : "_app/partials/shared/mediaPlayerSheet.haml"
           "app/partials/shared/mediaPlayerContent.html" : "_app/partials/shared/mediaPlayerContent.haml"
-          "app/partials/shared/toolbar.html" : "_app/partials/shared/toolbar.haml"
 
           #main application partials
           "app/partials/main/index.html" : "_app/partials/main/index.haml"
@@ -179,6 +178,7 @@ module.exports = (grunt) ->
           "app/partials/main/sidebar/network-sidebar.html" : "_app/partials/main/sidebar/network-sidebar.haml"
           "app/partials/main/sidebar/submission-sidebar.html" : "_app/partials/main/sidebar/submission-sidebar.haml"
           "app/partials/main/sidebar/footer-sidebar.html" : "_app/partials/main/sidebar/footer-sidebar.haml"
+          "app/partials/main/toolbar.html" : "_app/partials/main/toolbar.haml"
 
           #me application partials
           "app/partials/me/index.html" : "_app/partials/me/index.haml"
@@ -193,6 +193,7 @@ module.exports = (grunt) ->
           "app/partials/me/saved.html" : "_app/partials/me/saved.haml"
           "app/partials/me/preferences.html" : "_app/partials/me/preferences.haml"
           "app/partials/me/submissions.html" : "_app/partials/me/submissions.haml"
+          "app/partials/me/toolbar.html" : "_app/partials/me/toolbar.haml"
           
           #moderation partials
           "app/partials/moderation/index.html" : "_app/partials/moderation/index.haml"

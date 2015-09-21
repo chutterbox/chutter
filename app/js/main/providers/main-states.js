@@ -22,7 +22,7 @@
         ],
         views: {
           "toolbar": {
-            templateUrl: "../app/partials/shared/toolbar.html",
+            templateUrl: "../app/partials/main/toolbar.html",
             controller: "toolbarCtrl"
           },
           "": {
@@ -225,7 +225,7 @@
         ],
         views: {
           "toolbar": {
-            templateUrl: "../app/partials/shared/toolbar.html",
+            templateUrl: "../app/partials/main/toolbar.html",
             controller: "networkToolbarCtrl"
           },
           "": {

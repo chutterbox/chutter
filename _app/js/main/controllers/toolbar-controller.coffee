@@ -1,4 +1,4 @@
-app = angular.module("Chutter")
+app = angular.module("MainApp")
 
 app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", "Page", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location, Page) ->
     $scope.communities = Communities 

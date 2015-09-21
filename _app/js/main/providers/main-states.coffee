@@ -18,7 +18,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "toolbar":
-          templateUrl: "../app/partials/shared/toolbar.html"
+          templateUrl: "../app/partials/main/toolbar.html"
           controller: "toolbarCtrl"
         "": 
           templateUrl: "#{view_url}/posts.html"
@@ -145,7 +145,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       views:
         "toolbar":
-          templateUrl: "../app/partials/shared/toolbar.html"
+          templateUrl: "../app/partials/main/toolbar.html"
           controller: "networkToolbarCtrl"
         "": 
           templateUrl: "#{view_url}/posts.html"

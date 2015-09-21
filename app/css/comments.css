@@ -29,6 +29,9 @@ h5 {
 body {
   overflow: hidden; }
 
+div[ui-view="posts"] {
+  overflow: auto; }
+
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {
@@ -433,12 +436,10 @@ comment-embed {
 
 .post-comment {
   position: absolute;
-  bottom: 1vw;
-  right: 1vw; }
-
-@media (max-width: 1200px) {
-  .post-comment {
-    margin-right: 0px;
-    right: 20px; } }
+  bottom: 16px;
+  right: 341px; }
+  @media (max-width: 960px) {
+    .post-comment {
+      right: 16px; } }
 
 /*# sourceMappingURL=comments.css.map */

@@ -8,6 +8,12 @@
       console.log(Communities);
       $scope.communities = Communities;
       $scope.networks = Networks;
+      $scope.$on("$stateChangeStart", function() {
+        return $scope.loading = true;
+      });
+      $scope.$on("$stateChangeSuccess", function() {
+        return $scope.loading = false;
+      });
       $scope.applicationSectionNamespace = "home.all";
       $scope.$on("auth:show-signin", function() {
         return $scope.logIn;

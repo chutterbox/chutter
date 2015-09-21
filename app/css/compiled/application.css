@@ -9181,6 +9181,18 @@ md-toolbar {
   min-height: 48px;
   max-height: 48px; }
 
+div[ui-view="toolbar"] {
+  position: relative; }
+
+md-progress-linear#loading {
+  position: absolute;
+  width: 100%;
+  z-index: 20;
+  bottom: 0;
+  height: 2px; }
+  md-progress-linear#loading .md-container.md-mode-indeterminate {
+    background-color: #fff; }
+
 md-toolbar#main-toolbar {
   z-index: 19; }
   md-toolbar#main-toolbar .md-toolbar-tools {

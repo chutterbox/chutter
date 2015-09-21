@@ -5,6 +5,12 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     $scope.communities = Communities 
     $scope.networks = Networks
 
+    $scope.$on("$stateChangeStart", () ->
+      $scope.loading = true
+    )
+    $scope.$on("$stateChangeSuccess", () ->
+      $scope.loading = false
+    )
     $scope.applicationSectionNamespace = "home.all"
     
     # $(".md-virtual-repeat-scroller").scroll () ->

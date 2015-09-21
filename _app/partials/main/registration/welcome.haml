@@ -1,10 +1,5 @@
-%md-toolbar#main-toolbar
-  .md-toobar-tools
-    #logo
-      %md-button{href: "/"}
-        %img{src: "/img/logo.png"}
 .md-padding{layout: "row"}
-  %md-content#registration-welcome{layout: "column", flex: "80", layout-align: "start center"}
+  %md-content#registration-welcome{layout: "column", flex: "100", layout-align: "start center"}
     %h4.md-title 
       Welcome to Chutter
     %h6.md-subheader
@@ -37,16 +32,3 @@
           %div{ng-message: "email"} This doesn't look right, you sure?
       %md-button.md-primary.md-raised{aria-label: "register", flex: true, ng-disabled: "userForm.$invalid", type: "submit"}
         next
-  
-  %md-content{flex: "20", layout: "column", style: "height: calc(100vh - 80px);"}  
-    %md-list
-      %md-list-item.md-3-line
-        .md-list-item-text
-          %h3
-            Privacy
-          %p
-
-      %md-list-item{ng-repeat: "(key, value) in privacyItems"}
-        .md-list-item-text
-          %h3{ng-bind: "::key"}
-          %p{marked: "::value"}

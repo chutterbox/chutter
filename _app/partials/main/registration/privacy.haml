@@ -1,0 +1,12 @@
+%md-content{flex: "20", layout: "column", style: "height: calc(100vh - 80px);"}  
+  %md-list
+    %md-list-item.md-3-line
+      .md-list-item-text
+        %h3
+          Privacy
+        %p
+
+    %md-list-item{ng-repeat: "(key, value) in privacyItems"}
+      .md-list-item-text
+        %h3{ng-bind: "::key"}
+        %p{marked: "::value"}

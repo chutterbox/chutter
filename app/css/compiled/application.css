@@ -9191,7 +9191,7 @@ md-progress-linear#loading {
   bottom: 0;
   height: 2px; }
   md-progress-linear#loading .md-container.md-mode-indeterminate {
-    background-color: #fff; }
+    background-color: transparent; }
 
 md-toolbar#main-toolbar {
   z-index: 19; }

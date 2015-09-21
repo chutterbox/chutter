@@ -7,6 +7,11 @@
   app.controller("postListCtrl", [
     "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService) {
       var DynamicItems;
+      if ($stateParams.network) {
+        $scope.applicationSectionNamespace = "network_frontpage";
+      } else {
+        $scope.applicationSectionNamespace = "frontpage";
+      }
       Page.posts = Posts.posts;
       DynamicItems = function() {
 

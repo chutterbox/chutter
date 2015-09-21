@@ -13,6 +13,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       abstract: true
       onEnter: ["Page", (Page) ->
         Page.selectedCommunityTab = 0
+        Page.mainToolbar = "md-primary"
+        Page.secondaryToolbar = "md-hue-2"
       ]
       views:
         "toolbar":
@@ -34,15 +36,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_hot =
       name: "frontpage.hot"
       url: "/"
-      resolve:
-        Posts: ["PostResource", (PostResource) ->
-          PostResource.query({sort: "hot"}).$promise
-        ]
       views:
         "posts":
           controller: "postListCtrl as ctrl"
           templateUrl: "../app/partials/shared/postList.html"
-  
+          resolve:
+            Posts: ["PostResource", (PostResource) ->
+              PostResource.query({sort: "hot"}).$promise
+            ] 
 
     frontpage_new = 
       name: "frontpage.new"
@@ -112,7 +113,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "frontpage.community.new"
       url: "/new"     
       views:
-        "posts@":
+        "posts@frontpage":
           controller: "postListCtrl as ctrl"
           templateUrl: "../app/partials/shared/postList.html"
           resolve:
@@ -124,21 +125,32 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "frontpage.community.top"
       url: "/top"
       views:
-        "posts":
-          controller: "postListCtrl"
+        "posts@frontpage":
+          controller: "postListCtrl as ctrl"
           templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "top"}).$promise
             ]
-
-
-    network =
-      name: "network"
+    
+    
+    network_frontpage =
+      name: "network_frontpage"
       url: "/n/:network"
-      templateUrl: "#{view_url}/layout.html"
-      controller: "pageCtrl"
       abstract: true
+      onEnter: ["Page", (Page) ->
+        Page.selectedCommunityTab = 0
+        Page.mainToolbar = "md-hue-2"
+        Page.secondaryToolbar = "md-hue-3"
+      ]
+      views:
+        "toolbar":
+          templateUrl: "../app/partials/shared/toolbar.html"
+          controller: "networkToolbarCtrl"
+        "": 
+          templateUrl: "#{view_url}/posts.html"
+        "right-rail": 
+          template: "<network-sidebar></network-sidebar>"
       resolve:
         Networks: ["NetworkResource", (NetworkResource) ->
           NetworkResource.query().$promise
@@ -149,26 +161,20 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Communities: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
           NetworkResource.communities({id: $stateParams.network}).$promise
         ]
-
-    network_all =
-      name: "network.all"
-      abstract: true
-      views:
-        "": 
-          templateUrl: "#{view_url}/networkPosts.html"
-        "right-rail": 
-          template: "<network-sidebar page='page'></network-sidebar>"
-        "toolbar":
-          templateUrl: "../app/partials/shared/toolbar.html"
-          controller: "networkToolbarCtrl"
-
-    
-    network_all_hot = 
-      name: "network.all.hot"
+    network_frontpage_hot = 
+      name: "network_frontpage.hot"
       url: ""
-      onEnter: ["Page", (Page) ->
-        Page.paginator.reset("hot")
-      ]
+      views:
+        "posts":
+          controller: "postListCtrl as ctrl"
+          templateUrl: "../app/partials/shared/postList.html"
+          resolve:
+            Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
+              NetworkResource.posts({id: $stateParams.network, sort: "hot"}).$promise
+            ]
+    network_frontpage_new = 
+      name: "network_frontpage.new"
+      url: "/new"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -177,30 +183,12 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
               NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
             ]
-    network_all_new = 
-      name: "network.all.new"
-      url: "/new"
-      onEnter: ["Page", (Page) ->
-        Page.paginator.reset("new")
-      ]
-      views:
-        "posts":
-          controller: "postListCtrl"
-          templateUrl: "../app/partials/shared/postList.html"
-          resolve:
-            Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
-              NetworkResource.posts({id: $stateParams.network, sort: "new"}).$promise
-            ]
-
-    network_all_top = 
-      name: "network.all.top"
+    network_frontpage_top = 
+      name: "network_frontpage.top"
       url: "/top"
-      onEnter: ["Page", (Page) ->
-        Page.paginator.reset("top")
-      ]
       views:
         "posts":
-          controller: "postListCtrl"
+          controller: "postListCtrl as ctrl"
           templateUrl: "../app/partials/shared/postList.html"
           resolve:
             Posts: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
@@ -208,17 +196,20 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             ]
 
     network_community =
-      name: "network.all.community"
+      name: "network_frontpage.community"
       url: "/c/:community"
+      onEnter: ["Page", "Communities", "$stateParams", (Page, Communities, $stateParams) ->
+        Page.selectedCommunityTab = _.findIndex(Communities, {slug: $stateParams.community}) + 1
+      ]
+      abstract: true
       resolve:
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
           CommunityResource.show({id: $stateParams.community}).$promise
         ]
-      controller: "communityCtrl"
       views:
-        "": 
+        "@network_frontpage": 
           templateUrl: "#{view_url}/communityPosts.html"
-        "right-rail": 
+        "right-rail@": 
           templateUrl: "../app/partials/main/sidebar/community-sidebar.html"
           resolve:
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
@@ -232,13 +223,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
               CommunityResource.requestModerationPosition({id: $scope.page.community.id})
               
           ]
-      abstract: true
-
     network_community_hot = 
-      name: "network.all.community.hot"
+      name: "network_frontpage.community.hot"
       url: ""
       views:
-        "posts":
+        "posts@network_frontpage":
           controller: "postListCtrl as ctrl"
           templateUrl: "../app/partials/shared/postList.html"
           resolve:
@@ -246,7 +235,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
               CommunityResource.posts({id: $stateParams.community, sort: "hot"}).$promise
             ]
     network_community_new = 
-      name: "network.all.community.new"
+      name: "network_frontpage.community.new"
       url: "/new"      
       views:
         "posts":
@@ -258,7 +247,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             ]
 
     network_community_top = 
-      name: "network.all.community.top"
+      name: "network_frontpage.community.top"
       url: "/top"
       views:
         "posts":
@@ -293,14 +282,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           NetworkResource.query()
         ]
     
-    comments = 
-      name: "home.all.community.comments"
+    frontpage_comments = 
+      name: "frontpage.community.comments"
       url: "/:id"
-      onEnter: ["Page", (Page) ->
-        Page.scope = "comments"
-        Page.mainToolbar = "md-hue-2"
-        Page.secondaryToolbar = "md-hue-3"
-      ]
       resolve: 
         Post: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
           PostResource.get({id: $stateParams.id}).$promise
@@ -309,10 +293,27 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           PostResource.comments({id: $stateParams.id}).$promise
         ]
       views:
-        "@home": 
+        "posts@frontpage": 
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsPageCtrl as ctrl"
-        "right-rail@home": 
+        "right-rail@": 
+          template: "<comments-sidebar page='page'></comments-sidebar>"    
+
+    network_comments = 
+      name: "network_frontpage.community.comments"
+      url: "/:id"
+      resolve: 
+        Post: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
+          PostResource.get({id: $stateParams.id}).$promise
+        ]
+        Comments: ["PostResource", "$stateParams", (PostResource, $stateParams) ->
+          PostResource.comments({id: $stateParams.id}).$promise
+        ]
+      views:
+        "posts@network_frontpage": 
+          templateUrl: "#{view_url}/comments.html"
+          controller: "commentsPageCtrl as ctrl"
+        "right-rail@": 
           template: "<comments-sidebar page='page'></comments-sidebar>"
     register = 
       name: "register"
@@ -365,25 +366,22 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(frontpage_community_hot)
     $stateProvider.state(frontpage_community_new)
     $stateProvider.state(frontpage_community_top)
-    # $stateProvider.state(network)
-    # $stateProvider.state(network_frontpage)
-    # $stateProvider.state(network_frontpage_new)
-    # $stateProvider.state(network_frontpage_top)
-    # $stateProvider.state(network_frontpage_hot)
+    $stateProvider.state(frontpage_comments)
+
+    $stateProvider.state(network_frontpage)
+    $stateProvider.state(network_frontpage_new)
+    $stateProvider.state(network_frontpage_top)
+    $stateProvider.state(network_frontpage_hot)
     # #communities from a network page's context
-    # $stateProvider.state(network_community)
-    # $stateProvider.state(network_community_hot)
-    # $stateProvider.state(network_community_new)
-    # $stateProvider.state(network_community_top)
-    
+    $stateProvider.state(network_community)
+    $stateProvider.state(network_community_hot)
+    $stateProvider.state(network_community_new)
+    $stateProvider.state(network_community_top)
+    $stateProvider.state(network_comments)
     # #community from the front page
-    # $stateProvider.state(community)
-    # $stateProvider.state(community_hot)
-    # $stateProvider.state(community_top)
-    # $stateProvider.state(community_new)
     # $stateProvider.state(submit)
     # $stateProvider.state(create)
-    # $stateProvider.state(comments)
+    
     # $stateProvider.state(register)
     # $stateProvider.state(welcome)
     # $stateProvider.state(interests)

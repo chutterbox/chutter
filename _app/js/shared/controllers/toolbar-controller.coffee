@@ -1,15 +1,9 @@
 app = angular.module("Chutter")
 
 app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", "Page", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location, Page) ->
-    console.log Communities
     $scope.communities = Communities 
     $scope.networks = Networks
     $scope.page = Page
-    # if $stateParams.community
-    #   console.log "here"
-    #   console.log $stateParams.community
-    #   $scope.selected = _.findIndex(Communities, {slug: $stateParams.community})
-    #   console.log $scope.selected
 
     $scope.$on("$stateChangeStart", () ->
       $scope.loading = true
@@ -67,7 +61,6 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
       if ephemeral_notifications.length > 0
         cascade = true if ephemeral_notifications.length > 1
         _.each ephemeral_notifications, (notification) ->
-          console.log notification
           if cascade
             setTimeout () ->
               $scope.showNotification(notification)
@@ -132,13 +125,12 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
 
   ]
 
-app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "Network", "$state", "$location", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, Network, $state, $location) ->
-    console.log Communities
+app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "Network", "$state", "$location", "Page", ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, Network, $state, $location, Page) ->
     $scope.communities = Communities 
     $scope.networks = Networks
     $scope.secondaryTitle = Network.name
-    $scope.applicationSectionNamespace = "network.all"
-
+    $scope.applicationSectionNamespace = "network_frontpage"
+    $scope.page = Page
 
     # $(".md-virtual-repeat-scroller").scroll () ->
     #   console.log "here"
@@ -188,7 +180,6 @@ app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", 
       if ephemeral_notifications.length > 0
         cascade = true if ephemeral_notifications.length > 1
         _.each ephemeral_notifications, (notification) ->
-          console.log notification
           if cascade
             setTimeout () ->
               $scope.showNotification(notification)

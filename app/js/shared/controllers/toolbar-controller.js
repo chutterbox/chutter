@@ -5,7 +5,6 @@
 
   app.controller("toolbarCtrl", [
     "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "$state", "$location", "Page", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, $state, $location, Page) {
-      console.log(Communities);
       $scope.communities = Communities;
       $scope.networks = Networks;
       $scope.page = Page;
@@ -68,7 +67,6 @@
             cascade = true;
           }
           return _.each(ephemeral_notifications, function(notification) {
-            console.log(notification);
             if (cascade) {
               return setTimeout(function() {
                 return $scope.showNotification(notification);
@@ -136,12 +134,12 @@
   ]);
 
   app.controller("networkToolbarCtrl", [
-    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "Network", "$state", "$location", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, Network, $state, $location) {
-      console.log(Communities);
+    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "Networks", "Network", "$state", "$location", "Page", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, Networks, Network, $state, $location, Page) {
       $scope.communities = Communities;
       $scope.networks = Networks;
       $scope.secondaryTitle = Network.name;
-      $scope.applicationSectionNamespace = "network.all";
+      $scope.applicationSectionNamespace = "network_frontpage";
+      $scope.page = Page;
       $scope.$on("auth:show-signin", function() {
         return $scope.logIn;
       });
@@ -194,7 +192,6 @@
             cascade = true;
           }
           return _.each(ephemeral_notifications, function(notification) {
-            console.log(notification);
             if (cascade) {
               return setTimeout(function() {
                 return $scope.showNotification(notification);

@@ -211,7 +211,7 @@ md-progress-linear#loading {
   position: absolute;
   width: 100%;
   z-index: 119;
-  bottom: -2px;
+  top: 0;
   height: 2px; }
   md-progress-linear#loading .md-container.md-mode-indeterminate {
     height: 2px;

@@ -26,7 +26,7 @@ chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutte
 
 request = require('request')
 chutter.use '/api/v1', (req, res) -> 
-  url = (process.env.API_HOST || 'http://localhost:3000') + "/api/v1#{req.url}"
+  url = (process.env.API_HOST || 'http://10.0.1.3:3000') + "/api/v1#{req.url}"
   req.pipe(request(url)).pipe(res)
 
 chutter.use(favicon(__dirname + '/favicon.ico'));

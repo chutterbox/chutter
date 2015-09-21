@@ -3,6 +3,10 @@
 app = angular.module("Chutter")
 
 app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService) ->
+  if $stateParams.network
+    $scope.applicationSectionNamespace = "network_frontpage"
+  else
+    $scope.applicationSectionNamespace = "frontpage"
   # toolbar = document.getElementsByTagName("chutter-toolbar")[0]
   # content = document.getElementById("content")
   # i = 0

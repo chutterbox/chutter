@@ -99,32 +99,13 @@
       $scope.page = Page;
       $scope.newPost = {
         title: "",
-        media_attributes: [
-          {
-            format: "webpage"
-          }
-        ]
+        link: ""
       };
       $scope.preview = {
         title: "",
-        media: [{}]
+        link: ""
       };
-      $scope.$watch('newPost.media_attributes[0].link', function(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          $scope.scraping = true;
-          return MediaResource.resolve({
-            link: newVal,
-            format: $scope.newPost.media_attributes[0].format
-          }).$promise.then(function(data) {
-            data = angular.fromJson(data);
-            return $scope.updatePreview(data);
-          });
-        }
-      });
-      $scope.$watch("newPost.title", function(newVal) {
-        return $scope.preview.title = newVal;
-      });
-      $scope.submit = function() {
+      return $scope.submit = function() {
         $scope.newPost.community_id = $scope.page.community.id;
         return PostResource.save({
           post: $scope.newPost
@@ -134,15 +115,6 @@
             community: $scope.page.community.slug
           });
         });
-      };
-      return $scope.updatePreview = function(data) {
-        $scope.scraping = false;
-        if (data) {
-          $scope.data = true;
-          $scope.newPost.media_attributes[0] = data;
-          $scope.preview.media[0] = data;
-          return $scope.preview.currentMedia = data;
-        }
       };
     }
   ]);

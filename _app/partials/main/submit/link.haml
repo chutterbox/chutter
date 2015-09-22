@@ -4,7 +4,7 @@
       %div{layout: "row"}
         %md-input-container{flex: true}
           %label Link
-          %input{ng-model: "newPost.media_attributes[0].link", required: "required", type: "text"}
+          %input{ng-model: "newPost.link", required: "required", type: "text"}
         %div#submit-progress{flex: true, ng-show: "scraping"}  
       %div{layout: "row"}
         %md-input-container{flex: true}
@@ -14,6 +14,3 @@
         %span{flex: true}
         %md-button.md-raised.md-priary{type: "submit"}
           Submit        
-    %div{flex: true, ng-if: "preview && preview.currentMedia.thumbnail_link && newPost.media_attributes[0].link"}
-      %md-list#posts
-        %post.post{post: "preview", post-index: "$index", layout: "row",layout-sm: "column", flex: true, id: "post-{{post.id}}"} 

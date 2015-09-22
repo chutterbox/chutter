@@ -70,33 +70,14 @@ app.controller "linkSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResour
   #how rails wants it
   $scope.newPost = 
     title: ""
-    media_attributes: [{format: "webpage"}]
+    link: ""
   $scope.preview = 
     title: ""
-    media: [{}]
-  $scope.$watch('newPost.media_attributes[0].link', (newVal, oldVal) ->
-    if newVal != oldVal
-      $scope.scraping = true
-      MediaResource.resolve({link: newVal, format: $scope.newPost.media_attributes[0].format}).$promise.then (data) ->
-        data = angular.fromJson(data)
-        $scope.updatePreview(data)
-  )
-  $scope.$watch("newPost.title", (newVal) ->
-    $scope.preview.title = newVal
-  )
-
+    link: ""
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
       $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
-
-  $scope.updatePreview = (data) ->
-    $scope.scraping = false
-    if data 
-      $scope.data = true
-      $scope.newPost.media_attributes[0] = data
-      $scope.preview.media[0] = data
-      $scope.preview.currentMedia = data
 
 ]
 

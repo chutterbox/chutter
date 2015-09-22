@@ -8838,8 +8838,10 @@ i.active-down,
     top: 40%;
     left: 40%; }
   #media-player-wrapper #image-view {
+    height: calc(100% - 32px); }
+  #media-player-wrapper #webpage-view {
     overflow: auto; }
-    #media-player-wrapper #image-view img {
+    #media-player-wrapper #webpage-view img {
       width: 100%; }
   #media-player-wrapper #discussion-view {
     height: calc(100% - 32px); }

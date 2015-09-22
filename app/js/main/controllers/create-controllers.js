@@ -4,12 +4,12 @@
   app = angular.module("MainApp");
 
   app.controller("createCtrl", [
-    "$scope", "CommunityResource", "$state", "$filter", "Page", "$mdDialog", "CommunityRule", function($scope, CommunityResource, $state, $filter, Page, $mdDialog, CommunityRule) {
+    "$scope", "CommunityResource", "$state", "$filter", "Page", "$mdDialog", "CommunityRule", "Networks", function($scope, CommunityResource, $state, $filter, Page, $mdDialog, CommunityRule, Networks) {
       $scope.flowState = {
         selectedNetwork: {},
         loading: false
       };
-      $scope.page = Page;
+      $scope.networks = Networks;
       $scope.newCommunity = {
         network_id: "",
         name: "",
@@ -21,11 +21,6 @@
       $scope.$watch("newCommunity.name", _.debounce(function(newVal, oldVal) {
         return $scope.flowState.loading = true;
       }, 500));
-      $scope.$watch("flowState.selectedNetwork", function(newVal, oldVal) {
-        if (newVal && newVal.id) {
-          return $scope.newCommunity.network_id = newVal.id;
-        }
-      });
       $scope.nameValid = function() {
         if ($scope.newCommunity.name && $scope.newCommunity.name.length > 0) {
           return true;
@@ -50,18 +45,11 @@
         $scope.newCommunity.rules_attributes.pop();
         return $scope.newRule.$destroy;
       });
-      $scope.selectedStep = 0;
-      $scope.next = function() {
-        return $scope.selectedStep += 1;
-      };
-      $scope.back = function() {
-        return $scope.selectedStep -= 1;
-      };
       return $scope.submit = function() {
         return CommunityResource.save({
           community: $scope.newCommunity
         }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.hot", {
+          return $state.transitionTo("frontpage.community.hot", {
             community: data.community.slug
           });
         });

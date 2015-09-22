@@ -306,15 +306,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           template: "<submission-sidebar page='page'></submission-sidebar>"
 
     create = 
-      name: "create"
+      name: "frontpage.create"
       url: "/create"
-      templateUrl: "#{view_url}/create/layout.html"
-      controller: "createCtrl"
-      resolve:
-        Networks: ["NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", (NetworkResource, $stateParams, $state, $rootScope, $auth) ->
-          NetworkResource.query()
-        ]
-    
+      views:
+        "@": 
+          templateUrl: "#{view_url}/create/layout.html"
+          controller: "createCtrl"
+        "right-rail": 
+          template: "<all-sidebar></all-sidebar>"
+          
     frontpage_comments = 
       name: "frontpage.community.comments"
       url: "/:id"
@@ -330,7 +330,10 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsPageCtrl as ctrl"
         "right-rail@": 
-          template: "<comments-sidebar page='page'></comments-sidebar>"    
+          templateUrl: "../app/partials/main/sidebar/comments-sidebar.html"
+          controller: ["$scope", "Community", ($scope, Community) ->
+            $scope.community = Community
+          ]
 
     network_comments = 
       name: "network_frontpage.community.comments"
@@ -347,7 +350,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsPageCtrl as ctrl"
         "right-rail@": 
-          template: "<comments-sidebar page='page'></comments-sidebar>"
+          templateUrl: "../app/partials/main/sidebar/comments-sidebar.html"
+          controller: ["$scope", "Community", ($scope, Community) ->
+            $scope.community = Community
+          ]
+         
     
     register = 
       name: "register"

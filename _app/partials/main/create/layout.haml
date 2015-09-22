@@ -1,63 +1,55 @@
-%chutter-toolbar
-%md-content.md-whiteframe-z1#content{layout: "row", layout-fill: "true"}
-  %md-content.primary-content
-    %md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true", layout-align: "center", layout: "column"}
-      .md-toolbar-tools{ng-switch: "page.scope", layout: "row", layout-fill: "true"}
-        .progress-bar{layout: "column", flex: true}
-          .icons-wrap{layout: "row", layout-align: "space-between"}
-            .section{flex: true, layout: "column", ng-class: "{'success' : newCommunity.network_id }"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 0  ? 'ion-ios-circle-filled' : (!newCommunity.network_id ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "{'success' : nameValid()}"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 1  ? 'ion-ios-circle-filled' : (!nameValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 2  ? 'ion-ios-circle-filled' : (!detailsValid() ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{flex: true, layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 3  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-                .line
-            .section{layout: "column", ng-class: "!detailsValid() ? '' : 'success'"}
-              .wrap{layout: "row", layout-fill: true, layout-align: "start center"}
-                .icon{ng-class: "selectedStep == 4  ? 'ion-ios-circle-filled' : (!detailsValid ? 'ion-ios-circle-outline' : 'ion-ios-checkmark')"}
-          .wrap{layout: "row", layout-align: "space-between"}
-            .caption
-              Network
-            .caption
-              Details
-            .caption
-              Rules
-            .caption
-              Customize
-            .caption
-              Review
-
-    #create-community{layout: "column", layout-fill: "true"}
-      %md-tabs{md-no-pagination: "true",  md-no-bar: "true",  md-dynamic-height: "true", layout-fill: "true", md-border-bottom: true, md-selected: "selectedStep"}
-        %md-tab{label: "network"}
-          %md-content.primary-content
-            %create-community-network
-        %md-tab{label: "details"}
-          %md-content.primary-content
-            %create-community-details
-        %md-tab{label: "rules"}
-          %md-content.primary-content
-            %create-community-rules
-        %md-tab{label: "customize"}
-          %md-content.primary-content
-            %create-community-customize
-        %md-tab{label: "review"}
-          %md-content.primary-content
-            %create-community-review
-
-
-%md-sidenav.md-sidenav-right.gray{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-  %div.offset-toolbar#scrolly-right{ng-switch: "page.scope", layout: "column", layout-fill: true}
-    %md-content{ng-switch-when: "submit"}
-    %span{flex:true}
-    %footer-sidebar
-
+%md-content
+  .md-padding{layout: "column", layout-align: "start center"}
+    %h4.md-title 
+      Start A Community
+    %h6.md-subheader
+      And we'll give you all the tools you need to moderate it.
+    %p{ng-if: "unavailable"}
+      Ouch, looks like chutter is having trouble signing you up, email dev@chutter.co for help. Or try again in a few minutes.
+    #errors
+      %p{ng-repeat: "error in serverErrors", ng-bind: "error"} 
+  %div{layout: "row", layout-align: "center center"}
+    %form.md-padding{flex: "80", name: "newCommunityForm"}
+      .md-padding
+        %md-input-container
+          %label Community Name
+          %input{ng-model-options: "{ debounce: 500 }", ng-minlength: "3", md-maxlength: "25", ng-pattern: "/^[a-zA-Z0-9_]+$/", name: "name", ng-model: "newCommunity.name", required: "true", unique-username: "true"}
+          %div{ng-messages: "newCommunityForm.name.$error"}
+            %div{ng-message: "required"} This is required.
+            %div{ng-message: "md-maxlength"} Your username should be less than 25 characters long.
+            %div{ng-message: "unique"} username is already taken :( 
+            %div{ng-message: "pattern"} Community names must be 3-25 characters long, and may only contain a-z (lowercase), 0-9, or underscore/hyphen characters
+      .md-padding
+        %md-input-container
+          %label
+            Network
+          %md-select{name: "network_id", ng-model: "newCommunity.network_id"}
+            %md-option{ng-repeat: "network in networks", value: "{{network.id}}"} {{network.name}}
+          %div{ng-messages: "newCommunityForm.network_id.$error"}
+            %div{ng-message: "required"} This is required.
+      %md-subheader
+        Rules
+      .md-padding
+        %md-button.md-primary{ng-click: "createCommunityRule($event)"}
+          Create Rule
+        %div{layout: "row"}
+          %div
+            %md-list
+              %md-list-item.md-3-line{ng-repeat: "rule in newCommunity.rules_attributes"}
+                .md-list-item-text
+                  %h3{ng-bind: "rule.category"}
+                  %h4{ng-bind: "rule.detailed_explanation"}
+                  %p{ng-if: "rule.general"}
+                    Applies To: The General Community
+                  %p{ng-if: "rule.posts"}
+                    Applies To: Posts
+                  %p{ng-if: "rule.comments"}
+                    Applies To: Comments
+                  %p{ng-if: "rule.discouraged"}
+                    Severity: Discouraged
+                  %p{ng-if: "rule.removal"}
+                    Severity: Removal
+                  %p{ng-if: "rule.ban"}
+                    Severity: Ban
+      %md-button.md-primary.md-raised{aria-label: "register", flex: true, ng-disabled: "newCommunityForm.$invalid", type: "submit", ng-click: "submit()"}
+        Create

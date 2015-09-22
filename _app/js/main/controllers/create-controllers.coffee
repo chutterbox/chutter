@@ -1,11 +1,11 @@
 app = angular.module("MainApp")
 
-app.controller "createCtrl", ["$scope", "CommunityResource",  "$state", "$filter", "Page", "$mdDialog", "CommunityRule",  ($scope, CommunityResource, $state, $filter, Page, $mdDialog, CommunityRule) ->
+app.controller "createCtrl", ["$scope", "CommunityResource",  "$state", "$filter", "Page", "$mdDialog", "CommunityRule", "Networks",  ($scope, CommunityResource, $state, $filter, Page, $mdDialog, CommunityRule, Networks) ->
   $scope.flowState =
     selectedNetwork: {}
     loading: false
   
-  $scope.page = Page #respnse intercepter sets network subscriptions once they are resolved
+  $scope.networks = Networks
   
   $scope.newCommunity = 
     network_id: ""
@@ -19,10 +19,7 @@ app.controller "createCtrl", ["$scope", "CommunityResource",  "$state", "$filter
       $scope.flowState.loading = true
     , 500)
   )
-  $scope.$watch("flowState.selectedNetwork", (newVal, oldVal) ->
-    if newVal and newVal.id
-      $scope.newCommunity.network_id = newVal.id
-  )
+
   $scope.nameValid = () ->
     if $scope.newCommunity.name and $scope.newCommunity.name.length > 0
       true
@@ -45,18 +42,11 @@ app.controller "createCtrl", ["$scope", "CommunityResource",  "$state", "$filter
   $scope.$on "cancelSave", () ->
     $scope.newCommunity.rules_attributes.pop()
     $scope.newRule.$destroy
-  $scope.selectedStep = 0
-
-  $scope.next = () ->
-    $scope.selectedStep += 1  
-  
-  $scope.back = () ->
-    $scope.selectedStep -= 1
 
 
   $scope.submit = () ->
     CommunityResource.save({community: $scope.newCommunity}).$promise.then (data) ->
-        $state.transitionTo("home.community.hot", {community: data.community.slug})
+        $state.transitionTo("frontpage.community.hot", {community: data.community.slug})
 
 
 ]

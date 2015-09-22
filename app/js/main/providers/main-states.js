@@ -495,16 +495,16 @@
         }
       };
       create = {
-        name: "create",
+        name: "frontpage.create",
         url: "/create",
-        templateUrl: view_url + "/create/layout.html",
-        controller: "createCtrl",
-        resolve: {
-          Networks: [
-            "NetworkResource", "$stateParams", "$state", "$rootScope", "$auth", function(NetworkResource, $stateParams, $state, $rootScope, $auth) {
-              return NetworkResource.query();
-            }
-          ]
+        views: {
+          "@": {
+            templateUrl: view_url + "/create/layout.html",
+            controller: "createCtrl"
+          },
+          "right-rail": {
+            template: "<all-sidebar></all-sidebar>"
+          }
         }
       };
       frontpage_comments = {
@@ -532,7 +532,12 @@
             controller: "commentsPageCtrl as ctrl"
           },
           "right-rail@": {
-            template: "<comments-sidebar page='page'></comments-sidebar>"
+            templateUrl: "../app/partials/main/sidebar/comments-sidebar.html",
+            controller: [
+              "$scope", "Community", function($scope, Community) {
+                return $scope.community = Community;
+              }
+            ]
           }
         }
       };
@@ -561,7 +566,12 @@
             controller: "commentsPageCtrl as ctrl"
           },
           "right-rail@": {
-            template: "<comments-sidebar page='page'></comments-sidebar>"
+            templateUrl: "../app/partials/main/sidebar/comments-sidebar.html",
+            controller: [
+              "$scope", "Community", function($scope, Community) {
+                return $scope.community = Community;
+              }
+            ]
           }
         }
       };

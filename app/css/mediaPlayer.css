@@ -1,253 +1,39 @@
-/**
- * Retrieves a color value from the $material-colors Sass map
- * Inspired by https://github.com/nilskaspersson/Google-Material-UI-Color-Palette/
- *
- * @function
- * @param {string} color-name             - quoted, lower-case, dasherized color
- *                                          name (e.g. 'pink', 'amber')
- * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
- *                                          '200', 'a100')
- */
-a {
-  text-decoration: none; }
+/*
+Error: Inconsistent indentation: 1 space was used for indentation, but the rest of the document was indented using 2 spaces.
+        on line 49 of _app/css/mediaPlayer.sass
 
-h1, h2, h3, h4, h5, h6, p, span, a {
-  text-rendering: optimizeLegibility; }
+44:     position: absolute
+45:     top: 40%
+46:     left: 40%
+47:   #image-view
+48:     height: calc(100% - 32px) 
+49:  #webpage-view
+50:     overflow: auto
+51:     img
+52:       width: 100%
+53:   #discussion-view
+54:     //height minus the toolbar
 
-h6 {
-  font-size: 1em; }
-
-h5 {
-  font-size: 1em; }
-
-.md-fab .icon {
-  font-size: 25px; }
-
-.md-mini .icon {
-  font-size: 17px; }
-
-body {
-  overflow: hidden; }
-
-div[ui-view="posts"] {
-  overflow: auto; }
-
-md-tabs md-tab-item {
-  max-width: none !important; }
-md-tabs md-content {
-  background-color: #fff; }
-  md-tabs md-content.detailed-list {
-    background-color: #f2f2f2; }
-
-md-bottom-sheet {
-  padding: 0 0 80px 0;
-  border-top: 0;
-  width: 90vw;
-  margin: auto; }
-@media(max-width: 960px) {
-  md-bottom-sheet {
-    width: 100vw; } }
-#authenticate,
-#register {
-  width: 30%; }
-  #authenticate #errors p,
-  #register #errors p {
-    font-size: 0.8em;
-    color: #f44336; }
-
-.button-link {
-  padding: 0;
-  margin: 0;
-  line-height: inherit;
-  min-height: 0;
-  min-width: 0;
-  vertical-align: middle;
-  text-transform: none; }
-  .button-link:hover {
-    background-color: transparent !important; }
-
-i.active-up,
-.icon.active-up {
-  color: #03a9f4; }
-i.active-down,
-.icon.active-down {
-  color: #f44336; }
-
-#submit md-autocomplete {
-  width: 100%;
-  min-width: 100%; }
-
-.inline-link {
-  color: #03a9f4;
-  cursor: hand;
-  margin-right: 4px; }
-
-.md-toolbar-tools {
-  font-size: 14px; }
-
-#content {
-  overflow: hidden;
-  position: relative;
-  z-index: 22; }
-@media(max-width: 960px) {
-  #content {
-    z-index: 22; } }
-.ng-cloak {
-  display: none !important; }
-
-.header-caption-wrapper {
-  margin: 5% 0 0 0; }
-  .header-caption-wrapper h2 {
-    margin: 0; }
-
-.image {
-  -webkit-transform-style: preserve-3d;
-  -webkit-transform: translate3d(0, 0, 0); }
-
-.subscription-card {
-  margin: 10px 0; }
-  .subscription-card .subscription-info h4 {
-    color: #000;
-    margin: 0; }
-  .subscription-card .subscription-info span {
-    color: #757575; }
-  .subscription-card .subscription-info .stats span {
-    margin-right: 5px;
-    color: #999; }
-
-#subscription-section md-icon {
-  height: 40px;
-  width: 40px; }
-  #subscription-section md-icon i {
-    font-size: 40px; }
-
-#conversation {
-  width: 95%;
-  height: 100%;
-  padding: 0 2.5%; }
-@media(max-width: 960px) {
-  #conversation {
-    width: 100%;
-    padding: 0; } }
-  #conversation .load-more {
-    margin-top: 10px; }
-  #conversation .item {
-    position: relative;
-    margin-top: 10px; }
-  #conversation .message {
-    max-width: 80%;
-    word-wrap: break-word;
-    background: #fff; }
-    #conversation .message .body .text {
-      margin: 0 0 2.5px 0;
-      font-size: 0.95em; }
-    #conversation .message .body .time {
-      margin: 0;
-      color: #757575;
-      font-size: 0.7em; }
-  #conversation .you {
-    margin-right: 15px; }
-    #conversation .you .message {
-      background: #f5f5f5; }
-    #conversation .you:after {
-      border: solid 10px transparent;
-      border-top-color: #f5f5f5;
-      border-left-color: #f5f5f5;
-      position: absolute;
-      right: -10px;
-      top: 8px;
-      height: 0;
-      content: ""; }
-  #conversation .other-participant {
-    margin-left: 15px; }
-    #conversation .other-participant .message {
-      background: #7986cb; }
-      #conversation .other-participant .message .body .time,
-      #conversation .other-participant .message .body .text {
-        color: #fff; }
-    #conversation .other-participant:before {
-      border: solid 10px transparent;
-      border-top-color: #7986cb;
-      border-right-color: #7986cb;
-      position: absolute;
-      left: -10px;
-      top: 8px;
-      height: 0;
-      content: ""; }
-  #conversation .item.other-participant + .item.other-participant {
-    margin-top: -10px; }
-    #conversation .item.other-participant + .item.other-participant:before {
-      border: none; }
-  #conversation .item.you + .item.you {
-    margin-top: -10px; }
-    #conversation .item.you + .item.you:after {
-      border: none; }
-
-#interests-list-content {
-  width: 60%; }
-
-#registration-welcome form {
-  width: 50%; }
-
-[layout-fill] {
-  height: inherit; }
-
-#desktopMediaPlayer {
-  transition: transform 250ms cubic-bezier(0.35, 0, 0.25, 1);
-  -moz-transition: -moz-transform 250ms cubic-bezier(0.35, 0, 0.25, 1);
-  -webkit-transition: -webkit-transform 250ms cubic-bezier(0.35, 0, 0.25, 1);
-  width: 610px;
-  height: 457.5px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #eeeeee;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  z-index: 999;
-  transform: scale(0);
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0); }
-  #desktopMediaPlayer.opened {
-    transform-origin: top left;
-    -webkit-transform-origin: top left;
-    -moz-transform-origin: top left;
-    transform: scale(1);
-    -moz-transform: scale(1);
-    -webkit-transform: scale(1); }
-  #desktopMediaPlayer.largeOpened {
-    top: 80px;
-    transform: scale(2);
-    -moz-transform: scale(2);
-    -webkit-transform: scale(2); }
-  #desktopMediaPlayer.miniOpened {
-    transform-origin: top right;
-    -webkit-transform-origin: top right;
-    -moz-transform-origin: top right; }
-
-#media-player-wrapper {
-  height: 100%;
-  width: 100%; }
-  #media-player-wrapper md-toolbar,
-  #media-player-wrapper .md-toolbar-tools {
-    height: 32px;
-    min-height: 32px;
-    max-height: 32px; }
-  #media-player-wrapper #progress-place-holder {
-    display: none;
-    width: 60%;
-    position: absolute;
-    top: 40%;
-    left: 40%; }
-  #media-player-wrapper #image-view {
-    height: calc(100% - 32px); }
-  #media-player-wrapper #discussion-view {
-    height: calc(100% - 32px); }
-  #media-player-wrapper iframe {
-    border: none; }
-
-#mobileMediaPlayer {
-  height: 100vh;
-  background: #fff; }
-
-/*# sourceMappingURL=mediaPlayer.css.map */
+Backtrace:
+_app/css/mediaPlayer.sass:49
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:483:in `block in tabulate'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:441:in `each'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:441:in `each_with_index'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:441:in `tabulate'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:406:in `_to_tree'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/exec/sass_scss.rb:410:in `run'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/exec/base.rb:52:in `parse'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/lib/sass/exec/base.rb:19:in `parse!'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/gems/sass-3.4.15/bin/sass:13:in `<top (required)>'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/bin/sass:23:in `load'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/bin/sass:23:in `<main>'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `eval'
+/Users/alternateaccount/.rvm/gems/ruby-2.2.2/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Inconsistent indentation: 1 space was used for indentation, but the rest of the document was indented using 2 spaces.\A         on line 49 of _app/css/mediaPlayer.sass\A \A 44:     position: absolute\A 45:     top: 40%\A 46:     left: 40%\A 47:   #image-view\A 48:     height: calc(100% - 32px) \A 49:  #webpage-view\A 50:     overflow: auto\A 51:     img\A 52:       width: 100%\A 53:   #discussion-view\A 54:     //height minus the toolbar"; }

@@ -8838,7 +8838,9 @@ i.active-down,
     top: 40%;
     left: 40%; }
   #media-player-wrapper #image-view {
-    height: calc(100% - 32px); }
+    overflow: auto; }
+    #media-player-wrapper #image-view img {
+      width: 100%; }
   #media-player-wrapper #discussion-view {
     height: calc(100% - 32px); }
   #media-player-wrapper iframe {

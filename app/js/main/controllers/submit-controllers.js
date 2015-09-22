@@ -57,7 +57,7 @@
         return PostResource.save({
           post: $scope.newPost
         }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.comments", {
+          return $state.transitionTo("frontpage.community.comments", {
             id: data.slug,
             community: $scope.page.community.slug
           });
@@ -71,7 +71,7 @@
           return $scope.updatePreview(data);
         });
       };
-      $scope.updatePreview = function(data) {
+      return $scope.updatePreview = function(data) {
         $scope.newPost.media_attributes[0] = data;
         $scope.newPost.title = $scope.selectedItem.title;
         $scope.preview.title = $scope.selectedItem.title;
@@ -80,16 +80,6 @@
           $scope.data = true;
           return $scope.preview.media[0] = data;
         }
-      };
-      return $scope.loadAll = function() {
-        var allStates;
-        allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,              Wisconsin, Wyoming';
-        return allStates.split(/, +/g).map(function(state) {
-          return {
-            value: state.toLowerCase(),
-            display: state
-          };
-        });
       };
     }
   ]);
@@ -110,7 +100,7 @@
         return PostResource.save({
           post: $scope.newPost
         }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.comments", {
+          return $state.transitionTo("frontpage.community.comments", {
             id: data.slug,
             community: $scope.page.community.slug
           });
@@ -136,7 +126,7 @@
         return PostResource.save({
           post: $scope.newPost
         }).$promise.then(function(data) {
-          return $state.transitionTo("home.community.comments", {
+          return $state.transitionTo("frontpage.community.comments", {
             id: data.slug,
             community: $scope.page.community.slug
           });

@@ -39,7 +39,7 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
+      $state.transitionTo("frontpage.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.selectedItemChange = ->
     MediaResource.resolve({link: $scope.selectedItem.link, format: "music"}).$promise.then (data) ->
@@ -53,14 +53,6 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
     if data 
       $scope.data = true
       $scope.preview.media[0] = data
-
-  $scope.loadAll = ->
-    allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,              Wisconsin, Wyoming'
-    allStates.split(/, +/g).map (state) ->
-      {
-        value: state.toLowerCase()
-        display: state
-      }
 
 ]
 
@@ -77,7 +69,7 @@ app.controller "linkSubmitCtrl", ["$scope", "MediaResource", "Page", "PostResour
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
+      $state.transitionTo("frontpage.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
 ]
 
@@ -96,7 +88,7 @@ app.controller "discussionSubmitCtrl", ["$scope", "Page", "PostResource", "$stat
   $scope.submit = () ->
     $scope.newPost.community_id = $scope.page.community.id
     PostResource.save({post: $scope.newPost}).$promise.then (data) ->
-      $state.transitionTo("home.community.comments", {id: data.slug, community: $scope.page.community.slug})
+      $state.transitionTo("frontpage.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.updatePreview = (data) ->
     $scope.scraping = false

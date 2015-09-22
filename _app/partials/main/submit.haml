@@ -1,4 +1,4 @@
-%md-content#posts.primary-content{layout: "column"}
+#submit.primary-content{flex: "true"}
   %div{style: "width: 80%; margin: 40px auto;"}
     %md-autocomplete{flex: "true", ng-model-options: "{ debounce: 500 }", md-search-text: "query", md-items: "community in communitySearch(query)", md-min-length: "2",  md-item-text: "community.name", md-selected-item-change: "selectedCommunityChange()", md-selected-item: "selectedCommunity", placeholder: "Type a community to submit to"}
         %md-item-template
@@ -6,7 +6,7 @@
             {{community.name}}
         %md-not-found
           Item not found
-  %md-tabs#submit{ng-if: "selectedCommunity && selectedCommunity.id", ng-class: "page.secondaryToolbar", flex: true, layout-fill: true, md-border-bottom: true, md-dynamic-height: "false", md-no-disconnect: "true"}
+  %md-tabs{flex: "true", md-dynamic-height: "true", ng-if: "selectedCommunity && selectedCommunity.id", ng-class: "page.secondaryToolbar", md-border-bottom: true, md-no-disconnect: "true"}
     %md-tab{ng-if: "permitted('webpage')", label: "Link", md-on-select: "newPost.media_attributes[0].format = 'webpage'"}
       %link-submit-form
     %md-tab{ng-if: "permitted('discussion')", label: "Text"}

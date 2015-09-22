@@ -13,7 +13,7 @@ app.controller "submitCtrl", ["$scope", "CommunityResource", "Page", ($scope, Co
 
 
   $scope.permitted = (type) ->
-    if $scope.page.community && $scope.page.community.permitted_formats_list.indexOf(type) > -1
+    if $scope.selectedCommunity && $scope.selectedCommunity.permitted_formats_list.indexOf(type) > -1
       true
     else
       false

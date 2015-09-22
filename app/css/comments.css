@@ -73,9 +73,11 @@ i.active-down,
 .icon.active-down {
   color: #f44336; }
 
-#submit md-autocomplete {
-  width: 100%;
-  min-width: 100%; }
+#submit {
+  overflow: auto; }
+  #submit md-autocomplete {
+    width: 100%;
+    min-width: 100%; }
 
 .inline-link {
   color: #03a9f4;

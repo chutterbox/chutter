@@ -289,19 +289,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Posts: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
               CommunityResource.posts({id: $stateParams.community, sort: "top"}).$promise
             ]
-    submit =
-      name: "home.submit"
+    #submission states
+    frontpage_submit =
+      name: "frontpage.submit"
       url: "/submit"
-      onEnter: ["Page", (Page) ->
-        Page.scope = "submit"
-        Page.mainToolbar = "md-hue-2"
-        Page.secondaryToolbar = "md-hue-3"
-      ]
       views:
-        "@home": 
+        "@": 
           templateUrl: "#{view_url}/submit.html"
           controller: "submitCtrl"
-        "right-rail@home": 
+        "right-rail@": 
           template: "<submission-sidebar page='page'></submission-sidebar>"
 
     create = 
@@ -440,9 +436,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(network_community_new)
     $stateProvider.state(network_community_top)
     $stateProvider.state(network_comments)
-    # #community from the front page
-    # $stateProvider.state(submit)
-    # $stateProvider.state(create)
+    
+    $stateProvider.state(frontpage_submit)
+    $stateProvider.state(create)
     
     $stateProvider.state(register)
     $stateProvider.state(welcome)

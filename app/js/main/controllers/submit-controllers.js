@@ -17,7 +17,7 @@
         return Page.community = $scope.selectedCommunity;
       };
       $scope.permitted = function(type) {
-        if ($scope.page.community && $scope.page.community.permitted_formats_list.indexOf(type) > -1) {
+        if ($scope.selectedCommunity && $scope.selectedCommunity.permitted_formats_list.indexOf(type) > -1) {
           return true;
         } else {
           return false;

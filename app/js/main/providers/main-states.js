@@ -6,7 +6,7 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var create, frontpage, frontpage_comments, frontpage_community, frontpage_community_hot, frontpage_community_new, frontpage_community_top, frontpage_hot, frontpage_new, frontpage_top, interests, network_comments, network_community, network_community_hot, network_community_new, network_community_top, network_frontpage, network_frontpage_hot, network_frontpage_new, network_frontpage_top, register, submit, view_url, welcome;
+      var create, frontpage, frontpage_comments, frontpage_community, frontpage_community_hot, frontpage_community_new, frontpage_community_top, frontpage_hot, frontpage_new, frontpage_submit, frontpage_top, interests, network_comments, network_community, network_community_hot, network_community_new, network_community_top, network_frontpage, network_frontpage_hot, network_frontpage_new, network_frontpage_top, register, view_url, welcome;
       view_url = "../app/partials/main";
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.when('/u/:username', '/u/:username/overview');
@@ -476,22 +476,15 @@
           }
         }
       };
-      submit = {
-        name: "home.submit",
+      frontpage_submit = {
+        name: "frontpage.submit",
         url: "/submit",
-        onEnter: [
-          "Page", function(Page) {
-            Page.scope = "submit";
-            Page.mainToolbar = "md-hue-2";
-            return Page.secondaryToolbar = "md-hue-3";
-          }
-        ],
         views: {
-          "@home": {
+          "@": {
             templateUrl: view_url + "/submit.html",
             controller: "submitCtrl"
           },
-          "right-rail@home": {
+          "right-rail@": {
             template: "<submission-sidebar page='page'></submission-sidebar>"
           }
         }
@@ -656,6 +649,8 @@
       $stateProvider.state(network_community_new);
       $stateProvider.state(network_community_top);
       $stateProvider.state(network_comments);
+      $stateProvider.state(frontpage_submit);
+      $stateProvider.state(create);
       $stateProvider.state(register);
       $stateProvider.state(welcome);
       return $stateProvider.state(interests);

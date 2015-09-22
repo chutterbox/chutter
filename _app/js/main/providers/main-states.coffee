@@ -99,11 +99,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
               CommunityResource.moderators({id: $stateParams.community}).$promise
             ]
-          controller: ["$scope", "Page", "Moderators", "CommunityResource", ($scope, Page, Moderators, CommunityResource) ->
-            $scope.page = Page
+          controller: ["$scope", "Community", "Moderators", "CommunityResource", ($scope, Community, Moderators, CommunityResource) ->
+            $scope.community = Community
             $scope.moderators = Moderators
             $scope.requestModerationPosition = () ->
-              $scope.page.community.moderation_position_requested = true
+              $scope.community.moderation_position_requested = true
               CommunityResource.requestModerationPosition({id: $scope.page.community.id})
               
           ]
@@ -161,14 +161,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       ]
       data:
         context: "network_frontpage"
-      views:
-        "toolbar":
-          templateUrl: "../app/partials/main/toolbar.html"
-          controller: "networkToolbarCtrl"
-        "": 
-          templateUrl: "#{view_url}/posts.html"
-        "right-rail": 
-          template: "<network-sidebar></network-sidebar>"
       resolve:
         Networks: ["NetworkResource", (NetworkResource) ->
           NetworkResource.query().$promise
@@ -179,6 +171,18 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Communities: ["NetworkResource", "$stateParams", (NetworkResource, $stateParams) ->
           NetworkResource.communities({id: $stateParams.network}).$promise
         ]
+      views:
+        "toolbar":
+          templateUrl: "../app/partials/main/toolbar.html"
+          controller: "networkToolbarCtrl"
+        "": 
+          templateUrl: "#{view_url}/posts.html"
+        "right-rail": 
+          templateUrl: "../app/partials/main/sidebar/network-sidebar.html"
+          controller: ["$scope", "Network", ($scope, Network) ->
+            $scope.network = Network
+          ]
+
     network_frontpage_hot = 
       name: "network_frontpage.hot"
       url: ""
@@ -241,14 +245,15 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
               CommunityResource.moderators({id: $stateParams.community}).$promise
             ]
-          controller: ["$scope", "Page", "Moderators", "CommunityResource", ($scope, Page, Moderators, CommunityResource) ->
-            $scope.page = Page
+         controller: ["$scope", "Community", "Moderators", "CommunityResource", ($scope, Community, Moderators, CommunityResource) ->
+            $scope.community = Community
             $scope.moderators = Moderators
             $scope.requestModerationPosition = () ->
-              $scope.page.community.moderation_position_requested = true
+              $scope.community.moderation_position_requested = true
               CommunityResource.requestModerationPosition({id: $scope.page.community.id})
               
           ]
+
     network_community_hot = 
       name: "network_frontpage.community.hot"
       url: ""

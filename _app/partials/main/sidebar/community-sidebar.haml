@@ -3,12 +3,12 @@
     .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
         .title{layout: "row", flex: 100, layout-align: "start center"}
-          %h5.md-title{ng-bind: "'/c/'+page.community.slug"}
-        .color-light.sub-header{ng-bind: "::page.community.description"}
+          %h5.md-title{ng-bind: "'/c/'+community.slug"}
+        .color-light.sub-header{ng-bind: "::community.description"}
       %md-button.md-primary.md-hue-1.md-raised{flex: "100", ui-sref: "home.submit"}
         submit
        
-      %md-button.md-primary.md-hue-3.md-raised{flex: "100", ng-bind: "::('subscribe to /c/' + page.community.slug)"}
+      %md-button.md-primary.md-hue-3.md-raised{flex: "100", ng-bind: "::('subscribe to /c/' + community.slug)"}
     .rules
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
         .title{layout: "row", flex: 100, layout-align: "start center"}
@@ -22,7 +22,7 @@
         .light.sub-header
           You could get punished if you wont read them!
       %md-list
-        %md-list-item{ng-repeat: "rule in page.community.rules"}
+        %md-list-item{ng-repeat: "rule in community.rules"}
           .header{layout: "row", layout-wrap: "layout-wrap"}
             .title{layout: "row", flex: 100, layout-align: "space-between center"}
               %h5{ng-bind: "::rule.category"}

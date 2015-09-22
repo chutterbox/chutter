@@ -154,11 +154,11 @@
               ]
             },
             controller: [
-              "$scope", "Page", "Moderators", "CommunityResource", function($scope, Page, Moderators, CommunityResource) {
-                $scope.page = Page;
+              "$scope", "Community", "Moderators", "CommunityResource", function($scope, Community, Moderators, CommunityResource) {
+                $scope.community = Community;
                 $scope.moderators = Moderators;
                 return $scope.requestModerationPosition = function() {
-                  $scope.page.community.moderation_position_requested = true;
+                  $scope.community.moderation_position_requested = true;
                   return CommunityResource.requestModerationPosition({
                     id: $scope.page.community.id
                   });
@@ -251,18 +251,6 @@
         data: {
           context: "network_frontpage"
         },
-        views: {
-          "toolbar": {
-            templateUrl: "../app/partials/main/toolbar.html",
-            controller: "networkToolbarCtrl"
-          },
-          "": {
-            templateUrl: view_url + "/posts.html"
-          },
-          "right-rail": {
-            template: "<network-sidebar></network-sidebar>"
-          }
-        },
         resolve: {
           Networks: [
             "NetworkResource", function(NetworkResource) {
@@ -283,6 +271,23 @@
               }).$promise;
             }
           ]
+        },
+        views: {
+          "toolbar": {
+            templateUrl: "../app/partials/main/toolbar.html",
+            controller: "networkToolbarCtrl"
+          },
+          "": {
+            templateUrl: view_url + "/posts.html"
+          },
+          "right-rail": {
+            templateUrl: "../app/partials/main/sidebar/network-sidebar.html",
+            controller: [
+              "$scope", "Network", function($scope, Network) {
+                return $scope.network = Network;
+              }
+            ]
+          }
         }
       };
       network_frontpage_hot = {
@@ -391,20 +396,20 @@
                   }).$promise;
                 }
               ]
-            },
-            controller: [
-              "$scope", "Page", "Moderators", "CommunityResource", function($scope, Page, Moderators, CommunityResource) {
-                $scope.page = Page;
-                $scope.moderators = Moderators;
-                return $scope.requestModerationPosition = function() {
-                  $scope.page.community.moderation_position_requested = true;
-                  return CommunityResource.requestModerationPosition({
-                    id: $scope.page.community.id
-                  });
-                };
-              }
-            ]
-          }
+            }
+          },
+          controller: [
+            "$scope", "Community", "Moderators", "CommunityResource", function($scope, Community, Moderators, CommunityResource) {
+              $scope.community = Community;
+              $scope.moderators = Moderators;
+              return $scope.requestModerationPosition = function() {
+                $scope.community.moderation_position_requested = true;
+                return CommunityResource.requestModerationPosition({
+                  id: $scope.page.community.id
+                });
+              };
+            }
+          ]
         }
       };
       network_community_hot = {

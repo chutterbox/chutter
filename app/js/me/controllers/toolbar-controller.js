@@ -118,7 +118,7 @@
           resolve: {
             List: [
               "NetworkResource", function(NetworkResource) {
-                return NetworkResource.communities({
+                return NetworkResource.list_communities({
                   id: network.id
                 });
               }

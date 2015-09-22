@@ -121,6 +121,10 @@
           url: API.makeURL('/networks/:id/communities'),
           isArray: true
         },
+        list_communities: {
+          url: API.makeURL('/networks/:id/list_communities'),
+          isArray: true
+        },
         subscribe: {
           url: API.makeURL('/networks/:id/subscribe'),
           method: 'PUT',

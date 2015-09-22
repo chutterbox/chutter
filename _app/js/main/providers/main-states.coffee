@@ -11,6 +11,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage =
       name: "frontpage"
       abstract: true
+      data:
+        context: "frontpage"
       onEnter: ["Page", (Page) ->
         Page.selectedCommunityTab = 0
         Page.mainToolbar = "md-primary"
@@ -36,6 +38,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_hot =
       name: "frontpage.hot"
       url: "/"
+      data:
+        sorting: "hot"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -48,6 +52,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_new = 
       name: "frontpage.new"
       url: "/new"
+      data:
+        sorting: "new"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -60,6 +66,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_top = 
       name: "frontpage.top"
       url: "/top"
+      data:
+        sorting: "top"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -80,6 +88,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
           CommunityResource.show({id: $stateParams.community}).$promise
         ]
+      data:
+        context: "frontpage_community"
       views:
         "@frontpage": 
           templateUrl: "#{view_url}/communityPosts.html"
@@ -101,6 +111,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_community_hot = 
       name: "frontpage.community.hot"
       url: ""
+      data:
+        sorting: "hot"
       views:
         "posts@frontpage":
           controller: "postListCtrl as ctrl"
@@ -111,7 +123,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             ]
     frontpage_community_new = 
       name: "frontpage.community.new"
-      url: "/new"     
+      url: "/new"
+      data:
+        sorting: "new"     
       views:
         "posts@frontpage":
           controller: "postListCtrl as ctrl"
@@ -124,6 +138,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     frontpage_community_top = 
       name: "frontpage.community.top"
       url: "/top"
+      data: 
+        sorting: "top"
       views:
         "posts@frontpage":
           controller: "postListCtrl as ctrl"
@@ -143,6 +159,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         Page.mainToolbar = "md-hue-2"
         Page.secondaryToolbar = "md-hue-3"
       ]
+      data:
+        context: "network_frontpage"
       views:
         "toolbar":
           templateUrl: "../app/partials/main/toolbar.html"
@@ -164,6 +182,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     network_frontpage_hot = 
       name: "network_frontpage.hot"
       url: ""
+      data: 
+        sorting: "hot"      
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -175,6 +195,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     network_frontpage_new = 
       name: "network_frontpage.new"
       url: "/new"
+      data: 
+        sorting: "new"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -186,6 +208,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     network_frontpage_top = 
       name: "network_frontpage.top"
       url: "/top"
+      data: 
+        sorting: "top"
       views:
         "posts":
           controller: "postListCtrl as ctrl"
@@ -201,6 +225,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       onEnter: ["Page", "Communities", "$stateParams", (Page, Communities, $stateParams) ->
         Page.selectedCommunityTab = _.findIndex(Communities, {slug: $stateParams.community}) + 1
       ]
+      data: 
+        sorting: "network_frontpage_community"
       abstract: true
       resolve:
         Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) ->
@@ -226,6 +252,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     network_community_hot = 
       name: "network_frontpage.community.hot"
       url: ""
+      data: 
+        sorting: "hot"
       views:
         "posts@network_frontpage":
           controller: "postListCtrl as ctrl"
@@ -236,7 +264,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             ]
     network_community_new = 
       name: "network_frontpage.community.new"
-      url: "/new"      
+      url: "/new"
+      data: 
+        sorting: "new"      
       views:
         "posts":
           controller: "postListCtrl"
@@ -249,6 +279,8 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     network_community_top = 
       name: "network_frontpage.community.top"
       url: "/top"
+      data: 
+        sorting: "top"
       views:
         "posts":
           controller: "postListCtrl"

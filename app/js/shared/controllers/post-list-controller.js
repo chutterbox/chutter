@@ -5,12 +5,16 @@
   app = angular.module("Chutter");
 
   app.controller("postListCtrl", [
-    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService) {
+    "$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", "$state", function($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService, $state) {
       var DynamicItems;
       if ($stateParams.network) {
         $scope.applicationSectionNamespace = "network_frontpage";
       } else {
         $scope.applicationSectionNamespace = "frontpage";
+      }
+      if ($state.current.data) {
+        $scope.context = $state.current.data.context;
+        $scope.sorting = $state.current.data.sorting;
       }
       Page.posts = Posts.posts;
       DynamicItems = function() {
@@ -44,10 +48,10 @@
         var pageOffset;
         pageOffset = pageNumber * this.PAGE_SIZE;
         this.loadedPages[pageNumber] = null;
-        $scope.page.paginator.start_fetch();
-        if (Page.scope === "all") {
+        console.log($scope.context);
+        if ($scope.context === "frontpage") {
           PostResource.query({
-            sort: Page.paginator.current_sort,
+            sort: $scope.sorting,
             offset: pageOffset
           }).$promise.then(angular.bind(this, function(data) {
             var i, item, j, len, ref;
@@ -60,10 +64,10 @@
               this.loadedPages[pageNumber].push(item);
             }
           }));
-        } else if (Page.scope === "network") {
+        } else if ($scope.context === "network_frontpage") {
           NetworkResource.posts({
             id: $stateParams.network,
-            sort: Page.paginator.current_sort,
+            sort: $scope.sorting,
             offset: pageOffset
           }).$promise.then(angular.bind(this, function(data) {
             var i, item, j, len, ref;
@@ -76,10 +80,10 @@
               this.loadedPages[pageNumber].push(item);
             }
           }));
-        } else if (Page.scope === "community") {
+        } else if ($scope.context === "frontpage_community" || $scope.context === "network_frontpage_community") {
           CommunityResource.posts({
             id: $stateParams.community,
-            sort: Page.paginator.current_sort,
+            sort: $scope.sorting,
             offset: pageOffset
           }).$promise.then(angular.bind(this, function(data) {
             var i, item, j, len, ref;

@@ -112,7 +112,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
         templateUrl: '../app/partials/main/communityEdit.html',
         resolve: 
           List: ["NetworkResource", (NetworkResource) ->
-            NetworkResource.communities({id: network.id})          
+            NetworkResource.list_communities({id: network.id})          
           ]
 
         parent: angular.element(document.body),

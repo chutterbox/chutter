@@ -14,6 +14,9 @@
       frontpage = {
         name: "frontpage",
         abstract: true,
+        data: {
+          context: "frontpage"
+        },
         onEnter: [
           "Page", function(Page) {
             Page.selectedCommunityTab = 0;
@@ -49,6 +52,9 @@
       frontpage_hot = {
         name: "frontpage.hot",
         url: "/",
+        data: {
+          sorting: "hot"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -68,6 +74,9 @@
       frontpage_new = {
         name: "frontpage.new",
         url: "/new",
+        data: {
+          sorting: "new"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -87,6 +96,9 @@
       frontpage_top = {
         name: "frontpage.top",
         url: "/top",
+        data: {
+          sorting: "top"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -123,6 +135,9 @@
             }
           ]
         },
+        data: {
+          context: "frontpage_community"
+        },
         views: {
           "@frontpage": {
             templateUrl: view_url + "/communityPosts.html"
@@ -156,6 +171,9 @@
       frontpage_community_hot = {
         name: "frontpage.community.hot",
         url: "",
+        data: {
+          sorting: "hot"
+        },
         views: {
           "posts@frontpage": {
             controller: "postListCtrl as ctrl",
@@ -176,6 +194,9 @@
       frontpage_community_new = {
         name: "frontpage.community.new",
         url: "/new",
+        data: {
+          sorting: "new"
+        },
         views: {
           "posts@frontpage": {
             controller: "postListCtrl as ctrl",
@@ -196,6 +217,9 @@
       frontpage_community_top = {
         name: "frontpage.community.top",
         url: "/top",
+        data: {
+          sorting: "top"
+        },
         views: {
           "posts@frontpage": {
             controller: "postListCtrl as ctrl",
@@ -224,6 +248,9 @@
             return Page.secondaryToolbar = "md-hue-3";
           }
         ],
+        data: {
+          context: "network_frontpage"
+        },
         views: {
           "toolbar": {
             templateUrl: "../app/partials/main/toolbar.html",
@@ -261,6 +288,9 @@
       network_frontpage_hot = {
         name: "network_frontpage.hot",
         url: "",
+        data: {
+          sorting: "hot"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -281,6 +311,9 @@
       network_frontpage_new = {
         name: "network_frontpage.new",
         url: "/new",
+        data: {
+          sorting: "new"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -301,6 +334,9 @@
       network_frontpage_top = {
         name: "network_frontpage.top",
         url: "/top",
+        data: {
+          sorting: "top"
+        },
         views: {
           "posts": {
             controller: "postListCtrl as ctrl",
@@ -328,6 +364,9 @@
             }) + 1;
           }
         ],
+        data: {
+          sorting: "network_frontpage_community"
+        },
         abstract: true,
         resolve: {
           Community: [
@@ -371,6 +410,9 @@
       network_community_hot = {
         name: "network_frontpage.community.hot",
         url: "",
+        data: {
+          sorting: "hot"
+        },
         views: {
           "posts@network_frontpage": {
             controller: "postListCtrl as ctrl",
@@ -391,6 +433,9 @@
       network_community_new = {
         name: "network_frontpage.community.new",
         url: "/new",
+        data: {
+          sorting: "new"
+        },
         views: {
           "posts": {
             controller: "postListCtrl",
@@ -411,6 +456,9 @@
       network_community_top = {
         name: "network_frontpage.community.top",
         url: "/top",
+        data: {
+          sorting: "top"
+        },
         views: {
           "posts": {
             controller: "postListCtrl",

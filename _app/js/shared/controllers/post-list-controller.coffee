@@ -2,11 +2,14 @@
 
 app = angular.module("Chutter")
 
-app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService) ->
+app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$stateParams", "NetworkResource", "CommunityResource", "MediaPlayer", "PostService", "$state", ($scope, Page, Posts, PostResource, $stateParams, NetworkResource, CommunityResource, MediaPlayer, PostService, $state) ->
   if $stateParams.network
     $scope.applicationSectionNamespace = "network_frontpage"
   else
     $scope.applicationSectionNamespace = "frontpage"
+  if $state.current.data
+    $scope.context = $state.current.data.context 
+    $scope.sorting = $state.current.data.sorting
   # toolbar = document.getElementsByTagName("chutter-toolbar")[0]
   # content = document.getElementById("content")
   # i = 0
@@ -16,6 +19,7 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
   #     toolbar.style.transform = "translateY(#{i}px)"
   #     content.style.transform = "translateY(#{i}px)"
   Page.posts = Posts.posts
+
 
   DynamicItems = ->
 
@@ -58,9 +62,9 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
     # For demo purposes, we simulate loading more items with a timed
     # promise. In real code, this function would likely contain an
     # $http request.
-    $scope.page.paginator.start_fetch()
-    if Page.scope is "all"
-      PostResource.query({sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+    console.log $scope.context
+    if $scope.context is "frontpage"
+      PostResource.query({sort:  $scope.sorting, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
         @loadedPages[pageNumber] = []
         @numItems = data.count
         i = pageOffset
@@ -68,9 +72,8 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
           @loadedPages[pageNumber].push item
         return
       )
-        # Page.paginator.finish_fetch(data.length)
-    else if Page.scope is "network"
-      NetworkResource.posts({id: $stateParams.network, sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+    else if $scope.context is "network_frontpage"
+      NetworkResource.posts({id: $stateParams.network, sort:  $scope.sorting, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
         @loadedPages[pageNumber] = []
         @numItems = data.count
         i = pageOffset
@@ -78,8 +81,8 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
           @loadedPages[pageNumber].push item
         return
       )
-    else if Page.scope is "community"
-      CommunityResource.posts({id: $stateParams.community, sort: Page.paginator.current_sort, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
+    else if $scope.context is "frontpage_community" or $scope.context is "network_frontpage_community"
+      CommunityResource.posts({id: $stateParams.community, sort: $scope.sorting, offset: pageOffset}).$promise.then angular.bind(this, (data) ->
         @loadedPages[pageNumber] = []
         @numItems = data.count
         i = pageOffset

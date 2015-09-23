@@ -3,7 +3,7 @@
     .md-toolbar-tools
       %h3{ng-bind: "'reply to ' + comment.user.username"}
       %span{flex: true}
-      %md-button.md-icon-button.large-icon
+      %md-button.md-icon-button.large-icon{ng-click: "closeSheet()"}
         %i.ion.ion-android-close
   %md-content.primary-content{layout-padding: true, layout-margin: true, layout: "column"}
     %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}", comment: "page.commentSelectedForReply"}
@@ -16,5 +16,5 @@
       %span{flex: true}
       %md-button.md-raised{ng-click: "create(newComment, comment)"}
         Reply
-      %md-button.md-raised
+      %md-button.md-raised{ng-click: "closeSheet()"}
         Cancel

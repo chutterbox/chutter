@@ -89,12 +89,12 @@ app.controller "reportSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "en
 ]
 
 app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", "comments", ($scope, CommentResource, $mdBottomSheet, parentComment, post, comments) ->
-  console.log parentComment
   $scope.newComment = 
     post_id: post.id
     parent_id: parentComment.id if parentComment && parentComment.id
     body: ""
-  
+  $scope.closeSheet = () ->
+    $mdBottomSheet.hide()
   $scope.create = () -> 
     CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
       $mdBottomSheet.hide()

@@ -105,11 +105,13 @@
 
   app.controller("replyCtrl", [
     "$scope", "CommentResource", "$mdBottomSheet", "parentComment", "post", "comments", function($scope, CommentResource, $mdBottomSheet, parentComment, post, comments) {
-      console.log(parentComment);
       $scope.newComment = {
         post_id: post.id,
         parent_id: parentComment && parentComment.id ? parentComment.id : void 0,
         body: ""
+      };
+      $scope.closeSheet = function() {
+        return $mdBottomSheet.hide();
       };
       return $scope.create = function() {
         return CommentResource.save({

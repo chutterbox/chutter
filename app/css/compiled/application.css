@@ -8242,6 +8242,12 @@ i.active-down,
 .post-item .md-button .tagline,
 .comment-item .md-button .tagline {
   margin-left: 18px; }
+.post-item .md-button p,
+.comment-item .md-button p {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 /*# sourceMappingURL=notifications.css.map */
 

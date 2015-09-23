@@ -4,7 +4,7 @@
       %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
         %div{layout: "row", layout-align: "start center"}
           %i.icon.ion-chatbox
-          %p{flex: "true"} {{::((subscription.title | limitTo: 80) + '...')}}
+          %p{flex: "true"} {{::subscription.title}}
         .tagline
           %span
             {{subscription.notification_count}} replies
@@ -14,7 +14,7 @@
       %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
         %div{layout: "row", layout-align: "start center"}
           %i.icon.ion-chatboxes
-          %p{flex: "true"} {{::((subscription.body | limitTo: 80) + '...')}}
+          %p{flex: "true"} {{::subscription.body}}
         .tagline
           %span
             {{subscription.notification_count}} replies

@@ -119,6 +119,7 @@
         return $mdDialog.show({
           controller: "communityEditCtrl",
           preserveScope: true,
+          scope: $scope,
           templateUrl: '../app/partials/main/communityEdit.html',
           resolve: {
             List: [
@@ -230,6 +231,7 @@
             templateUrl: '../app/partials/main/networkEdit.html',
             preserveScope: true,
             clickOutsideToClose: true,
+            scope: $scope,
             parent: angular.element(document.body),
             targetEvent: ev,
             resolve: {
@@ -247,6 +249,7 @@
           controller: "communityEditCtrl",
           templateUrl: '../app/partials/main/communityEdit.html',
           preserveScope: true,
+          scope: $scope,
           resolve: {
             List: [
               "NetworkResource", function(NetworkResource) {

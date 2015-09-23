@@ -5,7 +5,7 @@
 
   app.controller("communityEditCtrl", [
     "$scope", "$mdDialog", "List", "Page", "CommunityResource", function($scope, $mdDialog, List, Page, CommunityResource) {
-      $scope.communities = List;
+      $scope.communityList = List;
       $scope.hideDialog = function() {
         return $mdDialog.hide();
       };
@@ -13,11 +13,15 @@
         if (community.subscribed) {
           return CommunityResource.subscribe({
             id: community.slug
-          }).$promise.then(function(data) {});
+          }).$promise.then(function(data) {
+            return $scope.communities = data;
+          });
         } else {
           return CommunityResource.unsubscribe({
             id: community.slug
-          }).$promise.then(function(data) {});
+          }).$promise.then(function(data) {
+            return $scope.communities = data;
+          });
         }
       };
     }

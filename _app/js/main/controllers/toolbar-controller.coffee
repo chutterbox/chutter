@@ -114,6 +114,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
       $mdDialog.show({
         controller: "communityEditCtrl",
         preserveScope: true #important
+        scope: $scope
         templateUrl: '../app/partials/main/communityEdit.html',
         resolve: 
           List: ["NetworkResource", (NetworkResource) ->
@@ -224,6 +225,7 @@ app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", 
           templateUrl: '../app/partials/main/networkEdit.html'
           preserveScope: true #important
           clickOutsideToClose:true 
+          scope: $scope
           parent: angular.element(document.body)
           targetEvent: ev
           resolve: 
@@ -236,6 +238,7 @@ app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", 
         controller: "communityEditCtrl",
         templateUrl: '../app/partials/main/communityEdit.html',
         preserveScope: true #important
+        scope: $scope
         resolve: 
           List: ["NetworkResource", (NetworkResource) ->
             NetworkResource.list_communities({id: network.id})          

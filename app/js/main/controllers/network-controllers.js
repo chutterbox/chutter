@@ -21,17 +21,13 @@
           return NetworkResource.subscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            console.log($scope.networks);
-            $scope.networks = data;
-            return console.log($scope.networks);
+            return $scope.networks = data;
           });
         } else {
           return NetworkResource.unsubscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            console.log($scope.networks);
-            $scope.networks = data;
-            return console.log($scope.networks);
+            return $scope.networks = data;
           });
         }
       };

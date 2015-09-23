@@ -12,12 +12,8 @@ app.controller "networkEditCtrl", ["$scope", "$mdDialog", "List", "NetworkResour
   $scope.toggle = (network) ->
     if network.subscribed
       NetworkResource.subscribe({id: network.slug}).$promise.then (data) -> 
-        console.log $scope.networks
         $scope.networks = data
-        console.log $scope.networks
     else
       NetworkResource.unsubscribe({id: network.slug}).$promise.then (data) ->
-        console.log $scope.networks
         $scope.networks = data
-        console.log $scope.networks
 ]

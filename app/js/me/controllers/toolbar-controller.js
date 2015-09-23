@@ -100,6 +100,7 @@
             templateUrl: '../app/partials/main/networkEdit.html',
             clickOutsideToClose: true,
             preserveScope: true,
+            scope: $scope,
             parent: angular.element(document.body),
             targetEvent: ev,
             resolve: {
@@ -117,6 +118,7 @@
           controller: "communityEditCtrl",
           preserveScope: true,
           templateUrl: '../app/partials/main/communityEdit.html',
+          scope: $scope,
           resolve: {
             List: [
               "NetworkResource", function(NetworkResource) {

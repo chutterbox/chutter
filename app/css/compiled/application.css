@@ -8023,6 +8023,9 @@ i.active-down,
       .post .main .middle .tagline,
       .post .main .middle .footer {
         padding-top: 0px; }
+        .post .main .middle .tagline a,
+        .post .main .middle .footer a {
+          cursor: pointer; }
       .post .main .middle .tagline span,
       .post .main .middle .tagline a {
         margin-right: 4px;

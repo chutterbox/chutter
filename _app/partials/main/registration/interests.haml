@@ -6,7 +6,7 @@
       Take some time to pickout general categories that interest you.
     %md-content#interests-list-content
       %md-list
-        %md-list-item{ng-repeat: "network in networks | filter: networkFilter", layout: "row"}
+        %md-list-item{ng-repeat: "network in allNetworks | filter: networkFilter", layout: "row"}
           .subscription-info{layout: "column", flex: 90}
             %h4{ng-bind:"network.name"}
             .stats{ng-if: "false"}

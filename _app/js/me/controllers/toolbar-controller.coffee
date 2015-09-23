@@ -99,6 +99,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
           controller: 'networkEditCtrl'
           templateUrl: '../app/partials/main/networkEdit.html'
           clickOutsideToClose:true 
+          preserveScope: true #important
           parent: angular.element(document.body)
           targetEvent: ev
           resolve: 
@@ -109,6 +110,7 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     $scope.editNetworkCommunities = (network) ->
       $mdDialog.show({
         controller: "communityEditCtrl",
+        preserveScope: true #important
         templateUrl: '../app/partials/main/communityEdit.html',
         resolve: 
           List: ["NetworkResource", (NetworkResource) ->

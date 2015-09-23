@@ -101,7 +101,9 @@
             controller: 'networkEditCtrl',
             templateUrl: '../app/partials/main/networkEdit.html',
             clickOutsideToClose: true,
+            preserveScope: true,
             parent: angular.element(document.body),
+            scope: $scope,
             targetEvent: ev,
             resolve: {
               List: [
@@ -116,6 +118,7 @@
       return $scope.editNetworkCommunities = function(network) {
         return $mdDialog.show({
           controller: "communityEditCtrl",
+          preserveScope: true,
           templateUrl: '../app/partials/main/communityEdit.html',
           resolve: {
             List: [
@@ -225,6 +228,7 @@
           return $mdDialog.show({
             controller: 'networkEditCtrl',
             templateUrl: '../app/partials/main/networkEdit.html',
+            preserveScope: true,
             clickOutsideToClose: true,
             parent: angular.element(document.body),
             targetEvent: ev,
@@ -242,6 +246,7 @@
         return $mdDialog.show({
           controller: "communityEditCtrl",
           templateUrl: '../app/partials/main/communityEdit.html',
+          preserveScope: true,
           resolve: {
             List: [
               "NetworkResource", function(NetworkResource) {

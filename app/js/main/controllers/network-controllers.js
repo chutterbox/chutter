@@ -12,7 +12,7 @@
   app.controller("networkEditCtrl", [
     "$scope", "$mdDialog", "List", "NetworkResource", "Page", function($scope, $mdDialog, List, NetworkResource, Page) {
       $scope.page = Page;
-      $scope.networks = List;
+      $scope.allNetworks = List;
       $scope.hideDialog = function() {
         return $mdDialog.hide();
       };
@@ -21,13 +21,17 @@
           return NetworkResource.subscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            return $scope.page.networks = data;
+            console.log($scope.networks);
+            $scope.networks = data;
+            return console.log($scope.networks);
           });
         } else {
           return NetworkResource.unsubscribe({
             id: network.slug
           }).$promise.then(function(data) {
-            return $scope.page.networks = data;
+            console.log($scope.networks);
+            $scope.networks = data;
+            return console.log($scope.networks);
           });
         }
       };

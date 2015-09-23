@@ -9,10 +9,16 @@
     }
   ]);
 
-  app.controller("notificationsCtrl", [
-    "Page", "$scope", "Notifications", function(Page, $scope, Notifications) {
-      $scope.notifications = Notifications;
-      return $scope.page = Page;
+  app.controller("notificationsPageCtrl", [
+    "$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", function($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) {
+      $scope.fetchMoreComments = function() {};
+      this.page = Page;
+      this.post = Post;
+      this.postService = PostService;
+      this.notifications = Notifications;
+      this.resource = CommentResource;
+      this.mediaPlayer = MediaPlayer;
+      return this;
     }
   ]);
 

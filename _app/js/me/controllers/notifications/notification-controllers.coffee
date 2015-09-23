@@ -10,13 +10,14 @@ app.controller "notificationListCtrl", ["$scope", "Page", ($scope, Page) ->
   $scope.page = Page
 ]
 
+app.controller "notificationsPageCtrl", ["$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->
+  $scope.fetchMoreComments = () ->
+  @page = Page
+  @post = Post
+  @postService = PostService
+  @notifications = Notifications
+  @resource = CommentResource
+  @mediaPlayer = MediaPlayer
+  return @
 
-app.controller "notificationsCtrl", ["Page", "$scope", "Notifications", (Page, $scope, Notifications) ->
-  #when a user creates a notifyable object (e.g. a post, a comment) they are subscribed to notifications
-  #from that object. The response from /users/notifications is the authenticated user's notification subscriptions
-  #each object has a property called "notifications" wich contians a list of the actual resource that the user is 
-  #supposed to be notified about, e.g. a post notification may look like 
-  #<post>: {...post attributes.., notifications: [<comment>, <comment>, <mention>, <media notice>]}
-  $scope.notifications = Notifications
-  $scope.page = Page
 ]

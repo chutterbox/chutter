@@ -204,9 +204,6 @@ md-toolbar .chatting .username {
   font-weight: 600;
   text-transform: uppercase; }
 
-#content {
-  overflow: auto; }
-
 #reply {
   background: #f2f2f2; }
 

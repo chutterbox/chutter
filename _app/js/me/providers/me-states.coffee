@@ -41,7 +41,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       views: 
         "@":
           templateUrl: "#{view_url}/notifications/postNotifications.html"
-          controller: "notificationsCtrl"
+          controller: "notificationsPageCtrl as ctrl"
           resolve:
             Post: ["Page", "PostResource", "$stateParams", (Page, PostResource, $stateParams) ->
               PostResource.get({id: $stateParams.id}).$promise

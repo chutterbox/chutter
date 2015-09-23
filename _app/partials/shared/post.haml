@@ -1,43 +1,43 @@
-  .post.primary-content{layout: "row", layout-align: "start center", md-item-size: "75"}
-    .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
-      %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(ctrl.post, 1)"}
-        %i.icon.ion-chevron-up{ng-class: "{'active-up' : (ctrl.post.vote == 1)}"}
-      %h6{ng-bind: "ctrl.post.points"}
-      %md-button.md-icon-button.down{flex: true, aria-label: "Downvote", ng-click: "ctrl.postService.updateVote(ctrl.post, -1)"}
-        %i.icon.ion-chevron-down{ng-class: "{'active-down' : (ctrl.post.vote == -1)}"}
-    .postcontent.md-whiteframe-z1{ng-click: "ctrl.mediaPlayer.toggle(ctrl.post, $event)", ng-style: "{'background-image': ctrl.postService.getBackgroundImage(ctrl.post)}", id: "{{$index}}"}
-      %i.icon.ion-ios-paper{ng-hide: "ctrl.post.media.length > 0"}
-      %span{ng-switch: "ctrl.post.media[0].format"}
-        %i.icon.ion-ios-search-strong{ng-switch-when: "image"}
-        %i.icon.ion-ios-search-strong{ng-switch-when: "webpage"}
-        %i.icon.ion-ios-play{ng-switch-when: "video"}
-        %i.icon.ion-ios-glasses-outline{ng-switch-default: "true"}
-    .main{layout: "row", flex: "true"}
-      .middle{layout: "column"}
-        .top{ng-switch: "ctrl.post.media.length"}
-          .title{ng-switch-when: 0}
-            %a.color-light.md-title{ng-bind: "ctrl.post.title", ui-sref: "home.community.comments({id: ctrl.post.slug, community: ctrl.post.community_slug})"}
+.post.primary-content{layout: "row", layout-align: "start center", md-item-size: "75"}
+  .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
+    %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(ctrl.post, 1)"}
+      %i.icon.ion-chevron-up{ng-class: "{'active-up' : (ctrl.post.vote == 1)}"}
+    %h6{ng-bind: "ctrl.post.points"}
+    %md-button.md-icon-button.down{flex: true, aria-label: "Downvote", ng-click: "ctrl.postService.updateVote(ctrl.post, -1)"}
+      %i.icon.ion-chevron-down{ng-class: "{'active-down' : (ctrl.post.vote == -1)}"}
+  .postcontent.md-whiteframe-z1{ng-click: "ctrl.mediaPlayer.toggle(ctrl.post, $event)", ng-style: "{'background-image': ctrl.postService.getBackgroundImage(ctrl.post)}", id: "{{$index}}"}
+    %i.icon.ion-ios-paper{ng-hide: "ctrl.post.media.length > 0"}
+    %span{ng-switch: "ctrl.post.media[0].format"}
+      %i.icon.ion-ios-search-strong{ng-switch-when: "image"}
+      %i.icon.ion-ios-search-strong{ng-switch-when: "webpage"}
+      %i.icon.ion-ios-play{ng-switch-when: "video"}
+      %i.icon.ion-ios-glasses-outline{ng-switch-default: "true"}
+  .main{layout: "row", flex: "true"}
+    .middle{layout: "column"}
+      .top{ng-switch: "ctrl.post.media.length"}
+        .title{ng-switch-when: 0}
+          %a.color-light.md-title{ng-bind: "ctrl.post.title", ui-sref: "home.community.comments({id: ctrl.post.slug, community: ctrl.post.community_slug})"}
 
-          .title{ng-switch-default: true}
-            %a.color-light.md-title{ng-bind: "ctrl.post.title", href: "{{ctrl.post.media[0].link}}"}
-            %span.attribution{ng-if: "false && ctrl.post.media[0] && ctrl.post.media[0].attribution", ng-bind: "'('+ctrl.post.media[0].attribution+')'"}
-        .tagline
-          %span.votes{ng-bind: "(ctrl.post.points || 0) + ' points'"} 
-          %span.submitted-by-text
-            submitted by
-          %a.user-link{ng-bind: "ctrl.post.username", ui-sref: "user.overview({username: ctrl.post.username})"}
-          %span.time-ago{am-time-ago: "ctrl.post.created_at"}
-            
-        .footer{layout: "row"}
-          %a{ui-sref: "home.community.comments({id: ctrl.post.slug, community: ctrl.post.community_slug})", ng-bind: "ctrl.post.comments_count + ' comments'"}
-          %a{ng-if: "!ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
-            save
-          %a{ng-if: "ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
-            unsave
-          %a{ng-if: "!ctrl.post.reported", ng-click: "ctrl.postService.report(ctrl.post)"}
-            report
-          %a.disabled{ng-if: "ctrl.post.reported"}
-            reported
-          %a{ng-click: "ctrl.postService.moderate(ctrl.post)", ng-if: "ctrl.post.moderates && !ctrl.post.restricted_from_removing_posts"}
-            mod
-       
+        .title{ng-switch-default: true}
+          %a.color-light.md-title{ng-bind: "ctrl.post.title", href: "{{ctrl.post.media[0].link}}"}
+          %span.attribution{ng-if: "false && ctrl.post.media[0] && ctrl.post.media[0].attribution", ng-bind: "'('+ctrl.post.media[0].attribution+')'"}
+      .tagline
+        %span.votes{ng-bind: "(ctrl.post.points || 0) + ' points'"} 
+        %span.submitted-by-text
+          submitted by
+        %a.user-link{ng-bind: "ctrl.post.username", ui-sref: "user.overview({username: ctrl.post.username})"}
+        %span.time-ago{am-time-ago: "ctrl.post.created_at"}
+          
+      .footer{layout: "row"}
+        %a{ui-sref: "home.community.comments({id: ctrl.post.slug, community: ctrl.post.community_slug})", ng-bind: "ctrl.post.comments_count + ' comments'"}
+        %a{ng-if: "!ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
+          save
+        %a{ng-if: "ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
+          unsave
+        %a{ng-if: "!ctrl.post.reported", ng-click: "ctrl.postService.report(ctrl.post)"}
+          report
+        %a.disabled{ng-if: "ctrl.post.reported"}
+          reported
+        %a{ng-click: "ctrl.postService.moderate(ctrl.post)", ng-if: "ctrl.post.moderates && !ctrl.post.restricted_from_removing_posts"}
+          mod
+     

@@ -198,7 +198,6 @@ i.active-down,
   padding: 15px; }
 
 #comments {
-  overflow: auto;
   min-height: auto; }
   #comments md-backdrop {
     display: none; }

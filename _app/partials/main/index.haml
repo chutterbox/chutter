@@ -27,8 +27,9 @@
 
   %body{layout: "column", flex: "true", md-theme: "{{theme}}"}
     %div{ui-view: "toolbar"}
-    %md-content.md-whiteframe-z1#content{layout: "row", flex: "true"}
+    %md-content#content{layout: "row", flex: "true"}
       %ui-view{layout: "column", flex: "true"}
+        %md-progress-circular#loading-spinner{md-mode: "indeterminate"}
       %md-sidenav.md-sidenav-right.primary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
         %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
         %span{flex:true}

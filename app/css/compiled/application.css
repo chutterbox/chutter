@@ -6629,6 +6629,12 @@ i.active-down,
 .md-toolbar-tools {
   font-size: 14px; }
 
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
+
 #content {
   overflow: hidden;
   position: relative;
@@ -6826,6 +6832,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;
@@ -7049,6 +7061,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;
@@ -7378,6 +7396,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;
@@ -7826,6 +7850,12 @@ i.active-down,
 .md-toolbar-tools {
   font-size: 14px; }
 
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
+
 #content {
   overflow: hidden;
   position: relative;
@@ -8123,6 +8153,12 @@ i.active-down,
 .md-toolbar-tools {
   font-size: 14px; }
 
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
+
 #content {
   overflow: hidden;
   position: relative;
@@ -8339,6 +8375,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;
@@ -8666,6 +8708,12 @@ i.active-down,
 .md-toolbar-tools {
   font-size: 14px; }
 
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
+
 #content {
   overflow: hidden;
   position: relative;
@@ -8913,6 +8961,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;
@@ -9173,6 +9227,12 @@ i.active-down,
 
 .md-toolbar-tools {
   font-size: 14px; }
+
+#loading-spinner {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 27; }
 
 #content {
   overflow: hidden;

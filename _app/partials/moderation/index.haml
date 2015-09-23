@@ -30,10 +30,14 @@
         ga('send', 'pageview');
     
 
-  %body{layout: "row", layout-fill: true}
-    %ui-view{layout: "column", layout-fill: true}
-        %div{layout: "column", layout-fill: "true", layout-align: "center center"}
-            %md-progress-circular{md-mode: "indeterminate"}
+    %body{layout: "column", flex: "true", md-theme: "{{theme}}"}
+        %div{ui-view: "toolbar"}
+        %md-content.md-whiteframe-z1#content{layout: "row", flex: "true"}
+          %ui-view{layout: "column", flex: "true"}
+          %md-sidenav.md-sidenav-right.primary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+            %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
+            %span{flex:true}
+            %footer-sidebar
 
     %script{src: "/js/compiled/application.min.js"}
     %script{src: "/js/compiled/moderation.min.js"}

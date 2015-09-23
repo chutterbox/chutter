@@ -67,7 +67,7 @@
             if ($scope.comment.open) {
               $scope.comment.open = false;
               return window.requestAnimationFrame(function() {
-                $scope.comment.elements["main layout layout-row"].className = "main layout layout-row active";
+                $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row active";
                 $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill active";
                 _.each($scope.comment.childIds, function(id) {
                   return document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk";
@@ -78,7 +78,7 @@
               $scope.comment.open = true;
               return window.requestAnimationFrame(function() {
                 $scope.comment.element.setAttribute("collapsed", false);
-                $scope.comment.elements["main layout layout-row"].className = "main layout layout-row";
+                $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row";
                 $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill";
                 return _.each($scope.comment.childIds, function(id) {
                   return document.getElementById(id).className = "ng-scope ng-isolate-scope";

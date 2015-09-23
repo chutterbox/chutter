@@ -123,7 +123,17 @@
         },
         list_communities: {
           url: API.makeURL('/networks/:id/list_communities'),
-          isArray: true
+          isArray: true,
+          transformResponse: function(response) {
+            var data;
+            data = void 0;
+            data = angular.fromJson(response);
+            return _.each(data, function(item) {
+              if (item.community_subscription_id) {
+                return item.subscribed = true;
+              }
+            });
+          }
         },
         subscribe: {
           url: API.makeURL('/networks/:id/subscribe'),

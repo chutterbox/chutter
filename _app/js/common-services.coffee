@@ -77,6 +77,12 @@ app.factory 'NetworkResource', ['$resource', 'Page', 'API', ($resource, Page, AP
     list_communities:
       url: API.makeURL('/networks/:id/list_communities')
       isArray: true
+      transformResponse: (response) ->
+        data = undefined
+        data = angular.fromJson(response)
+        _.each data, (item) ->
+          if item.community_subscription_id
+            item.subscribed = true
     subscribe:
       url: API.makeURL('/networks/:id/subscribe')
       method: 'PUT'

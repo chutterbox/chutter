@@ -1,16 +1,22 @@
-%md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+%md-content.detailed-list.secondary-content{flex: true, role: "navigation", layout-fill: true, layout: "column"}
   .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions | orderBy: '-unread_count'", ng-switch: "subscription.entityable", layout: "row"}
     .post-item{ng-switch-when: "post", flex: "100"}
       %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
-        %p{ng-bind: "::(('Re: ' + subscription.title | limitTo: 80) + '...')"}
-        %span
-          {{subscription.notification_count}} replies
-        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
-          ({{subscription.unread_count}} new)
+        %div{layout: "row", layout-align: "start center"}
+          %i.icon.ion-chatbox
+          %p{flex: "true"} {{::((subscription.title | limitTo: 80) + '...')}}
+        .tagline
+          %span
+            {{subscription.notification_count}} replies
+          %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+            ({{subscription.unread_count}} new)
     .comment-item{ng-switch-when: "comment", flex: "100"}
       %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
-        %p{ng-bind: "::(('Re: ' + subscription.body | limitTo: 80) + '...')"}
-        %span
-          {{subscription.notification_count}} replies
-        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
-          ({{subscription.unread_count}} new)
+        %div{layout: "row", layout-align: "start center"}
+          %i.icon.ion-chatboxes
+          %p{flex: "true"} {{::((subscription.body | limitTo: 80) + '...')}}
+        .tagline
+          %span
+            {{subscription.notification_count}} replies
+          %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+            ({{subscription.unread_count}} new)

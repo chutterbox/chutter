@@ -30,12 +30,21 @@
   .news
     .header{layout: "column"}
       .title{layout: "row", layout-align: "start center"}
-        %md-button.md-icon-button.md-primary
-          .icon.ion-ios-pulse-strong
         %h5.md-title
-          News
+          New here?
       .color-light.sub-header
-        Things happening with Chutter.
+        Chutter is a place to post interesting stuff from the web. You can easily submit links, music, or text posts to a community.
+      .color-light.sub-header
+        Similar to how a post belongs to a community, a community belongs to a network. A network on chutter is a group of similar communities.
+      .color-light.sub-header
+        Start by subscribing to networks, then refine thngs by adding/removing community subscriptions
+      .color-light.sub-header
+        Don't want to miss anything? Chutter sorts your massive community lists by daily user activity. So if a community is 1st or second in the list, it must be really active that day.
+      .color-light.sub-header
+        TL;DR - networks are like countries, communities are like states, the toolbar is your map. Use it wisely.
+      .color-light.sub-header
+        Chutter is still a baby, please report any bugs to /c/bugs and any network requests to /c/networkrequests!
+
     %md-list.special-list
       %div{ng-repeat: "post in news.posts", ng-switch: "post.community_slug"}
         %md-list-item{layout: "row", ng-switch-when: "ideasforchutter"}

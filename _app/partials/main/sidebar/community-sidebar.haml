@@ -55,7 +55,7 @@
             .title{flex: 75, ng-bind: "::moderator.username"}
     
       %div{layout: "row", layout-align: "center center", layout-fill: "true"}
-        %md-button.md-primary.help{ng-if: "user && user.id && page.community.accepting_moderation_requests && !page.community.moderation_position_requested && !page.community.moderates", aria-label: "Help Chutter", ng-click: "requestModerationPosition()"}
+        %md-button.md-primary.help{ng-if: "user && user.id && community.accepting_moderation_requests && !community.moderation_position_requested && !community.moderates", aria-label: "Help Chutter", ng-click: "requestModerationPosition()"}
           Request to be a moderator
-        %md-button.md-primary.help.md-disabled{ng-if: "page.community.moderation_position_requested", aria-label: "Help Chutter"}
+        %md-button.md-primary.help.md-disabled{ng-if: "community.moderation_position_requested", aria-label: "Help Chutter"}
           Requested

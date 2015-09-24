@@ -52,7 +52,7 @@ app.controller "modSheetCtrl", ["$mdBottomSheet", "$scope", "entityable", "entit
     if entityableType is "post"
       PostResource.ban($scope.activityLogEntry)  
 
-  $scope.closeModSheet = () ->
+  $scope.closeSheet = () ->
     $mdBottomSheet.hide()
 
 ]

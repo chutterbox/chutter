@@ -61,7 +61,7 @@
           return PostResource.ban($scope.activityLogEntry);
         }
       };
-      return $scope.closeModSheet = function() {
+      return $scope.closeSheet = function() {
         return $mdBottomSheet.hide();
       };
     }

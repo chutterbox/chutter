@@ -4,10 +4,10 @@
       %h3
         Moderation
       %span{flex: true}
-      %md-button.md-icon-button.large-icon{ng-click: "closeModSheet()"}
+      %md-button.md-icon-button.large-icon{ng-click: "closeSheet()"}
         %i.ion.ion-android-close
-  %md-content{layout: "column", layout-fill: "true"}
-    %md-tabs{flex: "true"}
+  %md-content
+    %md-tabs{md-dynamic-height: "true", flex: "true"}
       %md-tab{label: "Remove Post", ng-if: "post"}
         %div
           %div{ng-include: "'/partials/shared/postEmbed.html'"}
@@ -24,8 +24,7 @@
               %span{flex: true}
               %md-button.md-raised{ng-click: "submitEntityableForm()"}
                 Submit
-              %md-button.md-raised
-                Cancel
+
       %md-tab{label: "Remove Comment", ng-if: "comment"}
         %div
           %div{ng-include: "'/partials/shared/comments/commentEmbed.html'"}
@@ -42,8 +41,7 @@
               %span{flex: true}
               %md-button.md-raised{ng-click: "submitEntityableForm()"}
                 Submit
-              %md-button.md-raised
-                Cancel
+
       %md-tab{ng-if: "false", label: "User"}
         %form{name: "explanationForm"}
             %h3{ng-bind: "entityable.username"}
@@ -67,5 +65,3 @@
               %span{flex: true}
               %md-button.md-raised{ng-click: "submitUserForm()"}
                 Submit
-              %md-button.md-raised
-                Cancel

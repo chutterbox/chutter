@@ -5,9 +5,13 @@ app = angular.module("Chutter")
 app.factory "PostService", ["PostResource", "$stateParams", "MediaPlayer", "$mdBottomSheet", "$mdToast", "$rootScope", (PostResource, $stateParams, MediaPlayer, $mdBottomSheet, $mdToast, $rootScope) ->
   class PostService
     updateVote: (post, vote) ->
-      if post.vote == vote 
+      post.vote = parseInt(post.vote)
+      vote = parseInt(vote)
+      if post.vote is vote
         vote = 0
+      delta = vote - post.vote
       post.vote = vote
+      post.points = parseInt(post.points) + delta
       PostResource.vote({id: post.id, vote: vote}) 
     moderate: (post) ->
       if $rootScope.user && $rootScope.user.moderator

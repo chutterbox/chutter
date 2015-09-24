@@ -10,10 +10,15 @@
         function PostService() {}
 
         PostService.prototype.updateVote = function(post, vote) {
+          var delta;
+          post.vote = parseInt(post.vote);
+          vote = parseInt(vote);
           if (post.vote === vote) {
             vote = 0;
           }
+          delta = vote - post.vote;
           post.vote = vote;
+          post.points = parseInt(post.points) + delta;
           return PostResource.vote({
             id: post.id,
             vote: vote

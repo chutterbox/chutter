@@ -1,4 +1,5 @@
-%div{style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+%div{ng-hide: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+%div{ng-show: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
 %md-toolbar.primary-content#comments-toolbar{ng-class: "page.mainToolbar"}
   .md-toolbar-tools{layout: "row", layout-align: "space-between center"}
     %p.comment-count.primary-content{ng-bind: "ctrl.post.comments_count + ' comments'"}

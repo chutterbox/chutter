@@ -11,10 +11,10 @@
       %md-button{aria-label: "sign in", ui-sref: "register.welcome"}
         sign up
     .toolbar-container{ng-show: "user && user.id", hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
-      %md-button{aria-label: "moderation", ng-if: "user.moderator", href: "/moderation", target: "_self"}
+      %md-button{aria-label: "moderation", ng-if: "user.moderator == 'true'", href: "/moderation", target: "_self"}
         mod
-      %md-button{aria-label: "management", ng-if: "user.manager", href: "/management", target: "_self"}
-        Management
+      %md-button{aria-label: "management", ng-if: "user.manager == 'true'", href: "/management", target: "_self"}
+        management
       %md-menu
         %md-button.md-icon-button{aria-label: "change theme", ng-click: "$mdOpenMenu($event)"}
           .icon.ion-android-color-palette

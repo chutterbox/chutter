@@ -213,4 +213,7 @@ md-toolbar .chatting .username {
 #reply {
   background: #f2f2f2; }
 
+.md-sidenav-right#sidenav-list {
+  border-left: 1px solid #eeeeee; }
+
 /*# sourceMappingURL=me.css.map */

@@ -41,7 +41,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       views: 
         "@":
           templateUrl: "#{view_url}/notifications/postNotifications.html"
-          controller: "notificationsPageCtrl as ctrl"
+          controller: "postNotificationsPageCtrl as ctrl"
           resolve:
             Post: ["Page", "PostResource", "$stateParams", (Page, PostResource, $stateParams) ->
               PostResource.get({id: $stateParams.id}).$promise
@@ -56,7 +56,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       views: 
         "@":
           templateUrl: "#{view_url}/notifications/commentNotifications.html"
-          controller: "notificationsCtrl"
+          controller: "commentNotificationsPageCtrl as ctrl"
           resolve:
             Notifications: ["Page", "CommentResource", "$stateParams", (Page, CommentResource, $stateParams) ->
               CommentResource.notifications({id: $stateParams.id}).$promise

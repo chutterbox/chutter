@@ -257,7 +257,8 @@ i.active-down,
   .post .vote {
     position: relative;
     height: 70px;
-    width: 3vw; }
+    width: 20px;
+    margin: 0 16px; }
     .post .vote .ion-chevron-up.active-up,
     .post .vote .ion-chevron-down.active-up {
       color: #1e88e5; }

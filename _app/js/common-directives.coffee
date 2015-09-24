@@ -28,7 +28,7 @@ app.directive 'comment', ["$compile", ($compile) ->
         when 2,6,12 then $scope.comment.depthColor = 1
         when 3,7,13 then $scope.comment.depthColor = 2
         when 4,8,14 then $scope.comment.depthColor = 3
-      $compile('<comment class="child" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->
+      $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->
          $element.append(cloned) 
     $scope.comment.elements = {}
     $scope.comment.element = $element[0]

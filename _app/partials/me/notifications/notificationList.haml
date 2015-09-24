@@ -1,5 +1,5 @@
-%md-content.detailed-list.secondary-content{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions | orderBy: '-unread_count'", ng-switch: "subscription.entityable", layout: "row"}
+%md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
+  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions", ng-switch: "subscription.entityable", layout: "row"}
     .post-item{ng-switch-when: "post", flex: "100"}
       %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
         %div{layout: "row", layout-align: "start center"}

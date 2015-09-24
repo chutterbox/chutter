@@ -299,4 +299,52 @@ md-toolbar#networks-bar {
     md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item a {
       color: #212121; }
 
+#comments-toolbar {
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  padding: 0 8px; }
+  #comments-toolbar .comment-count {
+    color: #757575;
+    margin: 0 16px;
+    font-size: 0.8em;
+    font-weight: bold; }
+  #comments-toolbar .md-toolbar-tools {
+    padding: 0;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px; }
+  #comments-toolbar md-menu-bar#comments-menu-bar {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0;
+    margin: 0 0 0 8px; }
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu {
+      height: 32px;
+      min-height: 32px;
+      max-height: 32px;
+      background-color: transparent; }
+      #comments-toolbar md-menu-bar#comments-menu-bar md-menu .md-open-menu-container {
+        max-height: 70vh;
+        overflow: auto; }
+      #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button {
+        margin: 0;
+        font-size: 0.8em;
+        font-weight: bold;
+        text-transform: none;
+        color: #757575;
+        height: 32px;
+        min-height: 32px;
+        max-height: 32px; }
+        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button md-icon {
+          height: 35px;
+          color: #212121;
+          width: 15px; }
+        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button:focus {
+          background-color: transparent; }
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item .md-button,
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item a {
+      color: #212121; }
+
 /*# sourceMappingURL=toolbar.css.map */

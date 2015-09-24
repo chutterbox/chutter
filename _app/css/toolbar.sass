@@ -93,3 +93,41 @@ md-toolbar
         .md-button,
         a
           color: material-color("grey", "900")
+#comments-toolbar
+  @include min-and-max-height(32px)
+  padding: 0 8px
+  .comment-count
+    color: material-color("grey", "600")
+    margin: 0 16px
+    font-size: 0.8em
+    font-weight: bold
+  .md-toolbar-tools
+    padding: 0
+    @include min-and-max-height(32px)
+  md-menu-bar#comments-menu-bar
+    @include min-and-max-height(32px)
+    padding: 0
+    margin: 0 0 0 8px
+    md-menu
+      @include min-and-max-height(32px)
+      background-color: transparent
+      .md-open-menu-container
+        max-height: 70vh
+        overflow: auto
+      button.md-button
+        margin: 0
+        font-size: 0.8em
+        font-weight: bold
+        text-transform: none 
+        color: material-color("grey", "600")
+        @include min-and-max-height(32px)
+        md-icon
+          height: 35px
+          color: material-color("grey", "900")
+          width: 15px
+        &:focus
+          background-color: transparent
+    md-menu-item 
+      .md-button,
+      a
+        color: material-color("grey", "900")

@@ -8,24 +8,21 @@
       %md-button.md-primary.button-link.username{md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})", aria-label: "username"}
       %span.points{ng-bind: "comment.points + ' points'"}
     %span{flex: true}
-    %span.time{layout-align: "end"} 42 minutes ago
+    %span.time{am-time-ago: "comment.created_at"}
 
 .main{layout: "row", flex: "true"}
-  .left-controls{layout: "column"}
+  .left-controls{layout: "column", layout-align: "space-between center"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
       %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.updateVote(post, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
-      %h6{ng-bind: "comment.points"}
       %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "ctrl.updateVote(post, -1)"}
         %i.icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
     %md-button.md-icon-button{ng-click: "comment.toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
       .icon.ion-ios-minus-outline
-  .content{layout: "column", layout-fill: true}
-    .header{layout: "row"}
-      .wrap
-        %md-button.md-primary.button-link.username{aria-label: "username", md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
-        %span.points{ng-bind: "comment.points + ' points'"}
-      %span{flex: true}
+  .content{layout: "column", layout-fill: true, layout-align: "space-between start"}
+    .header{layout: "row", layout-align: "start center"}
+      %md-button.md-primary.button-link.username{aria-label: "username", md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
+      %span.points{ng-bind: "comment.points + ' points'"}
       %span.time{layout-align: "end", am-time-ago: "comment.created_at"}
     .body{marked: "comment.body"}
     .footer

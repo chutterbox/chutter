@@ -51,7 +51,7 @@
         views: {
           "@": {
             templateUrl: view_url + "/notifications/postNotifications.html",
-            controller: "notificationsPageCtrl as ctrl",
+            controller: "postNotificationsPageCtrl as ctrl",
             resolve: {
               Post: [
                 "Page", "PostResource", "$stateParams", function(Page, PostResource, $stateParams) {
@@ -77,7 +77,7 @@
         views: {
           "@": {
             templateUrl: view_url + "/notifications/commentNotifications.html",
-            controller: "notificationsCtrl",
+            controller: "commentNotificationsPageCtrl as ctrl",
             resolve: {
               Notifications: [
                 "Page", "CommentResource", "$stateParams", function(Page, CommentResource, $stateParams) {

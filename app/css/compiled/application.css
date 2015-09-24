@@ -7575,44 +7575,49 @@ comment-embed {
   comment .content,
   comment-embed .content {
     padding-top: 8px; }
-  comment .left-controls > .md-button,
-  comment-embed .left-controls > .md-button {
-    height: 30px;
-    min-height: 30px;
-    max-height: 30px;
-    width: 30px;
-    min-width: 30px;
-    max-width: 30px;
-    line-height: 30px; }
-  comment .left-controls .vote,
-  comment-embed .left-controls .vote {
-    position: relative;
-    height: 70px;
-    width: 3vw; }
-    comment .left-controls .vote .ion-chevron-up.active-up,
-    comment .left-controls .vote .ion-chevron-down.active-up,
-    comment-embed .left-controls .vote .ion-chevron-up.active-up,
-    comment-embed .left-controls .vote .ion-chevron-down.active-up {
-      color: #1e88e5; }
-    comment .left-controls .vote .ion-chevron-up.active-down,
-    comment .left-controls .vote .ion-chevron-down.active-down,
-    comment-embed .left-controls .vote .ion-chevron-up.active-down,
-    comment-embed .left-controls .vote .ion-chevron-down.active-down {
-      color: #e53935; }
-    comment .left-controls .vote h6,
-    comment-embed .left-controls .vote h6 {
-      margin: 0;
-      color: #e0e0e0; }
-    comment .left-controls .vote .md-button,
-    comment-embed .left-controls .vote .md-button {
-      min-height: 5px;
-      width: 20px;
+  comment .left-controls,
+  comment-embed .left-controls {
+    margin: 8px 16px 0 16px; }
+    comment .left-controls > .md-button,
+    comment-embed .left-controls > .md-button {
       height: 20px;
-      line-height: normal;
-      margin: 0; }
-      comment .left-controls .vote .md-button i,
-      comment-embed .left-controls .vote .md-button i {
-        color: #9e9e9e; }
+      min-height: 20px;
+      max-height: 20px;
+      width: 20px;
+      min-width: 20px;
+      max-width: 20px;
+      line-height: 20px;
+      padding: 0px;
+      margin: 0px; }
+    comment .left-controls .vote,
+    comment-embed .left-controls .vote {
+      position: relative;
+      height: 40px;
+      width: 20px; }
+      comment .left-controls .vote .ion-chevron-up.active-up,
+      comment .left-controls .vote .ion-chevron-down.active-up,
+      comment-embed .left-controls .vote .ion-chevron-up.active-up,
+      comment-embed .left-controls .vote .ion-chevron-down.active-up {
+        color: #1e88e5; }
+      comment .left-controls .vote .ion-chevron-up.active-down,
+      comment .left-controls .vote .ion-chevron-down.active-down,
+      comment-embed .left-controls .vote .ion-chevron-up.active-down,
+      comment-embed .left-controls .vote .ion-chevron-down.active-down {
+        color: #e53935; }
+      comment .left-controls .vote h6,
+      comment-embed .left-controls .vote h6 {
+        margin: 0;
+        color: #e0e0e0; }
+      comment .left-controls .vote .md-button,
+      comment-embed .left-controls .vote .md-button {
+        min-height: 5px;
+        width: 20px;
+        height: 20px;
+        line-height: normal;
+        margin: 0; }
+        comment .left-controls .vote .md-button i,
+        comment-embed .left-controls .vote .md-button i {
+          color: #9e9e9e; }
   comment .border,
   comment-embed .border {
     height: 100%;
@@ -7658,18 +7663,16 @@ comment-embed {
     comment .header .points,
     comment-embed .header .time,
     comment-embed .header .points {
-      color: #bdbdbd;
-      font-size: 0.6em; }
+      color: #9e9e9e;
+      font-size: 0.8em;
+      margin-left: 8px; }
     comment .header .username,
     comment-embed .header .username {
       font-size: 0.8em;
-      font-weight: bold;
-      padding-left: 4px;
       cursor: pointer; }
     comment .header .points,
     comment-embed .header .points {
-      margin-left: 10px;
-      line-height: 25px; }
+      font-weight: bold; }
     comment .header .time,
     comment-embed .header .time {
       margin-right: 10px; }
@@ -7735,8 +7738,7 @@ comment-embed {
     transform: scale(0); }
   .main .footer {
     font-size: 0.8em;
-    font-weight: 500;
-    padding-top: 0.5vmax; }
+    font-weight: 500; }
     .main .footer span,
     .main .footer a {
       color: #999;
@@ -8020,7 +8022,8 @@ i.active-down,
   .post .vote {
     position: relative;
     height: 70px;
-    width: 3vw; }
+    width: 20px;
+    margin: 0 16px; }
     .post .vote .ion-chevron-up.active-up,
     .post .vote .ion-chevron-down.active-up {
       color: #1e88e5; }
@@ -9438,6 +9441,54 @@ md-toolbar#networks-bar {
           background-color: transparent; }
     md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item .md-button,
     md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item a {
+      color: #212121; }
+
+#comments-toolbar {
+  height: 32px;
+  min-height: 32px;
+  max-height: 32px;
+  padding: 0 8px; }
+  #comments-toolbar .comment-count {
+    color: #757575;
+    margin: 0 16px;
+    font-size: 0.8em;
+    font-weight: bold; }
+  #comments-toolbar .md-toolbar-tools {
+    padding: 0;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px; }
+  #comments-toolbar md-menu-bar#comments-menu-bar {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0;
+    margin: 0 0 0 8px; }
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu {
+      height: 32px;
+      min-height: 32px;
+      max-height: 32px;
+      background-color: transparent; }
+      #comments-toolbar md-menu-bar#comments-menu-bar md-menu .md-open-menu-container {
+        max-height: 70vh;
+        overflow: auto; }
+      #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button {
+        margin: 0;
+        font-size: 0.8em;
+        font-weight: bold;
+        text-transform: none;
+        color: #757575;
+        height: 32px;
+        min-height: 32px;
+        max-height: 32px; }
+        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button md-icon {
+          height: 35px;
+          color: #212121;
+          width: 15px; }
+        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button:focus {
+          background-color: transparent; }
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item .md-button,
+    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item a {
       color: #212121; }
 
 /*# sourceMappingURL=toolbar.css.map */

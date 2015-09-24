@@ -10,11 +10,21 @@ app.controller "notificationListCtrl", ["$scope", "Page", ($scope, Page) ->
   $scope.page = Page
 ]
 
-app.controller "notificationsPageCtrl", ["$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->
+app.controller "postNotificationsPageCtrl", ["$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->
   $scope.fetchMoreComments = () ->
   @page = Page
   @post = Post
   @postService = PostService
+  @notifications = Notifications
+  @resource = CommentResource
+  @mediaPlayer = MediaPlayer
+  return @
+
+]
+
+app.controller "commentNotificationsPageCtrl", ["$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer) ->
+  $scope.fetchMoreComments = () ->
+  @page = Page
   @notifications = Notifications
   @resource = CommentResource
   @mediaPlayer = MediaPlayer

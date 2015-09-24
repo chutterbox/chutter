@@ -1,4 +1,21 @@
-%div{style: "z-index: 120;", ng-include: "'../app/partials/shared/post.html'"}
+%div{style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+%md-toolbar.primary-content#comments-toolbar{ng-class: "page.mainToolbar"}
+  .md-toolbar-tools{layout: "row", layout-align: "space-between center"}
+    %p.comment-count.primary-content{ng-bind: "ctrl.post.comments_count + ' comments'"}
+    %md-menu-bar#comments-menu-bar
+      %md-menu
+        %md-button{ng-click: "$mdOpenMenu()"}
+          %span
+            Hot
+          %md-icon
+            %i.icon.ion-android-arrow-dropdown
+        %md-menu-content
+          %md-menu-item
+            %md-button{aria-label: "view all networks"} 
+              Top
+          %md-menu-item 
+            %md-button{aria-label: "view all networks"} 
+              Live
 #comments.primary-content
   %comment-list{layout: "column", layout-fill: "true"}
     %comment.primary-content{layout: "column", parent: "", ng-repeat: "child in commentListCtrl.comments", id: "c{{child.path}}", comment: "child", post: "post"}

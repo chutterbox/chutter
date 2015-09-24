@@ -9,12 +9,23 @@
     }
   ]);
 
-  app.controller("notificationsPageCtrl", [
+  app.controller("postNotificationsPageCtrl", [
     "$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", function($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) {
       $scope.fetchMoreComments = function() {};
       this.page = Page;
       this.post = Post;
       this.postService = PostService;
+      this.notifications = Notifications;
+      this.resource = CommentResource;
+      this.mediaPlayer = MediaPlayer;
+      return this;
+    }
+  ]);
+
+  app.controller("commentNotificationsPageCtrl", [
+    "$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", function($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer) {
+      $scope.fetchMoreComments = function() {};
+      this.page = Page;
       this.notifications = Notifications;
       this.resource = CommentResource;
       this.mediaPlayer = MediaPlayer;

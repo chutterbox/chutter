@@ -36,7 +36,7 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
 
     ###* @const {number} Number of items to fetch per request. ###
 
-    @PAGE_SIZE = 50
+    @PAGE_SIZE = 15
     return
 
   # Required.

@@ -29,7 +29,7 @@
         this.numItems = Posts.count;
 
         /** @const {number} Number of items to fetch per request. */
-        this.PAGE_SIZE = 50;
+        this.PAGE_SIZE = 15;
       };
       DynamicItems.prototype.getItemAtIndex = function(index) {
         var page, pageNumber;

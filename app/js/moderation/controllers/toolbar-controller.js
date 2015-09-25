@@ -18,43 +18,41 @@
         return $scope.logIn;
       });
       $scope.logIn = function() {
-        return $mdDialog.show({
+        $mdDialog.show({
           controller: 'authCtrl',
           templateUrl: '../app/partials/main/authenticate.html',
           parent: angular.element(document.body),
           clickOutsideToClose: true
         });
-      };
-      $scope.logout = function() {
-        return $auth.signOut().then(function() {
-          return $location.url("/");
+        $scope.startPollers = function() {
+          poller.get(API.makeURL('/users/ephemeral_notifications'), {
+            delay: 30000
+          }).promise.then(null, null, function(data) {
+            return $scope.showNotifications(data.data);
+          });
+          poller.get(API.makeURL('/users/toolbar_notifications'), {
+            delay: 30000
+          }).promise.then(null, null, function(resp) {
+            $scope.unread_messages = resp.data.unread_messages;
+            return $scope.unread_notifications = resp.data.unread_notifications;
+          });
+          return $scope.poller = poller;
+        };
+        $scope.logout = function() {
+          return $auth.signOut().then(function() {
+            return $location.url("/");
+          });
+        };
+        _.defer(function() {
+          if ($scope.user && $scope.user.id) {
+            return $scope.startPollers();
+          }
         });
-      };
-      if ($scope.user && $scope.user.id) {
-        $scope.startPollers();
-      }
-      $scope.$on("auth:logout-success", function() {
-        $scope.poller.stopAll();
-        return $scope.toolbarNotificationsPoller.stopAll();
-      });
-      $scope.$on("auth:login-success", function() {
-        return $scope.startPollers();
-      });
-      $scope.startPollers = function() {
-        console.log("here");
-        $scope.poller = new poller;
-        $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
+        $scope.$on("auth:logout-success", function() {
+          return $scope.poller.stopAll();
         });
-        $scope.toolbarNotificationsPoller = new poller;
-        return $scope.toolbarNotificationsPoller.get(API.makeURL('/users/toolbar_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          console.log(data);
-          $scope.unread_messages_count = data.unread_messages_count;
-          return $scope.unread_notifications_count = data.unread_notifications_count;
+        return $scope.$on("auth:login-success", function() {
+          return $scope.startPollers();
         });
       };
       $scope.showNotifications = function(notifications) {

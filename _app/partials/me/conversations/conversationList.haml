@@ -1,5 +1,12 @@
 %md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-  .detailed-list-item{ng-repeat: "convo in conversations", layout: "row"}
+  %div{layout: "row", layout-align: "space-between center"}
+    %md-input-container{flex: "true"}
+      %label
+        Filter
+      %input{ng-model: "conversationFilterPredicate"}
+    %md-button.md-icon-button.md-primary{ui-sref: "home.conversations.compose"}
+      %i.icon.ion-compose
+  .detailed-list-item{ng-repeat: "convo in conversations | filter: conversationFilterPredicate", layout: "row"}
     %md-button{aria-label: "Open conversation", ui-sref: "home.conversations.conversation({id: convo.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
       %p{ng-bind: "::convo.recipient_name"}
       %span{ng-bind: "::((convo.lru_message.body | limitTo: 30) + '...')"}

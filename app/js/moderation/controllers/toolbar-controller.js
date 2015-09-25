@@ -6,6 +6,7 @@
   app.controller("toolbarCtrl", [
     "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "$state", "$location", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, $state, $location) {
       $scope.communities = Communities;
+      $scope.notifications = [];
       $scope.$on("$stateChangeStart", function() {
         return $scope.loading = true;
       });
@@ -30,24 +31,32 @@
         });
       };
       if ($scope.user && $scope.user.id) {
-        $scope.poller = poller;
+        $scope.startPollers();
+      }
+      $scope.$on("auth:logout-success", function() {
+        $scope.poller.stopAll();
+        return $scope.toolbarNotificationsPoller.stopAll();
+      });
+      $scope.$on("auth:login-success", function() {
+        return $scope.startPollers();
+      });
+      $scope.startPollers = function() {
+        console.log("here");
+        $scope.poller = new poller;
         $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
           delay: 30000
         }).promise.then(null, null, function(data) {
           return $scope.showNotifications(data.data);
         });
-      }
-      $scope.$on("auth:logout-success", function() {
-        return $scope.poller.stopAll();
-      });
-      $scope.$on("auth:login-success", function() {
-        $scope.poller = poller;
-        return $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
+        $scope.toolbarNotificationsPoller = new poller;
+        return $scope.toolbarNotificationsPoller.get(API.makeURL('/users/toolbar_notifications'), {
           delay: 30000
         }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
+          console.log(data);
+          $scope.unread_messages_count = data.unread_messages_count;
+          return $scope.unread_notifications_count = data.unread_notifications_count;
         });
-      });
+      };
       $scope.showNotifications = function(notifications) {
         var cascade, ephemeral_notifications;
         ephemeral_notifications = _.reject(notifications, function(n) {

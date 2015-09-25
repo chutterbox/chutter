@@ -67,7 +67,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.conversations"
       url: "/conversations"
       views:
-        "right-rail": 
+        "right-rail@": 
           templateUrl: "#{view_url}/conversations/conversationList.html"
           controller: "conversationListCtrl"
           resolve:
@@ -80,7 +80,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.conversations.compose"
       url: "/compose"      
       views:
-        "@home":
+        "@":
           templateUrl: "#{view_url}/conversations/compose.html"
           controller: "conversationComposeCtrl"
 
@@ -88,7 +88,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
       name: "home.conversations.conversation"
       url: "/:id"
       views: 
-        "@home":
+        "@":
           templateUrl: "#{view_url}/conversations/conversation.html"
           controller: "conversationContentCtrl"
           resolve:
@@ -133,7 +133,9 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     preferences =
       name: "home.preferences"
       url: "/preferences"
-      templateUrl: "#{view_url}/preferences.html"
+      views:
+        "@": 
+          "templateUrl": "#{view_url}/preferences.html"
       controller: "preferencesCtrl"  
     
     submissions =
@@ -147,10 +149,6 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
         "@home":
           templateUrl: "../app/partials/shared/postList.html"
           controller: "postListCtrl as ctrl"
-  
-
-
-    
     stats =
       name: "home.stats"
       url: "/stats"
@@ -175,6 +173,10 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     $stateProvider.state(saved_posts)
     $stateProvider.state(saved_posts_filtered)
     $stateProvider.state(saved_posts_all)
+
+    $stateProvider.state(preferences)
+
+
     $stateProvider.state(stats)
     $stateProvider.state(submissions)
 

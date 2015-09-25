@@ -15,12 +15,6 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     
     # $(".md-virtual-repeat-scroller").scroll () ->
     #   console.log "here"
-
-
-    $scope.$on("auth:show-signin", () ->
-      $scope.logIn
-    )
-
     #showing authentication related dialogs
     $scope.logIn = ->
       $mdDialog.show
@@ -28,27 +22,31 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
        templateUrl: '../app/partials/main/authenticate.html'
        parent: angular.element(document.body)
        clickOutsideToClose: true
-
+    
+    $scope.startPollers = () ->
+      poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
+        $scope.showNotifications(data.data)
+      poller.get(API.makeURL('/users/toolbar_notifications'), {delay: 30000}).promise.then null, null, (resp) ->
+        $scope.unread_messages = resp.data.unread_messages  
+        $scope.unread_notifications = resp.data.unread_notifications   
+      $scope.poller = poller
 
     $scope.logout = ->
       $auth.signOut().then () ->
         $location.url("/")
     #notification related logic
 
-    if $scope.user and $scope.user.id
-      $scope.poller = poller
-      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
-        $scope.showNotifications(data.data)
+    _.defer () -> 
+      if $scope.user and $scope.user.id
+        $scope.startPollers()
 
     $scope.$on("auth:logout-success", () ->
       $scope.poller.stopAll()
     )
 
     $scope.$on "auth:login-success", () -> 
-      $scope.poller = poller
-      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
-        $scope.showNotifications(data.data)
-  
+      $scope.startPollers()
+
     $scope.showNotifications = (notifications) ->
       ephemeral_notifications = _.reject(notifications, (n) -> n.ephemeral_count is 0)
       if ephemeral_notifications.length > 0
@@ -151,19 +149,25 @@ app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", 
         $location.url("/")
     #notification related logic
 
-    if $scope.user and $scope.user.id
-      $scope.poller = poller
-      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
+    
+    $scope.startPollers = () ->
+      poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
         $scope.showNotifications(data.data)
+      poller.get(API.makeURL('/users/toolbar_notifications'), {delay: 30000}).promise.then null, null, (resp) ->
+        $scope.unread_messages = resp.data.unread_messages   
+        $scope.unread_notifications = resp.data.unread_notifications   
+      $scope.poller = poller
+
+    _.defer () -> 
+      if $scope.user and $scope.user.id
+        $scope.startPollers()
 
     $scope.$on("auth:logout-success", () ->
       $scope.poller.stopAll()
     )
 
     $scope.$on "auth:login-success", () -> 
-      $scope.poller = poller
-      $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
-        $scope.showNotifications(data.data)
+      $scope.startPollers()
   
     $scope.showNotifications = (notifications) ->
       ephemeral_notifications = _.reject(notifications, (n) -> n.ephemeral_count is 0)

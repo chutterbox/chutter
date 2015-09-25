@@ -15,9 +15,6 @@
         return $scope.loading = false;
       });
       $scope.applicationSectionNamespace = "frontpage";
-      $scope.$on("auth:show-signin", function() {
-        return $scope.logIn;
-      });
       $scope.logIn = function() {
         return $mdDialog.show({
           controller: 'authCtrl',
@@ -26,29 +23,35 @@
           clickOutsideToClose: true
         });
       };
+      $scope.startPollers = function() {
+        poller.get(API.makeURL('/users/ephemeral_notifications'), {
+          delay: 30000
+        }).promise.then(null, null, function(data) {
+          return $scope.showNotifications(data.data);
+        });
+        poller.get(API.makeURL('/users/toolbar_notifications'), {
+          delay: 30000
+        }).promise.then(null, null, function(resp) {
+          $scope.unread_messages = resp.data.unread_messages;
+          return $scope.unread_notifications = resp.data.unread_notifications;
+        });
+        return $scope.poller = poller;
+      };
       $scope.logout = function() {
         return $auth.signOut().then(function() {
           return $location.url("/");
         });
       };
-      if ($scope.user && $scope.user.id) {
-        $scope.poller = poller;
-        $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
-        });
-      }
+      _.defer(function() {
+        if ($scope.user && $scope.user.id) {
+          return $scope.startPollers();
+        }
+      });
       $scope.$on("auth:logout-success", function() {
         return $scope.poller.stopAll();
       });
       $scope.$on("auth:login-success", function() {
-        $scope.poller = poller;
-        return $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
-        });
+        return $scope.startPollers();
       });
       $scope.showNotifications = function(notifications) {
         var cascade, ephemeral_notifications;
@@ -153,24 +156,30 @@
           return $location.url("/");
         });
       };
-      if ($scope.user && $scope.user.id) {
-        $scope.poller = poller;
-        $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
+      $scope.startPollers = function() {
+        poller.get(API.makeURL('/users/ephemeral_notifications'), {
           delay: 30000
         }).promise.then(null, null, function(data) {
           return $scope.showNotifications(data.data);
         });
-      }
+        poller.get(API.makeURL('/users/toolbar_notifications'), {
+          delay: 30000
+        }).promise.then(null, null, function(resp) {
+          $scope.unread_messages = resp.data.unread_messages;
+          return $scope.unread_notifications = resp.data.unread_notifications;
+        });
+        return $scope.poller = poller;
+      };
+      _.defer(function() {
+        if ($scope.user && $scope.user.id) {
+          return $scope.startPollers();
+        }
+      });
       $scope.$on("auth:logout-success", function() {
         return $scope.poller.stopAll();
       });
       $scope.$on("auth:login-success", function() {
-        $scope.poller = poller;
-        return $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {
-          delay: 30000
-        }).promise.then(null, null, function(data) {
-          return $scope.showNotifications(data.data);
-        });
+        return $scope.startPollers();
       });
       $scope.showNotifications = function(notifications) {
         var cascade, ephemeral_notifications;

@@ -130,7 +130,7 @@ i.active-down,
     font-size: 40px; }
 
 #conversation {
-  width: 95%;
+  width: 100%;
   height: 100%;
   padding: 0 2.5%; }
 @media(max-width: 960px) {
@@ -206,7 +206,8 @@ i.active-down,
   max-height: 48px;
   width: auto; }
   #logo img {
-    max-height: 24px;
+    max-height: 30px;
+    margin-top: 5px;
     vertical-align: middle; }
 
 md-toolbar {
@@ -230,6 +231,17 @@ md-progress-linear#loading {
 
 md-toolbar#main-toolbar {
   z-index: 19; }
+  md-toolbar#main-toolbar .user-points,
+  md-toolbar#main-toolbar .counter-text {
+    font-size: 0.8em; }
+  md-toolbar#main-toolbar .user-points {
+    margin-right: 8px; }
+  md-toolbar#main-toolbar .icon-button-with-counter > div {
+    display: inline-block;
+    margin-right: 4px; }
+  md-toolbar#main-toolbar .icon-button-with-counter.active > div {
+    color: #ffd54f;
+    text-shadow: 0.5px 0.5px #c62828; }
   md-toolbar#main-toolbar .md-toolbar-tools {
     padding: 0; }
     md-toolbar#main-toolbar .md-toolbar-tools #auth-container {

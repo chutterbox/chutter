@@ -1,19 +1,12 @@
-%md-toolbar.md-primary.md-hue-2{md-scroll-shrink: "true"}
-  .md-toolbar-tools
-    %p.chatting
-      Chatting with
-      %span.username{ng-bind: "::conversation.otherUser"}
-
-#content{infinite-scroll: "myPagingFunction()", infinite-scroll-distance: "3"}
-  %md-content#conversation.primary-content
-    .item{ng-repeat: "message in messages", ng-class: "message.other_participant? 'other-participant': 'you'"}
-      .wrap{layout-padding: "layout-padding", flex: "flex", layout: "row", ng-attr-layout-align: "{{message.other_participant ? '': 'end start'}}"}
-        .message{layout-padding: true, layout: "column"}
-          .body{flex: true, layout: "column"}
-            %p.text{ng-bind: "::message.body"}
-            %p.time
-              %span{ng-bind: "::message.created_at | date:'shortTime'"}
-              %md-tooltip{ng-bind: "::message.created_at | date:'medium'"}
+%md-content#conversation.primary-content{flex: "true"}
+  .item{ng-repeat: "message in messages", ng-class: "message.other_participant? 'other-participant': 'you'"}
+    .wrap{layout-padding: "layout-padding", flex: "flex", layout: "row", ng-attr-layout-align: "{{message.other_participant ? '': 'end start'}}"}
+      .message{layout-padding: true, layout: "column"}
+        .body{flex: true, layout: "column"}
+          %p.text{ng-bind: "::message.body"}
+          %p.time
+            %span{ng-bind: "::message.created_at | date:'shortTime'"}
+            %md-tooltip{ng-bind: "::message.created_at | date:'medium'"}
 %md-divider
 #reply.md-padding
   %form.reply{ng-submit: "reply()", layout: "row"}

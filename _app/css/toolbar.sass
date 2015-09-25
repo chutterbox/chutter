@@ -9,7 +9,8 @@ $toolbar-height: $main-toolbar-height + $networks-bar-height
   @include min-and-max-height(48px)
   width: auto
   img
-    max-height: 24px
+    max-height: 30px
+    margin-top: 5px
     vertical-align: middle
 
 md-toolbar
@@ -31,7 +32,19 @@ md-progress-linear#loading
 
 md-toolbar
   &#main-toolbar
-
+    .user-points,
+    .counter-text
+      font-size: 0.8em
+    .user-points
+      margin-right: 8px
+    .icon-button-with-counter
+      > div
+        display: inline-block
+        margin-right: 4px
+      &.active
+        > div
+          color: material-color("amber", "300")
+          text-shadow: 0.5px 0.5px material-color("red", "800")
     z-index: $toolbar-z-index
     .md-toolbar-tools
       padding: 0

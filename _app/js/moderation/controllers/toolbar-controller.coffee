@@ -1,7 +1,7 @@
 app = angular.module("ModerationApp")
 app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "$state", "$location",  ($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, $state, $location) ->
   $scope.communities = Communities 
-
+  $scope.notifications = []
   $scope.$on("$stateChangeStart", () ->
     $scope.loading = true
   )
@@ -33,19 +33,27 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
   #notification related logic
 
   if $scope.user and $scope.user.id
-    $scope.poller = poller
-    $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
-      $scope.showNotifications(data.data)
+    $scope.startPollers()
 
   $scope.$on("auth:logout-success", () ->
     $scope.poller.stopAll()
+    $scope.toolbarNotificationsPoller.stopAll()
   )
 
   $scope.$on "auth:login-success", () -> 
-    $scope.poller = poller
+    $scope.startPollers()
+
+  $scope.startPollers = () ->
+    console.log "here"
+    $scope.poller = new poller
     $scope.poller.get(API.makeURL('/users/ephemeral_notifications'), {delay: 30000}).promise.then null, null, (data) ->
       $scope.showNotifications(data.data)
-
+    $scope.toolbarNotificationsPoller = new poller
+    $scope.toolbarNotificationsPoller.get(API.makeURL('/users/toolbar_notifications'), {delay: 30000}).promise.then null, null, (data) ->
+      console.log data
+      $scope.unread_messages_count = data.unread_messages_count   
+      $scope.unread_notifications_count = data.unread_notifications_count   
+ 
   $scope.showNotifications = (notifications) ->
     ephemeral_notifications = _.reject(notifications, (n) -> n.ephemeral_count is 0)
     if ephemeral_notifications.length > 0

@@ -94,7 +94,7 @@
         name: "home.conversations",
         url: "/conversations",
         views: {
-          "right-rail": {
+          "right-rail@": {
             templateUrl: view_url + "/conversations/conversationList.html",
             controller: "conversationListCtrl",
             resolve: {
@@ -111,7 +111,7 @@
         name: "home.conversations.compose",
         url: "/compose",
         views: {
-          "@home": {
+          "@": {
             templateUrl: view_url + "/conversations/compose.html",
             controller: "conversationComposeCtrl"
           }
@@ -121,7 +121,7 @@
         name: "home.conversations.conversation",
         url: "/:id",
         views: {
-          "@home": {
+          "@": {
             templateUrl: view_url + "/conversations/conversation.html",
             controller: "conversationContentCtrl",
             resolve: {
@@ -189,7 +189,11 @@
       preferences = {
         name: "home.preferences",
         url: "/preferences",
-        templateUrl: view_url + "/preferences.html",
+        views: {
+          "@": {
+            "templateUrl": view_url + "/preferences.html"
+          }
+        },
         controller: "preferencesCtrl"
       };
       submissions = {
@@ -236,6 +240,7 @@
       $stateProvider.state(saved_posts);
       $stateProvider.state(saved_posts_filtered);
       $stateProvider.state(saved_posts_all);
+      $stateProvider.state(preferences);
       $stateProvider.state(stats);
       return $stateProvider.state(submissions);
     }

@@ -12,38 +12,32 @@
         sign up
     .toolbar-container{ng-show: "user && user.id", hide-sm: true, hide-md: true, layout: "row", layout-align: "end center"}
       %md-button{aria-label: "moderation", ng-if: "user.moderator == 'true'", href: "/moderation", target: "_self"}
-        mod
+          mod
       %md-button{aria-label: "management", ng-if: "user.manager == 'true'", href: "/management", target: "_self"}
-        management
-      %md-menu
-        %md-button.md-icon-button{aria-label: "change theme", ng-click: "$mdOpenMenu($event)"}
-          .icon.ion-android-color-palette
-        %md-menu-content.theme-list
-          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutter')"}
-            .theme-chutter
-              Chutter
-          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterDark')"}
-            .theme-chutter-dark
-              Chutter Dark
-          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterTeal')"}
-            .theme-chutter-teal
-              Chutter Teal
-          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterOrange')"}
-            .theme-chutter-orange
-              Chutter Orange
-          %md-button{aria-label: "change theme", ng-click: "switchTheme('chutterPink')"}
-            .theme-chutter-pink
-              Chutter Pink
-
-      %md-button{aria-label: "notifications", href: "/me/notifications", target: "_self"}
-        {{user.username}} 
-      %span
-        ({{user.post_points}} · {{user.comment_points}})
-        
-      %md-button.md-icon-button{aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true}
-        %i.icon.ion-android-mail
+          management
+      %md-button{aria-label: "notifications", href: "/me/", target: "_self"}
+          {{user.username}} 
+      .user-points{layout: "row", layout-align: "start center"}
+        (
+        %a{href: "/"} {{user.post_points}}
+        ·
+        %a{href: "/"} {{user.comment_points}}
+        )
+      %md-button.md-icon-button.icon-button-with-counter{aria-label: "messages", href: "/me/", target: "_self", hide-sm: true, layout: "row"}
+        %div
+          %i.icon.ion-ios-bell
+        %div{ng-if: "false"}
+          %span.counter-text
+            33
+        %md-tooltip 
+          Messages       
+      %md-button.md-icon-button.icon-button-with-counter{ ng-class: "{'active': unread_messages}", aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true, layout: "row"}
+        %div
+          %i.icon.ion-ios-chatboxes
+        %div{ng-if: "unread_messages && unread_messages > 0"}
+          %span.counter-text{ng-bind: "unread_messages"}
         %md-tooltip
-          Messages
+          Conversations
       %md-button.md-icon-button{aria-label: "logout", ng-click: "logout()", hide-sm: true}
         %i.icon.ion-log-out
         %md-tooltip

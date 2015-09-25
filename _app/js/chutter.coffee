@@ -16,7 +16,6 @@ app = angular.module('Chutter', [
   'emguo.poller'
   'hc.marked'
   'angularMoment'
-  'angularytics'
   'ngMessages'
 ]).constant('API',
   baseURL: '/api/v1'
@@ -37,19 +36,19 @@ app = angular.module('Chutter', [
   '$stateProvider'
   '$urlRouterProvider'
   '$compileProvider'
-  'AngularyticsProvider'
-  ($stateProvider, $urlRouterProvider, $compileProvider, AngularyticsProvider) ->
-    AngularyticsProvider.setEventHandlers(['GoogleUniversal'])
-    # $compileProvider.debugInfoEnabled(false)
+  ($stateProvider, $urlRouterProvider, $compileProvider) ->
+    # if false
+      # AngularyticsProvider.setEventHandlers(['GoogleUniversal'])
+    $compileProvider.debugInfoEnabled(false)
 ]).run([
   '$http'
   '$auth'
-  'Angularytics'
-  ($http, $auth, Angularytics) ->
+  ($http, $auth) ->
     headers = undefined
     headers = $auth.retrieveData('auth_headers')
     $http.defaults.headers.common = $auth.retrieveData('auth_headers')
-    Angularytics.init()
+    # if ga and _gaq
+      # Angularytics.init()
 ])
 
 

@@ -215,6 +215,7 @@ module.exports = (grunt) ->
           "app/partials/moderation/community/inbox.html" : "_app/partials/moderation/community/inbox.haml"
           "app/partials/moderation/community/settings.html" : "_app/partials/moderation/community/settings.haml"
           "app/partials/moderation/community/activity-log.html" : "_app/partials/moderation/community/activity-log.haml"
+          "app/partials/moderation/toolbar.html" : "_app/partials/moderation/toolbar.haml"
          
 
           #management partials

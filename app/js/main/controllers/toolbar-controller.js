@@ -18,13 +18,6 @@
       $scope.$on("auth:show-signin", function() {
         return $scope.logIn;
       });
-      $scope.dropdownText = function() {
-        if ($scope.page.scope === "all") {
-          return "all";
-        } else if (["community", "comments", "submit", "network"].indexOf($scope.page.scope) > -1) {
-          return $scope.page.network.name;
-        }
-      };
       $scope.logIn = function() {
         return $mdDialog.show({
           controller: 'authCtrl',
@@ -147,13 +140,6 @@
       $scope.$on("auth:show-signin", function() {
         return $scope.logIn;
       });
-      $scope.dropdownText = function() {
-        if ($scope.page.scope === "all") {
-          return "all";
-        } else if (["community", "comments", "submit", "network"].indexOf($scope.page.scope) > -1) {
-          return $scope.page.network.name;
-        }
-      };
       $scope.logIn = function() {
         return $mdDialog.show({
           controller: 'authCtrl',

@@ -39,7 +39,7 @@ app = angular.module('Chutter', [
   ($stateProvider, $urlRouterProvider, $compileProvider) ->
     # if false
       # AngularyticsProvider.setEventHandlers(['GoogleUniversal'])
-    $compileProvider.debugInfoEnabled(false)
+    # $compileProvider.debugInfoEnabled(false)
 ]).run([
   '$http'
   '$auth'

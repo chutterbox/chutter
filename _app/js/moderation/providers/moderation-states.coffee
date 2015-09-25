@@ -2,43 +2,32 @@
 app = angular.module("ModerationApp")
 
 app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
-    view_url = "/partials/moderation" 
+    view_url = "../app/partials/moderation" 
     home =
       name: "home"
-      abstract: true
-      templateUrl: "#{view_url}/layout.html"
+      url: "/"
       resolve:
         Communities: ["UserResource", (UserResource) ->
-          UserResource.moderatedCommunities()
+          UserResource.moderatedCommunities().$promise
         ]
-      controller: "homeCtrl"
-    
-    #aggregate dashboard
-    dashboard =
-      name: "home.dashboard"
-      url: "/"
-      templateUrl: "#{view_url}/dashboard.html"
-      controller: "dashboardCtrl"
-    
+      views:
+        "toolbar":
+          templateUrl: "#{view_url}/toolbar.html"
+          controller: "toolbarCtrl"
+        "": 
+          templateUrl: "#{view_url}/dashboard.html"
+   
     community =
       name: "home.community"
-      url: "/community/:id"
-      templateUrl: "#{view_url}/community/community.html"
-      abstract: true
-      resolve:
-        Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
-          CommunityResource.show({id: $stateParams.id}).$promise
-        ]      
-      controller: ["$scope", "Page", ($scope, Page) -> 
-        $scope.page = Page
-      ]
-
-    communityDashboard =
-      name: "home.community.dashboard"
-      url: "/dashboard"
-      templateUrl: "#{view_url}/community/dashboard.html"
-      controller: "communityDashboardCtrl"
-
+      url: "c/:community"
+      views:
+        "@": 
+          templateUrl: "#{view_url}/community/community.html"
+          resolve:
+            Community: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
+              CommunityResource.show({id: $stateParams.community}).$promise
+            ]      
+    
     communityInbox =
       name: "home.community.inbox"
       url: "/inbox"
@@ -155,9 +144,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
     #community specific dashboard
    
     $stateProvider.state(home)
-    $stateProvider.state(dashboard)
     $stateProvider.state(community)
-    $stateProvider.state(communityDashboard)
     $stateProvider.state(communityQueue)
     $stateProvider.state(rules)
     $stateProvider.state(modwatch)

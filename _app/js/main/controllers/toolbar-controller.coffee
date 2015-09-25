@@ -21,13 +21,6 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
       $scope.logIn
     )
 
-    $scope.dropdownText = () ->
-      if $scope.page.scope is "all"
-        return "all"
-      else if ["community", "comments", "submit", "network"].indexOf($scope.page.scope) > -1
-        $scope.page.network.name
-
-    
     #showing authentication related dialogs
     $scope.logIn = ->
       $mdDialog.show
@@ -144,13 +137,6 @@ app.controller "networkToolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", 
       $scope.logIn
     )
 
-    $scope.dropdownText = () ->
-      if $scope.page.scope is "all"
-        return "all"
-      else if ["community", "comments", "submit", "network"].indexOf($scope.page.scope) > -1
-        $scope.page.network.name
-
-    
     #showing authentication related dialogs
     $scope.logIn = ->
       $mdDialog.show

@@ -6,52 +6,45 @@
 
   app.config([
     '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-      var activityLog, community, communityDashboard, communityInbox, communityQueue, dashboard, home, moderationRequestEdit, moderationRequests, moderatorEdit, moderators, modwatch, policyGroups, rules, settings, view_url;
-      view_url = "/partials/moderation";
+      var activityLog, community, communityInbox, communityQueue, home, moderationRequestEdit, moderationRequests, moderatorEdit, moderators, modwatch, policyGroups, rules, settings, view_url;
+      view_url = "../app/partials/moderation";
       home = {
         name: "home",
-        abstract: true,
-        templateUrl: view_url + "/layout.html",
+        url: "/",
         resolve: {
           Communities: [
             "UserResource", function(UserResource) {
-              return UserResource.moderatedCommunities();
+              return UserResource.moderatedCommunities().$promise;
             }
           ]
         },
-        controller: "homeCtrl"
-      };
-      dashboard = {
-        name: "home.dashboard",
-        url: "/",
-        templateUrl: view_url + "/dashboard.html",
-        controller: "dashboardCtrl"
+        views: {
+          "toolbar": {
+            templateUrl: view_url + "/toolbar.html",
+            controller: "toolbarCtrl"
+          },
+          "": {
+            templateUrl: view_url + "/dashboard.html"
+          }
+        }
       };
       community = {
         name: "home.community",
-        url: "/community/:id",
-        templateUrl: view_url + "/community/community.html",
-        abstract: true,
-        resolve: {
-          Community: [
-            "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
-              return CommunityResource.show({
-                id: $stateParams.id
-              }).$promise;
+        url: "c/:community",
+        views: {
+          "@": {
+            templateUrl: view_url + "/community/community.html",
+            resolve: {
+              Community: [
+                "CommunityResource", "$stateParams", function(CommunityResource, $stateParams) {
+                  return CommunityResource.show({
+                    id: $stateParams.community
+                  }).$promise;
+                }
+              ]
             }
-          ]
-        },
-        controller: [
-          "$scope", "Page", function($scope, Page) {
-            return $scope.page = Page;
           }
-        ]
-      };
-      communityDashboard = {
-        name: "home.community.dashboard",
-        url: "/dashboard",
-        templateUrl: view_url + "/community/dashboard.html",
-        controller: "communityDashboardCtrl"
+        }
       };
       communityInbox = {
         name: "home.community.inbox",
@@ -223,9 +216,7 @@
         }
       };
       $stateProvider.state(home);
-      $stateProvider.state(dashboard);
       $stateProvider.state(community);
-      $stateProvider.state(communityDashboard);
       $stateProvider.state(communityQueue);
       $stateProvider.state(rules);
       $stateProvider.state(modwatch);

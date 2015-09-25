@@ -18,13 +18,6 @@ app.controller "toolbarCtrl", ["$auth", "$scope", "$mdDialog", "poller", "$mdToa
     $scope.$on("auth:show-signin", () ->
       $scope.logIn
     )
-
-    $scope.dropdownText = () ->
-      if $scope.page.scope is "all"
-        return "all"
-      else if ["community", "comments", "submit", "network"].indexOf($scope.page.scope) > -1
-        $scope.page.network.name
-
     
     #showing authentication related dialogs
     $scope.logIn = ->

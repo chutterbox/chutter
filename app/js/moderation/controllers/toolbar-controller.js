@@ -1,11 +1,11 @@
 (function() {
   var app;
 
-  app = angular.module("MeApp");
+  app = angular.module("ModerationApp");
 
   app.controller("toolbarCtrl", [
-    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "$state", "$location", "Page", function($auth, $scope, $mdDialog, poller, $mdToast, API, $state, $location, Page) {
-      $scope.page = Page;
+    "$auth", "$scope", "$mdDialog", "poller", "$mdToast", "API", "Communities", "$state", "$location", function($auth, $scope, $mdDialog, poller, $mdToast, API, Communities, $state, $location) {
+      $scope.communities = Communities;
       $scope.$on("$stateChangeStart", function() {
         return $scope.loading = true;
       });
@@ -68,7 +68,7 @@
           });
         }
       };
-      $scope.showNotification = function(notification) {
+      return $scope.showNotification = function(notification) {
         var body, title;
         if (notification.entityable === "comment") {
           body = notification.body.substring(0, 50);
@@ -83,47 +83,6 @@
           }
           return $mdToast.show($mdToast.simple().content("Re: " + title).position("bottom right").action(notification.ephemeral_count + " new").hideDelay(5000));
         }
-      };
-      $scope.editNetworks = function(ev) {
-        if (!($scope.user && $scope.user.id)) {
-          return $scope.logIn();
-        } else {
-          return $mdDialog.show({
-            controller: 'networkEditCtrl',
-            templateUrl: '../app/partials/main/networkEdit.html',
-            clickOutsideToClose: true,
-            preserveScope: true,
-            scope: $scope,
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            resolve: {
-              List: [
-                'NetworkResource', function(NetworkResource) {
-                  return NetworkResource.list();
-                }
-              ]
-            }
-          });
-        }
-      };
-      return $scope.editNetworkCommunities = function(network) {
-        return $mdDialog.show({
-          controller: "communityEditCtrl",
-          preserveScope: true,
-          templateUrl: '../app/partials/main/communityEdit.html',
-          scope: $scope,
-          resolve: {
-            List: [
-              "NetworkResource", function(NetworkResource) {
-                return NetworkResource.list_communities({
-                  id: network.id
-                });
-              }
-            ]
-          },
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
       };
     }
   ]);

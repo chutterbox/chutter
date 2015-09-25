@@ -1,7 +1,7 @@
 %md-toolbar#main-toolbar{ng-class: "page.mainToolbar", md-scroll-shrink: "true"}
   .md-toolbar-tools{layout: "row", flex: "100", layout-align: "space-between center"}
     .toolbar-continer{layout: "row"}
-      %md-button#logo{style: "background-color: transparent;", href: "/", layout: "row", layout-align: "center center"}
+      %md-button#logo{aria-label: "logo", style: "background-color: transparent;", href: "/", layout: "row", layout-align: "center center"}
         %img{ng-src: "/img/logo.png"}
       %a#secondary-header{ng-bind: "secondaryTitle"}      
               

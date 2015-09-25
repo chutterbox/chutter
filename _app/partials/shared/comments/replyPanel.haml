@@ -3,7 +3,7 @@
     .md-toolbar-tools
       %h3{ng-bind: "'reply to ' + comment.user.username"}
       %span{flex: true}
-      %md-button.md-icon-button.large-icon{ng-click: "closeSheet()"}
+      %md-button.md-icon-button.large-icon{aria-label: "close comment reply" ,ng-click: "closeSheet()"}
         %i.ion.ion-android-close
   %md-content.primary-content{layout-padding: true, layout-margin: true, layout: "column"}
     %comment-embed{ng-if: "comment.id", layout: "column", ,id: "c{{comment.path}}", comment: "page.commentSelectedForReply"}

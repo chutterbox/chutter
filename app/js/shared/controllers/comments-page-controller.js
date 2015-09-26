@@ -25,7 +25,6 @@
       this.resource = CommentResource;
       this.mediaPlayer = MediaPlayer;
       this.reply = function(parentComment) {
-        console.log(parent);
         return $mdBottomSheet.show({
           templateUrl: '/partials/shared/comments/replyPanel.html',
           controller: "replyCtrl",

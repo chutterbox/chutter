@@ -21,7 +21,6 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
   @resource = CommentResource
   @mediaPlayer = MediaPlayer
   @reply = (parentComment) ->
-    console.log parent
     $mdBottomSheet.show({
       templateUrl: '/partials/shared/comments/replyPanel.html'
       #has to have leading digit on id

@@ -23,15 +23,16 @@
         %md-input-container
           %label
             Network
-          %md-select{name: "network_id", ng-model: "newCommunity.network_id"}
+          %md-select{name: "network_id", ng-model: "newCommunity.network_id", required: "true"}
             %md-option{ng-repeat: "network in networks", value: "{{network.id}}"} {{network.name}}
           %div{ng-messages: "newCommunityForm.network_id.$error"}
-            %div{ng-message: "required"} This is required.
+            %div{ng-message: "required"} Pick a category that best describes your community.
       %md-subheader
         Rules
       .md-padding
         %md-button.md-primary{ng-click: "createCommunityRule($event)"}
-          Create Rule
+          %i.icon.ion-plus-round
+          Add Rule
         %div{layout: "row"}
           %div
             %md-list

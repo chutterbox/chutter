@@ -1,4 +1,5 @@
-%div{style: "z-index: 120;", ng-include: "'../app/partials/shared/post.html'"}
+%div{ng-hide: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+%div{ng-show: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
 #comments.primary-content
   %comment-list{layout: "column", layout-fill: "true"}
     %div{ng-repeat: "notification in ctrl.notifications", ng-switch: "notification.entityable"}

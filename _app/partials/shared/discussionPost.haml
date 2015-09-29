@@ -7,13 +7,9 @@
       %i.icon.ion-chevron-down{ng-class: "{'active-down' : (ctrl.post.vote == -1)}"}
   .main{layout: "row", flex: "true"}
     .middle{layout: "column"}
-      .top{ng-switch: "ctrl.post.media.length"}
-        .title{ng-switch-when: 0}
-          %a.color-light.md-title{ng-bind: "ctrl.post.title", ui-sref: "home.community.comments({id: ctrl.post.slug, community: ctrl.post.community_slug})"}
-
-        .title{ng-switch-default: true}
-          %a.color-light.md-title{ng-bind: "ctrl.post.title", href: "{{ctrl.post.media[0].link}}"}
-          %span.attribution{ng-if: "false && ctrl.post.media[0] && ctrl.post.media[0].attribution", ng-bind: "'('+ctrl.post.media[0].attribution+')'"}
+      .top
+        .title
+          %a.color-light.md-title{ng-bind: "ctrl.post.title", href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}"}
       .tagline
         %span.votes{ng-bind: "(ctrl.post.points || 0) + ' points'"} 
         %span.submitted-by-text
@@ -22,6 +18,7 @@
         %span.time-ago{am-time-ago: "ctrl.post.created_at"}
       .body{marked: "ctrl.post.body"}        
       .footer{layout: "row"}
+        %a{href: "/c/{{ctrl.post.community_slug}}/{{c.post.slug}}", ng-bind: "ctrl.post.comments_count + ' comments'"}
         %a{ng-if: "!ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
           save
         %a{ng-if: "ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}

@@ -16,11 +16,10 @@
         %i.icon.ion-ios-glasses-outline{ng-switch-default: "true"}
     .main{layout: "row", flex: "true"}
       .middle{layout: "column"}
-        .top{ng-switch: "post.media.length"}
-          .title{ng-switch-when: 0}
+        .top
+          .title{ng-if: "!post.media.id"}
             %a.color-light.md-title{ng-bind: "post.title", ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})"}
-
-          .title{ng-switch-default: true}
+          .title{ng-if: "post.media.id"}
             %a.color-light.md-title{ng-bind: "post.title", href: "{{post.media[0].link}}"}
             %span.attribution{ng-if: "false && post.media[0] && post.media[0].attribution", ng-bind: "'('+post.media[0].attribution+')'"}
         .tagline

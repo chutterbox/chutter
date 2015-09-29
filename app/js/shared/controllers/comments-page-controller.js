@@ -5,10 +5,15 @@
   app = angular.module("Chutter");
 
   app.controller("commentsPageCtrl", [
-    "$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", function($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) {
+    "$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$stateParams", function($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer, $stateParams) {
       $scope.fetchMoreComments = function() {};
       this.page = Page;
       this.post = Post;
+      if ($stateParams.network) {
+        this.applicationSectionNamespace = "network_frontpage";
+      } else {
+        this.applicationSectionNamespace = "frontpage";
+      }
       this.postService = PostService;
       this.comments = Comments;
       this.resource = CommentResource;

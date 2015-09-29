@@ -2,10 +2,15 @@
 
 app = angular.module("Chutter")
 
-app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->
+app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$stateParams", ($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer, $stateParams) ->
   $scope.fetchMoreComments = () ->
   @page = Page
   @post = Post
+  if $stateParams.network
+    @applicationSectionNamespace = "network_frontpage"
+  else
+    @applicationSectionNamespace = "frontpage"
+
   @postService = PostService
   @comments = Comments
   @resource = CommentResource

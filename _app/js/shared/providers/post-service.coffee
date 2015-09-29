@@ -56,7 +56,9 @@ app.factory "PostService", ["PostResource", "$stateParams", "MediaPlayer", "$mdB
           "url('/img/character.svg')"
       else
         "none"
-
+    deletePost: (post) ->
+      PostResource.delete({id: post.id}) 
+      
 
   return new PostService
 

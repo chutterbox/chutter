@@ -18,7 +18,7 @@
         %span.time-ago{am-time-ago: "ctrl.post.created_at"}
       .body{marked: "ctrl.post.body"}        
       .footer{layout: "row"}
-        %a{href: "/c/{{ctrl.post.community_slug}}/{{c.post.slug}}", ng-bind: "ctrl.post.comments_count + ' comments'"}
+        %a{href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}", ng-bind: "ctrl.post.comments_count + ' comments'"}
         %a{ng-if: "!ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
           save
         %a{ng-if: "ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}

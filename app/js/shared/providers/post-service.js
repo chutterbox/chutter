@@ -87,6 +87,12 @@
           }
         };
 
+        PostService.prototype.deletePost = function(post) {
+          return PostResource["delete"]({
+            id: post.id
+          });
+        };
+
         return PostService;
 
       })();

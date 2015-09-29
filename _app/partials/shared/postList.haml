@@ -37,6 +37,8 @@
             save
           %a{ng-if: "post.saved", ng-click: "ctrl.postService.toggleSave(post)"}
             unsave
+          %a{ng-if: "user && user.id && (user.id == post.user_id)", ng-click: "ctrl.postService.deletePost(post)"}
+            delete
           %a{ng-if: "!post.reported", ng-click: "ctrl.postService.report(post)"}
             report
           %a.disabled{ng-if: "post.reported"}

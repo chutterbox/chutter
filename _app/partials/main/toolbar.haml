@@ -23,14 +23,13 @@
         ·
         %a{href: "/"} {{user.comment_points}}
         )
-      %md-button.md-icon-button.icon-button-with-counter{aria-label: "messages", href: "/me/", target: "_self", hide-sm: true, layout: "row"}
+      %md-button.md-icon-button.icon-button-with-counter{ng-class: "{'active': unread_notifications}", aria-label: "messages", href: "/me/", target: "_self", hide-sm: true, layout: "row"}
         %div
           %i.icon.ion-ios-bell
-        %div{ng-if: "false"}
-          %span.counter-text
-            33
+        %div{ng-if: "unread_notifications && unread_notifications > 0"}
+          %span.counter-text{ng-bind: "unread_notifications"}
         %md-tooltip 
-          Messages       
+          Notifications      
       %md-button.md-icon-button.icon-button-with-counter{ ng-class: "{'active': unread_messages}", aria-label: "messages", href: "/me/conversations", target: "_self", hide-sm: true, layout: "row"}
         %div
           %i.icon.ion-ios-chatboxes

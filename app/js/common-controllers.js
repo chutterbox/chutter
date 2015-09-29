@@ -117,6 +117,7 @@
         return CommentResource.save({
           comment: $scope.newComment
         }).$promise.then(function(newCreatedComment) {
+          newCreatedComment.vote = 1;
           $mdBottomSheet.hide();
           if (parentComment && parentComment.id) {
             parentComment.children.unshift(newCreatedComment);

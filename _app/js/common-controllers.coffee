@@ -97,6 +97,7 @@ app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "par
     $mdBottomSheet.hide()
   $scope.create = () -> 
     CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
+      newCreatedComment.vote = 1
       $mdBottomSheet.hide()
       if parentComment && parentComment.id    
         parentComment.children.unshift(newCreatedComment)

@@ -98,7 +98,6 @@ app.controller "replyCtrl", ["$scope", "CommentResource", "$mdBottomSheet", "par
   $scope.create = () -> 
     CommentResource.save({comment: $scope.newComment}).$promise.then (newCreatedComment) -> 
       $mdBottomSheet.hide()
-      newCreatedComment.username = newCreatedComment.user.username
       if parentComment && parentComment.id    
         parentComment.children.unshift(newCreatedComment)
         unless parentComment.children.length > 1  

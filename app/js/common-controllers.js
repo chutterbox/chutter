@@ -118,7 +118,6 @@
           comment: $scope.newComment
         }).$promise.then(function(newCreatedComment) {
           $mdBottomSheet.hide();
-          newCreatedComment.username = newCreatedComment.user.username;
           if (parentComment && parentComment.id) {
             parentComment.children.unshift(newCreatedComment);
             if (!(parentComment.children.length > 1)) {

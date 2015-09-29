@@ -27,12 +27,8 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
   $scope.page = Page
   $scope.newPost = 
     title: ""
-    media_attributes: [{format: "music"}]
-  $scope.preview = 
-    title: ""
-    media: [{}]
+    link: ""
   $scope.querySearch = (query) ->
-    console.log query
     if query and query.length > 0 
       ExternalServicesResource.search({q: query}).$promise
 
@@ -42,18 +38,9 @@ app.controller "musicSubmitCtrl", ["$scope", "MediaResource", "ExternalServicesR
       $state.transitionTo("frontpage.community.comments", {id: data.slug, community: $scope.page.community.slug})
 
   $scope.selectedItemChange = ->
-    MediaResource.resolve({link: $scope.selectedItem.link, format: "music"}).$promise.then (data) ->
-      $scope.updatePreview(data)
-  
-  $scope.updatePreview = (data) ->
-    $scope.newPost.media_attributes[0] = data
+    $scope.newPost.link = $scope.selectedItem.link
     $scope.newPost.title = $scope.selectedItem.title
-    $scope.preview.title = $scope.selectedItem.title
-    $scope.scraping = false
-    if data 
-      $scope.data = true
-      $scope.preview.media[0] = data
-
+  
 ]
 
 

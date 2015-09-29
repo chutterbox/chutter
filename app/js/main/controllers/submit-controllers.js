@@ -34,18 +34,9 @@
       $scope.page = Page;
       $scope.newPost = {
         title: "",
-        media_attributes: [
-          {
-            format: "music"
-          }
-        ]
-      };
-      $scope.preview = {
-        title: "",
-        media: [{}]
+        link: ""
       };
       $scope.querySearch = function(query) {
-        console.log(query);
         if (query && query.length > 0) {
           return ExternalServicesResource.search({
             q: query
@@ -63,23 +54,9 @@
           });
         });
       };
-      $scope.selectedItemChange = function() {
-        return MediaResource.resolve({
-          link: $scope.selectedItem.link,
-          format: "music"
-        }).$promise.then(function(data) {
-          return $scope.updatePreview(data);
-        });
-      };
-      return $scope.updatePreview = function(data) {
-        $scope.newPost.media_attributes[0] = data;
-        $scope.newPost.title = $scope.selectedItem.title;
-        $scope.preview.title = $scope.selectedItem.title;
-        $scope.scraping = false;
-        if (data) {
-          $scope.data = true;
-          return $scope.preview.media[0] = data;
-        }
+      return $scope.selectedItemChange = function() {
+        $scope.newPost.link = $scope.selectedItem.link;
+        return $scope.newPost.title = $scope.selectedItem.title;
       };
     }
   ]);

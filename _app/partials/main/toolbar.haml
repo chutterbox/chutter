@@ -66,10 +66,11 @@
     %md-tabs.md-primary{md-selected: "page.selectedCommunityTab", flex: "true", ng-class: "page.mainToolbar"}
       %md-tab{ui-sref: "{{applicationSectionNamespace}}.hot"}
         %md-tab-label
-          %span All
+          All
       %md-tab{ng-repeat: "community in communities", ui-sref: "{{applicationSectionNamespace}}.community.hot({community: community.slug})"}
         %md-tab-label{layout: "row", layout-align: "space-between center"}
-          %span{ng-bind: "community.name"}
+          %a{ui-sref: "{{applicationSectionNamespace}}.community.hot({community: community.slug})"}
+            {{community.name}}
     %md-button.md-icon-button{ng-if: "applicationSectionNamespace != 'frontpage' && user && user.id", ng-click: "editNetworkCommunities(page.network)"}  
       %i.icon.ion-plus-round  
 %md-progress-linear.md-hue-2#loading{md-mode: "indeterminate", ng-if: "loading"}

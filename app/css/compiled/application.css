@@ -9423,7 +9423,8 @@ md-toolbar#networks-bar {
       line-height: 32px;
       padding-top: 0;
       padding-bottom: 0; }
-      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span {
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item span,
+      md-toolbar#networks-bar md-tabs md-tabs-wrapper md-tab-item a {
         font-weight: 500;
         font-size: 0.8em; }
   md-toolbar#networks-bar md-menu-bar#network-menu-bar {

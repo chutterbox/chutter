@@ -431,6 +431,7 @@ comment-embed {
     font-weight: 500; }
     .main .footer span,
     .main .footer a {
+      cursor: pointer;
       color: #999;
       margin-right: 8px; }
 

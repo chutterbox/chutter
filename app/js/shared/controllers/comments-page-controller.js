@@ -52,10 +52,15 @@
         });
       };
       this.updateVote = function(comment, vote) {
+        var delta;
+        comment.vote = parseInt(comment.vote) || 0;
+        comment.points = parseInt(comment.points) || 0;
         if (comment.vote === vote) {
           vote = 0;
         }
+        delta = vote - comment.vote;
         comment.vote = vote;
+        comment.points += delta;
         return CommentResource.vote({
           id: comment.id,
           vote: vote

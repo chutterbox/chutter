@@ -13,9 +13,9 @@
 .main{layout: "row", flex: "true"}
   .left-controls{layout: "column", layout-align: "space-between center"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
-      %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.updateVote(post, 1)"}
+      %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "commentListCtrl.updateVote(comment, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (comment.vote == 1)}"}
-      %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "ctrl.updateVote(post, -1)"}
+      %md-button.md-icon-button{flex: true, aria-label: "Downvote", ng-click: "commentListCtrl.updateVote(comment, -1)"}
         %i.icon.ion-chevron-down{ng-class: "{'active-down' : (comment.vote == -1)}"}
     %md-button.md-icon-button{ng-click: "comment.toggle()", flex: "30",aria-label: "toggle comment", layout-align: "end center"}
       .icon.ion-ios-minus-outline

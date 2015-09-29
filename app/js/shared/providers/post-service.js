@@ -11,16 +11,14 @@
 
         PostService.prototype.updateVote = function(post, vote) {
           var delta;
-          post.vote = post.vote || 0;
-          post.vote = parseInt(post.vote);
-          vote = parseInt(vote);
+          post.vote = parseInt(post.vote) || 0;
+          post.points = parseInt(post.points) || 0;
           if (post.vote === vote) {
             vote = 0;
           }
-          delta = parseInt(vote) - parseInt(post.vote);
-          console.log(delta);
+          delta = vote - post.vote;
           post.vote = vote;
-          post.points = parseInt(post.points) + delta;
+          post.points += delta;
           return PostResource.vote({
             id: post.id,
             vote: vote

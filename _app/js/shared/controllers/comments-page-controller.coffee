@@ -48,9 +48,13 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
       clickOutsideToClose: true
     })
   @updateVote = (comment, vote) -> 
-    if comment.vote == vote 
+    comment.vote = parseInt(comment.vote) || 0
+    comment.points = parseInt(comment.points) || 0
+    if comment.vote is vote
       vote = 0
+    delta = vote - comment.vote
     comment.vote = vote
+    comment.points += delta
     CommentResource.vote({id: comment.id, vote: vote}) 
     
   return @

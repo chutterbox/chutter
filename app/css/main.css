@@ -30,6 +30,7 @@ body {
   overflow: hidden; }
 
 div[ui-view="posts"] {
+  margin-top: 16px;
   overflow: auto; }
 
 md-tabs md-tab-item {

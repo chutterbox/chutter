@@ -29,7 +29,6 @@
     opacity: 0.5
   100% 
     opacity: 1
-
 .post
   height: 75px
   min-height: 75px
@@ -74,7 +73,7 @@
       &.active-down
         color: material-color("red", "600")
     position: relative
-    height: 70px
+    height: 60px
     width: 20px
     margin: 0 16px
     h6
@@ -96,26 +95,35 @@
 
 
   .main
-    margin-left: 16px
+    margin-left: 6px
     .middle
       width: 100%
       .top
+        .favicon
+          margin-right: 4px
+          img
+            width: 14px
+            height: 14px
+            opacity: 0.8
         .title
           white-space: nowrap
-          width: 100%                  
           overflow: hidden         
           text-overflow: ellipsis
           .md-title
             font-size: 1em
-      .tagline,
-      .footer
+            font-weight: 500
+      .post-footer
         padding-top: 0px
+        font-size: 0.75em
+        font-weight: bold
         a
+          color: material-color("grey", "500")
           cursor: pointer
+          margin-right: 8px
+
       .tagline
         span,
         a
           margin-right: 4px
           font-size: 0.75em
-          font-weight: 500
-          color: material-color("grey", "500")
+          font-weight: 400

@@ -39,6 +39,14 @@ app.factory 'CommentResource', ['$resource', 'Page', 'API', ($resource, Page, AP
       vote:
         method: 'PUT'
         url: API.makeURL('/comments/:id/vote')
+      children:
+        method: 'GET'
+        isArray: true
+        url: API.makeURL('/comments/:id/children')
+      show:
+        method: 'GET'
+        isArray: false
+        url: API.makeURL('/comments/:id')
       notifications:
         url: API.makeURL('/comments/:id/notifications')
         method: 'GET'

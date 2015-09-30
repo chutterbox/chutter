@@ -41,3 +41,7 @@
 
       %a{ng-click: "commentListCtrl.reply(comment)"}
         reply
+    .load-more{ng-if: "false", layout: "row", layout-align: "start center"}
+      %a{ng-click: "commentListCtrl.children(comment)", ng-if: "!comment.loadingChildren"}
+        load more comments
+      %md-progress-circular{md-diameter: "15", md-mode: "indeterminate", ng-if: "comment.loadingChildren"}

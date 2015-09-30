@@ -1,4 +1,4 @@
-.post.primary-content{layout: "row", layout-align: "start center", style: "height: auto; width: 80%;"}
+.post.primary-content{layout: "row", style: "height: auto; width: 80%;"}
   .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
     %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(ctrl.post, 1)"}
       %i.icon.ion-chevron-up{ng-class: "{'active-up' : (ctrl.post.vote == 1)}"}
@@ -9,15 +9,18 @@
     .middle{layout: "column"}
       .top
         .title
-          %a.color-light.md-title{ng-bind: "ctrl.post.title", href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}"}
-      .tagline
-        %span.votes{ng-bind: "(ctrl.post.points || 0) + ' points'"} 
+          %a.link-color.md-title{ng-bind: "ctrl.post.title", href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}"}
+      .tagline.color-light
         %span.submitted-by-text
-          submitted by
-        %a.user-link{ng-bind: "ctrl.post.username", ui-sref: "user.overview({username: ctrl.post.username})"}
-        %span.time-ago{am-time-ago: "ctrl.post.created_at"}
+          submitted
+        %span.time-ago{am-time-ago: "post.created_at"}
+        %span
+          by
+        %a.link-color{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
+        %span to
+        %a.link-color{ng-bind: "'/c/' + post.community_slug", ui-sref: "frontpage.community.hot({community: post.community_slug})"}
       .body{marked: "ctrl.post.body"}        
-      .footer{layout: "row"}
+      .post-footer{layout: "row"}
         %a{href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}", ng-bind: "ctrl.post.comments_count + ' comments'"}
         %a{ng-if: "!ctrl.post.saved", ng-click: "ctrl.postService.toggleSave(ctrl.post)"}
           save

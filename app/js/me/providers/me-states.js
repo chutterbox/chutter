@@ -80,8 +80,15 @@
             controller: "commentNotificationsPageCtrl as ctrl",
             resolve: {
               Notifications: [
-                "Page", "CommentResource", "$stateParams", function(Page, CommentResource, $stateParams) {
+                "CommentResource", "$stateParams", function(CommentResource, $stateParams) {
                   return CommentResource.notifications({
+                    id: $stateParams.id
+                  }).$promise;
+                }
+              ],
+              Comment: [
+                "CommentResource", "$stateParams", function(CommentResource, $stateParams) {
+                  return CommentResource.show({
                     id: $stateParams.id
                   }).$promise;
                 }

@@ -58,7 +58,12 @@ app.factory "PostService", ["PostResource", "$stateParams", "MediaPlayer", "$mdB
         "none"
     deletePost: (post) ->
       PostResource.delete({id: post.id}) 
-      
+    
+    hasMedia: (post) -> 
+      unless _.isEmpty(post.media)
+        true
+      else
+        false
 
   return new PostService
 

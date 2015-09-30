@@ -29,6 +29,20 @@
       this.user = $rootScope.user;
       this.resource = CommentResource;
       this.mediaPlayer = MediaPlayer;
+      this.children = function(comment) {
+        comment.loadingChildren = true;
+        return CommentResource.children({
+          id: comment.id
+        }).$promise.then(function(data) {
+          comment.loadingChildren = false;
+          if (_.isEmpty(comment.children)) {
+            comment.compileElementForFirstChild();
+            return comment.children = data;
+          } else {
+            return comment.children = data.concat(comment.children);
+          }
+        });
+      };
       this.reply = function(parentComment) {
         return $mdBottomSheet.show({
           templateUrl: '/partials/shared/comments/replyPanel.html',

@@ -93,6 +93,14 @@
           });
         };
 
+        PostService.prototype.hasMedia = function(post) {
+          if (!_.isEmpty(post.media)) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
         return PostService;
 
       })();

@@ -1,5 +1,9 @@
-#comments.primary-content
-  %comment-list{layout: "column", layout-fill: "true"}
-    %div{ng-repeat: "notification in ctrl.notifications", ng-switch: "notification.entityable"}
-      %comment.primary-content{ng-switch-when: "comment", layout: "column", parent: "", id: "c{{notification.path}}", comment: "notification"}
+%comment-list
+  %comment.primary-content{layout: "column", parent: "", id: "c{{ctrl.comment.path}}", comment: "ctrl.comment"}
+
+
+
+%comment-list{layout: "column"}
+  %div{ng-repeat: "notification in ctrl.notifications", ng-switch: "notification.entityable"}
+    %comment.primary-content{ng-switch-when: "comment", layout: "column", parent: "", id: "c{{ctrl.comment.path}}", comment: "ctrl.comment"}
 

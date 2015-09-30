@@ -22,9 +22,10 @@ app.controller "postNotificationsPageCtrl", ["$scope", "Notifications", "Post", 
 
 ]
 
-app.controller "commentNotificationsPageCtrl", ["$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer) ->
+app.controller "commentNotificationsPageCtrl", ["$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", "Comment", ($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer, Comment) ->
   $scope.fetchMoreComments = () ->
   @page = Page
+  @comment = Comment
   @notifications = Notifications
   @resource = CommentResource
   @mediaPlayer = MediaPlayer

@@ -25,6 +25,17 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
   @user = $rootScope.user
   @resource = CommentResource
   @mediaPlayer = MediaPlayer
+
+  @children = (comment) ->
+    comment.loadingChildren = true
+    CommentResource.children({id: comment.id}).$promise.then (data) ->
+      comment.loadingChildren = false
+      if _.isEmpty(comment.children)
+        comment.compileElementForFirstChild() 
+        comment.children = data
+      else
+        comment.children = data.concat(comment.children)
+
   @reply = (parentComment) ->
     $mdBottomSheet.show({
       templateUrl: '/partials/shared/comments/replyPanel.html'

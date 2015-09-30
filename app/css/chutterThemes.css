@@ -30,6 +30,7 @@ body {
   overflow: hidden; }
 
 div[ui-view="posts"] {
+  margin-top: 16px;
   overflow: auto; }
 
 md-tabs md-tab-item {
@@ -206,6 +207,10 @@ body:not([md-theme="chutterDark"]) .secondary-content {
   background-color: #f5f5f5; }
 body:not([md-theme="chutterDark"]) .color-light {
   color: #757575; }
+body:not([md-theme="chutterDark"]) .link-color {
+  color: #0288d1; }
+  body:not([md-theme="chutterDark"]) .link-color:visited {
+    color: #01579b; }
 
 [md-theme="chutterDark"] md-bottom-sheet md-content {
   background-color: transparent !important; }
@@ -218,6 +223,8 @@ body:not([md-theme="chutterDark"]) .color-light {
 [md-theme="chutterDark"] .secondary-content {
   background-color: #263238; }
 [md-theme="chutterDark"] .color-light {
+  color: #bdbdbd; }
+[md-theme="chutterDark"] .link-color {
   color: #bdbdbd; }
 [md-theme="chutterDark"] .md-sidenav-right .special-list md-list-item .content {
   border-color: #37474f !important; }

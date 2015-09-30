@@ -1,5 +1,5 @@
 %md-virtual-repeat-container{style: "height: calc(100vh - 80px)"}
-  .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", layout-align: "start center", md-item-size: "75"}
+  .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", md-item-size: "75"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
       %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
@@ -16,22 +16,25 @@
         %i.icon.ion-ios-glasses-outline{ng-switch-default: "true"}
     .main{layout: "row", flex: "true"}
       .middle{layout: "column"}
-        .top
+        .top{layout: "row", layout-align: 'start end'}
+          .favicon{ng-if: "ctrl.postService.hasMedia(post) && post.media[0].favicon"}
+            %img{ng-src: "{{post.media[0].favicon}}"}
           .title{ng-if: "!post.media.id"}
-            %a.color-light.md-title{ng-bind: "post.title", ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})"}
+            %a.link-color.md-title{ng-bind: "post.title", ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})"}
           .title{ng-if: "post.media.id"}
-            %a.color-light.md-title{ng-bind: "post.title", href: "{{post.media[0].link}}"}
+            %a.link-color.md-title{ng-bind: "post.title", href: "{{post.media[0].link}}"}
             %span.attribution{ng-if: "false && post.media[0] && post.media[0].attribution", ng-bind: "'('+post.media[0].attribution+')'"}
-        .tagline
-          %span.votes{ng-bind: "(post.points || 0) + ' points'"} 
+        .tagline.color-light
           %span.submitted-by-text
-            submitted by
-          %a.user-link{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
+            submitted
           %span.time-ago{am-time-ago: "post.created_at"}
+          %span
+            by
+          %a.link-color{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
           %span to
-          %a.user-link{ng-bind: "post.community_slug", ui-sref: "home.community.hot({community: post.community_slug})"}
+          %a.link-color{ng-bind: "'/c/' + post.community_slug", ui-sref: "frontpage.community.hot({community: post.community_slug})"}
             
-        .footer{layout: "row"}
+        .post-footer{layout: "row"}
           %a{ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}
           %a{ng-if: "!post.saved", ng-click: "ctrl.postService.toggleSave(post)"}
             save

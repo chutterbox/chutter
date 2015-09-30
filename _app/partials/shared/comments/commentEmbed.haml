@@ -1,11 +1,18 @@
-.main{layout: "row"} 
-  .vote{layout: "column", layout-fill: true, hide-md: true, hide-sm: true}
-    %md-button{flex: true, aria-label: "Upvote"}
-      %i.fa.fa-caret-up
-    %md-button{flex: true, aria-label: "Downvote"}
-      %i.fa.fa-caret-down
-  .content{flex: "75", layout: "column"}
-    .header
-      %a.username{ng-bind: "comment.user.username", ui-sref: "user.overview({username: comment.user.username})"}
-    .body{ng-bind: "comment.body"}
-  .options{flex: "5"}
+.main{layout: "row", flex: "true"}
+  .content{layout: "column", layout-fill: true, layout-align: "space-between start"}
+    .header{layout: "row", layout-align: "start center"}
+      %md-button.md-primary.button-link.username{aria-label: "username", md-no-ink: true, ng-bind: "ctrl.comment.username", ui-sref: "user.overview({username: ctrl.comment.username})"}
+      %span.points{ng-bind: "ctrl.comment.points + ' points'"}
+      %span.time{layout-align: "end", am-time-ago: "ctrl.comment.created_at"}
+    .body{marked: "ctrl.comment.body"}
+    .footer
+      %a
+        permalink
+      %a{ng-click: "ctrl.comment.moderate()", ng-if: "ctrl.comment.moderates && !ctrl.comment.restricted_from_removing_comments"}
+        mod
+      %a
+        save
+      %a{ng-if: "::(commentListCtrl.user && commentListCtrl.user.id && (commentListCtrl.user.id == ctrl.comment.user_id))", ng-click: "commentListCtrl.edit(comment)"}
+        edit
+      %a{ng-click: "resource.delete({id: post.id})"}
+        delete

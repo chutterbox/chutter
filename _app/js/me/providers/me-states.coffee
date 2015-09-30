@@ -58,8 +58,11 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           templateUrl: "#{view_url}/notifications/commentNotifications.html"
           controller: "commentNotificationsPageCtrl as ctrl"
           resolve:
-            Notifications: ["Page", "CommentResource", "$stateParams", (Page, CommentResource, $stateParams) ->
+            Notifications: ["CommentResource", "$stateParams", (CommentResource, $stateParams) ->
               CommentResource.notifications({id: $stateParams.id}).$promise
+            ]
+            Comment: ["CommentResource", "$stateParams", (CommentResource, $stateParams) ->
+              CommentResource.show({id: $stateParams.id}).$promise
             ]
 
     #conversations 

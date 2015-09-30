@@ -33,6 +33,8 @@ This software is provided free of change and without restriction under the [MIT 
 
 ## Installation
 
+#### Using Bower
+
 This package is installable through the Bower package manager.
 
 ```
@@ -52,6 +54,20 @@ Include the `md.data.table` module as a dependency in your application.
 
 ```javascript
 angular.module('myApp', ['md.data.table', 'ngMaterial']);
+```
+
+#### Using npm and Browserify
+
+In addition, this package may be installed using npm.
+
+```
+npm install angular-material-data-table --save
+```
+
+You may use Browserify to inject this module into your application.
+
+```javascript
+angular.module('myApp', [require('angular-material-data-table')]);
 ```
 
 > Tested in IE 10 and on IOS 7.
@@ -137,6 +153,21 @@ angular.module('nutritionApp').controller('nutritionController', ['$nutrition', 
 
 ## Change Log
 
+#### Version 0.8.13
+###### September 29, 2015
+
+* As [@sbehun](https://github.com/sbehun) pointed out, the default type for `buttons` across browsers is unpredictable and it is safest to always define a type. This version will prevent tables that are wrapped in forms from submitting the form when the pagination buttons are clicked.
+
+#### Version 0.8.12
+###### September 25, 2015
+
+* Changing Angular Material dependency version to allow versions greater than 0.10.x
+
+#### Version 0.8.11
+###### September 6, 2015
+
+* Adding support for Browserify.
+
 #### Version 0.8.10
 ###### August 31, 2015
 
@@ -149,21 +180,6 @@ angular.module('nutritionApp').controller('nutritionController', ['$nutrition', 
 * Fix for issue [#93](https://github.com/daniel-nagy/md-data-table/issues/93)
 
 Thanks [@pavelhoral](https://github.com/pavelhoral)!
-
-#### Version 0.8.8
-###### August 16, 2015
-
-* Tables with multi-row headers can now specify a significant row that will be used to append the checkbox to and set the text alignment for numeric columns. The default is to use the last row. See [Numeric Columns](#numeric-columns) and [Row Selection](#row-selection).
-
-#### Version 0.8.7
-###### August 14, 2015
-
-* I no longer replace the `th` element, instead I build the template and append it to the original `th` element. This should fix issues with `ng-repeat`.
-
-#### Version 0.8.6
-###### August 13, 2015
-
-* Temporary patch to prevent tables that use `ng-repeat` on header columns from not working. Changes will need to be made to the `mdColumnHeader` directive to insure that no other directives, that transform the template, will conflict with it in the future.
 
 View the [archives](ARCHIVE.md) for a complete version history.
 
@@ -189,7 +205,7 @@ View the [archives](ARCHIVE.md) for a complete version history.
 
 The `mdOrder` attribute will be update when the user clicks a `<th>` cell to the value defined by the `order-by` attribute. The `mdOrder` attribute can be used in to do server-side sorting or client-side sorting.
 
-If the function assigned to the `md-triger` attribute returns a promise, a loading indicator will be displayed.
+If the function assigned to the `md-trigger` attribute returns a promise, a loading indicator will be displayed.
 
 > This directive does not support sorting of in-place data, i.e. data included directly in the markup, nor do I plan on supporting this.
 
@@ -206,9 +222,9 @@ Just add an `orderBy:` property to the `ng-repeat` attribute that matches the `m
   <table md-data-table>
     <thead md-order="order">
       <!-- this cell will order by the name property -->
-      <th order-by="name">Dessert (100g serving)</th>
+      <th order-by="name" name="Dessert (100g serving)"></th>
       <!-- this cell will not change the order when clicked -->
-      <th numeric>Calories</th>
+      <th numeric name="Calories"></th>
     </thead>
     <tbody>
       <tr ng-repeat="dessert in desserts | orderBy: order"></tr>
@@ -292,7 +308,7 @@ The `md-label` attribute has the following properties.
 | text     | `String` | The pagination label. |
 | of       | `String` | The 'of' in 'x - y of z'. |
 
-If the function assigned to the `md-triger` attribute returns a promise, a loading indicator will be displayed.
+If the function assigned to the `md-trigger` attribute returns a promise, a loading indicator will be displayed.
 
 **Example: Client Side pagination using ngRepeat.**
 

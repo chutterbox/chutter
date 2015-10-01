@@ -23,12 +23,12 @@
       .tagline.color-light
         %span.submitted-by-text
           submitted
-        %span.time-ago{am-time-ago: "post.created_at"}
+        %span.time-ago{am-time-ago: "ctrl.post.created_at"}
         %span
           by
-        %a.link-color{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
+        %a.link-color{ng-bind: "ctrl.post.username", ui-sref: "user.overview({username: ctrl.post.username})"}
         %span to
-        %a.link-color{ng-bind: "'/c/' + post.community_slug", ui-sref: "frontpage.community.hot({community: post.community_slug})"}
+        %a.link-color{ng-bind: "'/c/' + ctrl.post.community_slug", ui-sref: "frontpage.community.hot({community: ctrl.post.community_slug})"}
           
       .post-footer{layout: "row"}
         %a{href: "/c/{{ctrl.post.community_slug}}/{{ctrl.post.slug}}", ng-bind: "ctrl.post.comments_count + ' comments'"}

@@ -307,8 +307,7 @@ i.active-down,
         margin-right: 4px;
         font-size: 0.75em;
         font-weight: 400; }
-        .post .main .middle .tagline span:hover,
-        .post .main .middle .tagline a:hover {
-          text-decoration: underline; }
+      .post .main .middle .tagline a:hover {
+        text-decoration: underline; }
 
 /*# sourceMappingURL=post.css.map */

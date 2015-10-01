@@ -8,6 +8,15 @@ app.controller "notificationListCtrl", ["$scope", "Page", ($scope, Page) ->
   #supposed to be notified about, e.g. a post notification may look like 
   #<post>: {...post attributes.., notifications: [<comment>, <comment>, <mention>, <media notice>]}
   $scope.page = Page
+
+  $scope.notificationCountText = (subscription) ->
+    replyText = if subscription.notification_count is 1 then "reply" else "replies"
+    if subscription.entityable is "post"
+      "#{subscription.notification_count} post #{replyText}"
+    else if subscription.entityable is "comment"
+      "#{subscription.notification_count} comment #{replyText}"
+      
+
 ]
 
 app.controller "postNotificationsPageCtrl", ["$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->

@@ -1,5 +1,5 @@
-%md-virtual-repeat-container{style: "height: calc(100vh - 80px)"}
-  .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", md-item-size: "75"}
+%md-virtual-repeat-container{style: "height: calc(100vh - 32px)"}
+  .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", md-item-size: "75", layout-align: "start center"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
       %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
         %i.icon.ion-chevron-up{ng-class: "{'active-up' : (post.vote == 1)}"}
@@ -18,7 +18,7 @@
       .middle{layout: "column"}
         .top{layout: "row", layout-align: 'start end'}
           .favicon{ng-if: "ctrl.postService.hasMedia(post) && post.media[0].favicon"}
-            %img{ng-src: "{{post.media[0].favicon}}"}
+            %img{ng-src: "{{post.media[0].favicon}}", title: "{{post.media[0].attribution}}"}
           .title{ng-if: "!post.media.id"}
             %a.link-color.md-title{ng-bind: "post.title", ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})"}
           .title{ng-if: "post.media.id"}

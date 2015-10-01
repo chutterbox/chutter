@@ -5,7 +5,16 @@
 
   app.controller("notificationListCtrl", [
     "$scope", "Page", function($scope, Page) {
-      return $scope.page = Page;
+      $scope.page = Page;
+      return $scope.notificationCountText = function(subscription) {
+        var replyText;
+        replyText = subscription.notification_count === 1 ? "reply" : "replies";
+        if (subscription.entityable === "post") {
+          return subscription.notification_count + " post " + replyText;
+        } else if (subscription.entityable === "comment") {
+          return subscription.notification_count + " comment " + replyText;
+        }
+      };
     }
   ]);
 

@@ -18,8 +18,7 @@ md-toolbar
 
 
 div[ui-view="toolbar"]
-  @includ min-and-max-height(48px)
-  position: relative
+  //@include min-and-max-height(48px)
 md-progress-linear#loading
   .md-container.md-mode-indeterminate
     height: 2px
@@ -107,40 +106,29 @@ md-toolbar
         .md-button,
         a
           color: material-color("grey", "900")
-#comments-toolbar
+#secondary-toolbar
   @include min-and-max-height(32px)
   padding: 0 8px
   .comment-count
-    color: material-color("grey", "600")
-    margin: 0 16px
+    margin: 0
     font-size: 0.8em
     font-weight: bold
   .md-toolbar-tools
     padding: 0
     @include min-and-max-height(32px)
-  md-menu-bar#comments-menu-bar
+    > .mini-tab
+      padding: 8px
+      height: 22px
+      border-bottom: 2px solid transparent   
+      &.active
+        border-bottom: 2px solid material-color("red", "400")      
+      a
+        font-size: 0.8em
+        font-weight: 500
+  md-menu-bar#secondary-menu-bar
     @include min-and-max-height(32px)
     padding: 0
-    margin: 0 0 0 8px
-    md-menu
-      @include min-and-max-height(32px)
-      background-color: transparent
-      .md-open-menu-container
-        max-height: 70vh
-        overflow: auto
-      button.md-button
-        margin: 0
-        font-size: 0.8em
-        font-weight: bold
-        text-transform: none 
-        color: material-color("grey", "600")
-        @include min-and-max-height(32px)
-        md-icon
-          height: 35px
-          color: material-color("grey", "900")
-          width: 15px
-        &:focus
-          background-color: transparent
+    margin: 0
     md-menu-item 
       .md-button,
       a

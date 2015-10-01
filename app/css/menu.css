@@ -26,12 +26,24 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-body {
+body,
+.overflow-hidden {
   overflow: hidden; }
 
-div[ui-view="posts"] {
-  margin-top: 16px;
-  overflow: auto; }
+#create-a-community-content {
+  margin: 8px; }
+
+#contentShrink {
+  transform: translateY(0);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0); }
+
+#contentShrink {
+  margin-top: -40px;
+  margin-bottom: -40px;
+  transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -252,7 +264,7 @@ i.active-down,
   .toolbar-container .subnav-list-item .md-button.secondary-action {
     padding: 0;
     position: absolute;
-    right: 1.25vw;
+    right: 16px;
     text-align: center;
     width: 3vw;
     min-width: 3vw;
@@ -303,7 +315,7 @@ i.active-down,
     font-weight: normal;
     text-transform: none;
     text-align: left;
-    padding: 1.25vw;
+    padding: 16px;
     margin: 0;
     width: 100%;
     min-width: 100%;
@@ -312,15 +324,16 @@ i.active-down,
     .md-sidenav-right .detailed-list-item .md-button span {
       margin: 0;
       padding: 0; }
+    .md-sidenav-right .detailed-list-item .md-button p {
+      font-weight: 500; }
     .md-sidenav-right .detailed-list-item .md-button span {
       font-size: 0.9em;
-      color: #767676;
-      font-weight: 500;
+      color: material-color;
       focus-outline: none; }
     .md-sidenav-right .detailed-list-item .md-button.secondary-action {
       padding: 0;
       position: absolute;
-      right: 1.25vw;
+      right: 16px;
       text-align: center;
       height: 48px;
       line-height: 48px;

@@ -1,4 +1,4 @@
-.post.primary-content{layout: "row", style: "height: auto; width: 80%;"}
+.post.primary-content{layout: "row", style: "height: auto; width: 80%;", layout-align: "start center"}
   .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
     %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(ctrl.post, 1)"}
       %i.icon.ion-chevron-up{ng-class: "{'active-up' : (ctrl.post.vote == 1)}"}

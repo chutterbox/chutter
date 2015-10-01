@@ -26,12 +26,24 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-body {
+body,
+.overflow-hidden {
   overflow: hidden; }
 
-div[ui-view="posts"] {
-  margin-top: 16px;
-  overflow: auto; }
+#create-a-community-content {
+  margin: 8px; }
+
+#contentShrink {
+  transform: translateY(0);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0); }
+
+#contentShrink {
+  margin-top: -40px;
+  margin-bottom: -40px;
+  transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -201,6 +213,11 @@ i.active-down,
 [layout-fill] {
   height: inherit; }
 
+div[ui-view="posts"] {
+  margin: 0 8px; }
+  div[ui-view="posts"] .md-virtual-repeat-offsetter {
+    width: 100%; }
+
 @keyframes fade {
   0% {
     opacity: 0; }
@@ -280,13 +297,14 @@ i.active-down,
   .post .main {
     margin-left: 6px; }
     .post .main .middle {
-      width: 100%; }
+      width: 100%;
+      height: 60px; }
       .post .main .middle .top .favicon {
         margin-right: 4px; }
         .post .main .middle .top .favicon img {
-          width: 14px;
-          height: 14px;
-          opacity: 0.8; }
+          width: 18px;
+          height: 18px;
+          opacity: 0.3; }
       .post .main .middle .top .title {
         white-space: nowrap;
         overflow: hidden;

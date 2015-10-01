@@ -18,13 +18,13 @@
 
 
   %body{layout: "column", flex: "true", md-theme: "{{theme}}"}
-    %div{ui-view: "toolbar"}
-    %md-content#content{layout: "row", flex: "true"}
+    #toolbarShrink{ui-view: "toolbar"}
+    %md-content.secondary-content#contentShrink{layout: "row", flex: "true"}
       %ui-view{layout: "column", flex: "true"}
         %md-progress-circular#loading-spinner{md-mode: "indeterminate"}
-      %md-sidenav.md-sidenav-right.primary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
-        %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
-        %span{flex:true}
+      %md-sidenav.md-sidenav-right.secondary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
+        %md-content.secondary-content{ui-view: "right-rail", layout: "column", flex: "true"}
+        
         %footer-sidebar
     
   %link{href: "/css/compiled/application.min.css", rel: "stylesheet", type: "text/css"}

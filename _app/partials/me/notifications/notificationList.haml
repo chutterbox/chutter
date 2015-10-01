@@ -1,22 +1,16 @@
 %md-content.detailed-list{flex: true, role: "navigation", layout-fill: true, layout: "column"}
-  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions", ng-switch: "subscription.entityable", layout: "row"}
-    .post-item{ng-switch-when: "post", flex: "100"}
-      %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
-        %div{layout: "row", layout-align: "start center"}
-          %i.icon.ion-chatbox
-          %p{flex: "true"} {{::subscription.title}}
-        .tagline
-          %span
-            {{subscription.notification_count}} replies
-          %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
-            ({{subscription.unread_count}} new)
-    .comment-item{ng-switch-when: "comment", flex: "100"}
-      %md-button{ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
-        %div{layout: "row", layout-align: "start center"}
-          %i.icon.ion-chatboxes
-          %p{flex: "true"} {{::subscription.body}}
-        .tagline
-          %span
-            {{subscription.notification_count}} replies
-          %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
-            ({{subscription.unread_count}} new)
+  .detailed-list-item{ng-repeat: "subscription in page.notificationSubscriptions", layout: "row"}
+    %md-button{ng-if: "subscription.entityable == 'post'", flex: "true", ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+      %div{layout: "row", layout-align: "start center"}
+        %p{flex: "true"} {{::subscription.title}}
+      .tagline
+        %span{ng-bind: "notificationCountText(subscription)"}
+        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+          ({{subscription.unread_count}} new)
+    %md-button{ng-if: "subscription.entityable == 'comment'", flex: "true", ui-sref: "home.notifications.{{subscription.entityable}}Notifications({id: subscription.id})", ui-sref-active: "md-primary", layout: "column", layout-align: "center start"}
+      %div{layout: "row", layout-align: "start center"}
+        %p{flex: "true"} "{{::subscription.body}}"
+      .tagline
+        %span{ng-bind: "notificationCountText(subscription)"}
+        %span.red-cta{ng-if: "::(subscription.unread_count > 0)"}
+          ({{subscription.unread_count}} new)

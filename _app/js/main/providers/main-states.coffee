@@ -326,7 +326,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           PostResource.comments({id: $stateParams.id}).$promise
         ]
       views:
-        "posts@frontpage": 
+        "@": 
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsPageCtrl as ctrl"
         "right-rail@": 
@@ -346,7 +346,7 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
           PostResource.comments({id: $stateParams.id}).$promise
         ]
       views:
-        "posts@network_frontpage": 
+        "@": 
           templateUrl: "#{view_url}/comments.html"
           controller: "commentsPageCtrl as ctrl"
         "right-rail@": 

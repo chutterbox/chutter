@@ -26,12 +26,24 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-body {
+body,
+.overflow-hidden {
   overflow: hidden; }
 
-div[ui-view="posts"] {
-  margin-top: 16px;
-  overflow: auto; }
+#create-a-community-content {
+  margin: 8px; }
+
+#contentShrink {
+  transform: translateY(0);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0); }
+
+#contentShrink {
+  margin-top: -40px;
+  margin-bottom: -40px;
+  transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -216,10 +228,6 @@ md-toolbar {
   min-height: 48px;
   max-height: 48px; }
 
-div[ui-view="toolbar"] {
-  @includ min-and-max-height(48px);
-  position: relative; }
-
 md-progress-linear#loading {
   position: absolute;
   width: 100%;
@@ -313,52 +321,37 @@ md-toolbar#networks-bar {
     md-toolbar#networks-bar md-menu-bar#network-menu-bar md-menu-item a {
       color: #212121; }
 
-#comments-toolbar {
+#secondary-toolbar {
   height: 32px;
   min-height: 32px;
   max-height: 32px;
   padding: 0 8px; }
-  #comments-toolbar .comment-count {
-    color: #757575;
-    margin: 0 16px;
+  #secondary-toolbar .comment-count {
+    margin: 0;
     font-size: 0.8em;
     font-weight: bold; }
-  #comments-toolbar .md-toolbar-tools {
+  #secondary-toolbar .md-toolbar-tools {
     padding: 0;
     height: 32px;
     min-height: 32px;
     max-height: 32px; }
-  #comments-toolbar md-menu-bar#comments-menu-bar {
+    #secondary-toolbar .md-toolbar-tools > .mini-tab {
+      padding: 8px;
+      height: 22px;
+      border-bottom: 2px solid transparent; }
+      #secondary-toolbar .md-toolbar-tools > .mini-tab.active {
+        border-bottom: 2px solid #ef5350; }
+      #secondary-toolbar .md-toolbar-tools > .mini-tab a {
+        font-size: 0.8em;
+        font-weight: 500; }
+  #secondary-toolbar md-menu-bar#secondary-menu-bar {
     height: 32px;
     min-height: 32px;
     max-height: 32px;
     padding: 0;
-    margin: 0 0 0 8px; }
-    #comments-toolbar md-menu-bar#comments-menu-bar md-menu {
-      height: 32px;
-      min-height: 32px;
-      max-height: 32px;
-      background-color: transparent; }
-      #comments-toolbar md-menu-bar#comments-menu-bar md-menu .md-open-menu-container {
-        max-height: 70vh;
-        overflow: auto; }
-      #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button {
-        margin: 0;
-        font-size: 0.8em;
-        font-weight: bold;
-        text-transform: none;
-        color: #757575;
-        height: 32px;
-        min-height: 32px;
-        max-height: 32px; }
-        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button md-icon {
-          height: 35px;
-          color: #212121;
-          width: 15px; }
-        #comments-toolbar md-menu-bar#comments-menu-bar md-menu button.md-button:focus {
-          background-color: transparent; }
-    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item .md-button,
-    #comments-toolbar md-menu-bar#comments-menu-bar md-menu-item a {
+    margin: 0; }
+    #secondary-toolbar md-menu-bar#secondary-menu-bar md-menu-item .md-button,
+    #secondary-toolbar md-menu-bar#secondary-menu-bar md-menu-item a {
       color: #212121; }
 
 /*# sourceMappingURL=toolbar.css.map */

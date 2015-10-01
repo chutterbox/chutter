@@ -19,8 +19,8 @@
 
     %body{layout: "column", flex: "true", md-theme: "{{theme}}"}
       %div{ui-view: "toolbar"}
-      %md-content.md-whiteframe-z1{layout: "row", flex: "true"}
-        %ui-view#content{layout: "column", flex: "true"}
+      %md-content.md-whiteframe-z1.secondary-content{layout: "row", flex: "true"}
+        %ui-view{layout: "column", flex: "true"}
         %md-sidenav.md-sidenav-right#sidenav-list{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
           %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
           %span{flex:true}

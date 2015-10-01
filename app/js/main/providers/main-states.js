@@ -527,7 +527,7 @@
           ]
         },
         views: {
-          "posts@frontpage": {
+          "@": {
             templateUrl: view_url + "/comments.html",
             controller: "commentsPageCtrl as ctrl"
           },
@@ -561,7 +561,7 @@
           ]
         },
         views: {
-          "posts@network_frontpage": {
+          "@": {
             templateUrl: view_url + "/comments.html",
             controller: "commentsPageCtrl as ctrl"
           },

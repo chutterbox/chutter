@@ -1,4 +1,4 @@
-.post.primary-content{layout: "row", md-item-size: "75"}
+.post.primary-content{layout: "row", md-item-size: "75", layout-align: "start center"}
   .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
     %md-button.md-icon-button.up{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(ctrl.post, 1)"}
       %i.icon.ion-chevron-up{ng-class: "{'active-up' : (ctrl.post.vote == 1)}"}
@@ -16,7 +16,7 @@
     .middle{layout: "column"}
       .top{layout: "row", layout-align: 'start end'}
         .favicon{ng-if: "ctrl.postService.hasMedia(ctrl.post) && ctrl.post.media[0].favicon"}
-          %img{ng-src: "{{ctrl.post.media[0].favicon}}"}
+          %img{ng-src: "{{ctrl.post.media[0].favicon}}", title: "{{ctrl.post.media[0].attribution}}"}
         .title
           %a.link-color.md-title{ng-bind: "ctrl.post.title", href: "{{ctrl.post.media[0].link}}"}
           %span.attribution{ng-if: "false && ctrl.post.media[0] && ctrl.post.media[0].attribution", ng-bind: "'('+ctrl.post.media[0].attribution+')'"}

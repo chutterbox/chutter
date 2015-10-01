@@ -26,12 +26,24 @@ h5 {
 .md-mini .icon {
   font-size: 17px; }
 
-body {
+body,
+.overflow-hidden {
   overflow: hidden; }
 
-div[ui-view="posts"] {
-  margin-top: 16px;
-  overflow: auto; }
+#create-a-community-content {
+  margin: 8px; }
+
+#contentShrink {
+  transform: translateY(0);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0); }
+
+#contentShrink {
+  margin-top: -40px;
+  margin-bottom: -40px;
+  transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -204,15 +216,6 @@ i.active-down,
 .detailed-list-item {
   border-bottom: 1px solid #eeeeee; }
 
-.post-item .md-button .ion-chatbox,
-.post-item .md-button .ion-chatboxes,
-.comment-item .md-button .ion-chatbox,
-.comment-item .md-button .ion-chatboxes {
-  margin-right: 8px;
-  color: #64b5f6; }
-.post-item .md-button .tagline,
-.comment-item .md-button .tagline {
-  margin-left: 18px; }
 .post-item .md-button p,
 .comment-item .md-button p {
   white-space: nowrap;

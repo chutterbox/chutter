@@ -7630,7 +7630,7 @@ comment-embed {
 
 .post-comment {
   position: absolute;
-  bottom: 16px;
+  top: 75vh;
   right: 341px; }
   @media (max-width: 960px) {
     .post-comment {

@@ -29,7 +29,7 @@
         y = Math.min(toolbarHeight / shrinkSpeedFactor, Math.max(0, y + scrollTop - prevScrollTop));
         contentValue = (toolbarHeight - y) * shrinkSpeedFactor;
         toolbarValue = -y * shrinkSpeedFactor;
-        if (contentValue === 0 || toolbarValue === 0) {
+        if (scrollTop === 0) {
           content.style.cssText = "";
           toolbar.style.cssText = "";
         } else {

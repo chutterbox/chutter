@@ -26,7 +26,7 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
     contentValue = (toolbarHeight - y) * shrinkSpeedFactor
     toolbarValue = -y * shrinkSpeedFactor
     
-    if (contentValue is 0 or toolbarValue is 0)
+    if scrollTop is 0
       content.style.cssText = ""
       toolbar.style.cssText = ""
     else

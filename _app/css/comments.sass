@@ -101,7 +101,7 @@ comment-embed
         line-height: normal
         margin: 0
         i
-          color: material-color("grey", "500")
+          color: material-color("grey", "700")
 
   //Colored borders showing hierarchy
   .border
@@ -138,17 +138,21 @@ comment-embed
   .main
     .body
       h1,h3,h4,h5,h6,p,li,blockquote
+        &:first-child
+          margin-top: 4px
+        &:last-child
+          margin-bottom: 4px
         font-size: 0.9em
 
   .header
     height: 25px
     .time,
     .points
+      font-size: 0.7em
       color: material-color("grey", "500")
-      font-size: 0.8em
       margin-left: 8px
     .username
-      font-size: 0.8em
+      font-size: 0.7em
       cursor: pointer
     .points
       font-weight: bold
@@ -212,12 +216,12 @@ comment-embed
     -moz-transform: scale(0)
     transform: scale(0)
   .footer
-    font-size: 0.8em
+    font-size: 0.7em
     font-weight: 500
     span,
     a
       cursor: pointer
-      color: #999
+      color: material-color("grey", "500")
       margin-right: 8px
 
 .reply

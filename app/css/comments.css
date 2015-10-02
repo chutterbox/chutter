@@ -337,7 +337,7 @@ comment-embed {
         margin: 0; }
         comment .left-controls .vote .md-button i,
         comment-embed .left-controls .vote .md-button i {
-          color: #9e9e9e; }
+          color: #616161; }
   comment .border,
   comment-embed .border {
     height: 100%;
@@ -376,6 +376,26 @@ comment-embed {
   comment-embed .main .body li,
   comment-embed .main .body blockquote {
     font-size: 0.9em; }
+    comment .main .body h1:first-child, comment .main .body h3:first-child, comment .main .body h4:first-child, comment .main .body h5:first-child, comment .main .body h6:first-child, comment .main .body p:first-child, comment .main .body li:first-child, comment .main .body blockquote:first-child,
+    comment-embed .main .body h1:first-child,
+    comment-embed .main .body h3:first-child,
+    comment-embed .main .body h4:first-child,
+    comment-embed .main .body h5:first-child,
+    comment-embed .main .body h6:first-child,
+    comment-embed .main .body p:first-child,
+    comment-embed .main .body li:first-child,
+    comment-embed .main .body blockquote:first-child {
+      margin-top: 4px; }
+    comment .main .body h1:last-child, comment .main .body h3:last-child, comment .main .body h4:last-child, comment .main .body h5:last-child, comment .main .body h6:last-child, comment .main .body p:last-child, comment .main .body li:last-child, comment .main .body blockquote:last-child,
+    comment-embed .main .body h1:last-child,
+    comment-embed .main .body h3:last-child,
+    comment-embed .main .body h4:last-child,
+    comment-embed .main .body h5:last-child,
+    comment-embed .main .body h6:last-child,
+    comment-embed .main .body p:last-child,
+    comment-embed .main .body li:last-child,
+    comment-embed .main .body blockquote:last-child {
+      margin-bottom: 4px; }
   comment .header,
   comment-embed .header {
     height: 25px; }
@@ -383,12 +403,12 @@ comment-embed {
     comment .header .points,
     comment-embed .header .time,
     comment-embed .header .points {
+      font-size: 0.7em;
       color: #9e9e9e;
-      font-size: 0.8em;
       margin-left: 8px; }
     comment .header .username,
     comment-embed .header .username {
-      font-size: 0.8em;
+      font-size: 0.7em;
       cursor: pointer; }
     comment .header .points,
     comment-embed .header .points {
@@ -457,12 +477,12 @@ comment-embed {
     -moz-transform: scale(0);
     transform: scale(0); }
   .main .footer {
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: 500; }
     .main .footer span,
     .main .footer a {
       cursor: pointer;
-      color: #999;
+      color: #9e9e9e;
       margin-right: 8px; }
 
 .reply .body textarea {

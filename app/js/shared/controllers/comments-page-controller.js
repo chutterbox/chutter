@@ -6,7 +6,31 @@
 
   app.controller("commentsPageCtrl", [
     "$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$stateParams", function($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer, $stateParams) {
+      var content, prevScrollTop, scrollElement, throttledFn, toolbar, y;
       $scope.fetchMoreComments = function() {};
+      y = 0;
+      prevScrollTop = 0;
+      toolbar = document.getElementById("toolbarShrink");
+      content = document.getElementById("contentShrink");
+      scrollElement = $(content);
+      throttledFn = function() {
+        var contentValue, scrollTop, shrinkSpeedFactor, toolbarHeight, toolbarValue;
+        scrollTop = scrollElement[0].scrollTop;
+        toolbarHeight = 80;
+        shrinkSpeedFactor = 0.5;
+        y = Math.min(toolbarHeight / shrinkSpeedFactor, Math.max(0, y + scrollTop - prevScrollTop));
+        contentValue = (toolbarHeight - y) * shrinkSpeedFactor;
+        toolbarValue = -y * shrinkSpeedFactor;
+        if (scrollTop === 0) {
+          content.style.cssText = "";
+          toolbar.style.cssText = "";
+        } else {
+          content.style.cssText = "transform: translateY(" + contentValue + "px);-webkit-transform: translateY(" + contentValue + "px);-moz-transform: translateY(" + contentValue + "px)";
+          toolbar.style.cssText = "transform: translateY(" + toolbarValue + "px);-webkit-transform: translateY(" + toolbarValue + "px);-moz-transform: translateY(" + toolbarValue + "px)";
+        }
+        return prevScrollTop = scrollTop;
+      };
+      scrollElement.scroll(_.throttle(throttledFn, 6));
       this.page = Page;
       this.post = Post;
       if ($stateParams.network) {

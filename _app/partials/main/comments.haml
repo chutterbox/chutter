@@ -4,14 +4,17 @@
   .md-toolbar-tools{layout: "row", layout-align: "start center"}
     %p.color-light.comment-count{ng-bind: "ctrl.post.comments_count + ' comments'"}
     %span{flex: true}
-    %a.link-color
-      hot
-    %a.link-color
-      top
-    %a.link-color
-      live
+    .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
+      %a.link-color
+        hot
+    .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
+      %a.link-color
+        top
+    .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
+      %a.link-color
+        live
 #comments.primary-content
-  %comment-list{layout: "column", layout-fill: "true"}
+  %comment-list{layout: "column", flex: "true"}
     %comment.primary-content{layout: "column", parent: "", ng-repeat: "child in commentListCtrl.comments", id: "c{{child.path}}", comment: "child", post: "post"}
 
 %md-button.md-fab.post-comment{aria-label: "reply", ng-if: "user && user.id", aria-label: "Comment", ng-click: "commentListCtrl.reply()"}

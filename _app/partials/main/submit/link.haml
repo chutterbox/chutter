@@ -3,13 +3,17 @@
     %form{ng-submit: "submit()"}
       %div{layout: "row"}
         %md-input-container{flex: true}
+          %label Title
+          %input{ng-model: "newPost.title", required: "required", type: "text"}
+      %div{layout: "row"}
+        %md-input-container{flex: true}
           %label Link
           %input{ng-model: "newPost.link", required: "required", type: "text"}
         %div#submit-progress{flex: true, ng-show: "scraping"}  
-      %div{layout: "row"}
+      %div{layout: "row", ng-if: "user && user.id && user.admin == 'true'"}
         %md-input-container{flex: true}
-          %label Title
-          %input{ng-model: "newPost.title", required: "required", type: "text"}
+          %label External Comments Link
+          %input{ng-model: "newPost.external_comments_link", type: "text"}
       %div{layout: "row"}
         %span{flex: true}
         %md-button.md-raised.md-priary{type: "submit"}

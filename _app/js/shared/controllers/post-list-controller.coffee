@@ -34,9 +34,11 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
     else
       content.style.cssText = "transform: translateY(#{contentValue}px);-webkit-transform: translateY(#{contentValue}px);-moz-transform: translateY(#{contentValue}px)"
       toolbar.style.cssText = "transform: translateY(#{toolbarValue}px);-webkit-transform: translateY(#{toolbarValue}px);-moz-transform: translateY(#{toolbarValue}px)"
-      margin = (-toolbarHeight * shrinkSpeedFactor) + 'px'
-      content.style.marginTop = margin
-      content.style.marginBottom = margin
+      marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px'
+      marginBottom = (40+toolbarValue) + 'px'
+      content.style.marginTop = marginTop
+      content.style.marginBottom = marginBottom
+
 
 
     prevScrollTop = scrollTop

@@ -4,6 +4,7 @@ app = angular.module("Chutter")
 
 app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$stateParams", ($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer, $stateParams) ->
   $scope.fetchMoreComments = () ->
+
   y = 0
   prevScrollTop = 0
   toolbar = document.getElementById("toolbarShrink")
@@ -26,15 +27,15 @@ app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostS
     else
       content.style.cssText = "transform: translateY(#{contentValue}px);-webkit-transform: translateY(#{contentValue}px);-moz-transform: translateY(#{contentValue}px)"
       toolbar.style.cssText = "transform: translateY(#{toolbarValue}px);-webkit-transform: translateY(#{toolbarValue}px);-moz-transform: translateY(#{toolbarValue}px)"
-      margin = (-toolbarHeight * shrinkSpeedFactor) + 'px'
-      content.style.marginTop = margin
-      content.style.marginBottom = margin
-    
+      marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px'
+      marginBottom = (40+toolbarValue) + 'px'
+      content.style.marginTop = marginTop
+      content.style.marginBottom = marginBottom
+
+
     prevScrollTop = scrollTop
    
-  scrollElement.scroll _.throttle(throttledFn, 6)  
-
-
+  scrollElement.scroll _.throttle(throttledFn, 6)
 
   @page = Page
   @post = Post

@@ -49,8 +49,8 @@ div[ui-view="posts"]
     background-size: 80px
     background-repeat: no-repeat
     background-position: 50%
-    height: 60px
-    width: 80px
+    @include min-and-max-height(60px)
+    @include min-and-max-width(80px)
     position: relative
     cursor: pointer
     &:hover

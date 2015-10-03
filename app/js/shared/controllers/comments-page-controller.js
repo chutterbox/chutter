@@ -14,7 +14,7 @@
       content = document.getElementById("contentShrink");
       scrollElement = $(content);
       throttledFn = function() {
-        var contentValue, margin, scrollTop, shrinkSpeedFactor, toolbarHeight, toolbarValue;
+        var contentValue, marginBottom, marginTop, scrollTop, shrinkSpeedFactor, toolbarHeight, toolbarValue;
         scrollTop = scrollElement[0].scrollTop;
         toolbarHeight = 80;
         shrinkSpeedFactor = 0.5;
@@ -29,9 +29,10 @@
         } else {
           content.style.cssText = "transform: translateY(" + contentValue + "px);-webkit-transform: translateY(" + contentValue + "px);-moz-transform: translateY(" + contentValue + "px)";
           toolbar.style.cssText = "transform: translateY(" + toolbarValue + "px);-webkit-transform: translateY(" + toolbarValue + "px);-moz-transform: translateY(" + toolbarValue + "px)";
-          margin = (-toolbarHeight * shrinkSpeedFactor) + 'px';
-          content.style.marginTop = margin;
-          content.style.marginBottom = margin;
+          marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px';
+          marginBottom = (40 + toolbarValue) + 'px';
+          content.style.marginTop = marginTop;
+          content.style.marginBottom = marginBottom;
         }
         return prevScrollTop = scrollTop;
       };

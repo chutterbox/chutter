@@ -17,10 +17,10 @@
     %title Chutter
 
 
-  %body{layout: "column", flex: "true", md-theme: "{{theme}}"}
+  %body{layout: "column", md-theme: "{{theme}}"}
     #toolbarShrink{ui-view: "toolbar"}
     %md-content.secondary-content#contentShrink{layout: "row", flex: "true"}
-      %ui-view{layout: "column", flex: "true"}
+      %ui-view{layout-fill: "true", flex: "true"}
         %md-progress-circular#loading-spinner{md-mode: "indeterminate"}
       %md-sidenav.md-sidenav-right.secondary-content{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
         %md-content.secondary-content{ui-view: "right-rail", layout: "column", flex: "true"}

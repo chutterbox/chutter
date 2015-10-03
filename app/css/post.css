@@ -244,7 +244,11 @@ div[ui-view="posts"] {
     background-repeat: no-repeat;
     background-position: 50%;
     height: 60px;
+    min-height: 60px;
+    max-height: 60px;
     width: 80px;
+    min-width: 80px;
+    max-width: 80px;
     position: relative;
     cursor: pointer; }
     .post .postcontent i.icon.ion-ios-paper {

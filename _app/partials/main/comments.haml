@@ -3,7 +3,6 @@
 %md-toolbar.secondary-content#secondary-toolbar
   .md-toolbar-tools{layout: "row", layout-align: "start center"}
     %p.color-light.comment-count{ng-bind: "ctrl.post.comments_count + ' comments'"}
-    %span{flex: true}
     .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
       %a.link-color
         hot
@@ -13,11 +12,8 @@
     .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
       %a.link-color
         live
-
+    %span{flex: true}
+    %md-button.post-reply{aria-label: "reply", ng-if: "user && user.id", aria-label: "Comment", ng-click: "commentListCtrl.reply()"}
+      Reply
 %comment-list{layout: "column"}
   %comment.primary-content{layout: "column", parent: "", ng-repeat: "child in commentListCtrl.comments", id: "c{{child.path}}", comment: "child", post: "post"}
-
-%md-button.md-fab.post-comment{aria-label: "reply", ng-if: "user && user.id", aria-label: "Comment", ng-click: "commentListCtrl.reply()"}
-  %i.icon.ion-ios-chatbubble
-  %md-tooltip{md-direction: "left"}
-    Comment

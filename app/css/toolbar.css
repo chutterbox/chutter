@@ -319,6 +319,10 @@ md-toolbar#networks-bar {
   min-height: 32px;
   max-height: 32px;
   padding: 0 8px; }
+  #secondary-toolbar .md-button.post-reply {
+    margin: 0; }
+    #secondary-toolbar .md-button.post-reply span {
+      color: #2196f3; }
   #secondary-toolbar .comment-count {
     margin: 0;
     font-size: 0.8em;

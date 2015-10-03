@@ -1,5 +1,5 @@
-%div.md-whiteframe-z1{ng-hide: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
-%div.md-whiteframe-z1{ng-show: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
+%div.md-whiteframe-z1{ng-hide: "ctrl.post.body", style: "margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+%div.md-whiteframe-z1{ng-show: "ctrl.post.body", style: "margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
 %md-toolbar.secondary-content#secondary-toolbar
   .md-toolbar-tools{layout: "row", layout-align: "start center"}
     %p.color-light.comment-count{ng-bind: "ctrl.notifications.length + ' notifications'"}

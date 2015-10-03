@@ -20,7 +20,6 @@ app.controller "notificationListCtrl", ["$scope", "Page", ($scope, Page) ->
 ]
 
 app.controller "postNotificationsPageCtrl", ["$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", ($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) ->
-  $scope.fetchMoreComments = () ->
   @page = Page
   @post = Post
   @postService = PostService
@@ -32,12 +31,13 @@ app.controller "postNotificationsPageCtrl", ["$scope", "Notifications", "Post", 
 ]
 
 app.controller "commentNotificationsPageCtrl", ["$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", "Comment", ($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer, Comment) ->
-  $scope.fetchMoreComments = () ->
   @page = Page
   @comment = Comment
   @notifications = Notifications
   @resource = CommentResource
   @mediaPlayer = MediaPlayer
+  @post = {id: @comment.post_id} #this is for the reply sheet, so we can tell it what post to reply to
+
   return @
 
 ]

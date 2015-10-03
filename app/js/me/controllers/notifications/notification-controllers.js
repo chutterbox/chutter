@@ -20,7 +20,6 @@
 
   app.controller("postNotificationsPageCtrl", [
     "$scope", "Notifications", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", function($scope, Notifications, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer) {
-      $scope.fetchMoreComments = function() {};
       this.page = Page;
       this.post = Post;
       this.postService = PostService;
@@ -33,12 +32,14 @@
 
   app.controller("commentNotificationsPageCtrl", [
     "$scope", "Notifications", "Page", "$mdBottomSheet", "CommentResource", "MediaPlayer", "Comment", function($scope, Notifications, Page, $mdBottomSheet, CommentResource, MediaPlayer, Comment) {
-      $scope.fetchMoreComments = function() {};
       this.page = Page;
       this.comment = Comment;
       this.notifications = Notifications;
       this.resource = CommentResource;
       this.mediaPlayer = MediaPlayer;
+      this.post = {
+        id: this.comment.post_id
+      };
       return this;
     }
   ]);

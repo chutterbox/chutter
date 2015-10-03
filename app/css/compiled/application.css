@@ -6378,13 +6378,6 @@ body,
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
 
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
-
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {
@@ -6594,13 +6587,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -6842,13 +6828,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -7192,13 +7171,6 @@ body,
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
 
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
-
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {
@@ -7367,15 +7339,11 @@ i.active-down,
 [layout-fill] {
   height: inherit; }
 
-.comment-page {
-  padding: 15px; }
-
-#comments {
-  min-height: auto;
+comment-list {
   margin: 8px; }
-  #comments md-backdrop {
+  comment-list md-backdrop {
     display: none; }
-  #comments #reply {
+  comment-list #reply {
     height: 90%;
     max-height: 550px; }
 
@@ -7448,7 +7416,8 @@ comment-embed {
     min-height: 20px; }
   comment .content,
   comment-embed .content {
-    padding-top: 8px; }
+    padding-top: 8px;
+    width: 80%; }
   comment .left-controls,
   comment-embed .left-controls {
     margin: 8px 16px 0 16px; }
@@ -7520,56 +7489,58 @@ comment-embed {
   comment .border:hover > .line,
   comment-embed .border:hover > .line {
     background: #3f3f3f; }
-  comment .main .body h1, comment .main .body h3, comment .main .body h4, comment .main .body h5, comment .main .body h6, comment .main .body p, comment .main .body li, comment .main .body blockquote,
-  comment-embed .main .body h1,
-  comment-embed .main .body h3,
-  comment-embed .main .body h4,
-  comment-embed .main .body h5,
-  comment-embed .main .body h6,
-  comment-embed .main .body p,
-  comment-embed .main .body li,
-  comment-embed .main .body blockquote {
-    font-size: 0.9em; }
-    comment .main .body h1:first-child, comment .main .body h3:first-child, comment .main .body h4:first-child, comment .main .body h5:first-child, comment .main .body h6:first-child, comment .main .body p:first-child, comment .main .body li:first-child, comment .main .body blockquote:first-child,
-    comment-embed .main .body h1:first-child,
-    comment-embed .main .body h3:first-child,
-    comment-embed .main .body h4:first-child,
-    comment-embed .main .body h5:first-child,
-    comment-embed .main .body h6:first-child,
-    comment-embed .main .body p:first-child,
-    comment-embed .main .body li:first-child,
-    comment-embed .main .body blockquote:first-child {
-      margin-top: 4px; }
-    comment .main .body h1:last-child, comment .main .body h3:last-child, comment .main .body h4:last-child, comment .main .body h5:last-child, comment .main .body h6:last-child, comment .main .body p:last-child, comment .main .body li:last-child, comment .main .body blockquote:last-child,
-    comment-embed .main .body h1:last-child,
-    comment-embed .main .body h3:last-child,
-    comment-embed .main .body h4:last-child,
-    comment-embed .main .body h5:last-child,
-    comment-embed .main .body h6:last-child,
-    comment-embed .main .body p:last-child,
-    comment-embed .main .body li:last-child,
-    comment-embed .main .body blockquote:last-child {
-      margin-bottom: 4px; }
-  comment .header,
-  comment-embed .header {
-    height: 25px; }
-    comment .header .time,
-    comment .header .points,
-    comment-embed .header .time,
-    comment-embed .header .points {
-      font-size: 0.7em;
-      color: #9e9e9e;
-      margin-left: 8px; }
-    comment .header .username,
-    comment-embed .header .username {
-      font-size: 0.7em;
-      cursor: pointer; }
-    comment .header .points,
-    comment-embed .header .points {
-      font-weight: bold; }
-    comment .header .time,
-    comment-embed .header .time {
-      margin-right: 10px; }
+  comment .main .body,
+  comment-embed .main .body {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 100%; }
+    comment .main .body h1, comment .main .body h3, comment .main .body h4, comment .main .body h5, comment .main .body h6, comment .main .body p, comment .main .body li, comment .main .body blockquote,
+    comment-embed .main .body h1,
+    comment-embed .main .body h3,
+    comment-embed .main .body h4,
+    comment-embed .main .body h5,
+    comment-embed .main .body h6,
+    comment-embed .main .body p,
+    comment-embed .main .body li,
+    comment-embed .main .body blockquote {
+      font-size: 0.9em; }
+      comment .main .body h1:first-child, comment .main .body h3:first-child, comment .main .body h4:first-child, comment .main .body h5:first-child, comment .main .body h6:first-child, comment .main .body p:first-child, comment .main .body li:first-child, comment .main .body blockquote:first-child,
+      comment-embed .main .body h1:first-child,
+      comment-embed .main .body h3:first-child,
+      comment-embed .main .body h4:first-child,
+      comment-embed .main .body h5:first-child,
+      comment-embed .main .body h6:first-child,
+      comment-embed .main .body p:first-child,
+      comment-embed .main .body li:first-child,
+      comment-embed .main .body blockquote:first-child {
+        margin-top: 4px; }
+      comment .main .body h1:last-child, comment .main .body h3:last-child, comment .main .body h4:last-child, comment .main .body h5:last-child, comment .main .body h6:last-child, comment .main .body p:last-child, comment .main .body li:last-child, comment .main .body blockquote:last-child,
+      comment-embed .main .body h1:last-child,
+      comment-embed .main .body h3:last-child,
+      comment-embed .main .body h4:last-child,
+      comment-embed .main .body h5:last-child,
+      comment-embed .main .body h6:last-child,
+      comment-embed .main .body p:last-child,
+      comment-embed .main .body li:last-child,
+      comment-embed .main .body blockquote:last-child {
+        margin-bottom: 4px; }
+  comment .header .time,
+  comment .header .points,
+  comment-embed .header .time,
+  comment-embed .header .points {
+    font-size: 0.7em;
+    color: #9e9e9e;
+    margin-left: 8px; }
+  comment .header .username,
+  comment-embed .header .username {
+    font-size: 0.7em;
+    cursor: pointer; }
+  comment .header .points,
+  comment-embed .header .points {
+    font-weight: bold; }
+  comment .header .time,
+  comment-embed .header .time {
+    margin-right: 10px; }
   comment[collapsed="true"],
   comment-embed[collapsed="true"] {
     height: 48px;
@@ -7697,13 +7668,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -8032,13 +7996,6 @@ body,
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
 
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
-
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {
@@ -8258,13 +8215,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -8604,13 +8554,6 @@ body,
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
 
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
-
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {
@@ -8870,13 +8813,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }
@@ -9149,13 +9085,6 @@ body,
   transform: translateY(0);
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
-
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
 
 md-tabs md-tab-item {
   max-width: none !important; }

@@ -13,9 +13,9 @@
     .mini-tab{layout: "column", layout-align: "center center", ui-sref-active: "active"}
       %a.link-color
         live
-#comments.primary-content
-  %comment-list{layout: "column", flex: "true"}
-    %comment.primary-content{layout: "column", parent: "", ng-repeat: "child in commentListCtrl.comments", id: "c{{child.path}}", comment: "child", post: "post"}
+
+%comment-list{layout: "column", flex: "true"}
+  %comment.primary-content{layout: "column", parent: "", ng-repeat: "child in commentListCtrl.comments", id: "c{{child.path}}", comment: "child", post: "post"}
 
 %md-button.md-fab.post-comment{aria-label: "reply", ng-if: "user && user.id", aria-label: "Comment", ng-click: "commentListCtrl.reply()"}
   %i.icon.ion-ios-chatbubble

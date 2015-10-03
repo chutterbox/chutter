@@ -38,13 +38,6 @@ body,
   -moz-transform: translateY(0);
   -webkit-transform: translateY(0); }
 
-#contentShrink {
-  margin-top: -40px;
-  margin-bottom: -40px;
-  transform: translateY(40px);
-  -moz-transform: translateY(40px);
-  -webkit-transform: translateY(40px); }
-
 md-tabs md-tab-item {
   max-width: none !important; }
 md-tabs md-content {

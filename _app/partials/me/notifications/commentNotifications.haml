@@ -1,9 +1,12 @@
-%comment-list
+%comment-list.md-whiteframe-z1
   %comment.primary-content{layout: "column", parent: "", id: "c{{ctrl.comment.path}}", comment: "ctrl.comment"}
 
+%md-toolbar.secondary-content#secondary-toolbar
+  .md-toolbar-tools{layout: "row", layout-align: "start center"}
+    %p.color-light.comment-count{ng-bind: "ctrl.notifications.length + ' notifications'"}
 
 
-%comment-list{layout: "column"}
+%comment-list{layout: "column", flex: "true"}
   %div{ng-repeat: "notification in ctrl.notifications", ng-switch: "notification.entityable"}
-    %comment.primary-content{ng-switch-when: "comment", layout: "column", parent: "", id: "c{{ctrl.comment.path}}", comment: "ctrl.comment"}
+    %comment.primary-content{ng-switch-when: "comment", layout: "column", parent: "", id: "c{{notification.path}}", comment: "notification"}
 

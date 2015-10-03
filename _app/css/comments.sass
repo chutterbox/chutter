@@ -1,8 +1,6 @@
 @import "chutter"
-.comment-page
-  padding: 15px
-#comments
-  min-height: auto
+
+comment-list
   margin: 8px
   md-backdrop
     display: none
@@ -72,6 +70,7 @@ comment-embed
 
   .content
     padding-top: 8px
+    width: 80%
   .left-controls
     margin: 8px 16px 0 16px
     > .md-button
@@ -137,6 +136,9 @@ comment-embed
       background: #3f3f3f
   .main
     .body
+      overflow-wrap: break-word
+      word-wrap: break-word
+      width: 100%
       h1,h3,h4,h5,h6,p,li,blockquote
         &:first-child
           margin-top: 4px
@@ -145,7 +147,6 @@ comment-embed
         font-size: 0.9em
 
   .header
-    height: 25px
     .time,
     .points
       font-size: 0.7em

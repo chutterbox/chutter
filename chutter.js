@@ -27,7 +27,7 @@
     maxAge: oneYear
   }));
 
-  chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutter-seo.herokuapp.com/').set('afterRender', function(req, pres) {
+  chutter.use(require('prerender-node').set('prerenderToken', 'tVzH3bYtDlOZkQuLaEHI').blacklisted('^/api/v1').set('protocol', 'https').set('afterRender', function(req, pres) {
     return console.log("crawled");
   }));
 

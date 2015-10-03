@@ -20,7 +20,7 @@ chutter.use "/", express.static(__dirname + "/app", {maxAge: oneYear})
 chutter.use "/vendor", express.static(__dirname + "/vendor", {maxAge: oneYear})
 
 # angular is bad for SEO, we have it prerendered in another heroku repo
-chutter.use(require('prerender-node').set('prerenderServiceUrl', 'https://chutter-seo.herokuapp.com/').set('afterRender', (req, pres) ->
+chutter.use(require('prerender-node').set('prerenderToken', 'tVzH3bYtDlOZkQuLaEHI').blacklisted('^/api/v1').set('protocol', 'https').set('afterRender', (req, pres) ->
   console.log "crawled"
 ))
 

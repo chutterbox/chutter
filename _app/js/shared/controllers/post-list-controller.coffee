@@ -7,44 +7,11 @@ app.controller "postListCtrl", ["$scope", "Page", "Posts", "PostResource", "$sta
     $scope.applicationSectionNamespace = "network_frontpage"
   else
     $scope.applicationSectionNamespace = "frontpage"
+  
   if $state.current.data
     $scope.context = $state.current.data.context 
     $scope.sorting = $state.current.data.sorting
-  # content = document.getElementById("content")
   
-  y = 0
-  prevScrollTop = 0
-  toolbar = document.getElementById("toolbarShrink")
-  content = document.getElementById("contentShrink")
-  scrollElement = $(".md-virtual-repeat-scroller")
-  throttledFn = () -> 
-    scrollTop = scrollElement[0].scrollTop
-    toolbarHeight = 80
-    shrinkSpeedFactor = 0.5
-    y = Math.min(toolbarHeight / shrinkSpeedFactor, Math.max(0, y + scrollTop - prevScrollTop))
-    
-    contentValue = (toolbarHeight - y) * shrinkSpeedFactor
-    toolbarValue = -y * shrinkSpeedFactor
-    
-    if scrollTop is 0
-      content.style.cssText = ""
-      toolbar.style.cssText = ""
-      content.style.marginTop = "0"
-      content.style.marginBottom = "0"
-    else
-      content.style.cssText = "transform: translateY(#{contentValue}px);-webkit-transform: translateY(#{contentValue}px);-moz-transform: translateY(#{contentValue}px)"
-      toolbar.style.cssText = "transform: translateY(#{toolbarValue}px);-webkit-transform: translateY(#{toolbarValue}px);-moz-transform: translateY(#{toolbarValue}px)"
-      marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px'
-      marginBottom = (40+toolbarValue) + 'px'
-      content.style.marginTop = marginTop
-      content.style.marginBottom = marginBottom
-
-
-
-    prevScrollTop = scrollTop
-   
-  scrollElement.scroll _.throttle(throttledFn, 6)
-
   Page.posts = Posts.posts
   DynamicItems = ->
 

@@ -30,6 +30,9 @@ body,
 .overflow-hidden {
   overflow: hidden; }
 
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
+
 #create-a-community-content {
   margin: 8px; }
 

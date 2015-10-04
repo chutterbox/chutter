@@ -3,40 +3,6 @@
 app = angular.module("Chutter")
 
 app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostService", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$stateParams", ($scope, Comments, Post, Page, PostService, $mdBottomSheet, CommentResource, MediaPlayer, $stateParams) ->
-  $scope.fetchMoreComments = () ->
-
-  y = 0
-  prevScrollTop = 0
-  toolbar = document.getElementById("toolbarShrink")
-  content = document.getElementById("contentShrink")
-  scrollElement = $(content)
-  throttledFn = () -> 
-    scrollTop = scrollElement[0].scrollTop
-    toolbarHeight = 80
-    shrinkSpeedFactor = 0.5
-    y = Math.min(toolbarHeight / shrinkSpeedFactor, Math.max(0, y + scrollTop - prevScrollTop))
-    
-    contentValue = (toolbarHeight - y) * shrinkSpeedFactor
-    toolbarValue = -y * shrinkSpeedFactor
-    
-    if scrollTop is 0
-      content.style.cssText = ""
-      toolbar.style.cssText = ""
-      content.style.marginTop = "0"
-      content.style.marginBottom = "0"
-    else
-      content.style.cssText = "transform: translateY(#{contentValue}px);-webkit-transform: translateY(#{contentValue}px);-moz-transform: translateY(#{contentValue}px)"
-      toolbar.style.cssText = "transform: translateY(#{toolbarValue}px);-webkit-transform: translateY(#{toolbarValue}px);-moz-transform: translateY(#{toolbarValue}px)"
-      marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px'
-      marginBottom = (40+toolbarValue) + 'px'
-      content.style.marginTop = marginTop
-      content.style.marginBottom = marginBottom
-
-
-    prevScrollTop = scrollTop
-   
-  scrollElement.scroll _.throttle(throttledFn, 6)
-
   @page = Page
   @post = Post
   if $stateParams.network

@@ -1,4 +1,4 @@
-%md-virtual-repeat-container{style: "height: calc(100vh - 32px)"}
+%md-virtual-repeat-container{chutter-scroll-shrink: "true"}
   .post.primary-content{md-virtual-repeat: "post in ctrl.dynamicItems", md-on-demand: "true", layout: "row", md-item-size: "75", layout-align: "start center"}
     .vote{hide-sm: "true", layout: "column", layout-align: "start center"}
       %md-button.md-icon-button{flex: true, aria-label: "Upvote", ng-click: "ctrl.postService.updateVote(post, 1)"}
@@ -48,4 +48,3 @@
             reported
           %a{ng-click: "ctrl.postService.moderate(post)", ng-if: "post.moderates && !post.restricted_from_removing_posts"}
             mod
-       

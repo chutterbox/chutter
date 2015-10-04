@@ -6370,6 +6370,9 @@ body,
 .overflow-hidden {
   overflow: hidden; }
 
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
+
 #create-a-community-content {
   margin: 8px; }
 
@@ -6579,6 +6582,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -6820,6 +6826,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -7162,6 +7171,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -7656,6 +7668,9 @@ body,
 .overflow-hidden {
   overflow: hidden; }
 
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
+
 #create-a-community-content {
   margin: 8px; }
 
@@ -7861,7 +7876,7 @@ div[ui-view="posts"] {
 .post {
   height: 75px;
   min-height: 75px;
-  width: 100%;
+  width: 95%;
   -moz-animation: fade 250ms ease-in;
   animation: fade 250ms ease-in; }
   .post .postcontent {
@@ -7986,6 +8001,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -8206,6 +8224,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -8545,6 +8566,9 @@ body,
 .overflow-hidden {
   overflow: hidden; }
 
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
+
 #create-a-community-content {
   margin: 8px; }
 
@@ -8804,6 +8828,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }
@@ -9076,6 +9103,9 @@ h5 {
 body,
 .overflow-hidden {
   overflow: hidden; }
+
+[chutter-scroll-shrink] {
+  height: calc(100vh - 32px); }
 
 #create-a-community-content {
   margin: 8px; }

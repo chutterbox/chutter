@@ -96,4 +96,48 @@
     }
   ]);
 
+  app.directive("chutterScrollShrink", function() {
+    return {
+      restrict: "A",
+      link: function($scope, $element, attrs) {
+        var content, prevScrollTop, scrollElement, throttledFn, toolbar, y;
+        toolbar = document.getElementById("toolbarShrink");
+        content = document.getElementById("contentShrink");
+        if ($element[0].tagName === "MD-VIRTUAL-REPEAT-CONTAINER") {
+          scrollElement = $(".md-virtual-repeat-scroller");
+        } else {
+          scrollElement = $($element[0]);
+        }
+        console.log(scrollElement);
+        y = 0;
+        prevScrollTop = 0;
+        throttledFn = function() {
+          var contentValue, marginBottom, marginTop, scrollTop, shrinkSpeedFactor, toolbarHeight, toolbarValue;
+          scrollTop = scrollElement[0].scrollTop;
+          toolbarHeight = 80;
+          shrinkSpeedFactor = 0.5;
+          y = Math.min(toolbarHeight / shrinkSpeedFactor, Math.max(0, y + scrollTop - prevScrollTop));
+          contentValue = (toolbarHeight - y) * shrinkSpeedFactor;
+          toolbarValue = -y * shrinkSpeedFactor;
+          if (scrollTop === 0) {
+            content.style.cssText = "";
+            toolbar.style.cssText = "";
+            content.style.marginTop = "0";
+            content.style.marginBottom = "0";
+          } else {
+            content.style.cssText = "transform: translateY(" + contentValue + "px);-webkit-transform: translateY(" + contentValue + "px);-moz-transform: translateY(" + contentValue + "px)";
+            toolbar.style.cssText = "transform: translateY(" + toolbarValue + "px);-webkit-transform: translateY(" + toolbarValue + "px);-moz-transform: translateY(" + toolbarValue + "px)";
+            marginTop = (-toolbarHeight * shrinkSpeedFactor) + 'px';
+            marginBottom = (40 + toolbarValue) + 'px';
+            content.style.marginTop = marginTop;
+            content.style.marginBottom = marginBottom;
+          }
+          return prevScrollTop = scrollTop;
+        };
+        throttledFn();
+        return scrollElement.scroll(_.throttle(throttledFn, 6));
+      }
+    };
+  });
+
 }).call(this);

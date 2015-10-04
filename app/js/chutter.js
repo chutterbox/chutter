@@ -19,7 +19,8 @@
     }
   ]).config([
     '$stateProvider', '$urlRouterProvider', '$compileProvider', 'AngularyticsProvider', function($stateProvider, $urlRouterProvider, $compileProvider, AngularyticsProvider) {
-      return AngularyticsProvider.setEventHandlers(['GoogleUniversal']);
+      AngularyticsProvider.setEventHandlers(['GoogleUniversal']);
+      return $compileProvider.debugInfoEnabled(false);
     }
   ]).run([
     '$http', '$auth', '$rootScope', 'Angularytics', function($http, $auth, $rootScope, Angularytics) {

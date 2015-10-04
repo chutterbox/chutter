@@ -15,7 +15,7 @@
   .main{layout: "row", flex: "true"}
     .middle{layout: "column"}
       .top{layout: "row", layout-align: 'start end'}
-        .favicon{ng-if: "ctrl.postService.hasMedia(ctrl.post) && ctrl.post.media[0].favicon"}
+        .favicon{hide-sm: "true", ng-if: "ctrl.postService.hasMedia(ctrl.post) && ctrl.post.media[0].favicon"}
           %img{ng-src: "{{ctrl.post.media[0].favicon}}", title: "{{ctrl.post.media[0].attribution}}"}
         .title
           %a.link-color.md-title{ng-bind: "ctrl.post.title", href: "{{ctrl.post.media[0].link}}"}

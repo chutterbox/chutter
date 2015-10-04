@@ -17,7 +17,7 @@
     .main{layout: "row", flex: "true"}
       .middle{layout: "column"}
         .top{layout: "row", layout-align: 'start end'}
-          .favicon{ng-if: "ctrl.postService.hasMedia(post) && post.media[0].favicon"}
+          .favicon{hide-sm: "true", ng-if: "ctrl.postService.hasMedia(post) && post.media[0].favicon"}
             %img{ng-src: "{{post.media[0].favicon}}", title: "{{post.media[0].attribution}}"}
           .title{ng-if: "!post.media.id"}
             %a.link-color.md-title{ng-bind: "post.title", ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})"}
@@ -31,8 +31,8 @@
           %span
             by
           %a.link-color{ng-bind: "post.username", ui-sref: "user.overview({username: post.username})"}
-          %span to
-          %a.link-color{ng-bind: "'/c/' + post.community_slug", ui-sref: "frontpage.community.hot({community: post.community_slug})"}
+          %span{hide-sm: "true"} to
+          %a.link-color{hide-sm: "true", ng-bind: "'/c/' + post.community_slug", ui-sref: "frontpage.community.hot({community: post.community_slug})"}
             
         .post-footer{layout: "row"}
           %a{ui-sref: "{{applicationSectionNamespace}}.community.comments({id: post.slug, community: post.community_slug})", ng-bind: "post.comments_count + ' comments'"}

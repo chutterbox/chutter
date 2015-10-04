@@ -1,6 +1,6 @@
 %md-content.secondary-content{chutter-scroll-shrink: "true"}
-  .md-whiteframe-z1{ng-hide: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
-  .md-whiteframe-z1{ng-show: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
+  .md-whiteframe-z1.primary-content{ng-hide: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/post.html'"}
+  .md-whiteframe-z1.primary-content{ng-show: "ctrl.post.body", style: "z-index: 120; margin: 8px;", ng-include: "'../app/partials/shared/discussionPost.html'"}
   %md-toolbar.secondary-content#secondary-toolbar
     .md-toolbar-tools{layout: "row", layout-align: "start center"}
       %p.color-light.comment-count{ng-bind: "ctrl.post.comments_count + ' comments'"}

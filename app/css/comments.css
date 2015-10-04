@@ -405,7 +405,12 @@ comment-embed {
     font-weight: bold; }
   comment .header .time,
   comment-embed .header .time {
-    margin-right: 10px; }
+    margin-right: 10p; }
+  comment .header .external-comment-icon,
+  comment-embed .header .external-comment-icon {
+    font-size: 0.7em;
+    margin-left: 6px;
+    color: #9e9e9e; }
   comment[collapsed="true"],
   comment-embed[collapsed="true"] {
     height: 48px;

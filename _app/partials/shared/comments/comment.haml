@@ -24,6 +24,9 @@
       %md-button.md-primary.button-link.username{aria-label: "username", md-no-ink: true, ng-bind: "comment.username", ui-sref: "user.overview({username: comment.username})"}
       %span.points{ng-bind: "comment.points + ' points'"}
       %span.time{layout-align: "end", am-time-ago: "comment.created_at"}
+      %a.external-comment-icon.icon.ion-earth{ng-if: "comment.external_permalink", href: "{{comment.external_permalink}}"}
+        %md-tooltip{md-direction: "right", md-delay: "500"}
+          This is an external comment from another site, you can reply to it here and chutter will keep the convo going. Click the icon for the original attribution and source comment. 
     .body{marked: "comment.body"}
     .footer
       %a

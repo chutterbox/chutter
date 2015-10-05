@@ -396,20 +396,20 @@
                   }).$promise;
                 }
               ]
-            }
-          },
-          controller: [
-            "$scope", "Community", "Moderators", "CommunityResource", function($scope, Community, Moderators, CommunityResource) {
-              $scope.community = Community;
-              $scope.moderators = Moderators;
-              return $scope.requestModerationPosition = function() {
-                $scope.community.moderation_position_requested = true;
-                return CommunityResource.requestModerationPosition({
-                  id: $scope.page.community.id
-                });
-              };
-            }
-          ]
+            },
+            controller: [
+              "$scope", "Community", "Moderators", "CommunityResource", function($scope, Community, Moderators, CommunityResource) {
+                $scope.community = Community;
+                $scope.moderators = Moderators;
+                return $scope.requestModerationPosition = function() {
+                  $scope.community.moderation_position_requested = true;
+                  return CommunityResource.requestModerationPosition({
+                    id: $scope.page.community.id
+                  });
+                };
+              }
+            ]
+          }
         }
       };
       network_community_hot = {

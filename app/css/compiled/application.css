@@ -9339,7 +9339,7 @@ md-toolbar#main-toolbar {
         position: absolute;
         right: 0; }
     md-toolbar#main-toolbar .md-toolbar-tools #secondary-header {
-      padding-top: 10px;
+      padding-top: 16px;
       font-size: 1.2em;
       font-weight: 200; }
 md-toolbar#networks-bar {

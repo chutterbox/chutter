@@ -245,14 +245,14 @@ app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterP
             Moderators: ["CommunityResource", "$stateParams", (CommunityResource, $stateParams) -> 
               CommunityResource.moderators({id: $stateParams.community}).$promise
             ]
-         controller: ["$scope", "Community", "Moderators", "CommunityResource", ($scope, Community, Moderators, CommunityResource) ->
-            $scope.community = Community
-            $scope.moderators = Moderators
-            $scope.requestModerationPosition = () ->
-              $scope.community.moderation_position_requested = true
-              CommunityResource.requestModerationPosition({id: $scope.page.community.id})
-              
-          ]
+           controller: ["$scope", "Community", "Moderators", "CommunityResource", ($scope, Community, Moderators, CommunityResource) ->
+              $scope.community = Community
+              $scope.moderators = Moderators
+              $scope.requestModerationPosition = () ->
+                $scope.community.moderation_position_requested = true
+                CommunityResource.requestModerationPosition({id: $scope.page.community.id})
+                
+            ]
 
     network_community_hot = 
       name: "network_frontpage.community.hot"

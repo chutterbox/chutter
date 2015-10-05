@@ -8,13 +8,13 @@
       .nav-list-item
         %md-button{aria-label: "Inbox", ui-sref: "home.conversations", ui-sref-active: "md-primary", layout-align: "center start"}
           Inbox
-      .nav-list-item
+      .nav-list-item{ng-if: "false"}
         %md-button{aria-label: "Inbox", ui-sref: "home.submissions", ui-sref-active: "md-primary", layout-align: "center start"}
           Submissions
-      .nav-list-item 
+      .nav-list-item{ng-if: "false"}
         %md-button{aria-label: "Saved", ui-sref: "home.saved_posts", ui-sref-active: "md-primary", layout-align: "center start"}
           Saved Posts
-      .nav-list-item
+      .nav-list-item{ng-if: "false"}
         %md-button{aria-label: "Preferences", ui-sref: "home.preferences", ui-sref-active: "md-primary", layout-align: "center start"}
           Preferences
       .nav-list-item

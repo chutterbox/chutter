@@ -3,9 +3,9 @@
     .welcome{layout: "row", layout-wrap: "layout-wrap", layout-align: "space-between"}
       .header{layout: "row", layout-wrap: "layout-wrap", flex: 100}
         .title{layout: "row", flex: 100, layout-align: "start center"}
-          %h5.md-title{ng-bind: "'/c/'+community.slug"}
+          %a.md-title{ng-bind: "'/c/'+community.slug", ui-sref: "frontpage.community.hot({community: community.slug})"}
         .color-light.sub-header{ng-bind: "::community.description"}
-      %md-button.md-primary.md-hue-1.md-raised{flex: "100", ui-sref: "home.submit"}
+      %md-button.md-primary.md-hue-1.md-raised{flex: "100", ui-sref: "frontpage.submit"}
         submit
        
       %md-button.md-primary.md-hue-3.md-raised{flex: "100", ng-bind: "::('subscribe to /c/' + community.slug)"}

@@ -8414,6 +8414,8 @@ i.active-down,
   overflow: hidden; }
   .md-sidenav-right .section-content > div .additional-content {
     width: 100%; }
+    .md-sidenav-right .section-content > div .additional-content .md-button {
+      margin: 5px 0; }
 .md-sidenav-right h5 {
   margin-top: 0; }
 .md-sidenav-right .small {
@@ -8427,7 +8429,8 @@ i.active-down,
   padding: 8px 0; }
 .md-sidenav-right .header .title .icon-holder {
   text-align: center; }
-.md-sidenav-right .header .title h5 {
+.md-sidenav-right .header .title h5,
+.md-sidenav-right .header .title a {
   font-size: 1em;
   margin: 0; }
 .md-sidenav-right .header .title .icon-holder,

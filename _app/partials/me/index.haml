@@ -17,11 +17,6 @@
       %div{ui-view: "toolbar"}
       %md-content.md-whiteframe-z1.secondary-content{layout: "row", flex: "true"}
         %ui-view{layout: "column", flex: "true"}
-          .ng-cloak{flex: "true", layout: "column", layout-align: "center center"}
-            %h3.md-title
-              No notifications ... yet!
-            %p.md-subheader
-              Speak your mind - comment on a post, or submit something you think is interesting. 
         %md-sidenav.md-sidenav-right#sidenav-list{md-component-id: "right", md-is-locked-open: "$mdMedia('gt-md')"}
           %md-content{ui-view: "right-rail", layout: "column", layout-fill: "layout-fill"}
           %span{flex:true}

@@ -49,7 +49,7 @@ app.directive 'comment', ["$compile", ($compile) ->
           $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row active"
           $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill active"
           _.each $scope.comment.childIds, (id) ->
-            document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk"
+            document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk child"
           $scope.comment.element.setAttribute("collapsed", true)
 
       else 
@@ -59,7 +59,7 @@ app.directive 'comment', ["$compile", ($compile) ->
           $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row"
           $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill"
           _.each $scope.comment.childIds, (id) ->
-            document.getElementById(id).className = "ng-scope ng-isolate-scope"
+            document.getElementById(id).className = "ng-scope ng-isolate-scope child"
 
     $scope.comment.appendFirstChild = ->
       $compile('<comment class="child primary-content" color="{{comment.depthColor}}" collapsed="false" layout="column" ng-repeat="child in comment.children" id="c{{child.path}}" parent="commentListCtrl.comment" post="post" comment="child"></comment>') $scope, (cloned, scope) ->

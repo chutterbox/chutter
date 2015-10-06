@@ -70,7 +70,7 @@
                 $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row active";
                 $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill active";
                 _.each($scope.comment.childIds, function(id) {
-                  return document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk";
+                  return document.getElementById(id).className = "ng-scope ng-isolate-scope shrunk child";
                 });
                 return $scope.comment.element.setAttribute("collapsed", true);
               });
@@ -81,7 +81,7 @@
                 $scope.comment.elements["main flex flex-true layout layout-row"].className = "main flex flex-true layout layout-row";
                 $scope.comment.elements["collapsed layout layout-column layout-fill"].className = "collapsed layout layout-column layout-fill";
                 return _.each($scope.comment.childIds, function(id) {
-                  return document.getElementById(id).className = "ng-scope ng-isolate-scope";
+                  return document.getElementById(id).className = "ng-scope ng-isolate-scope child";
                 });
               });
             }

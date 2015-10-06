@@ -22,7 +22,7 @@
   ]);
 
   app.controller("commentListCtrl", [
-    "$scope", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$rootScope", function($scope, $mdBottomSheet, CommentResource, MediaPlayer, $rootScope) {
+    "$scope", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$rootScope", "$state", function($scope, $mdBottomSheet, CommentResource, MediaPlayer, $rootScope, $state) {
       this.post = $scope.ctrl.post;
       this.comments = $scope.ctrl.comments;
       this.user = $rootScope.user;
@@ -43,19 +43,23 @@
         });
       };
       this.reply = function(parentComment) {
-        return $mdBottomSheet.show({
-          templateUrl: '/partials/shared/comments/replyPanel.html',
-          controller: "replyCtrl",
-          disableParentScroll: true,
-          locals: {
-            post: this.post,
-            parentComment: parentComment,
-            comments: this.comments
-          },
-          preserveScope: true,
-          parent: angular.element(document.body),
-          clickOutsideToClose: true
-        });
+        if ($scope.user && $scope.user.id) {
+          return $mdBottomSheet.show({
+            templateUrl: '/partials/shared/comments/replyPanel.html',
+            controller: "replyCtrl",
+            disableParentScroll: true,
+            locals: {
+              post: this.post,
+              parentComment: parentComment,
+              comments: this.comments
+            },
+            preserveScope: true,
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+          });
+        } else {
+          return $state.go("register.welcome");
+        }
       };
       this.edit = function(comment) {
         return $mdBottomSheet.show({

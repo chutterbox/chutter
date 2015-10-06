@@ -18,7 +18,7 @@ app.controller "commentsPageCtrl", ["$scope", "Comments", "Post", "Page", "PostS
 
 ]
 
-app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$rootScope", ($scope, $mdBottomSheet, CommentResource, MediaPlayer, $rootScope) ->
+app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource", "MediaPlayer", "$rootScope", "$state", ($scope, $mdBottomSheet, CommentResource, MediaPlayer, $rootScope, $state) ->
   @post = $scope.ctrl.post
   @comments = $scope.ctrl.comments
   @user = $rootScope.user
@@ -36,20 +36,24 @@ app.controller "commentListCtrl", ["$scope", "$mdBottomSheet", "CommentResource"
         comment.children = data.concat(comment.children)
 
   @reply = (parentComment) ->
-    $mdBottomSheet.show({
-      templateUrl: '/partials/shared/comments/replyPanel.html'
-      #has to have leading digit on id
-      controller: "replyCtrl"
-      disableParentScroll: true
-      locals:
-        post: @post
-        parentComment: parentComment
-        comments: @comments
-      #important, do not remove since we're passing in scope reference
-      preserveScope: true
-      parent: angular.element(document.body)
-      clickOutsideToClose: true
-    })
+    if $scope.user && $scope.user.id
+      $mdBottomSheet.show({
+        templateUrl: '/partials/shared/comments/replyPanel.html'
+        #has to have leading digit on id
+        controller: "replyCtrl"
+        disableParentScroll: true
+        locals:
+          post: @post
+          parentComment: parentComment
+          comments: @comments
+        #important, do not remove since we're passing in scope reference
+        preserveScope: true
+        parent: angular.element(document.body)
+        clickOutsideToClose: true
+      })
+    else
+      $state.go("register.welcome")
+
   @edit = (comment) ->
     $mdBottomSheet.show({
       templateUrl: '/partials/shared/comments/editPanel.html'
